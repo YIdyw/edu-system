@@ -101,6 +101,9 @@ isout(){
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
+    this.setData({
+      current: "mine"
+  });
     let loginInfo = wx.getStorageSync('loginInfo');
     if(loginInfo){
       this.setData({

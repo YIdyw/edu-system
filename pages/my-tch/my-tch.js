@@ -91,6 +91,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
+    this.setData({
+      current: "mine"
+  });
     let loginInfo = wx.getStorageSync('loginInfo');
     let notify = wx.getStorageSync('notify');
     let notifyNum = 0
