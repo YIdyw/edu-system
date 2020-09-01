@@ -1,0 +1,73 @@
+
+<view class="cu-form-group">
+  <view class="title">请选择挂靠机构</view>
+  <picker bindchange="PickerChange" value="{{idx}}" range="{{orgmsg}}" range-key="name" disabled="{{disabled}}">
+    <view class="picker">{{orgmsg[idx].name}}</view>
+  </picker>
+</view>
+<view class="padding bg-white" wx:if="{{!disabled && !isRely}}">
+  <view class="padding flex flex-direction">
+    <button class="cu-btn bg-olive lg shadow" bindtap="chooseRely">确认挂靠</button>
+  </view>
+</view>
+<view class="padding bg-white" wx:elif="{{disabled && !isRely}}">
+  <view class="padding flex flex-direction">
+    <button class="cu-btn bg-olive lg shadow" bindtap="relyReselect">重新选择</button>
+  </view>
+</view>
+<view class="padding bg-white" wx:elif="{{disabled && isRely}}">
+  <view class="padding flex flex-direction">
+    <button class="cu-btn bg-olive lg shadow" bindtap="relyReselect">重新选择</button>
+  </view>
+</view>
+<view class="cu-bar bg-white solid-bottom">
+  <view class="action">
+    <text class="cuIcon-title text-olive"></text>您所选择的挂靠机构为：{{orgmsg[idx].name}}
+  </view>
+</view>
+<view class="cu-bar bg-white solid-bottom">
+  <view class="action">
+    <text class="cuIcon-title text-olive"></text>您的进程已进行至：{{basicsList[basics].name}}
+  </view>
+</view>
+<view class="bg-white padding">
+  <view class="cu-steps">
+    <view class="cu-item {{index>basics?'':'text-red'}}" wx:for="{{basicsList}}" wx:key="id">
+      <text class="cuIcon-{{item.icon}}"></text> {{item.name}}
+    </view>
+  </view>
+</view>
+<view class="cu-bar bg-white solid-bottom">
+  <view class="action">
+    <text class="cuIcon-title text-olive"></text>所选机构详细信息如下：
+  </view>
+</view>
+<view  class="cu-bar bg-white solid-bottom">
+  <view class="padding bg-white" flex-direction: column>
+    <view class="text-left padding">机构名称：{{orgmessage.name}}</view>
+    <view class="text-left padding">法人： {{orgmessage.legalPerson}}</view>
+    <view class="text-left padding">信用代码： {{orgmessage.creditCode}}</view>
+    <view class="text-left padding">成立时间：  {{orgmessage.estabDate}}</view>
+    <view class="text-left padding">员工规模：  {{orgmessage.staffScale}}</view>
+    <view class="text-left padding">招生规模：  {{orgmessage.recruitScale}}</view>
+    <view class="text-left padding">机构地址： {{orgmessage.address}} </view>
+    <view class="text-left padding">营业执照编号：  {{orgmessage.licenseNumber}}</view>
+    <view class="text-left padding">机构联系人：  {{orgmessage.contactName}}</view>
+    <view class="text-left padding">联系人电话：  {{orgmessage.contactPhone}}</view>
+  </view>
+</view>
+
+<view class="cu-modal {{modalShow?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white">
+      <view class="content">所选挂靠机构为</view>
+    </view>
+    <view class="padding-xl">
+      <view class="padding-xl">{{orgmsg[idx].name}}</view>
+    </view>
+    <view class="cu-bar bg-white justify-around">
+      <button class="cu-btn line-olive text-olive" bindtap="hideModal">取消</button>
+      <button class="cu-btn bg-olive" bindtap="orgConfirm">确定</button>
+    </view>
+  </view>
+</view>

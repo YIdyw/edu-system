@@ -1,0 +1,7 @@
+radio-group{
+  background-color: #fff;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  padding: 0 15px;
+}

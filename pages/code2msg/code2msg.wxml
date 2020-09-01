@@ -1,0 +1,60 @@
+<view class="cu-bar bg-white solid-bottom margin-top">
+  <view class="action">
+    <text class="cuIcon-title text-blue"></text>机构信息
+  </view>
+  <button class="cu-btn bg-green round" bindtap="showmsg" data-target="DialogModal2">点击展示</button>
+</view>
+<view wx:if="{{modalName2=='DialogModal2'}}" class="cu-bar bg-white solid-bottom margin-top" > 
+  <view class="padding bg-white" flex-direction: column>
+    <view class="text-left padding">机构名称：{{getorgallinfo.name}}</view>
+    <view class="text-left padding">法人： {{getorgallinfo.legalPerson}}</view>
+    <view class="text-left padding">信用代码： {{getorgallinfo.creditCode}}</view>
+    <view class="text-left padding">成立时间：  {{getorgallinfo.estabDate}}</view>
+    <view class="text-left padding">员工规模：  {{getorgallinfo.staffScale}}</view>
+    <view class="text-left padding">招生规模：  {{getorgallinfo.recruitScale}}</view>
+    <view class="text-left padding">机构地址： {{getorgallinfo.address}} </view>
+    <view class="text-left padding">营业执照编号：  {{getorgallinfo.licenseNumber}}</view>
+    <view class="text-left padding">机构联系人：  {{getorgallinfo.contactName}}</view>
+    <view class="text-left padding">联系人电话：  {{getorgallinfo.contactPhone}}</view>
+    <view class="padding flex flex-wrap justify-between align-center bg-white">
+      <button class="cu-btn bg-green round" bindtap="orgIn" >点击报名</button>
+     
+      <button class="cu-btn bg-grey round" bindtap="trylisten"  data-target="DialogModal1">预约试听</button>
+    </view>
+  </view>
+</view>
+<view class="cu-modal {{modalName=='DialogModal1'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">请选择要试听的课程</view>
+      <view class="action" bindtap="cancel">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding-xl">
+      <view class="cu-dialog" catchtap="chooseLsclass1" >
+        <radio-group class="block">
+          <view class="cu-list menu text-left">
+            <view class="cu-item" wx:for="{{getlistenclass}}" wx:for-index="idxx" wx:key>
+              <label class="flex justify-between align-center flex-sub">
+               <view class="flex-sub">{{getlistenclass[idxx].name}}</view>
+               <radio class="round" bindtap="chooseLsclass" id="{{idxx}}"></radio>
+              </label>
+            </view>
+          </view>
+       </radio-group>
+      </view>
+    </view>
+    
+	    <view class="title">请输入试听时间</view>
+	    <input placeholder="格式如：2020-08-19 10:57:48" bindinput="dateInput"></input>
+   
+    <view class="cu-bar bg-white justify-end">
+      <view class="action">
+        <button class="cu-btn line-green text-green" bindtap="cancel">取消</button>
+        <button class="cu-btn bg-green margin-left" bindtap="trylistenIn">确定</button>
+
+      </view>
+    </view>
+  </view>
+</view>

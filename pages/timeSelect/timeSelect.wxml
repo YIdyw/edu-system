@@ -1,0 +1,40 @@
+<!--pages/timeSelect/timeSelect.wxml-->
+
+<view class="page me">
+  <view class="cu-bar bg-white">
+    <view class="action">
+      <text class="cuIcon-title text-olive"></text>请注意：时间选择原则上间隔应至少为1个小时
+    </view>
+  </view>
+  <view class="padding bg-white">
+    <view class="flex text-bold text-center solid-bottom">
+      <view class="flex-treble padding">星期选择</view>
+      <view class="flex-treble padding">开始时间</view>
+      <view class="flex-treble padding">结束时间</view>
+      <view class="flex-sub padding cuIcon-roundaddfill" bindtap="timeAdd"></view>
+    </view>
+    <view wx:for="{{timeSave}}" wx:key='id'>
+      <view class="flex text-center solid-bottom">
+        <picker class="time-picker padding flex-treble" mode="selector" bindchange="pickerChange" value="{{index}}" range="{{week}}" data-idx="{{index}}" data-type="week">{{week[item[0]]}}</picker>
+        <picker class="time-picker padding flex-treble" value="{{item[1]}}" mode="time" bindchange="pickerChange" data-idx="{{index}}" data-type="beginTime">{{item[1]}}</picker>
+        <picker class="time-picker padding flex-treble" value="{{item[2]}}" mode="time" bindchange="pickerChange" data-idx="{{index}}" data-type="endTime">{{item[2]}}</picker>
+        <view class="padding text-xl flex-sub cuIcon-roundclosefill" bindtap="delTime" data-idx="{{index}}"></view>
+      </view>
+    </view>
+    <view class="padding flex flex-direction">
+      <button wx:if="{{!isSure}}" class="cu-btn bg-olive lg shadow" bindtap="timeConfirm">确定</button>
+      <button wx:else class="cu-btn bg-olive lg shadow" bindtap="timeReselect">修改</button>
+    </view>
+  </view>
+</view>
+
+<view class="cu-modal {{modalShow?'show':''}}">
+  <view class="cu-dialog">
+    <view class="padding-xl">
+      <view class="padding-xl">第【{{errorIdx}}】行时间设置错误</view>
+    </view>
+    <view class="cu-bar bg-white justify-center padding">
+      <button class="cu-btn line-olive text-olive" bindtap="hideModal">返回更改</button>
+    </view>
+  </view>
+</view>

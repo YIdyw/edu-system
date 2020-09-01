@@ -1,0 +1,39 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/my/my",
+    "pages/aboutclass/aboutclass",
+    "pages/classmgmt/classmgmt",
+    "pages/classpage/classpage",
+    "pages/courseQuery/courseQuery",
+    "pages/info-t/info-t",
+    "pages/information/information",
+    "pages/login/login",
+    "pages/mancentral/mancentral",
+    "pages/my-stu/my-stu",
+    "pages/my-tch/my-tch",
+    "pages/notify/notify",
+    "pages/orgmessage/orgmessage",
+    "pages/regist/regist",
+    "pages/relymgmt/relymgmt",
+    "pages/rgistID/rgistID",
+    "pages/scheduleQuery/scheduleQuery",
+    "pages/signList/signList", 
+    "pages/signRecord/signRecord",
+    "pages/timeSelect/timeSelect",
+    "pages/trylisten/trylisten",
+    "pages/sortPage/sortPage",
+    "pages/code2msg/code2msg",
+    "pages/courseinfo/courseinfo",
+    "pages/detail/detail",
+    "pages/detail_teacher/detail_teacher"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "教育管理系统",
+    "navigationBarTextStyle": "black",
+    "navigationStyle":"default"
+  },
+  "sitemapLocation": "sitemap.json"
+}

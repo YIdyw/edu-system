@@ -1,0 +1,54 @@
+<!--pages/courseinfo/courseinfo.wxml-->
+<view style="min-height : {{screen.minHeight}}px; background-color: #2f2f2f;">
+  <view class="banner">
+    <view class="poster" wx:if="{{flag}}">
+      <image class="orgimage" mode="aspectFill" src="http://139.129.101.91:8081/offline-education-system/picture/{{courseinfo.adverPhoto}}"></image>
+    </view>
+    <view class="info">
+      <view class="title">{{courseinfo.name}}</view>
+      <view class="subinfo">
+        <view>开课时间：{{courseinfo.startTime}}</view>
+        <view>结课时间：{{courseinfo.endTime}}</view>
+      </view>
+    </view>
+    
+  </view>
+
+  <view class="summary">
+    课程简介： {{courseinfo.introduction}}
+  </view>
+  site
+  <view class="casts">
+    <view class="title">开办机构：{{courseinfo.organization}}</view>
+    <view class="title">课程书籍：{{courseinfo.textbook}}</view>
+    <view class="title">上课教室：{{courseinfo.site}}</view>
+    <view class="title">建议年龄：{{courseinfo.ageStart}}岁 ~ {{courseinfo.ageEnd}}岁</view>
+    <view class="title">课时：{{courseinfo.minutes}}分钟*{{courseinfo.totalCount}}(每周{{courseinfo.weekCount}}次)</view>
+    <view class="title">收费：{{courseinfo.pricePerHour}}/每课时</view>
+    <view class="title">已选{{courseinfo.currentStuCount}}/{{courseinfo.maxStuCount}}</view>
+    <view class="title">授课教师：</view>
+    <block wx:for="{{courseinfo.teacherList}}" wx:key="index">
+  <view class="view_tupian_wenzi"  id="{{index}}">
+    
+    <view class="view_wenzi2"> 
+      <text bindtap="teacher" data-menuindex='{{index}}' class="text_small">姓名:{{item.name}}</text>
+    </view>
+ 
+  </view>
+</block>
+
+<view class="title">助课教师：</view>
+    <block wx:for="{{courseinfo.assistantList}}" wx:key="index">
+
+  <view class="view_tupian_wenzi"  id="{{index}}">
+    
+    <view class="view_wenzi2"> 
+      <text class="text_small">姓名:{{item.name}}</text>
+    </view>
+    
+  </view>
+  
+</block>
+    
+  </view>
+</view>

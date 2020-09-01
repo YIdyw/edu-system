@@ -1,0 +1,66 @@
+<view style="min-height : {{screen.minHeight}}; background-color: #2f2f2f;">
+  <view class="banner">
+    <view class="poster">
+      <image mode="aspectFit" src="{{institute.data.orgInfo.adverPhoto}}"></image>
+    </view>
+    <view class="info">
+      <view class="title">{{institute.data.orgInfo.name}}</view>
+      <view>{{institute.data.orgInfo.province}}/{{institute.data.orgInfo.city}}/{{institute.data.orgInfo.district}}/{{institute.data.orgInfo.address}}"</view>
+      <view class="subinfo">
+        <view>{{institute.data.orgInfo.contactName}}</view>
+        <view>{{institute.data.orgInfo.contactPhone}}</view>
+      </view>
+    </view>
+    <image class="background" mode = "aspectFill" src="{{institute.data.orgInfo.adverPhoto}}"></image>
+    
+  </view>
+
+  <view class="summary">
+    "{{institute.data.orgInfo.introduction}}"
+  </view>
+  
+  <view class="casts">
+    <view class="title" catchtap="rotateAnim">
+    <text>该机构下老师</text>
+    <view style="transform:rotate({{degs}}deg);transition:all 0.4s;"></view>
+    </view>
+    <view hidden="{{degs==0}}">
+    <block wx:for="{{institute_teachers.data}}" wx:key="index">
+
+  <view class="view_tupian_wenzi" bindtap="teacher" data-menuindex='{{index}}' id="{{index}}">
+    
+    <view class="view_wenzi2"> 
+      <text>{{item.authInfo.name}}</text>
+      
+      <text class="text_small">手机号:{{item.baseInfo.phone}}</text>
+      <text class="text_small">邮箱: {{item.baseInfo.mail}}</text>
+    </view>
+    
+  </view>
+  
+</block>
+</view>
+</view>
+<view class="casts">
+<view class="title" catchtap="rotateAnim1">
+<text>该机构开设课程</text>
+<view style="transform:rotate({{degss}}deg);transition:all 0.4s;"></view>
+</view>
+<view hidden="{{degss==0}}">
+    <block wx:for="{{course.data}}" wx:key="index">
+  <view class="view_tupian_wenzi" bindtap="course" data-menuindex='{{index}}' id="{{index}}">
+    <image class="image_1" src="http://139.129.101.91:8081/offline-education-system/picture/{{item.adverPhoto}}" />
+    <view class="view_wenzi2"> 
+      <text>{{item.name}}</text>
+      
+      <text class="text_small">开课时间: {{item.startTime}}</text>
+      <text class="text_small">结课时间: {{item.endTime}}</text>
+    </view>
+    
+  </view>
+
+</block>
+</view>
+    
+  </view>
+</view>

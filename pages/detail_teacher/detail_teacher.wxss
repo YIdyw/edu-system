@@ -1,0 +1,157 @@
+.banner {
+  overflow: hidden;
+  height: 535rpx;
+  background-color: #fff;
+  position: relative;
+  box-shadow: 0 0 10px #111;
+  border-bottom: solid 1px #000;
+  background-color: #222;
+}
+
+.banner .background {
+  width: 130%;
+  height: 130%;
+  margin-left: -15%;
+  margin-top: -15%;
+  filter: blur(10px);
+  opacity: 0.7;
+}
+
+.banner .poster {
+  box-shadow: 3px 3px 5px #222;
+  position: absolute;
+  left: 30rpx;
+  top: 40rpx;
+  z-index: 1;
+  width: 300rpx;
+  height: 435rpx;
+  padding: 10rpx;
+  background-color: rgba(255, 2555, 255, 0.4);
+}
+
+.banner .poster image {
+  width: 100%;
+  height: 100%;
+}
+
+.banner .info {
+  position: absolute;
+  color: #fff;
+  z-index: 2;
+  width: 320rpx;
+  left: 390rpx;
+  top: 40rpx;
+  font-size: 24rpx;
+}
+
+.banner .info .title {
+  font-size: 46rpx;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+}
+
+.banner .info .subinfo {
+  margin-top: 20rpx;
+}
+
+.summary {
+  font-size: 28rpx;
+  line-height: 32rpx;
+  padding: 20rpx 20rpx 40rpx 20rpx;
+  color: #fafafa;
+  background-color: #222;
+}
+
+.casts {
+  background-color: #2f2f2f;
+}
+
+.casts .title {
+  padding: 10rpx 20rpx;
+  font-size: 34rpx;
+  color: #fff;
+  font-weight: bold;
+  text-shadow: 0 2px 34px #000;
+  background: -webkit-gradient(linear, 0 0,0 100%,from(#333),to(#2f2f2f) );
+  box-shadow: 0 -1px 3px #111;
+  border-top: solid 1px #444;
+}
+
+.casts scroll-view {
+  height: 100%;
+  width: 730rpx;
+  padding: 0 10rpx;
+  overflow: hidden;
+  background-color: #ccc;
+}
+
+.casts scroll-view .avater {
+  display: block;
+  float: left;
+  padding: 10rpx 15rpx;
+  width: 153rpx;
+  height: 222rpx;
+}
+
+.casts scroll-view image {
+  width: 153rpx;
+  height: 222rpx;
+  box-shadow: 3px 3px 4px #ccc;
+}
+
+.casts scroll-view .avater view {
+  text-align: center;
+  width: 100%;
+  font-size: 24rpx;
+  line-height: 26rpx;
+  overflow: hidden;
+  height: 52rpx;
+  margin-top: 10rpx;
+  color: #ccc;
+}
+
+.view_tupian_wenzi {
+  height: 120rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  
+  /* 圆角 */
+  border-radius: 20rpx;
+
+  /* 边 */
+  border: 3rpx solid #E0E3DA;
+  box-shadow:5rpx 5rpx 5rpx 5rpx #E0E3DA;
+
+  background-color: #ffffff;
+  margin: 30rpx;
+
+  /* padding使得文字和图片不至于贴着边框 */
+  padding: 30rpx;
+
+}
+
+/* 图片 */
+
+.image_1 {
+  width: 100rpx;
+  height: 100rpx;
+}
+
+/* 包裹两行文字 */
+
+.view_wenzi2 {
+  width: 100%;
+  margin-left: 25rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 小字 */
+
+.text_small {
+  font-size: 30rpx;
+  word-break: break-all;
+  color: #7a7878;
+  margin-top: 10rpx
+}

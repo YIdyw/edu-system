@@ -1,0 +1,4 @@
+/* pages/info-t/info-t.wxss */
+.title{
+  width: 35%;
+}

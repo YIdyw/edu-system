@@ -1,0 +1,18 @@
+<!--pages/signList/signList.wxml-->
+<view class="bg-white padding">
+  <view class="grid col-3 margin text-center bg-olive shadow">
+    <view class="padding text-bold">签到编号</view>
+    <view class="padding text-bold">签到姓名</view>
+    <view class="padding text-bold">签到时间</view>
+  </view>
+  <view class="grid col-3 margin text-center shadow bg-gray" wx:for="{{signInRoster}}" wx:key="id">
+    <view class="padding">{{index+1}}</view>
+    <view class="padding">{{item.name}}</view>
+    <view class="padding">{{item.rollCallTime}}</view>
+  </view>
+  <view class="grid col-3 margin text-center shadow bg-yellow" wx:for="{{unSignInRoster}}" wx:key="id">
+    <view class="padding">{{index+1}}</view>
+    <view class="padding">{{item.name}}</view>
+    <view class="padding">未签到</view>
+  </view>
+</view>

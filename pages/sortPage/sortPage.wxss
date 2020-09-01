@@ -1,0 +1,108 @@
+/* pages/component/nav/nav.wxss */
+
+.simage{
+  height: 200px;
+  width: 100%;
+}
+
+.section-text{
+  top: 0;
+  height: 100%;
+}
+
+.scrollY {
+  width: 200rpx;
+  position: fixed;
+  left: 0;
+}
+.scrollX {
+  width: 70%;
+  position: fixed;
+  right: 0;
+}
+.left {
+  border-top: 1rpx solid black;
+  border-right: 1rpx solid #efefef;
+}
+ 
+.text-style {
+  width: 200rpx;
+  height: 120rpx;
+  
+  text-align: center;
+  font-size: 34rpx;
+  font-family: PingFangSC-Semibold;
+  color: rgba(51, 51, 51, 1);
+}
+ 
+.active1 {
+  color: #85d1fd;
+}
+ 
+.active {
+  display: block;
+  width: 50rpx;
+  height: 6rpx;
+  background: #85d1fd;
+  position: relative;
+  left: 75rpx;
+  bottom: 30rpx;
+}
+
+.courses{
+  width: 70%;
+  height: 100%;
+   align-items:center;
+   text-align: center;
+   float: right;
+
+}
+
+.courseinfo{
+  position: relative;
+  
+}
+.card {
+  border: 2px solid #ffffff;
+  border-radius: 5px;
+  background-color: #ffffff;
+  box-shadow: 4px 1px 1px #cccccc;
+  margin: 8px;
+  position: relative;
+}
+
+.image {
+  width: 100%;
+  height: 100px;
+}
+.fimage {
+  width: 100%;
+  height: 200px;
+}
+.time {
+  float: right;
+  color: red;
+  position: absolute;
+  left: 5px;
+  top: 5px;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  text-align: right;
+  z-index: 1;
+  font-size: 12px;
+}
+
+.title{
+  width: 100px;
+  height: 24px;  
+  font-size: 18px;
+  position: absolute;
+  left: 0;
+  top: 0px;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  text-align: center;
+  background: yellowgreen;
+}

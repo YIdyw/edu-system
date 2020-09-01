@@ -1,0 +1,271 @@
+<form wx:if="{{!flag}}">
+	<view class="cu-form-group">
+		<view class="text-red">*</view>
+		<view class="title">毕业院校</view>
+		<input placeholder="请输入毕业院校" bindinput="handleSchool"></input>
+	</view>
+	<view class="cu-form-group">
+		<view class="text-red">*</view>
+		<view class="title">学历</view>
+		<picker range="{{educations}}" bindchange="eduChange">
+			<view>{{educations[eduIdx]}}</view>
+		</picker>
+	</view>
+	<view class="cu-form-group">
+		<view class="text-red">*</view>
+		<view class="title">学历编号</view>
+		<input placeholder="请输入学历编号" bindinput="handleEduNum"></input>
+	</view>
+	<view class="cu-form-group">
+		<view class="text-red">*</view>
+		<view class="title">学历证书照片</view>
+		<view class="grid col-2 grid-square flex-sub margin-top">
+			<view class="bg-img" wx:if="{{eduImg.length}}" wx:key='id' bindtap="ViewImage" data-url="{{eduImg}}" data-type="eduImg">
+				<image src='{{eduImg}}' mode='aspectFill'></image>
+				<view class="cu-tag bg-red" catchtap="delImg" data-type="eduImg">
+					<text class="cuIcon-close"></text>
+				</view>
+			</view>
+			<view wx:else class="solids" bindtap="chooseImg" data-type="eduImg">
+				<text class="cuIcon-cameraadd"></text>
+			</view>
+		</view>
+		<view class="action">{{eduImg.length}}/1</view>
+	</view>
+  <view class="cu-form-group">
+		<view class="title">学位</view>
+		<picker range="{{degrees}}" bindchange="degreeChange">
+			<view>{{degrees[deIdx]}}</view>
+		</picker>
+	</view>
+	<view class="cu-form-group">
+		<view class="title">学位编号</view>
+		<input placeholder="请输入学位编号" bindinput="handleDegNum"></input>
+	</view>
+	<view class="cu-form-group">
+		<view class="title">学位证书照片</view>
+		<view class="grid col-2 grid-square flex-sub margin-top">
+			<view class="bg-img" wx:if="{{degImg.length}}" wx:key='id' bindtap="ViewImage" data-url="{{degImg}}" data-type="degImg">
+				<image src='{{degImg}}' mode='aspectFill'></image>
+				<view class="cu-tag bg-red" catchtap="delImg" data-type="degImg">
+					<text class="cuIcon-close"></text>
+				</view>
+			</view>
+			<view wx:else class="solids" bindtap="chooseImg" data-type="degImg">
+				<text class="cuIcon-cameraadd"></text>
+			</view>
+		</view>
+		<view class="action">{{degImg.length}}/1</view>
+	</view>
+  <view class="cu-form-group">
+		<view class="title">培训经历数目</view>
+		<input placeholder="培训经历数目：默认0" bindinput="handleTraining"></input>
+	</view>
+	<view class="cu-form-group">
+		<view class="title">荣誉获奖数目</view>
+		<input placeholder="荣誉获奖数目：默认0" bindinput="handleTraining"></input>
+	</view>
+	<view class="cu-form-group">
+		<view class="title">工作经历数目</view>
+		<input placeholder="工作经历数目：默认0" bindinput="handleWorks"></input>
+	</view>
+	<view class="cu-form-group">
+		<view class="title">个人主页</view>
+		<input placeholder="个人主页地址" bindinput="handlePrivHome"></input>
+	</view>
+	<view class="cu-form-group">
+		<view class="title">个人微博</view>
+		<input placeholder="个人微博地址" bindinput="handlePrivWeibo"></input>
+	</view>
+	<view class="cu-form-group">
+		<view class="title">工作类型</view>
+		<radio-group class="cu-form-group" bindchange="handleTypeChange" data-type="{{worktype}}">
+			<view wx:for="{{workTypes}}" wx:key="id">
+				<radio class="radio margin-left-xl" checked="{{item.checked}}"></radio>{{item.name}}
+			</view>
+		</radio-group>
+	</view>
+	<view class="cu-form-group">
+		<view class="text-red">*</view>
+		<view class="title">
+			<view>擅长科目</view>
+			<view class="text-center">{{subjectChoose.length}}/5</view>
+		</view>
+		<checkbox-group class="grid col-2 text-left margin-top margin-bottom" bindchange="subjectChange">
+			<view wx:for="{{subjects}}" wx:key="id">
+				<checkbox class="margin-xs" value="{{item.id}}" checked="{{item.checked}}"></checkbox>{{item.name}}
+			</view>
+		</checkbox-group>
+	</view>
+	<view class="cu-form-group">
+		<view class="title">个人照片</view>
+		<view class="grid col-2 grid-square flex-sub margin-top">
+			<view class="bg-img" wx:if="{{privImg.length}}" wx:key='id' bindtap="ViewImage" data-url="{{privImg}}" data-type="privImg">
+				<image src='{{privImg}}' mode='aspectFill'></image>
+				<view class="cu-tag bg-red" catchtap="delImg" data-type="privImg">
+					<text class="cuIcon-close"></text>
+				</view>
+			</view>
+			<view wx:else class="solids" bindtap="chooseImg" data-type="privImg">
+				<text class="cuIcon-cameraadd"></text>
+			</view>
+		</view>
+		<view class="action">{{privImg.length}}/1</view>
+	</view>
+	<view class="cu-form-group">
+		<view class="title">对外宣传照片</view>
+		<view class="grid col-2 grid-square flex-sub margin-top">
+			<view class="bg-img" wx:if="{{pubImg.length}}" wx:key='id' bindtap="ViewImage" data-url="{{pubImg}}" data-type="pubImg">
+				<image src='{{pubImg}}' mode='aspectFill'></image>
+				<view class="cu-tag bg-red" catchtap="delImg" data-type="pubImg">
+					<text class="cuIcon-close"></text>
+				</view>
+			</view>
+			<view wx:else class="solids" bindtap="chooseImg" data-type="pubImg">
+				<text class="cuIcon-cameraadd"></text>
+			</view>
+		</view>
+		<view class="action">{{pubImg.length}}/1</view>
+	</view>
+	<view class="cu-form-group solid-bottom">
+		<view class="title">个人简介</view>
+		<textarea placeholder="请输入个人简介" bindinput="handleBrief" maxlength="60"></textarea>
+	</view>
+	<view class="padding flex flex-direction">
+		<button class="cu-btn bg-olive shadow" bindtap="checkin">点击登记</button>
+	</view>
+</form> 
+<form wx:else>
+	<view class="cu-form-group">
+		<view class="text-red">*</view>
+		<view class="title">毕业院校</view>
+		<input placeholder="{{checkinInfo.gradSchool}}" disabled></input>
+	</view>
+	<view class="cu-form-group">
+		<view class="text-red">*</view>
+		<view class="title">学历</view>
+		<input placeholder="{{checkinInfo.education}}" disabled></input>
+	</view>
+	<view class="cu-form-group">
+		<view class="text-red">*</view>
+		<view class="title">学历编号</view>
+		<input placeholder="{{checkinInfo.gradCertId}}" disabled></input>
+	</view>
+	<view class="cu-form-group">
+		<view class="text-red">*</view>
+		<view class="title">学历证书照片</view>
+		<view class="grid col-2 grid-square flex-sub margin-top">
+			<view class="bg-img" wx:if="{{eduImg.length}}" wx:key='id' bindtap="ViewImage" data-url="{{eduImg}}" data-type="eduImg">
+				<image src='{{eduImg}}' mode='aspectFill'></image>
+				<view class="cu-tag bg-red" catchtap="delImg" data-type="eduImg">
+					<text class="cuIcon-close"></text>
+				</view>
+			</view>
+			<view wx:else class="solids" bindtap="chooseImg" data-type="eduImg">
+				<text class="cuIcon-cameraadd"></text>
+			</view>
+		</view>
+		<view class="action">{{eduImg.length}}/1</view>
+	</view>
+  <view class="cu-form-group">
+		<view class="title">学位</view>
+		<input placeholder="{{checkinInfo.degree=='请选择'?'待完善':checkinInfo.degree}}" disabled></input>
+	</view>
+	<view class="cu-form-group">
+		<view class="title">学位编号</view>
+		<input placeholder="{{checkinInfo.degreeCertId?checkinInfo.degreeCertId:'待完善'}}" disabled></input>
+	</view>
+	<view class="cu-form-group">
+		<view class="title">学位证书照片</view>
+		<view class="grid col-2 grid-square flex-sub margin-top">
+			<view class="bg-img" wx:if="{{degImg.length}}" wx:key='id' bindtap="ViewImage" data-url="{{degImg}}" data-type="degImg">
+				<image src='{{degImg}}' mode='aspectFill'></image>
+				<view class="cu-tag bg-red" catchtap="delImg" data-type="degImg">
+					<text class="cuIcon-close"></text>
+				</view>
+			</view>
+			<view wx:else class="solids" bindtap="chooseImg" data-type="degImg">
+				<text class="cuIcon-cameraadd"></text>
+			</view>
+		</view>
+		<view class="action">{{degImg.length}}/1</view>
+	</view>
+  <view class="cu-form-group">
+		<view class="title">培训经历数目</view>
+		<input placeholder="{{checkinInfo.trainNum}}" disabled></input>
+	</view>
+	<view class="cu-form-group">
+		<view class="title">荣誉获奖数目</view>
+		<input placeholder="{{checkinInfo.awardsNum}}" disabled></input>
+	</view>
+	<view class="cu-form-group">
+		<view class="title">工作经历数目</view>
+		<input placeholder="{{checkinInfo.workNum}}" dsiabled></input>
+	</view>
+	<view class="cu-form-group">
+		<view class="title">个人主页</view>
+		<input placeholder="{{checkinInfo.homepage?checkinInfo.homepage:'待完善'}}" disabled></input>
+	</view>
+	<view class="cu-form-group">
+		<view class="title">个人微博</view>
+		<input placeholder="{{checkinInfo.weibo?checkinInfo.weibo:'待完善'}}" disabled></input>
+	</view>
+	<view class="cu-form-group">
+		<view class="title">工作类型</view>
+		<radio-group class="cu-form-group" disabled>
+			<view wx:for="{{workTypes}}" wx:key="id">
+				<radio class="radio margin-left-xl" checked="{{index==checkinInfo.checked}}" disabled></radio>{{item.name}}
+			</view>
+		</radio-group>
+	</view>
+	<view class="cu-form-group">
+		<view class="text-red">*</view>
+		<view class="title">
+			<view>擅长科目</view>
+			<view class="text-center">{{subjectChoose.length}}/5</view>
+		</view>
+		<checkbox-group class="grid col-2 text-left margin-top margin-bottom" disabled>
+			<view wx:for="{{subjects}}" wx:key="id">
+				<!-- <checkbox class="margin-xs" value="{{item.id}}" checked="{{item.checked}}" disabled></checkbox>{{item.name}} -->
+				<checkbox class="margin-xs" value="{{item.id}}" checked="{{item.checked}}" disabled></checkbox>{{item.name}}
+			</view>
+		</checkbox-group>
+	</view>
+	<view class="cu-form-group">
+		<view class="title">个人照片</view>
+		<view class="grid col-2 grid-square flex-sub margin-top">
+			<view class="bg-img" wx:if="{{privImg.length}}" wx:key='id' bindtap="ViewImage" data-url="{{privImg}}" data-type="privImg">
+				<image src='{{privImg}}' mode='aspectFill'></image>
+				<view class="cu-tag bg-red" catchtap="delImg" data-type="privImg">
+					<text class="cuIcon-close"></text>
+				</view>
+			</view>
+			<view wx:else class="solids" bindtap="chooseImg" data-type="privImg">
+				<text class="cuIcon-cameraadd"></text>
+			</view>
+		</view>
+		<view class="action">{{privImg.length}}/1</view>
+	</view>
+	<view class="cu-form-group">
+		<view class="title">对外宣传照片</view>
+		<view class="grid col-2 grid-square flex-sub margin-top">
+			<view class="bg-img" wx:if="{{pubImg.length}}" wx:key='id' bindtap="ViewImage" data-url="{{pubImg}}" data-type="pubImg">
+				<image src='{{pubImg}}' mode='aspectFill'></image>
+				<view class="cu-tag bg-red" catchtap="delImg" data-type="pubImg">
+					<text class="cuIcon-close"></text>
+				</view>
+			</view>
+			<view wx:else class="solids" bindtap="chooseImg" data-type="pubImg">
+				<text class="cuIcon-cameraadd"></text>
+			</view>
+		</view>
+		<view class="action">{{pubImg.length}}/1</view>
+	</view>
+	<view class="cu-form-group solid-bottom">
+		<view class="title">个人简介</view>
+		<textarea placeholder="{{checkinInfo.briefIntro?checkinInfo.briefIntro:'待完善'}}" disabled></textarea>
+	</view>
+	<view class="padding flex flex-direction">
+		<button class="cu-btn bg-olive lg" bindtap="modify">信息已登记成功，点击进行修改</button>
+	</view>
+</form>

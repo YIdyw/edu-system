@@ -1,0 +1,88 @@
+<view class="bg-white padding-xs margin">
+  <scroll-view scroll-x class="nav">
+    <view class="flex text-center">
+      <view class="cu-item flex-sub {{index==tabCur?'text-olive cur':''}}" wx:for="{{tabTitle}}" wx:key="id" bindtap="tabSelect" data-id="{{item.id}}">{{item.name}}</view>
+    </view>
+  </scroll-view>
+</view>
+
+<view class="bg-white padding" wx:if="{{tabCur==0}}">
+  <view class="cu-bar">
+    <view class="action">
+      <text class="cuIcon-title text-olive"></text>
+      <text wx:if="{{showMonth==currentMonth}}">当前月份：{{currentMonth}}</text>
+      <text wx:else>选择月份：{{showMonth}}</text>
+    </view>
+    <view class="action">
+      <button class="cu-btn bg-oliveLight shadow" bindtap="lastMonth">上月</button>
+      <button class="cu-btn bg-oliveLight shadow" bindtap="nextMonth">下月</button>
+    </view>
+  </view>
+  <view class="grid col-7 text-center">
+    <view class="padding" wx:for="{{monthTitle}}" wx:key="id">{{item}}</view>
+    <view wx:for="{{monthPlan}}" wx:key="id" class="padding {{item.exist?'bg-olive solid shadow': ''}} {{item.name==currentDay&&currentMonth==showMonth?'text-red text-bold':''}}" bindtap="viewDayDetail" data-exist="{{item.exist}}" data-info="{{item.courseInfo}}" data-week="{{item.week}}">{{item.name}}</view>
+  </view>
+  <view class="cu-bar margin-top">
+    <view class="action">
+      <text class="cuIcon-title text-olive"></text>注：标记部分有排课，可点击查看具体内容
+    </view>
+  </view>
+</view>
+
+<view class="bg-white padding" wx:if="{{tabCur==1}}">
+  <view class="cu-bar justify-end">
+    <view class="action">
+      <button class="cu-btn bg-oliveLight shadow" bindtap="lastWeek">上周</button>
+      <button class="cu-btn bg-oliveLight shadow" bindtap="nextWeek">下周</button>
+    </view>
+  </view>
+  <view class="cu-timeline" wx:if="{{tabWeek}}">
+    <view class="cu-time">第{{currentWeekNum}}周</view>
+    <view class="cu-item text-{{index==currentWeek?'yellow':(dayInfo.exist?'olive':'gray')}}" wx:for="{{weekPlan}}" wx:for-item="dayInfo" wx:key="id" data-info="{{dayInfo.courseInfo}}" data-exist="{{dayInfo.exist}}" data-week="{{dayInfo.week}}" bindtap="viewDayDetail">
+      <view class="content bg-{{index==currentWeek?'yellow':'olive'}} shadow" wx:if="{{dayInfo.exist}}">
+        <view class="text-bold margin-top">课程日期：{{dayInfo.date}} 星期{{monthTitle[dayInfo.week]}}</view>
+        <view class="text-bold margin-top margin-bottom" wx:for="{{dayInfo.courseInfo}}" wx:key="id">课程名称：{{item.name}}</view>
+      </view>
+      <view class="content bg-{{index==currentWeek?'yellow':'gray'}} shadow" wx:else>
+        <view class="text-bold margin-top">课程日期：{{dayInfo.date}} 星期{{monthTitle[dayInfo.week]}}</view>
+        <view class="text-bold margin-top margin-bottom">本日无排课情况</view>
+      </view>
+    </view>
+  </view>
+  <view class="cu-timeline" wx:if="{{!tabWeek}}">
+    <view class="cu-time">第{{showWeek}}周</view>
+    <view class="cu-item text-{{dayInfo.exist?'olive':'gray'}}" wx:for="{{thatWeek}}" wx:for-item="dayInfo" wx:key="id"   data-info="{{dayInfo.courseInfo}}" data-exist="{{dayInfo.exist}}" data-week="{{dayInfo.week}}" bindtap="viewDayDetail">
+      <view class="content bg-{{dayInfo.exist?'olive':'gray'}} shadow" wx:if="{{dayInfo.exist}}">
+        <view class="text-bold margin-top">课程日期：{{dayInfo.date}} 星期{{monthTitle[dayInfo.week]}}</view>
+        <view class="text-bold margin-top margin-bottom" wx:for="{{dayInfo.courseInfo}}" wx:key="id">课程名称：{{item.name}}</view>
+      </view>
+      <view class="content bg-gray shadow" wx:else>
+        <view class="text-bold margin-top">课程日期：{{dayInfo.date}} 星期{{monthTitle[dayInfo.week]}}</view>
+        <view class="text-bold margin-top margin-bottom">本日无排课情况</view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="bg-white padding" wx:if="{{tabCur==2}}">
+  <view class="cu-timeline" wx:if="{{!tabDay}}">
+    <view class="cu-time">星期{{monthTitle[thatDay.week]}}</view>
+    <view wx:for="{{thatDay.courseInfo}}" wx:key='id' class="cu-item text-olive">
+      <view class="content bg-olive shadow">
+        <view class="text-bold margin-top">上课时间：{{item.courseTime}}</view>
+        <view class="text-bold margin-top">课程名称：{{item.name}}</view>
+        <view class="text-bold margin-top margin-bottom">上课地点：{{item.site}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="cu-timeline" wx:if="{{tabDay}}">
+    <view class="cu-time">星期{{monthTitle[dayPlan.week]}}</view>
+    <view wx:for="{{dayPlan.courseInfo}}" wx:key='id' class="cu-item text-olive">
+      <view class="content bg-olive shadow">
+        <view class="text-bold margin-top">上课时间：{{item.courseTime}}</view>
+        <view class="text-bold margin-top">课程名称：{{item.name}}</view>
+        <view class="text-bold margin-top margin-bottom">上课地点：{{item.site}}</view>
+      </view>
+    </view>
+  </view>
+</view>

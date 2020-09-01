@@ -1,0 +1,62 @@
+<i-tab-bar current="{{ current }}" color="#f759ab" bindchange="handleChange" fixed>
+  <i-tab-bar-item key="homepage" icon="homepage" current-icon="homepage_fill" title="首页"></i-tab-bar-item>
+  <i-tab-bar-item key="group" icon="group" current-icon="group_fill" title="分类"></i-tab-bar-item>
+  <!-- <i-tab-bar-item key="remind" icon="remind" current-icon="remind_fill" title="购课车"></i-tab-bar-item> -->
+  <i-tab-bar-item key="mine" icon="mine" current-icon="mine_fill" title="我的"></i-tab-bar-item>
+</i-tab-bar>
+
+ <view class="cu-bar search bg-white">
+    <view class="search-form round">
+      <text class="cuIcon-search"></text>
+      <input type="text" placeholder="请输入关键字" confirm-type="search" bindinput="keywordsearch" bindinput="getsearch"></input>
+    </view>
+    <view class="action">
+      <button class="cu-btn bg-green shadow-blur round" bindtap="search" >搜索</button>
+    </view>
+     <view class="action">
+      <button class="cu-btn block line-pink round" bindtap="picture2" size="50%">扫一扫</button>
+    </view>
+  </view> 
+
+<swiper class="screen-swiper {{'square-dot'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
+  <swiper-item wx:for="{{swiperList}}" wx:key="id">
+    <image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
+    <video src="{{item.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}" objectFit="cover" wx:if="{{item.type=='video'}}"></video>
+  </swiper-item>
+</swiper>
+<view class="cu-bar bg-white solid-bottom">
+  <view class="action">
+    <text class="cuIcon-titles text-orange"></text> 热门机构
+  </view>
+</view>
+<scroll-view scroll-x class="bg-white nav" scroll-with-animation="true" >
+  <view class="cu-item {{item.name==TabCur}}" wx:for="{{institute.data}}" wx:key="id" bindtap="tabSelect" data-id="{{item.name}}">
+  <navigator url="../detail/detail?current={{item.orgId}}&judge=1" >
+    <image src="http://139.129.101.91:8081/offline-education-system/picture/{{item.adverPhoto}}" mode="aspectFit"></image>
+    <text>{{item.name}}</text>
+  </navigator>
+  </view>
+</scroll-view>
+
+<view class="cu-bar bg-white solid-bottom">
+  <view class="action">
+    <text class="cuIcon-titles text-orange"></text> 热门课程
+  </view>
+</view>
+<scroll-view scroll-x class="bg-white nav" scroll-with-animation="true" >
+  <view class="cu-item {{item.name==TabCur}}" wx:for="{{institute.data}}" wx:key="id" bindtap="tabSelect" data-id="{{item.name}}">
+    <image src="http://139.129.101.91:8081/offline-education-system/picture/{{item.adverPhoto}}" mode="aspectFit"></image>
+    <text>{{item.name}}</text>
+  </view>
+</scroll-view>
+<view class="cu-bar bg-white solid-bottom">
+  <view class="action">
+    <text class="cuIcon-titles text-orange"></text> 热门教师
+  </view>
+</view>
+<scroll-view scroll-x class="bg-white nav" scroll-with-animation="true" >
+  <view class="cu-item {{item.name==TabCur}}" wx:for="{{institute.data}}" wx:key="id" bindtap="tabSelect" data-id="{{item.name}}">
+    <image src="http://139.129.101.91:8081/offline-education-system/picture/{{item.adverPhoto}}" mode="aspectFit"></image>
+    <text>{{item.name}}</text>
+  </view>
+</scroll-view>

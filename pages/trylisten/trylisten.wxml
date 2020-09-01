@@ -1,0 +1,116 @@
+<!-- <view class="cu-bar bg-white margin-top">
+  <view class="action">
+    <text class="cuIcon-title text-orange "></text> 请选择机构来获取试听课程
+  </view>
+  <view class="action">
+    <button class="cu-btn bg-green shadow" bindtap="chooseorg" data-target="DialogModal1">点击选择</button>
+  </view>
+</view>
+<view class="cu-modal {{modalName=='DialogModal1'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">请选择机构</view>
+      <view class="action" bindtap="cancel">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding-xl">
+    <scroll-view scroll-y='true' style="height: 200px">
+      <view class="cu-dialog" catchtap="chooseorg2" >
+        <radio-group class="block">
+          <view class="cu-list menu text-left"> 
+            <view class="cu-item" wx:for="{{getallorg}}" wx:for-index="idx" wx:key>
+              <label class="flex justify-between align-center flex-sub">
+               <view class="flex-sub">{{getallorg[idx].name}}</view>
+               <radio class="round" bindtap="chooseorg1" id="{{idx}}"></radio>
+              </label>
+            </view> 
+          </view>
+       </radio-group>
+      </view>
+      </scroll-view>
+    </view>
+    <view class="cu-bar bg-white justify-end">
+      <view class="action">
+        <button class="cu-btn line-green text-green" bindtap="cancel">取消</button>
+        <button class="cu-btn bg-green margin-left" bindtap="getmylisten" data-target="DialogModal2">确定</button>
+      </view>
+    </view>
+  </view>
+</view> -->
+<view class="cu-bar bg-white solid-bottom margin-top">
+  <view class="action">
+    <text class="cuIcon-title text-blue"></text>我的试听
+  </view>
+</view>
+<view wx:if="{{getmylisten.length==0}}" class="cu-bar bg-white solid-bottom margin-top">
+  <view class="action">
+    <text class="cuIcon-title text-red"></text>您暂未试听课程
+  </view>
+</view>
+<view wx:else >
+<view  class="cu-list menu-avatar comment solids-top" wx:for="{{getmylisten}}" wx:for-index="idxx">
+  <view class="cu-item">
+      <view class="cu-avatar round" style="background-image:url(https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=344481539,2092587051&fm=26&gp=0.jpg);"></view>
+      <view class="content">
+        <view class="text-grey">{{getmylisten[idxx].name}}</view>
+        <view class="text-gray text-content text-df">
+          预定课程时间：{{getmylisten[idxx].reservationTime}}
+        </view>
+        <view class="bg-grey padding-sm radius margin-top-sm  text-sm">
+          <view class="flex">
+            <view>预约听课时间：</view>
+            <view class="flex-sub">{{getmylisten[idxx].trialTime}}</view>
+          </view>
+        </view>
+        <view class="margin-top-sm flex justify-between">
+          <view>
+            <text class="cuIcon-appreciatefill text-gray" bindtap="estimate" data-target="DialogModal4"></text>
+            <text class="cuIcon-close text-red margin-left-sm" bindtap="choosedelete" data-target="DialogModal3"></text>
+          </view>
+        </view>
+        
+    </view>
+  </view>
+</view>
+</view>
+<view class="cu-modal bottom-modal {{modalName3=='DialogModal3'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white">
+      <view class="action text-green" bindtap="deleteListen1">确定</view>
+      <view class="action text-blue" bindtap="cancel2">取消</view>
+    </view>
+    <view class="padding-xl">
+      确定取消这门试听吗
+    </view>
+  </view>
+</view>
+<view wx:if="{{modalName4=='DialogModal4'}}" class="cu-list menu margin" >
+  <view class="cu-item">
+    <view class="content">
+      <view class="cu-bar">
+      <view class="action">
+        <view class="stars  {{flag>=1? 'cuIcon-favorfill text-red':'cuIcon-favor text-red'}}" bindtap="changeColor1"></view>
+        <view class="stars  {{flag>=2? 'cuIcon-favorfill text-red':'cuIcon-favor text-red'}}" bindtap="changeColor2"></view>
+        <view class="stars  {{flag>=3? 'cuIcon-favorfill text-red':'cuIcon-favor text-red'}}" bindtap="changeColor3"></view>
+        <view class="stars  {{flag>=4? 'cuIcon-favorfill text-red':'cuIcon-favor text-red'}}" bindtap="changeColor4"></view>
+        <view class="stars  {{flag>=5? 'cuIcon-favorfill text-red':'cuIcon-favor text-red'}}" bindtap="changeColor5"></view>
+      </view>
+      </view>
+      <view class="cu-bar">
+        <view class="action">
+          <text class="cuIcon-title text-olive"></text>
+          <view class="cu-form-group">
+	          <view class="title">评价</view>
+	          <input placeholder="在此评价" type="text" bindinput="message"></input>
+          </view>
+        </view>
+      </view>
+      <view class="cu-bar flex justify-end">
+        <view class="action">
+          <button class="bg-olive margin-bottom text-sm" bindtap="estimateClass1">点击提交</button>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

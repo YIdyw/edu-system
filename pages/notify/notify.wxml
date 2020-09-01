@@ -1,0 +1,21 @@
+<wxs src='../../wxs/utils.wxs' module='tools'/>
+<view class="cu-list menu-avatar">
+  <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{notify}}" wx:key="id" bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}">
+    <view class="content">
+      <!-- <view class="cu-tag round bg-red sm" wx:if="{{!item.isRead}}">未读</view>
+      <view class="cu-tag round bg-olive sm" wx:else>已读</view> -->
+      <view class="text-gray">
+        <text class="cuIcon-infofill text-{{item.isRead?'olive':'red'}}"></text>{{item.content}}
+      </view>
+    </view>
+    <view class="action">
+      <view class="text-grey text-sm">{{tools.substring(item.date,11,16)}}</view>
+      <view class="text-grey text-xs">{{tools.substring(item.date,0,10)}}</view>
+    </view>
+    <view class="move">
+      <view class="bg-yellow" wx:if="{{!item.isRead}}" data-idx="{{index}}" bindtap="signToRead">标为已读</view>
+      <view class="bg-yellow" wx:else data-idx="{{index}}" bindtap="signToUnread">标为未读</view>
+      <view class="bg-red" data-idx="{{index}}" bindtap="deleteThis">删除</view>
+    </view>
+  </view>
+</view>

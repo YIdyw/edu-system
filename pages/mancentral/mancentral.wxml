@@ -1,0 +1,36 @@
+<view class="margin text-center">
+  <button wx:if="{{!flag}}" class="cu-btn block bg-olive lg shadow" bindtap="modifyClick">点击修改信息</button>
+  <button wx:else class="cu-btn block bg-olive lg shadow" bindtap="infoConfirm">确认修改信息</button>
+</view>
+<view class="padding bg-white">
+  <view class="flex">
+    <view class="flex-sub padding text-right">登录名：</view>
+    <view class="flex-treble padding">{{userInfo.account}}</view>
+  </view>
+  <view class="flex">
+    <view class="flex-sub padding text-right">昵称：</view>
+    <view wx:if="{{!flag}}" class="flex-treble padding">{{userInfo.nickname}}</view>
+    <view wx:else class="flex-treble padding solid-bottom"><input placeholder="{{userInfo.nickname}}" bindinput="nicknameModify"></input></view>
+  </view>
+  <view class="flex">
+    <view class="flex-sub padding text-right">性别：</view>
+    <view class="flex-treble padding">{{userInfo.gender=="male"?"男":"女"}}</view>
+  </view>
+  <view class="flex">
+    <view class="flex-sub padding text-right">邮箱：</view>
+    <view wx:if="{{!flag}}" class="flex-treble padding">{{userInfo.mail}}</view>
+    <view wx:else class="flex-treble padding solid-bottom"><input placeholder="{{userInfo.mail}}" bindinput="mailModify"></input></view>
+  </view>
+  <view class="flex">
+    <view class="flex-sub padding text-right">生日：</view>
+    <view class="flex-treble padding">{{userInfo.birth}}</view>
+  </view>
+  <view class="flex">
+    <view class="flex-sub padding text-right">电话号码：</view>
+    <view class="flex-treble padding">{{userInfo.phone}}</view>
+  </view>
+  <view class="flex padding justify-end">
+    <button wx:if="{{!userInfo.authenticated}}" class="basis-xl cu-btn block line-pink lg" bindtap="gotorgd">未认证，认证解锁更多功能</button>
+    <button wx:else class="basis-xl cu-btn block line-pink lg">已认证</button>
+  </view>
+</view>

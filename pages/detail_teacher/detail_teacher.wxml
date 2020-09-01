@@ -1,0 +1,42 @@
+<view wx:if="{{flag}}"  style="min-height : {{screen.minHeight}}; background-color: #2f2f2f;">
+  <view class="banner">
+    <view class="poster" >
+      <image mode="aspectFit" src="http://139.129.101.91:8081/offline-education-system/picture/{{teacher.data.adverPhoto}}"></image>
+    </view>
+    <view class="info">
+      <view class="title">{{name}}</view>
+      
+      <view class="subinfo">
+        <view>毕业于: {{teacher.data.gradSchool}}</view>
+        <view>学位: {{teacher.data.degree}}</view>
+      </view>
+    </view>
+    <image class="background" mode = "aspectFill" src="http://139.129.101.91:8081/offline-education-system/picture/{{teacher.data.adverPhoto}}"></image>
+    
+  </view>
+
+  <view class="summary">
+    {{teacher.data.briefIntro}}
+  </view>
+  
+  <view class="casts">
+    <view class="title">该老师擅长科目</view>
+    <block wx:for="{{institute_teachers.data}}" wx:key="index">
+  <navigator url="../detail_teacher/detail_teacher?current={{item.baseInfo.userid}}" >
+  <view class="view_tupian_wenzi"  id="{{index}}">
+    
+    <view class="view_wenzi2"> 
+      <text>{{item.authInfo.name}}</text>
+      
+      <text class="text_small">手机号:{{item.baseInfo.phone}}</text>
+      <text class="text_small">邮箱: {{item.baseInfo.mail}}</text>
+    </view>
+    
+  </view>
+  </navigator>
+  
+</block>
+
+    
+  </view>
+</view>

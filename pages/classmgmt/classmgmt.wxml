@@ -1,0 +1,38 @@
+<!--pages/classmgmt/classmgmt.wxml-->
+<view class="cu-bar bg-white solid-bottom padding-xl" bindtap="operations" data-operations="timeSelect">
+  <view class="action">
+    <text class="cuIcon-title text-olive"></text>可用时间段登记
+  </view>
+</view>
+<view class="cu-bar bg-white solid-bottom padding-xl" bindtap="operations" data-operations="scheduleQuery">
+  <view class="action">
+    <text class="cuIcon-title text-olive"></text>课表查询
+  </view>
+</view>
+<view class="cu-bar bg-white solid-bottom padding-xl" bindtap="operations" data-operations="courseQuery">
+  <view class="action">
+    <text class="cuIcon-title text-olive"></text>课程查询
+  </view>
+</view>
+<!-- <view class="cu-bar bg-white solid-bottom padding-xl" bindtap="operations" data-operations="gradeQuery">
+  <view class="action">
+    <text class="cuIcon-title text-olive"></text>课程成绩管理
+  </view>
+</view> -->
+
+<view class="cu-modal {{modalName=='submitTime'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white">
+      <view class="content">所选时间段如下所示</view>
+    </view>
+    <view class="grid col-2 padding-xl">
+      <view wx:for="{{submitTimes}}" wx:key="id">
+        <view class="padding-xs">{{item.week}}：{{item.time}}</view>
+      </view>
+    </view>
+    <view class="cu-bar bg-white justify-around">
+      <button class="cu-btn line-olive text-olive" bindtap="hideModal">取消</button>
+      <button class="cu-btn bg-olive" bindtap="timeConfirm">确定</button>
+    </view>
+  </view>
+</view>
