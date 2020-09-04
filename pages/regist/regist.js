@@ -15,8 +15,8 @@ Page({
     email:"",
     gender:0,
     birth: "",
-    index: 3,
-    picker: ['请选择','游客', '教师','学生或家长'],
+    index: 2,
+    picker: ['请选择', '教师','学生或家长'],
     sex: [{ id: 0, name: '男', checked: true}, 
           { id: 1, name: '女', checked: false}],
     count:false

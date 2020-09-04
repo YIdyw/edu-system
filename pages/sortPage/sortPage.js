@@ -1,11 +1,15 @@
 import {
   getAllorg, getOrgCourse
 } from '../../network/orginout'
+import {
+  getBannerPicture
+} from '../../network/photo'
 Page({
   data: {
     indexId: 0,
     load: true,
     getallorg:"",
+    banner: [],
     courseinfo: '',
     flag: true
   },
@@ -13,6 +17,19 @@ Page({
   
   },
 
+//获取轮播图
+_getbanner(){
+  var data = {
+    "page": 0,
+    "size": 0
+  }
+  getBannerPicture().then(res => {
+    console.log(res)
+    this.setData({
+      banner: res.data
+    })
+  })
+},
 
   _getAllorg(){
     getAllorg().then(res => {
@@ -51,6 +68,7 @@ Page({
 
   onLoad() {
     var that=this;
+    that._getbanner();
     wx.showLoading({
       title: '加载中...',
       mask: true

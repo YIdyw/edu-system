@@ -4,6 +4,7 @@ import {
 import {
   getMyorgclass
 } from '../../network/aboutclass'
+var util = require('../../utils/util.js');  
 Page({
 
   /**
@@ -13,6 +14,7 @@ Page({
     idx:"",
     idxx:"",
     count:"",
+    time: "",
     orgmessage:"",
     dateinput:"",
     loginInfo:wx.getStorageSync('loginInfo')
@@ -39,6 +41,7 @@ Page({
     } 
     });
   },
+  
   //获取该机构学生尚未选修的课程
   _getMyorgclass(){
     var that=this;
@@ -60,27 +63,35 @@ Page({
   _listenClass(){
     var that=this;
     var idxx=that.data.idxx;
-    var getclass=wx.getStorageSync('getlistenclass')
-    let data={      
-      courseId:getclass[idxx].courseId,
-      studentId:that.data.loginInfo.userid,
-      trialTime:that.data.dateinput
-    }
-    console.log(data)
-    listenClass(data).then(res=>{
-      console.log(res)
-      if(res.code==200){        
-        wx.showToast({
-          title: '试听成功',
-        });
-      
-    }else{
+    console.log(idxx.length )
+    if (idxx.length == 0){
       wx.showToast({
-        title: '现在无法试听该课程',
+        title: '需要刷新数据',
         icon: 'none'
-      })
-    } 
-    });
+      });
+    } else {
+      var getclass=wx.getStorageSync('getlistenclass')
+      let data={      
+        courseId:getclass[idxx].courseId,
+        studentId:that.data.loginInfo.userid,
+        trialTime:that.data.dateinput
+      }
+      console.log(data)
+      listenClass(data).then(res=>{
+        console.log(res)
+        if(res.code==200){        
+          wx.showToast({
+            title: '试听成功',
+          });
+        
+      }else{
+        wx.showToast({
+          title: '现在无法试听该课程',
+          icon: 'none'
+        })
+      } 
+      });
+    }  
   },
   //机构报名*************************************************************
   orgIn(e){
@@ -104,8 +115,9 @@ Page({
     })
   },
   chooseLsclass(e){
-    var that=this;
-    that.data.idxx=e.target.id;
+    this.setData({
+      idxx: e.target.id
+    })
   },
   dateInput(e){
     this.setData({
@@ -119,14 +131,24 @@ Page({
   },
   trylistenIn(e){
     var that=this;
-    that._listenClass()
+    if(wx.getStorageSync('getlistenclass').length > 0){
+      that._listenClass()
+    } else {
+      wx.showToast({
+        title: '现在无可选择课程',
+        icon: 'none'
+      })
+    }
+    
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var time = util.formatTime(new Date());  
     this.setData({
-      orgmessage: wx.getStorageSync('orgmessage')
+      orgmessage: wx.getStorageSync('orgmessage'),
+      time: time
     })
   },
 

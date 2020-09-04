@@ -3,7 +3,7 @@
     <text class="cuIcon-title text-blue"></text>机构信息
   </view>
 </view>
-<view  class="cu-bar bg-white solid-bottom margin-top" wx:for="{{orgmessage}}" wx:for-index="idx">
+<view  class="cu-bar bg-white solid-bottom margin-top" wx:for="{{orgmessage}}" wx:key="index" wx:for-index="idx">
   <view class="padding bg-white" flex-direction: column>
     <view class="text-left padding">机构名称：{{orgmessage[idx].name}}</view>
     <view class="text-left padding">法人： {{orgmessage[idx].legalPerson}}</view>
@@ -34,7 +34,7 @@
       <view class="cu-dialog" catchtap="chooseLsclass1" >
         <radio-group class="block">
           <view class="cu-list menu text-left">
-            <view class="cu-item" wx:for="{{getlistenclass}}" wx:for-index="idxx" wx:key>
+            <view class="cu-item" wx:for="{{getlistenclass}}" wx:for-index="idxx" wx:key="index">
               <label class="flex justify-between align-center flex-sub">
                <view class="flex-sub">{{getlistenclass[idxx].name}}</view>
                <radio class="round" bindtap="chooseLsclass" id="{{idxx}}"></radio>
@@ -46,7 +46,7 @@
     </view>
     
 	    <view class="title">请输入试听时间</view>
-	    <input placeholder="格式如：2020-08-19 10:57:48" bindinput="dateInput"></input>
+	    <input value="{{time}}" bindinput="dateInput"></input>
    
     <view class="cu-bar bg-white justify-end">
       <view class="action">

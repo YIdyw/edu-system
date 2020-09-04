@@ -1,7 +1,7 @@
 <view class="section" style="flex-direction:column;">
 <swiper class="screen-swiper" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
-  <swiper-item wx:for="{{4}}" wx:key="index">
-    <image class="simage" src="http://139.129.101.91:8081/offline-education-system/picture/43{{index+1}}" mode='aspectFill'></image>
+  <swiper-item wx:for="{{banner}}" wx:key="index">
+    <image class="simage" src="{{item}}" mode='aspectFill'></image>
   </swiper-item>
 </swiper>
 </view>
