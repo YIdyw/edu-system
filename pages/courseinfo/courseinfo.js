@@ -1,6 +1,6 @@
 // pages/courseinfo/courseinfo.js
 import {
- idGetOrgCourse
+ idGetOrgCourse, listenClass
 } from '../../network/orginout'
 Page({
 
@@ -11,11 +11,66 @@ Page({
     courseinfo:'',
     flag: false,
     teacherid: [],
+    dateinput:'',
     screen : {
       minHeight : 'auto'
     },
   },
 
+  //购买课程
+  buyclass(){
+    wx.showToast({
+      title: '暂时无法购买！',
+      icon: 'none'
+    })
+  },
+
+  cancel(e) {
+    this.setData({
+      modalName: null
+    })
+  },
+
+  trylisten(){
+    let logininfo = wx.getStorageSync('loginInfo')
+      let data={      
+        courseId:this.data.courseinfo.courseId,
+        studentId:logininfo.userid,
+        trialTime:this.data.dateinput
+      }
+      console.log(data)
+      listenClass(data).then(res=>{
+        console.log(res)
+        if(res.code==200){        
+          wx.showToast({
+            title: '试听成功',
+          });
+        
+      }else{
+        wx.showToast({
+          title: '现在无法试听该课程',
+          icon: 'none'
+        })
+      } 
+      });
+  },
+
+  dateInput(e){
+    this.setData({
+      dateinput: e.detail.value
+    })
+  },
+
+  //试听课程
+  listenclass(e){
+    var that=this;
+    that.data.idx=e.currentTarget.id;
+    this.setData({
+      modalName: e.currentTarget.dataset.target
+    })
+  },
+
+  //跳转到教师页面
   teacher(e){
     let index = e.currentTarget.dataset.menuindex
     let temp = this.data.courseinfo.teacherList[index]

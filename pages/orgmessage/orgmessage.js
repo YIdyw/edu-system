@@ -17,7 +17,16 @@ Page({
     time: "",
     orgmessage:"",
     dateinput:"",
-    loginInfo:wx.getStorageSync('loginInfo')
+    loginInfo:""
+  },
+
+  tolistenclass(e){
+    let index = e.currentTarget.dataset.menuindex
+    let idindex = this.data.idx
+    let getlistenclass = wx.getStorageSync('getlistenclass')
+    wx.navigateTo({
+      url: '../courseinfo/courseinfo?index='+getlistenclass[index].courseId+'&orgid='+this.data.orgmessage[idindex].orgId,
+    })
   },
   _orgInter(){
     var that=this;
@@ -50,6 +59,7 @@ Page({
       id:that.data.orgmessage[idx].orgId,
       userid:that.data.loginInfo.userid
     }
+    console.log(data)
     getMyorgclass(data).then(res=>{
       console.log(res)
       if(res){
@@ -97,17 +107,30 @@ Page({
   orgIn(e){
     var that = this;
     that.data.idx=e.currentTarget.id;
-    that._orgInter();
-
+    if(!that.data.loginInfo.userid){
+      wx.showToast({
+        title: '还未登陆！',
+        icon: 'none'
+      })
+    } else{
+      that._orgInter();
+    }
   },
 
   trylisten(e){
     var that=this;
     that.data.idx=e.currentTarget.id;
-    this.setData({
-      modalName: e.currentTarget.dataset.target
-    })
-    that._getMyorgclass()
+    if(!that.data.loginInfo.userid){
+      wx.showToast({
+        title: '还未登陆！',
+        icon: 'none'
+      })
+    } else{
+      this.setData({
+        modalName: e.currentTarget.dataset.target
+      })
+      that._getMyorgclass()
+    }
   },
   cancel(e) {
     this.setData({
@@ -148,7 +171,8 @@ Page({
     var time = util.formatTime(new Date());  
     this.setData({
       orgmessage: wx.getStorageSync('orgmessage'),
-      time: time
+      time: time,
+      loginInfo: wx.getStorageSync('loginInfo')
     })
   },
 

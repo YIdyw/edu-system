@@ -32,28 +32,20 @@
     </view>
     <view class="padding-xl">
       <view class="cu-dialog" catchtap="chooseLsclass1" >
-        <radio-group class="block">
+   
           <view class="cu-list menu text-left">
-            <view class="cu-item" wx:for="{{getlistenclass}}" wx:for-index="idxx" wx:key="index">
-              <label class="flex justify-between align-center flex-sub">
-               <view class="flex-sub">{{getlistenclass[idxx].name}}</view>
-               <radio class="round" bindtap="chooseLsclass" id="{{idxx}}"></radio>
-              </label>
+            <block  wx:for="{{getlistenclass}}" wx:key="index">
+            <view class="cu-item" bindtap="tolistenclass" data-menuindex='{{index}}' id="{{index}}">
+  
+               <view class="flex-sub" >
+                 {{item.name}}</view>
+
             </view>
+          </block>
           </view>
-       </radio-group>
+       
       </view>
     </view>
     
-	    <view class="title">请输入试听时间</view>
-	    <input value="{{time}}" bindinput="dateInput"></input>
-   
-    <view class="cu-bar bg-white justify-end">
-      <view class="action">
-        <button class="cu-btn line-green text-green" bindtap="cancel">取消</button>
-        <button class="cu-btn bg-green margin-left" bindtap="trylistenIn">确定</button>
-
-      </view>
-    </view>
   </view>
 </view>
