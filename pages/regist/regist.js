@@ -129,11 +129,17 @@ Page({
   },
   regist: function (e) {
     var that = this
+    var myReg=/^[a-zA-Z0-9_-]+@([a-zA-Z0-9]+\.)+(com|cn|net|org)$/;
     if (that.data.account == '') {
       wx.showToast({
         title: '请输入账号',
         icon: 'none'
       });
+    }else if(!myReg.test(that.data.email)){
+      wx.showToast({
+        title: '邮箱格式错误',
+        icon: 'none'
+      })
     }else if(that.data.password == ''||that.data.password.length<6) {
       wx.showToast({
         title: '密码格式错误',
@@ -144,9 +150,9 @@ Page({
         title: '请仔细确认密码',
         icon: 'none'
       });
-    }else if(that.data.phone == '') {
+    }else if(that.data.phone.length != 11) {
       wx.showToast({
-        title: '请输入手机号',
+        title: '手机号格式错误',
         icon: 'none'
       });
     }else if(that.data.index == 0){
@@ -203,7 +209,7 @@ Page({
     let date = new Date()
     let y = date.getFullYear()
     let m = date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1
-    let d = date.getDate() + 1 < 10 ? '0' + (date.getDate()) : date.getDate()
+    let d = date.getDate() + 1 < 10 ? '0' + (date.getDate()) : date.getDate() - 1
     this.setData({
       birth: y + '/' + m + '/' + d
     })

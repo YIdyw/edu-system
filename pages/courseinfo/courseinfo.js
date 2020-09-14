@@ -38,13 +38,14 @@ Page({
         studentId:logininfo.userid,
         trialTime:this.data.dateinput
       }
-      console.log(data)
       listenClass(data).then(res=>{
-        console.log(res)
         if(res.code==200){        
           wx.showToast({
             title: '试听成功',
           });
+          this.setData({
+            modalName: null
+          })
         
       }else{
         wx.showToast({
@@ -103,7 +104,7 @@ Page({
     wx.getSystemInfo({
       success: (res)=> {
         this.setData({
-          winHeight: res.windowHeight
+          minHeight: res.windowHeight
         });
       }
     });

@@ -63,7 +63,7 @@ Page({
         fail: (res) => {
         wx.showToast({
           title: '失败',
-          icon: 'success',
+          icon: 'none',
           duration: 2000
         })
         },

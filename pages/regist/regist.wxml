@@ -13,16 +13,19 @@
 </view>
 
 <view class="cu-form-group">
+	<view class="text-red">*</view>
 	<view class="title">确认密码</view>
 	<input placeholder="请再次输入密码" type="password" bindinput="againpassword" bindfocus="checkpassword"></input>
 </view>
 
 <view class="cu-form-group">
+	<view class="text-red">*</view>
 	<view class="title">昵称</view>
 	<input placeholder="请输入昵称" type="text" bindinput="username"></input>
 </view>
 
 <view class="cu-form-group">
+	<view class="text-red">*</view>
 	<view class="title">邮箱</view>
 	<input placeholder="请输入邮箱" type="text" bindinput="useremail"></input>
 </view>
@@ -49,6 +52,7 @@
 </view>
 
 <view class="cu-form-group">
+	<view class="text-red">*</view>
 	<view class="title">出生年月日</view>
 	<picker mode="date" bindchange="userbirth">
 		<view class="picker">{{birth}}</view>

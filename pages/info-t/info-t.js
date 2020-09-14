@@ -322,7 +322,6 @@ Page({
     });
     let that = this.data
     let id = []
-    let eduImgId = ''
     for(let i=0; i<that.subjectChoose.length; i++){
       for(let j=0; j<that.courseCategory.length; j++){
         if(that.subjects[that.subjectChoose[i]].name == that.courseCategory[j].label){
@@ -389,6 +388,9 @@ Page({
     let that = this.data
     let data = wx.getStorageSync('loginInfo').userid
     getTeacherInfo(data).then((res)=>{
+      if (this.getInfoCallback) {
+        this.getInfoCallback(res)
+      }
       console.log(res)
       if(res.code == 200){
         this.setData({
@@ -426,6 +428,33 @@ Page({
     if(login){
       this._getAllSubject();
       this._getTeacherInfo();
+      this.getInfoCallback = res => {
+        var url = 'http://139.129.101.91:8081/offline-education-system/picture/'
+        var edu = res.data.gradCertPhoto
+        var deg = res.data.degreeCertPhoto
+        var pri = res.data.photoId
+        var pub = res.data.adverPhoto
+        if(edu != 0){
+          this.setData({
+            eduImg: [url + edu]
+          })
+        }
+        if(deg != 0){
+          this.setData({
+            degImg: [url + deg]
+          })
+        }
+        if(pri != 0){
+          this.setData({
+            privImg: [url + pri]
+          })
+        }
+        if(pub != 0){
+          this.setData({
+            pubImg: [url + pub]
+          })
+        }
+      }
     }else{
       wx.reLaunch({
         url: '../my-tch/my-tch',

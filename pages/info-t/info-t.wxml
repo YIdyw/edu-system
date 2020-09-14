@@ -2,7 +2,7 @@
 	<view class="cu-form-group">
 		<view class="text-red">*</view>
 		<view class="title">毕业院校</view>
-		<input placeholder="请输入毕业院校" bindinput="handleSchool"></input>
+		<input placeholder="checkinInfo.gradSchool?checkinInfo.gradSchool:请输入毕业院校" bindinput="handleSchool"></input>
 	</view>
 	<view class="cu-form-group">
 		<view class="text-red">*</view>
@@ -14,7 +14,7 @@
 	<view class="cu-form-group">
 		<view class="text-red">*</view>
 		<view class="title">学历编号</view>
-		<input placeholder="请输入学历编号" bindinput="handleEduNum"></input>
+		<input placeholder="checkinInfo.gradCertId?checkinInfo.gradCertId:请输入学历编号" type="number" bindinput="handleEduNum"></input>
 	</view>
 	<view class="cu-form-group">
 		<view class="text-red">*</view>
@@ -40,7 +40,7 @@
 	</view>
 	<view class="cu-form-group">
 		<view class="title">学位编号</view>
-		<input placeholder="请输入学位编号" bindinput="handleDegNum"></input>
+		<input placeholder="checkinInfo.degreeCertId?checkinInfo.degreeCertId:请输入学位编号" type="number" bindinput="handleDegNum"></input>
 	</view>
 	<view class="cu-form-group">
 		<view class="title">学位证书照片</view>
@@ -59,15 +59,15 @@
 	</view>
   <view class="cu-form-group">
 		<view class="title">培训经历数目</view>
-		<input placeholder="培训经历数目：默认0" bindinput="handleTraining"></input>
+		<input placeholder="checkinInfo.trainNum!=0?checkinInfo.trainNum:请输入培训经历数" type="number" bindinput="handleTraining"></input>
 	</view>
 	<view class="cu-form-group">
 		<view class="title">荣誉获奖数目</view>
-		<input placeholder="荣誉获奖数目：默认0" bindinput="handleTraining"></input>
+		<input placeholder="checkinInfo.awardsNum!=0?checkinInfo.awardsNum:请输入荣誉获奖数" type="number" bindinput="handleTraining"></input>
 	</view>
 	<view class="cu-form-group">
 		<view class="title">工作经历数目</view>
-		<input placeholder="工作经历数目：默认0" bindinput="handleWorks"></input>
+		<input placeholder="checkinInfo.workNum!=0?checkinInfo.workNum:请输入工作经历数" type="number" bindinput="handleWorks"></input>
 	</view>
 	<view class="cu-form-group">
 		<view class="title">个人主页</view>
