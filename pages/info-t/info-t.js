@@ -84,14 +84,30 @@ Page({
     })
   },
   handlePrivHome(e){
-    this.setData({
-      privHome: e.detail.value
-    });
+    var priv = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\*\+,;=.]+$/
+    if (!priv.test(e.detail.value)){
+      wx.showToast({
+        title: '网址格式错误',
+        icon: 'none'
+      })
+    }else{
+      this.setData({
+        privHome: e.detail.value
+      });
+    }
   },
   handlePrivWeibo(e){
-    this.setData({
-      privWeibo: e.detail.value
-    });
+    var weibo = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\*\+,;=.]+$/
+    if (!weibo.test(e.detail.value)){
+      wx.showToast({
+        title: '网址格式错误',
+        icon: 'none'
+      })
+    }else{
+      this.setData({
+        privWeibo: e.detail.value
+      });
+    }
   },
   handleTypeChange(e){
     let worktype = e.currentTarget.dataset.type
@@ -429,6 +445,70 @@ Page({
       this._getAllSubject();
       this._getTeacherInfo();
       this.getInfoCallback = res => {
+        switch(res.data.education) {
+          case '博士生研究生':
+            this.setData({
+              eduIdx: 1
+            })
+            break;
+          case '硕士研究生':
+            this.setData({
+              eduIdx:2
+            })
+            break;
+          case '本科':
+            this.setData({
+              eduIdx: 3
+            })
+            break;
+          case '专科':
+            this.setData({
+              eduIdx: 4
+            })
+            break;
+          case '其他':
+            this.setData({
+              eduIdx: 5
+            })
+            break;
+          default:
+            this.setData({
+              eduIdx: 0
+            })
+            break;
+        }
+        switch(res.data.degree) {
+          case '博士学位':
+            this.setData({
+              deIdx: 1
+            })
+            break;
+          case '学术硕士学位':
+            this.setData({
+              deIdx:2
+            })
+            break;
+          case '专业硕士学位':
+            this.setData({
+              deIdx: 3
+            })
+            break;
+          case '学士学位':
+            this.setData({
+              deIdx: 4
+            })
+            break;
+          case '其他':
+            this.setData({
+              deIdx: 5
+            })
+            break;
+          default:
+            this.setData({
+              deIdx: 0
+            })
+            break;
+        }
         var url = 'http://139.129.101.91:8081/offline-education-system/picture/'
         var edu = res.data.gradCertPhoto
         var deg = res.data.degreeCertPhoto

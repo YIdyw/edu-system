@@ -150,7 +150,7 @@ Page({
         title: '请仔细确认密码',
         icon: 'none'
       });
-    }else if(that.data.phone.length != 11) {
+    }else if(!(/^1[3|4|5|8|9][0-9]\d{4,8}$/.test(that.data.phone))) {
       wx.showToast({
         title: '手机号格式错误',
         icon: 'none'
