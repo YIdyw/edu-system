@@ -81,8 +81,16 @@ Page({
   },
   timeConfirm(){
     const that = this;
-    if(that.checkTime()) {
-      that._timeSelect();
+    var auth = wx.getStorageSync('loginInfo').authenticated
+    if(auth){
+      if(that.checkTime()) {
+        that._timeSelect();
+      }
+    }else{
+      wx.showToast({
+        title: '尚未实名认证',
+        icon: 'none'
+      })
     }
   },
   checkTime() {

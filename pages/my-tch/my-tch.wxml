@@ -33,7 +33,7 @@
       <view class="cu-tag badge" wx:if="{{index==3 && notifyNum}}">
         <block wx:if="{{notifyNum}}">{{notifyNum>99?"99+":notifyNum}}</block>
       </view>
-    </view>
+  </view>
     <text>{{item.name}}</text>
   </view>
 </view>

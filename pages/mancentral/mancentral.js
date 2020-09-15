@@ -37,7 +37,8 @@ Page({
       gender:that.data.userInfo.gender,
       mail:that.data.userInfo.mail,
       birth:that.data.userInfo.birth,
-      phone:that.data.userInfo.phone
+      phone:that.data.userInfo.phone,
+      userid:that.data.userInfo.userid
     }
     userAuthed(data).then(res=>{
       console.log(res)

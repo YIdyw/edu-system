@@ -54,7 +54,7 @@
 <view class="cu-form-group">
 	<view class="text-red">*</view>
 	<view class="title">出生年月日</view>
-	<picker mode="date" bindchange="userbirth">
+	<picker mode="date" start="1900-01-01" end="{{today}}" bindchange="userbirth">
 		<view class="picker">{{birth}}</view>
 	</picker>
 </view>

@@ -1,8 +1,12 @@
+import {
+  getTeacherInfo
+} from '../../network/checkin'
 var app = getApp()
 Page({
   data: {
     loginInfo:[],
     islogin: false,
+    isflag: false,
     iconList: [{
       icon: 'addressbook',
       color: 'red',
@@ -64,21 +68,42 @@ Page({
       url: '../info-t/info-t',
     })
    }else if(that.data.isFaceChecked==1){
+     if(this.data.isflag){
       wx.navigateTo({
         url: '../classmgmt/classmgmt',
       })
+     }else{
+       wx.showToast({
+         title: '请先实名认证、信息登记',
+         icon: 'none'
+       })
+     }
     }else if(that.data.isFaceChecked==2){
       wx.navigateTo({
         url: '../mancentral/mancentral',
       })
     }else if(that.data.isFaceChecked==3){
-      wx.navigateTo({
-        url: '../notify/notify',
-      })
+      if(this.data.isflag){
+        wx.navigateTo({
+          url: '../notify/notify',
+        })
+      }else{
+        wx.showToast({
+          title: '请先实名认证、信息登记',
+          icon: 'none'
+        })
+      }
     }else if(that.data.isFaceChecked==4){
-      wx.navigateTo({
-        url: '../relymgmt/relymgmt',
-      })
+      if(this.data.isflag){
+        wx.navigateTo({
+          url: '../relymgmt/relymgmt',
+        })
+      }else{
+        wx.showToast({
+          title: '请先实名认证、信息登记',
+          icon: 'none'
+        })
+      }
     }
   },
   isout(){
@@ -97,6 +122,13 @@ Page({
     let loginInfo = wx.getStorageSync('loginInfo');
     let notify = wx.getStorageSync('notify');
     let notifyNum = 0
+    getTeacherInfo(loginInfo.userid).then((res) => {
+      if (res.code == 200) {
+        this.setData({
+          isflag: true,
+        });
+      }
+    })
     for(let i=0; i<notify.length; i++){
       if(!notify[i].isRead){
         notifyNum++;

@@ -16,6 +16,7 @@ Page({
     gender:0,
     birth: "",
     index: 2,
+    today: '',
     picker: ['请选择', '教师','学生或家长'],
     sex: [{ id: 0, name: '男', checked: true}, 
           { id: 1, name: '女', checked: false}],
@@ -167,6 +168,7 @@ Page({
   },
   _registInfo() {
     const that = this;
+    var index = Number(that.data.index) + 1
     let data = {
         account: that.data.account,
         password: that.data.password,
@@ -175,7 +177,7 @@ Page({
         mail: that.data.email,
         birth: that.data.birth,
         gender: that.data.gender,
-        defaultRole: that.data.index
+        defaultRole: index
     }
     registInfo(data).then(res => {
       wx.setStorageSync('registInfo', res.data)
@@ -186,9 +188,15 @@ Page({
           wx.navigateBack({
             delta: 1,
           });
-          wx.showToast({
-            title: '注册成功请登录',
-          });
+          if(this.data.index == 1){
+            wx.showToast({
+              title: '请先完成实名认证和信息登记！',
+            })
+          }else{
+            wx.showToast({
+              title: '注册成功请登录',
+            });
+          }
         }else{
           wx.showToast({
             title: '注册失败，请检查',
@@ -210,9 +218,12 @@ Page({
     let y = date.getFullYear()
     let m = date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1
     let d = date.getDate() + 1 < 10 ? '0' + (date.getDate()) : date.getDate() - 1
+    console.log(y + '-' + m + '-' + d)
     this.setData({
-      birth: y + '/' + m + '/' + d
+      birth: y + '/' + m + '/' + d,
+      today: y + '-' + m + '-' + d
     })
+    console.log("today",this.data.today)
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
