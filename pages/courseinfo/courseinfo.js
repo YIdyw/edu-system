@@ -33,6 +33,12 @@ Page({
 
   trylisten(){
     let logininfo = wx.getStorageSync('loginInfo')
+    if (!logininfo.userid){
+      wx.showToast({
+        title: '还未登陆！',
+        icon: 'none'
+      })
+    } else {
       let data={      
         courseId:this.data.courseinfo.courseId,
         studentId:logininfo.userid,
@@ -54,6 +60,7 @@ Page({
         })
       } 
       });
+    }  
   },
 
   dateInput(e){

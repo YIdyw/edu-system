@@ -130,7 +130,7 @@ Page({
   },
   regist: function (e) {
     var that = this
-    var myReg=/^[a-zA-Z0-9_-]+@([a-zA-Z0-9]+\.)+(com|cn|net|org)$/;
+    var myReg=/^[a-zA-Z0-9_-]+@([a-zA-Z0-9]+\.)+(com|cn|net|org|mail|email)$/;
     if (that.data.account == '') {
       wx.showToast({
         title: '请输入账号',
@@ -191,10 +191,12 @@ Page({
           if(this.data.index == 1){
             wx.showToast({
               title: '请先完成实名认证和信息登记！',
+              icon: 'none'
             })
           }else{
             wx.showToast({
               title: '注册成功请登录',
+              icon: 'none'
             });
           }
         }else{
@@ -206,6 +208,7 @@ Page({
       }else{
         wx.showToast({
           title: '验证手机失败',
+          icon: 'none'
         });
       }
     })
@@ -218,12 +221,10 @@ Page({
     let y = date.getFullYear()
     let m = date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1
     let d = date.getDate() + 1 < 10 ? '0' + (date.getDate()) : date.getDate() - 1
-    console.log(y + '-' + m + '-' + d)
     this.setData({
-      birth: y + '/' + m + '/' + d,
-      today: y + '-' + m + '-' + d
+      today: y + '-' + m + '-' + d,
+      birth: y + '-' + m + '-' + d,
     })
-    console.log("today",this.data.today)
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

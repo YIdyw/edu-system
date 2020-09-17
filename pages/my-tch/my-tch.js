@@ -157,6 +157,13 @@ Page({
     let loginInfo = wx.getStorageSync('loginInfo');
     let notify = wx.getStorageSync('notify');
     let notifyNum = 0
+    getTeacherInfo(loginInfo.userid).then((res) => {
+      if (res.code == 200) {
+        this.setData({
+          isflag: true,
+        });
+      }
+    })
     for(let i=0; i<notify.length; i++){
       if(!notify[i].isRead){
         notifyNum++;

@@ -10,7 +10,7 @@ Page({
   },
   
   gotorgd:function(e){
-    wx.navigateTo({
+    wx.redirectTo({
       url: '../rgistID/rgistID'
     })
   },

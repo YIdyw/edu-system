@@ -88,7 +88,7 @@ Page({
       
       }else{
         wx.showToast({
-          title: '登记失败，请勿重复登记',
+          title: '登记失败',
           icon: 'none'
         })
       }       

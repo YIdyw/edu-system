@@ -3,7 +3,7 @@
 <view class="cu-form-group margin-top">
 	<view class="text-red">*</view>
   <view class="title">用户名</view>
-	<input placeholder="请输入用户名（字母，英文，数字）" type="text" bindinput="useraccount"></input>
+	<input placeholder="请输入用户名" type="text" bindinput="useraccount"></input>
 </view>
 
 <view class="cu-form-group">

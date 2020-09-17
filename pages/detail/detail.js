@@ -2,6 +2,9 @@
 import {
   getDetail
 } from '../../network/search'
+import {
+  orgInter
+} from '../../network/orginout'
 var URL;
 //baseURL
 URL = {
@@ -89,6 +92,42 @@ Page({
     });
     
     
+  },
+
+  _orgInter(userid){
+    
+    let data={
+      orgId: this.data.orgid,
+      userid:userid
+    }
+    orgInter(data).then(res=>{
+      console.log(res)
+      if(res.code==200){        
+        wx.showToast({
+          title: '报名成功',
+        });
+      
+    }else{
+      wx.showToast({
+        title: '报名失败',
+        icon: 'none'
+      })
+    } 
+    });
+    
+  },
+
+   //机构报名*************************************************************
+   orgIn(e){
+    let logininfo = wx.getStorageSync('loginInfo')
+    if(!logininfo.userid){
+      wx.showToast({
+        title: '还未登陆！',
+        icon: 'none'
+      })
+    } else{
+      this._orgInter(logininfo.userid);
+    }
   },
 
   getCourse : function(id){
