@@ -1,10 +1,14 @@
 
+import {
+  updateInfo
+} from '../../network/regist'
 var app = getApp()
 Page({
   data: {
     ColorList: app.globalData.ColorList,
     current:0,
     islogin: false,
+    isflag: false,
     iconList: [{
       icon: 'addressbook',
       color: 'red',
@@ -97,6 +101,52 @@ isout(){
   })
   wx.clearStorage()
 },
+
+  update() {
+    let data = {
+      defaultRole: 2,
+      userid: this.data.loginInfo.userid
+    }
+    updateInfo(data).then(res =>{
+      if(res.code == 200){
+        wx.showToast({
+          title: '切换成功！',
+        })
+        var logininfo = this.data.loginInfo
+        logininfo.defaultRole = 2
+        console.log(logininfo)
+        wx.setStorageSync('loginInfo', logininfo)
+        wx.redirectTo({
+          url: '../my-tch/my-tch',
+        })
+      }
+    })
+  },
+
+  tobe(){
+    const that = this
+    var logininfo = this.data.loginInfo
+    if(logininfo.role1 == 2 || logininfo.role2 == 2 || logininfo.role3 == 2){
+      wx.showModal({
+        title: '您当前身份为学生',
+        content: '确定将身份切换为教师吗',
+        success(res) {
+          if (res.confirm) {
+  　　　　　console.log('用户点确定了');
+            that.update();
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+    })
+    }else {
+      wx.showToast({
+        title: '该账号只有一个身份!',
+        icon: 'none'
+      })
+    }
+    
+  },
   /**
    * 生命周期函数--监听页面加载
    */

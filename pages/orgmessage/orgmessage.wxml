@@ -16,9 +16,9 @@
     <view class="text-left padding">机构联系人：  {{orgmessage[idx].contactName}}</view>
     <view class="text-left padding">联系人电话：  {{orgmessage[idx].contactPhone}}</view>
     <view class="padding flex flex-wrap justify-between align-center bg-white">
-      <button class="cu-btn bg-green round" bindtap="orgIn" id="{{idx}}">点击报名</button>
+      <button class="cu-btn bg-green round" bindtap="orgIn" wx:if="{{isstu}}" id="{{idx}}">点击报名</button>
      
-      <button class="cu-btn bg-grey round" bindtap="trylisten" id="{{idx}}" data-target="DialogModal1">预约试听</button>
+      <button class="cu-btn bg-grey round" bindtap="trylisten" wx:if="{{isstu}}" id="{{idx}}" data-target="DialogModal1">预约试听</button>
     </view>
   </view>
 </view>

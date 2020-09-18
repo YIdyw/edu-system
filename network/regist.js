@@ -7,3 +7,11 @@ export function registInfo(data) {
     data: data
   })
 } 
+
+export function updateInfo(data) {
+  return request({
+    url: '/user',
+    method: 'PUT',
+    data: data
+  })
+}

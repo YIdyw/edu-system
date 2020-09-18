@@ -11,6 +11,8 @@
   flex-direction: column;
   align-items: center;
 }
+
+
 .userinfo-avatar {
   display: block;
   overflow: hidden;

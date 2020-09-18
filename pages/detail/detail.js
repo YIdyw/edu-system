@@ -32,6 +32,7 @@ Page({
     teacher : [],
     course : {},
     flag: false,
+    isstu: false,
     screen : {
       minHeight : 'auto'
     },
@@ -163,8 +164,13 @@ Page({
    */
   onLoad: function (option) {
     //console.log(option.judge);
+    if(wx.getStorageSync('loginInfo')&&wx.getStorageSync('loginInfo').defaultRole == 3){
+      this.setData({
+        isstu: true
+      })
+    }
     this.setData({
-      orgid: option.current
+      orgid: option.current,
     })
     if(option.judge == 1) {
       var self = this;

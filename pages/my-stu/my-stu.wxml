@@ -6,7 +6,7 @@
 
 <view class="page me">
   <view class="userinfo">
-    <view class="userinfo-avatar">
+    <view class="userinfo-avatar" bindtap="tobe">
       <open-data type="userAvatarUrl"></open-data>
     </view>
     <open-data type="userNickName"></open-data>

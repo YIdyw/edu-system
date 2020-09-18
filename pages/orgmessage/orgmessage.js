@@ -17,7 +17,8 @@ Page({
     time: "",
     orgmessage:"",
     dateinput:"",
-    loginInfo:""
+    loginInfo:"",
+    isstu: false
   },
 
   tolistenclass(e){
@@ -172,8 +173,13 @@ Page({
     this.setData({
       orgmessage: wx.getStorageSync('orgmessage'),
       time: time,
-      loginInfo: wx.getStorageSync('loginInfo')
+      loginInfo: wx.getStorageSync('loginInfo'),
     })
+    if(wx.getStorageSync('loginInfo')&&wx.getStorageSync('loginInfo').defaultRole == 3){
+      this.setData({
+        isstu: true
+      })
+    }
   },
 
   /**

@@ -61,10 +61,10 @@
 
   </view>
   <view class="but">
-    <button class="buy" bindtap="buyclass">
+    <button class="buy" wx:if="{{isstu}}" bindtap="buyclass">
         <view>购买</view>
       </button>
-    <button class="trylisten" bindtap="listenclass" data-target="DialogModal1">
+    <button class="trylisten" wx:if="{{isstu}}" bindtap="listenclass" data-target="DialogModal1">
         <view>试听</view>
     </button>
   </view>

@@ -1,6 +1,9 @@
 import {
   getTeacherInfo
 } from '../../network/checkin'
+import {
+  updateInfo
+} from '../../network/regist'
 var app = getApp()
 Page({
   data: {
@@ -111,6 +114,51 @@ Page({
       url: '../my/my'
     });
     wx.clearStorage();
+  },
+
+  update() {
+    let data = {
+      defaultRole: 3,
+      userid: this.data.loginInfo.userid
+    }
+    updateInfo(data).then(res =>{
+      if(res.code == 200){
+        wx.showToast({
+          title: '切换成功！',
+        })
+        var logininfo = this.data.loginInfo
+        logininfo.defaultRole = 3
+        console.log(logininfo)
+        wx.setStorageSync('loginInfo', logininfo)
+        wx.redirectTo({
+          url: '../my-stu/my-stu',
+        })
+      }
+    })
+  },
+
+  tobe(){
+    const that = this
+    var logininfo = this.data.loginInfo
+    if(logininfo.role1 == 3 || logininfo.role2 == 3 || logininfo.role3 == 3){
+      wx.showModal({
+        title: '您当前身份为教师',
+        content: '确定将身份切换为学生吗',
+        success(res) {
+          if (res.confirm) {
+  　　　　　console.log('用户点确定了')
+            that.update()
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+    })
+    }else {
+      wx.showToast({
+        title: '该账号只有一个身份!',
+        icon: 'none'
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面加载

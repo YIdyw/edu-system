@@ -12,6 +12,7 @@ Page({
     flag: false,
     teacherid: [],
     dateinput:'',
+    isstu: false,
     screen : {
       minHeight : 'auto'
     },
@@ -106,6 +107,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    if(wx.getStorageSync('loginInfo')&&wx.getStorageSync('loginInfo').defaultRole == 3){
+      this.setData({
+        isstu: true
+      })
+    }
     let orgid = options.orgid
     let index = options.index
     wx.getSystemInfo({

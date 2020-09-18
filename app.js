@@ -45,5 +45,6 @@ App({
 
   globalData: {
     userInfo: null,
+    isstudent: false
   }
 })

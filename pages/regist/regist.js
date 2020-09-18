@@ -222,8 +222,8 @@ Page({
     let m = date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1
     let d = date.getDate() + 1 < 10 ? '0' + (date.getDate()) : date.getDate() - 1
     this.setData({
-      today: y + '-' + m + '-' + d,
-      birth: y + '-' + m + '-' + d,
+      today: y + '/' + m + '/' + d,
+      birth: y + '/' + m + '/' + d,
     })
   },
   /**

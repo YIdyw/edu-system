@@ -14,6 +14,7 @@ Page({
     school:"",
     type:"",
     qq:"",
+    index:'',
     weixin:"",
     flag:false,
     getstuinfo:"",
@@ -80,7 +81,7 @@ Page({
       console.log(res)
       if(res.code==200){  
         wx.navigateTo ({
-          url: '../my/my',
+          url: '../my-stu/my-stu',
           });      
         wx.showToast({
           title: '登记成功',
@@ -109,55 +110,68 @@ Page({
         })
         if(res.data.grade==0){
           this.setData({
-            grade:"学龄前"
+            grade:"学龄前",
+            index: 0
           })
         }else if(res.data.grade==1){
           this.setData({
-            grade:"一年级"
+            grade:"一年级",
+            index: 1
           })
         }else if(res.data.grade==2){
           this.setData({
-            grade:"二年级"
+            grade:"二年级",
+            index: 2
           })
         }else if(res.data.grade==3){
           this.setData({
-            grade:"三年级"
+            grade:"三年级",
+            index: 3
           })
         }else if(res.data.grade==4){
           this.setData({
-            grade:"四年级"
+            grade:"四年级",
+            index: 4
           })
         }else if(res.data.grade==5){
           this.setData({
-            grade:"五年级"
+            grade:"五年级",
+            index: 5
           })
         }else if(res.data.grade==6){
           this.setData({
-            grade:"六年级"
+            grade:"六年级",
+            index: 6
           })
         }else if(res.data.grade==7){
           this.setData({
-            grade:"初一"
+            grade:"初一",
+            index: 7
           })
         }else if(res.data.grade==8){
           this.setData({
-            grade:"初二"
+            grade:"初二",
+            index: 8
           })
         }else if(res.data.grade==9){
           this.setData({
-            grade:"初三"
+            grade:"初三",
+            index: 9
           })
         }else if(res.data.grade==10){
           this.setData({
-            grade:"高一"
+            grade:"高一",
+            index: 10
           })
         }else if(res.data.grade==11){
           this.setData({
-            grade:"高二"
+            grade:"高二",
+            index: 11
           })
         }else if(res.data.grade==12){
           this.setData({
-            grade:"高三"
+            grade:"高三",
+            index: 12
           })
         }
       }else{
