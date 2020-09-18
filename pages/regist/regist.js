@@ -151,7 +151,7 @@ Page({
         title: '请仔细确认密码',
         icon: 'none'
       });
-    }else if(!(/^1[3|4|5|8|9][0-9]\d{4,8}$/.test(that.data.phone))) {
+    }else if(!(/^1[3-9]\d{9}$/.test(that.data.phone))) {
       wx.showToast({
         title: '手机号格式错误',
         icon: 'none'
@@ -179,6 +179,7 @@ Page({
         gender: that.data.gender,
         defaultRole: index
     }
+    console.log("data",data)
     registInfo(data).then(res => {
       wx.setStorageSync('registInfo', res.data)
       console.log(res)
@@ -222,8 +223,8 @@ Page({
     let m = date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1
     let d = date.getDate() + 1 < 10 ? '0' + (date.getDate()) : date.getDate() - 1
     this.setData({
-      today: y + '/' + m + '/' + d,
-      birth: y + '/' + m + '/' + d,
+      today: y + '-' + m + '-' + d,
+      birth: y + '-' + m + '-' + d,
     })
   },
   /**

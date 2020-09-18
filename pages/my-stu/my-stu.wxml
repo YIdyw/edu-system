@@ -9,7 +9,9 @@
     <view class="userinfo-avatar" bindtap="tobe">
       <open-data type="userAvatarUrl"></open-data>
     </view>
-    <open-data type="userNickName"></open-data>
+    <text>点击头像切换身份</text>
+    <!-- <open-data type="userNickName"></open-data> -->
+
     <view class="padding-xl"  wx:if="{{isLogin == false}}">
       <view class="margin-tb-sm text-center">
         <button class="cu-btn block line-pink lg" bindtap="movetologin">未登录，点击登录</button>

@@ -58,12 +58,12 @@ Page({
     
     })
     },
+
   type: function (e) {
-    
-      this.setData({
-      type: e.detail.value
       
-      })
+      this.setData({
+        type: e.detail.value
+        })
   },
   _infoIn(){
     var that=this;
@@ -77,23 +77,31 @@ Page({
       qq:that.data.qq,
       weixin:that.data.weixin
     }
-    infoIn(data).then(res=>{
-      console.log(res)
-      if(res.code==200){  
-        wx.navigateTo ({
-          url: '../my-stu/my-stu',
-          });      
-        wx.showToast({
-          title: '登记成功',
-        });
-      
-      }else{
-        wx.showToast({
-          title: '登记失败',
-          icon: 'none'
-        })
-      }       
-    });
+    if((/^1[3-9]\d{9}$/.test(that.data.type))||that.data.type==''){
+      infoIn(data).then(res=>{
+        console.log(res)
+        if(res.code==200){  
+          wx.navigateTo ({
+            url: '../my-stu/my-stu',
+            });      
+          wx.showToast({
+            title: '登记成功',
+          });
+        
+        }else{
+          wx.showToast({
+            title: '登记失败',
+            icon: 'none'
+          })
+        }       
+      });
+    }else{
+      wx.showToast({
+        title: '手机号格式不正确，无法修改！',
+        icon: 'none'
+      }) 
+    }
+    
   },
   _getStuInfo(){
     let data={

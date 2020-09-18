@@ -10,7 +10,7 @@
   <view class="flex">
     <view class="flex-sub padding text-right">昵称：</view>
     <view wx:if="{{!flag}}" class="flex-treble padding">{{userInfo.nickname}}</view>
-    <view wx:else class="flex-treble padding solid-bottom"><input placeholder="{{userInfo.nickname}}" bindinput="nicknameModify"></input></view>
+    <view wx:else class="flex-treble padding solid-bottom"><input value="{{userInfo.nickname}}" bindinput="nicknameModify"></input></view>
   </view>
   <view class="flex">
     <view class="flex-sub padding text-right">性别：</view>
@@ -19,7 +19,7 @@
   <view class="flex">
     <view class="flex-sub padding text-right">邮箱：</view>
     <view wx:if="{{!flag}}" class="flex-treble padding">{{userInfo.mail}}</view>
-    <view wx:else class="flex-treble padding solid-bottom"><input placeholder="{{userInfo.mail}}" bindinput="mailModify"></input></view>
+    <view wx:else class="flex-treble padding solid-bottom"><input value="{{userInfo.mail}}" bindinput="mailModify"></input></view>
   </view>
   <view class="flex">
     <view class="flex-sub padding text-right">生日：</view>

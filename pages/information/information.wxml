@@ -1,7 +1,8 @@
 <form wx:if="{{!flag}}">
 	<view class="cu-form-group margin-top">
+		<view class="text-red">*</view>
 		<view class="title">姓名:</view>
-		<input placeholder="请输入姓名" bindinput="name"></input>
+		<input value="姓名" bindinput="name"></input>
 	</view>
 	<view class="cu-form-group">
 		<view class="title">年级：</view>
@@ -13,19 +14,19 @@
 	</view>
 	<view class="cu-form-group">
 		<view class="title">学校:</view>
-		<input placeholder="请输入学校" bindinput="school"></input>
+		<input value="学校" bindinput="school"></input>
 	</view>
   <view class="cu-form-group">
 		<view class="title">备用电话:</view>
-		<input placeholder="请输入电话" type="number" bindinput="type"></input>
+		<input value="备用电话" type="number" bindinput="type"></input>
 	</view>
   <view class="cu-form-group">
 		<view class="title">QQ:</view>
-		<input placeholder="请输入QQ号" type="number" bindinput="qqinput"></input>
+		<input value="QQ" type="number" bindinput="qqinput"></input>
 	</view>
   <view class="cu-form-group">
 		<view class="title">微信:</view>
-		<input placeholder="请输入微信号" bindinput="weixin"></input>
+		<input value="微信" bindinput="weixin"></input>
 	</view>
   <view class="padding flex flex-direction">
   <button class="cu-btn bg-grey lg" bindtap="bindclick">点击登记</button>
@@ -34,9 +35,10 @@
 <form wx:else>
 	<view class="cu-form-group margin-top">
 		<view class="title">姓名:</view>
-		<input placeholder="{{getstuinfo.name}}" bindinput="name"></input>
+		<input value="{{getstuinfo.name}}" bindinput="name"></input>
 	</view>
 	<view class="cu-form-group">
+		<view class="text-red">*</view>
 		<view class="title">年级：</view>
 		<picker bindchange="PickerChange" value="{{index}}" range="{{picker}}">
 			<view class="picker">
@@ -46,19 +48,19 @@
 	</view>
 	<view class="cu-form-group">
 		<view class="title">学校:</view>
-		<input placeholder="{{getstuinfo.school}}" bindinput="school"></input>
+		<input value="{{getstuinfo.school}}" bindinput="school"></input>
 	</view>
   <view class="cu-form-group">
 		<view class="title">备用电话:</view>
-		<input placeholder="{{getstuinfo.secondTel}}" bindinput="secondTel"></input>
+		<input value="{{getstuinfo.type}}" type="number" bindinput="type"></input>
 	</view>
   <view class="cu-form-group">
 		<view class="title">QQ:</view>
-		<input placeholder="{{getstuinfo.qq}}" bindinput="qq"></input>
+		<input value="{{getstuinfo.qq}}" type="number" bindinput="qq"></input>
 	</view>
   <view class="cu-form-group">
 		<view class="title">微信:</view>
-		<input placeholder="{{getstuinfo.weixin}}" bindinput="weixin"></input>
+		<input value="{{getstuinfo.weixin}}" bindinput="weixin"></input>
 	</view>
   <view class="padding flex flex-direction">
   <button class="cu-btn bg-grey lg" bindtap="bindclick">点击登记</button>

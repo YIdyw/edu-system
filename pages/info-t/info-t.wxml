@@ -2,7 +2,7 @@
 	<view class="cu-form-group">
 		<view class="text-red">*</view>
 		<view class="title">毕业院校</view>
-		<input placeholder="{{checkinInfo.gradSchool?checkinInfo.gradSchool:'请输入毕业院校'}}" bindinput="handleSchool"></input>
+		<input value="{{checkinInfo.gradSchool?checkinInfo.gradSchool:'毕业院校'}}" bindinput="handleSchool"></input>
 	</view>
 	<view class="cu-form-group">
 		<view class="text-red">*</view>
@@ -14,7 +14,7 @@
 	<view class="cu-form-group">
 		<view class="text-red">*</view>
 		<view class="title">学历编号</view>
-		<input placeholder="{{checkinInfo.gradCertId?checkinInfo.gradCertId:'请输入学历编号'}}" type="number" bindinput="handleEduNum"></input>
+		<input value="{{checkinInfo.gradCertId?checkinInfo.gradCertId:'学历编号'}}" type="number" bindinput="handleEduNum"></input>
 	</view>
 	<view class="cu-form-group">
 		<view class="text-red">*</view>
@@ -40,7 +40,7 @@
 	</view>
 	<view class="cu-form-group">
 		<view class="title">学位编号</view>
-		<input placeholder="{{checkinInfo.degreeCertId?checkinInfo.degreeCertId:'请输入学位编号'}}" type="number" bindinput="handleDegNum"></input>
+		<input value="{{checkinInfo.degreeCertId?checkinInfo.degreeCertId:'学位编号'}}"  type="number" bindinput="handleDegNum"></input>
 	</view>
 	<view class="cu-form-group">
 		<view class="title">学位证书照片</view>
@@ -59,23 +59,23 @@
 	</view>
   <view class="cu-form-group">
 		<view class="title">培训经历数目</view>
-		<input placeholder="{{checkinInfo.trainNum!=0?checkinInfo.trainNum:'请输入培训经历数'}}" type="number" bindinput="handleTraining"></input>
+		<input value="{{checkinInfo.trainNum!=0?checkinInfo.trainNum:''}}" type="number" bindinput="handleTraining"></input>
 	</view>
 	<view class="cu-form-group">
 		<view class="title">荣誉获奖数目</view>
-		<input placeholder="{{checkinInfo.awardsNum!=0?checkinInfo.awardsNum:'请输入荣誉获奖数'}}" type="number" bindinput="handleTraining"></input>
+		<input value="{{checkinInfo.awardsNum!=0?checkinInfo.awardsNum:''}}" type="number" bindinput="handleTraining"></input>
 	</view>
 	<view class="cu-form-group">
 		<view class="title">工作经历数目</view>
-		<input placeholder="{{checkinInfo.workNum!=0?checkinInfo.workNum:'请输入工作经历数'}}" type="number" bindinput="handleWorks"></input>
+		<input value="{{checkinInfo.workNum!=0?checkinInfo.workNum:''}}" type="number" bindinput="handleWorks"></input>
 	</view>
 	<view class="cu-form-group">
 		<view class="title">个人主页</view>
-		<input placeholder="{{checkinInfo.homepage?checkinInfo.homepage:'请输入个人首页地址'}}" bindinput="handlePrivHome"></input>
+		<input value="{{checkinInfo.homepage?checkinInfo.homepage:''}}" bindinput="handlePrivHome"></input>
 	</view>
 	<view class="cu-form-group">
 		<view class="title">个人微博</view>
-		<input placeholder="{{checkinInfo.weibo?checkinInfo.weibo:'请输入个人微博地址'}}" bindinput="handlePrivWeibo"></input>
+		<input value="{{checkinInfo.weibo?checkinInfo.weibo:''}}" bindinput="handlePrivWeibo"></input>
 	</view>
 	<view class="cu-form-group">
 		<view class="title">工作类型</view>
@@ -129,7 +129,7 @@
 	</view>
 	<view class="cu-form-group solid-bottom">
 		<view class="title">个人简介</view>
-		<textarea placeholder="{{checkinInfo.briefIntro?checkinInfo.briefIntro:'请输入个人简介'}}" bindinput="handleBrief" maxlength="60"></textarea>
+		<textarea value="{{checkinInfo.briefIntro?checkinInfo.briefIntro:''}}" bindinput="handleBrief" maxlength="60"></textarea>
 	</view>
 	<view class="padding flex flex-direction">
 		<button class="cu-btn bg-olive shadow" bindtap="checkin">点击登记</button>

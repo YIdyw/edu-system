@@ -207,22 +207,23 @@ Page({
         if(res.confirm) {
           if(type == 'eduImg'){
             this.setData({
-              eduImg: ''
+              eduImg: '',
+              eduImgId:1
             });
           }else if(type=='degImg'){
             this.setData({
               degImg: '',
-              degImgId:''
+              degImgId:1
             });
           }else if(type == 'privImg'){
             this.setData({
               privImg: '',
-              privImgId:''
+              privImgId:1
             });
           }else if(type == 'pubImg'){
             this.setData({
               pubImg: '',
-              pubImgId:''
+              pubImgId:1
             });
           }
         }
@@ -236,6 +237,13 @@ Page({
   },
   checkin(){
     let that = this.data
+    if(this.data.checkinInfo){
+      this.setData({
+        school: this.data.checkinInfo.gradSchool,
+        eduNum: this.data.checkinInfo.gradCertId
+      })
+    }
+    
     if(that.school=="" || that.eduIdx==0 || that.eduNum==""|| that.eduImg=="" || that.subjectChoose.length == 0){
       wx.showToast({
         title: '请完成必填项后提交',
@@ -354,7 +362,7 @@ Page({
       gradCertPhoto: that.eduImgId,
       gradCertId: that.eduNum,
       degree: that.degrees[that.deIdx],
-      degreeCertPhoto: this.data.degImgId,
+      degreeCertPhoto: that.degImgId,
       degreeCertId: that.degNum,
       trainNum: that.trainings,
       awardsNum: that.awards,
@@ -367,8 +375,8 @@ Page({
       courseType3Id: id[2] ? id[2] : '',
       courseType4Id: id[3] ? id[3] : '',
       courseType5Id: id[4] ? id[4] : '',
-      photoId: this.data.privImgId,
-      adverPhoto: this.data.pubImgId,
+      photoId: that.privImgId,
+      adverPhoto: that.pubImgId,
       briefIntro: that.briefInfo
     }
     if(this.data.updateflag){
@@ -420,14 +428,16 @@ Page({
         index.push(that.checkinInfo.courseType3Id)
         index.push(that.checkinInfo.courseType4Id)
         index.push(that.checkinInfo.courseType5Id)
-        console.log(that.courseCategory)
+        var sindex = 0
         for (let i = 0; i < 6; i++) {
           for (let j = 0; j < that.courseCategory.length; j++) {
             if (index.indexOf(that.courseCategory[j].value)>=0) {
               if(that.subjects[i].name == that.courseCategory[j].label){ 
               this.setData({
-                ['subjects['+i+'.].checked']: true
+                ['subjects['+i+'.].checked']: true,
+                ['subjectChoose['+sindex+']']: i
               })
+              sindex++
               break;
               }
             }
@@ -515,24 +525,28 @@ Page({
         var deg = res.data.degreeCertPhoto
         var pri = res.data.photoId
         var pub = res.data.adverPhoto
-        if(edu != 0){
+        if(edu != 1){
           this.setData({
-            eduImg: [url + edu]
+            eduImg: [url + edu],
+            eduImgId: edu
           })
         }
-        if(deg != 0){
+        if(deg != 1){
           this.setData({
-            degImg: [url + deg]
+            degImg: [url + deg],
+            degImgId: deg
           })
         }
-        if(pri != 0){
+        if(pri != 1){
           this.setData({
-            privImg: [url + pri]
+            privImg: [url + pri],
+            privImgId: pri
           })
         }
-        if(pub != 0){
+        if(pub != 1){
           this.setData({
-            pubImg: [url + pub]
+            pubImg: [url + pub],
+            pubImgId: pub
           })
         }
       }
