@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/home/home",
     "pages/my/my",
+    "pages/home/home",
     "pages/aboutclass/aboutclass",
     "pages/classmgmt/classmgmt",
     "pages/classpage/classpage",
@@ -26,7 +26,8 @@
     "pages/code2msg/code2msg",
     "pages/courseinfo/courseinfo",
     "pages/detail/detail",
-    "pages/detail_teacher/detail_teacher"
+    "pages/detail_teacher/detail_teacher",
+    "pages/carts/carts"
   ],
   "window": {
     "backgroundTextStyle": "light",

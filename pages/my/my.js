@@ -12,29 +12,20 @@ Page({
       url: '../login/login',
     });
   },
-  handleChange ({ detail }) {
-    var that=this
-    this.setData({
-        current: detail.key
-    });
-    if (that.data.current=='homepage'){
-      wx.navigateTo({
-        url: '../home/home',
-      })
-    }
-    else if(that.data.current=='group'){
-      wx.redirectTo({
-        url: '../sortPage/sortPage',
-      })
-    }
-  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      current: "mine"
-  });
+    if(wx.getStorageSync('loginInfo').defaultRole==2){
+      wx.redirectTo({
+        url: '../my-tch/my-tch',
+      })
+    }else if(wx.getStorageSync('loginInfo').defaultRole==3){
+      wx.redirectTo({
+        url: '../my-stu/my-stu',
+      })
+    }
   },
 
   /**

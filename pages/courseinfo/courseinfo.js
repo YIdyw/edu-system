@@ -13,17 +13,36 @@ Page({
     teacherid: [],
     dateinput:'',
     isstu: false,
+    orgid: '',
     screen : {
       minHeight : 'auto'
     },
   },
 
+  
+  buy(){
+
+  },
+
   //购买课程
   buyclass(){
-    wx.showToast({
-      title: '暂时无法购买！',
-      icon: 'none'
+    wx.showModal({
+      title: '是否购买？',
+      content: '请选择直接购买还是加入购物车',
+      cancelText: '购物车',
+      confirmText: '购买',
+      cancelColor: 'cancelColor',
+      success:function(res){
+        if(res.confirm){
+          console.log("买了买了！")
+        }else if(res.cancel){
+          wx.navigateTo({
+          url: '../carts/carts?courseid='+this.data.courseinfo.courseId+'&orgid='+this.data.orgid,
+          })
+        }
+      }
     })
+    
   },
 
   cancel(e) {
@@ -114,6 +133,9 @@ Page({
     }
     let orgid = options.orgid
     let index = options.index
+    this.setData({
+      orgid: options.orgid
+    })
     wx.getSystemInfo({
       success: (res)=> {
         this.setData({

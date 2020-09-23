@@ -1,6 +1,5 @@
 <form wx:if="{{!flag}}">
 	<view class="cu-form-group margin-top">
-		<view class="text-red">*</view>
 		<view class="title">姓名:</view>
 		<input value="姓名" bindinput="name"></input>
 	</view>
@@ -38,7 +37,6 @@
 		<input value="{{getstuinfo.name}}" bindinput="name"></input>
 	</view>
 	<view class="cu-form-group">
-		<view class="text-red">*</view>
 		<view class="title">年级：</view>
 		<picker bindchange="PickerChange" value="{{index}}" range="{{picker}}">
 			<view class="picker">

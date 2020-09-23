@@ -103,7 +103,8 @@ Page({
     }
     orgInter(data).then(res=>{
       console.log(res)
-      if(res.code==200){        
+      if(res.code==200){
+        this.pushMsg(userid)        
         wx.showToast({
           title: '报名成功',
         });
@@ -120,6 +121,16 @@ Page({
 
    //机构报名*************************************************************
    orgIn(e){
+    wx.requestSubscribeMessage({
+      tmplIds: ['7BcxJPhRmjyDlIMHHqzXY3aDaICHOwdvVR6uHw8EvCk'],
+      success (res) {
+        console.log("可以进行推送")
+       },
+       fail (res) {
+        console.log("code:",res.errCode)
+        console.log("Mes",res.errMsg)
+       }
+    })
     let logininfo = wx.getStorageSync('loginInfo')
     if(!logininfo.userid){
       wx.showToast({
@@ -130,6 +141,27 @@ Page({
       this._orgInter(logininfo.userid);
     }
   },
+
+  pushMsg(userid){
+    wx.request({
+    url: config.service.sendMsgUrl,
+    data: { 
+      code: app.globalData.code, 
+      template_id: '7BcxJPhRmjyDlIMHHqzXY3aDaICHOwdvVR6uHw8EvCk',
+      userid: userid,
+      orgid: this.data.orgid
+    },
+    method: 'POST',
+    success: function (res) {
+    console.log("push msg");
+    console.log(res);
+    },
+    fail: function (err) { 
+    console.log("push err")
+    console.log(err);
+    }
+    });
+   },
 
   getCourse : function(id){
     var url = URL.course + id

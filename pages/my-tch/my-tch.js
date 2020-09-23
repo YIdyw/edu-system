@@ -44,22 +44,7 @@ Page({
     isFaceChecked: 0,
     notifyNum: 0,
   },
-  handleChange ({ detail }) {
-    var that=this
-    this.setData({
-        current: detail.key
-    });
-    if (that.data.current=='homepage'){
-      wx.navigateTo({
-        url: '../home/home',
-      })
-    }
-    else if(that.data.current=='group'){
-      wx.redirectTo({
-        url: '../sortPage/sortPage',
-      })
-    }
-},
+
   facehandler(e){
     var that=this;
     var id = e.currentTarget.dataset.id;

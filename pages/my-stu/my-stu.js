@@ -43,22 +43,7 @@ Page({
     isFaceChecked: 0,
     userInfo: {}
   },
-  handleChange ({ detail }) {
-    var that=this
-    this.setData({
-        current: detail.key
-    });
-    if (that.data.current=='homepage'){
-      wx.navigateTo({
-        url: '../home/home',
-      })
-    }
-    else if(that.data.current=='group'){
-      wx.redirectTo({
-        url: '../sortPage/sortPage',
-      })
-    }
-  },
+
   facehandler(e){
     var that=this;
     var id = e.currentTarget.id;
@@ -83,6 +68,10 @@ Page({
     }else if(that.data.isFaceChecked==3){
       wx.navigateTo({
         url: '../trylisten/trylisten',
+      })
+    }else  if(that.data.isFaceChecked==4){
+      wx.navigateTo({
+        url: '../carts/carts',
       })
     }else  if(that.data.isFaceChecked==5){
       wx.navigateTo({

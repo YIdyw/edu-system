@@ -12,7 +12,11 @@
   align-items: center;
 }
 
-
+.userinfo .stu{
+  position: fixed;
+  right: 20rpx;
+  color: #222;
+}
 .userinfo-avatar {
   display: block;
   overflow: hidden;

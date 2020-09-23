@@ -1,11 +1,9 @@
-<i-tab-bar current="{{ current }}" color="#f759ab" bindchange="handleChange" fixed>
-  <i-tab-bar-item key="homepage" icon="homepage" current-icon="homepage_fill" title="首页"></i-tab-bar-item>
-  <i-tab-bar-item key="group" icon="group" current-icon="group_fill" title="选课"></i-tab-bar-item>
-  <i-tab-bar-item key="mine" icon="mine" current-icon="mine_fill" title="我的"></i-tab-bar-item>
-</i-tab-bar>
 
 <view class="page me">
   <view class="userinfo">
+    <view class="stu">
+      <text>学生</text>
+    </view>
     <view class="userinfo-avatar" bindtap="tobe">
       <open-data type="userAvatarUrl"></open-data>
     </view>
