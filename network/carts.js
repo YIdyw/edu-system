@@ -1,7 +1,7 @@
 import request from './request.js'
 
 // 根据userid获取该用户全部商品
-export function getNotpaidOrder(data){
+export function getAll(data){
   return request({
     url: '/shoppingCart/'+data,
     method: 'GET',
@@ -48,18 +48,19 @@ export function unselectAllMer(data){
   });
 }
 
-// 根据userid取消全选
-export function unselectAllMer(data){
-  return request({
-    url: '/shoppingCart/'+data.userid+'/unSelectAll',
-    method: 'PUT',
-  });
-}
 
 // 根据userid将选择的商品生成订单
 export function makeOrder(data){
   return request({
     url: '/shoppingCart/order/'+data.userid,
+    method: 'POST',
+  });
+}
+
+// 根据userid选择的merid加入购物车
+export function addCart(data){
+  return request({
+    url: '/shoppingCart/'+data.userid+'/'+data.merid,
     method: 'POST',
   });
 }

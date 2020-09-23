@@ -1,4 +1,7 @@
 // pages/carts/carts.js
+import {
+  getAll, selectMer, deleteMer, unselectMer, selectAllMer, unselectAllMer, makeOrder
+} from '../../network/carts'
 Page({
 
   /**
@@ -28,52 +31,48 @@ Page({
     });
 },
 
-deleteList(e) {
-  const index = e.currentTarget.dataset.index;
-  let carts = this.data.carts;
-  carts.splice(index,1);              // 删除购物车列表里这个商品
-  this.setData({
-      carts: carts
-  });
-  if(!carts.length){                  // 如果购物车为空
-      this.setData({
-          hasList: false              // 修改标识为false，显示购物车为空页面
-      });
-  }else{                              // 如果不为空
-      this.getTotalPrice();           // 重新计算总价格
-  }   
+getAll() {
+    getAll(this.data.userid).then(res=>{
+      if(res.code==200){
+        console.log('获取购物车信息成功')
+        this.setData({
+          carts: res.data
+        })
+      }
+    })                  
 },
 
-selectList(e) {
-  const index = e.currentTarget.dataset.index;    // 获取data- 传进来的index
-  let carts = this.data.carts;                    // 获取购物车列表
-  const selected = carts[index].selected;         // 获取当前商品的选中状态
-  carts[index].selected = !selected;              // 改变状态
-  this.setData({
-      carts: carts
-  });
-  this.getTotalPrice();                           // 重新获取总价
+delete() {
+ 
 },
 
-selectAll(e) {
-  let selectAllStatus = this.data.selectAllStatus;    // 是否全选状态
-  selectAllStatus = !selectAllStatus;
-  let carts = this.data.carts;
-
-  for (let i = 0; i < carts.length; i++) {
-      carts[i].selected = selectAllStatus;            // 改变所有商品状态
-  }
-  this.setData({
-      selectAllStatus: selectAllStatus,
-      carts: carts
-  });
-  this.getTotalPrice();                               // 重新获取总价
+select() {
+                        
 },
+
+unselect() {
+                        
+},
+
+selectAll() {
+                             
+},
+
+unselectAll() {
+                             
+},
+
+makeOrder() {
+
+},
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    this.setData({
+      userid: wx.getStorageSync('loginInfo').userid
+    })
   },
 
   /**

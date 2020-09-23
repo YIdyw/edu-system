@@ -8,7 +8,7 @@
         <icon wx:else type="circle" bindtap="selectList" data-index="{{index}}"/>
         
         <!-- 点击商品图片可跳转到商品详情 -->
-        <navigator url="../details/details?id={{item.id}}">
+        <navigator url="../courseinfo/courseinfo?index=item.courseid+'&orgid='">
             <image class="cart-thumb" src="{{item.image}}"></image>
         </navigator>
         
