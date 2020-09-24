@@ -11,7 +11,8 @@ Page({
     carts:[],               // 购物车列表
     hasList:false,          // 列表是否有数据
     totalPrice:0,           // 总价，初始为0
-    selectAllStatus:true,    // 全选状态，默认全选
+    selectAllStatus:false,    // 全选状态，默认全选
+    isnull: true,
     courseid: '',
     userid: '',
     orgid: ''
@@ -21,12 +22,11 @@ Page({
     let carts = this.data.carts;                  // 获取购物车列表
     let total = 0;
     for(let i = 0; i<carts.length; i++) {         // 循环列表得到每个数据
-        if(carts[i].selected) {                   // 判断选中才会计算价格
-            total += carts[i].num * carts[i].price;     // 所有价格加起来
+        if(carts[i].cartState==1) {                   // 判断选中才会计算价格
+            total += carts[i].merPrice;     // 所有价格加起来
         }
     }
     this.setData({                                // 最后赋值到data中渲染到页面
-        carts: carts,
         totalPrice: total.toFixed(2)
     });
 },
@@ -38,32 +38,147 @@ getAll() {
         this.setData({
           carts: res.data
         })
+        this.getTotalPrice()
+        if(res.data.length==0){
+          this.setData({
+            isnull: false
+          })
+        }
       }
     })                  
 },
 
-delete() {
- 
+delete(e) {
+  let index = e.currentTarget.dataset.index
+  let data = {
+    userid: this.data.userid,
+    merid: this.data.carts[index].merId
+  }
+  deleteMer(data).then(res =>{
+    if(res.code==200){
+      setTimeout(() => {
+        wx.showToast({
+          title: '删除成功！',
+          icon: "success",
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1000)
+      }, 0);
+      this.getAll()
+    }
+  })
 },
 
-select() {
-                        
+select(e) {
+  let index = e.currentTarget.dataset.index
+  console.log(e)
+  let data = {
+    userid: this.data.userid,
+    merid: this.data.carts[index].merId
+  }
+  selectMer(data).then(res =>{
+    if(res.code==200){
+      setTimeout(() => {
+        wx.showToast({
+          title: '已添加！',
+          icon: "success",
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1000)
+      }, 0);
+      this.getAll()
+    }
+  })                    
 },
 
-unselect() {
-                        
+unselect(e) {
+  let index = e.currentTarget.dataset.index
+  let data = {
+    userid: this.data.userid,
+    merid: this.data.carts[index].merId
+  }
+  unselectMer(data).then(res =>{
+    if(res.code==200){
+      setTimeout(() => {
+        wx.showToast({
+          title: '已取消！',
+          icon: "success",
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1000)
+      }, 0);
+      this.getAll()
+    }
+  })          
 },
 
 selectAll() {
-                             
+  let data = {
+    userid: this.data.userid
+  }
+  selectAllMer(data).then(res =>{
+    if(res.code==200){
+      this.setData({
+        selectAllStatus: true
+      })
+      setTimeout(() => {
+        wx.showToast({
+          title: '已全选！',
+          icon: "success",
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1000)
+      }, 0);
+      this.getAll()
+    }
+  })                            
 },
 
 unselectAll() {
-                             
+  let data = {
+    userid: this.data.userid
+  }
+  unselectAllMer(data).then(res =>{
+    if(res.code==200){
+      this.setData({
+        selectAllStatus: false
+      })
+      setTimeout(() => {
+        wx.showToast({
+          title: '取消全选！',
+          icon: "success",
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1000)
+      }, 0);
+      this.getAll()
+    }
+  })                    
 },
 
 makeOrder() {
-
+  let data = {
+    userid: this.data.userid
+  }
+  makeOrder(data).then(res =>{
+    if(res.code==200){
+      setTimeout(() => {
+        wx.showToast({
+          title: '订单提交成功！',
+          icon: "success",
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1000)
+      }, 0);
+      this.getAll()
+    }
+  })
 },
 
   /**
@@ -73,6 +188,7 @@ makeOrder() {
     this.setData({
       userid: wx.getStorageSync('loginInfo').userid
     })
+    this.getAll()
   },
 
   /**
@@ -86,14 +202,6 @@ makeOrder() {
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.setData({
-      hasList: true,        // 既然有数据了，那设为true吧
-      carts:[
-        {id:1,title:'新鲜芹菜 半斤',image:'/image/s5.png',num:4,price:0.01,selected:true},
-        {id:2,title:'素米 500g',image:'/image/s6.png',num:1,price:0.03,selected:true}
-      ]
-    });
- 
   },
 
   /**

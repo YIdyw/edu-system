@@ -4,6 +4,7 @@ import {
 import {
   getMyorgclass
 } from '../../network/aboutclass'
+var app = getApp()
 Page({
 
   /**
@@ -138,7 +139,7 @@ Page({
 
   pushMsg(userid){
     wx.request({
-    url: config.service.sendMsgUrl,
+    url: "http://192.168.3.112/weixin",
     data: { 
       code: app.globalData.code, 
       template_id: '7BcxJPhRmjyDlIMHHqzXY3aDaICHOwdvVR6uHw8EvCk',

@@ -53,7 +53,7 @@
 <view hidden="{{degss==0}}">
     <block wx:for="{{course.data}}" wx:key="index">
   <view class="view_tupian_wenzi" bindtap="course" data-menuindex='{{index}}' id="{{index}}">
-    <image class="image_1" src="http://139.129.101.91:8081/offline-education-system/picture/{{item.adverPhoto}}" />
+    <image class="image_1" src="http://139.129.101.91/offline-education-system/picture/{{item.adverPhoto}}" />
     <view class="view_wenzi2"> 
       <text>{{item.name}}</text>
       

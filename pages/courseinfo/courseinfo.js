@@ -14,6 +14,7 @@ Page({
     dateinput:'',
     isstu: false,
     orgid: '',
+    index: '',
     screen : {
       minHeight : 'auto'
     },
@@ -134,7 +135,8 @@ Page({
     let orgid = options.orgid
     let index = options.index
     this.setData({
-      orgid: options.orgid
+      orgid: options.orgid,
+      index: options.index
     })
     wx.getSystemInfo({
       success: (res)=> {

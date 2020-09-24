@@ -1,32 +1,57 @@
 <!--pages/carts/carts.wxml-->
-<view class="cart-box">
-    <!-- wx:for 渲染购物车列表 -->
-    <view wx:for="{{carts}}">
-    
-        <!-- wx:if 是否选择显示不同图标 -->
-        <icon wx:if="{{item.selected}}" type="success" color="red" bindtap="selectList" data-index="{{index}}" />
-        <icon wx:else type="circle" bindtap="selectList" data-index="{{index}}"/>
-        
-        <!-- 点击商品图片可跳转到商品详情 -->
-        <navigator url="../courseinfo/courseinfo?index=item.courseid+'&orgid='">
-            <image class="cart-thumb" src="{{item.image}}"></image>
-        </navigator>
-        
-        <text>{{item.title}}</text>
-        <text>￥{{item.price}}</text>
-        
-        <!-- 删除按钮 -->
-        <text bindtap="deleteList" data-index="{{index}}"> × </text>
-    </view>
-</view>
 
-<!-- 底部操作栏 -->
-<view>
-    <!-- wx:if 是否全选显示不同图标 -->
-    <icon wx:if="{{selectAllStatus}}" type="success_circle" color="#fff" bindtap="selectAll"/>
-    <icon wx:else type="circle" color="#fff" bindtap="selectAll"/>
-    <text>全选</text>
-    
-    <!-- 总价 -->
-    <text>￥{{totalPrice}}</text>
-</view>
+<block wx:if='{{isnull}}'>
+  <!-- <>购物车列表 -->
+  <view class="carts-list">
+    <view wx:for="{{carts}}" class="carts-item" wx:key='index'>
+         <!-- wx:if 是否选择显示不同图标 -->
+      <view class="carts-radio">
+            <image class="carts-select" wx:if="{{item.cartState==1}}" src="/colorui/icon/select.png" bindtap="unselect" data-index="{{index}}" />
+            <image class="carts-select" wx:else src="/colorui/icon/unselect.png" bindtap="select" data-index="{{index}}"/>
+        </view>  
+    <view wx:for="{{item.merInfo}}" wx:for-item="Mer" wx:key="index">
+     
+      <!-- //商品信息 -->  
+      <view class="carts-cnt">
+        <!-- 点击商品图片可跳转到商品详情 -->
+        <navigator url="../courseinfo/courseinfo?index={{Mer.courseId}}&orgid={{Mer.orgId}}">
+                <image mode="aspectFill" class="carts-image" src="http://139.129.101.91/offline-education-system/picture/{{Mer.adverPhoto}}"></image>
+            </navigator>
+        <view class="carts-info">
+          <view class="carts-title clamp2">{{Mer.courseName}}</view>
+          <view class="carts-subtitle">
+            <text class="carts-price c--f60">￥{{item.merPrice}}</text>
+          </view>
+        </view>
+      </view>
+      
+      
+    </view>
+    <!-- //删除 -->  
+    <icon class="carts-del" type="clear" size="16" color="#ccc" data-index="{{index}}" bindtap="delete" />
+  </view>
+  </view>
+ <view class="carts-footer">  
+    <view class="bottomfixed">  
+      <view class="inner">  
+          <!-- wx:if 是否全选显示不同图标 -->
+        <view class="chkAll">
+            <image class="allselect" wx:if="{{selectAllStatus}}" src="/colorui/icon/select.png" bindtap="unselectAll"/>
+            <image class="allselect" wx:else src="/colorui/icon/unselect.png" bindtap="selectAll"/>
+            <text>全选</text>
+        </view>
+        
+        <view class="total">合计：<em>￥{{totalPrice}}</em></view>  
+        <view wx:if="{{totalCount != 0}}" class="btn-pay" bindtap='makeOrder'>去结算({{totalPrice}})</view>  
+        <view wx:else class="btn-pay disabled">去结算({{totalPrice}})</view>  
+      </view>  
+    </view>  
+  </view>
+  </block>
+  <block wx:else>
+     <view class="content" >
+      <view style="margin-top:50px;width:100%;">
+       <view style='font-size:15px;'>购物车没有商品!</view>
+      </view>
+    </view>
+  </block>

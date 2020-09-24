@@ -1,1 +1,136 @@
 /* pages/carts/carts.wxss */
+.c--f60{color: #f60;}
+.clamp1, .clamp2, .clamp3{display: -webkit-box!important; overflow: hidden; -webkit-box-orient: vertical;}
+.clamp1{-webkit-line-clamp:1;}
+.clamp2{-webkit-line-clamp:2;}
+.clamp3{-webkit-line-clamp:3;}
+  
+.carts-list{
+  padding: 0 20rpx;
+}
+ 
+.carts-list .carts-item{
+  border-top: 1rpx solid #e3e3e3;
+  box-sizing: border-box; 
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
+  padding: 20rpx 10rpx; 
+  width: 100%; 
+  position: relative;
+}
+.carts-list .carts-item{
+  border-top: 1rpx solid #e3e3e3;
+  box-sizing: border-box; 
+  display: flex; 
+  flex-direction: row;
+  justify-content: space-between; 
+  padding: 20rpx 10rpx; 
+  width: 100%; 
+  position: relative;
+}
+.carts-list .carts-item:nth-child(1){
+  border-top: 0;
+}
+ 
+.carts-select{
+  margin-top:5rpx;
+  width:30px;
+  height:30px;
+}
+ 
+
+.carts-cnt .carts-image{
+  float:left; 
+  margin-right: 200px; 
+  height: 200rpx; 
+  width: 200rpx;
+ 
+}
+
+.carts-cnt .carts-info{
+  display: flex;
+  float: right; 
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 150rpx;
+  position: absolute; 
+  top: 50rpx; 
+  right: 150rpx;
+}
+.carts-cnt .carts-title{
+  font-size:15px;
+}
+.carts-cnt .carts-guige{
+  font-size: 12px;
+}
+.carts-cnt .carts-subtitle{
+  display: flex; 
+  flex-direction: row; 
+  font-size: 15px;
+}
+.carts-list .carts-item .carts-del{
+  position: absolute; 
+  top: 20rpx; 
+  right: 10rpx;
+}
+ 
+ 
+.bottomfixed{
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  bottom: 0;
+  width: 100%;
+  height: 120rpx;
+  line-height: 120rpx;
+  background: #f5f5f5;
+}
+ 
+.bottomfixed .inner{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+ 
+.bottomfixed .inner .chkAll {
+  font-size: 28rpx;
+  margin-right: 40rpx;
+  margin-left: 20rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+ 
+.bottomfixed .inner .chkAll .allselect{
+  width:30px;
+  height:30px;
+}
+ 
+.bottomfixed .inner .total{
+  font-size:28rpx;
+}
+.bottomfixed .inner .total em{color:#f60;}
+ 
+.btn-pay{
+  position: absolute;
+  right:0px;
+  background:#FF5E3A;
+  color:#fff;
+  padding:0 10px;
+  font-size: 28rpx;
+}
+ 
+.disabled{
+  background:#ccc;
+}
+ 
+.content{
+    width: 100%;
+    height:100%;
+    position: absolute;
+    left: 0;
+    font-size: 15px;
+    color:#999;
+    text-align:center;
+}
