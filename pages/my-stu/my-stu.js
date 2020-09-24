@@ -20,10 +20,10 @@ Page({
       id:1,
       name: '课程相关'
     }, {
-      icon: 'profile',
+      icon: 'qrcode',
       color: 'yellow',
       id:2,
-      name: '个人中心'
+      name: '扫一扫'
     }, {
       icon: 'write',
       color: 'olive',
@@ -62,9 +62,7 @@ Page({
         url: '../aboutclass/aboutclass',
       })
     }else if(that.data.isFaceChecked==2){
-      wx.navigateTo({
-        url: '../mancentral/mancentral',
-      })
+      this.picture2()
     }else if(that.data.isFaceChecked==3){
       wx.navigateTo({
         url: '../trylisten/trylisten',
@@ -89,6 +87,31 @@ isout(){
     url: '../my/my'
   })
   wx.clearStorage()
+},
+
+picture2(){
+  wx.scanCode({
+    success: (res) => {
+      var show2code=res.result;
+      wx.setStorageSync('show2code',show2code);
+      wx.showToast({
+        title: '成功',
+        icon: 'success',
+        duration: 2000
+      })
+      wx.navigateTo({
+        url: '../code2msg/code2msg',
+      })
+      },
+      fail: (res) => {
+      wx.showToast({
+        title: '失败',
+        icon: 'none',
+        duration: 2000
+      })
+      },
+      complete: (res) => {} 
+  })
 },
 
   update() {

@@ -40,26 +40,28 @@ Page({
     });
   },
 
-  _orgInter(){
+  _orgInter(userid){
     let that=this;
     let data={
       orgId:that.data.getorgallinfo.orgId,
-      userid:that.data.loginInfo.userid
+      userid:userid
     }
     orgInter(data).then(res=>{
       console.log(res)
-      if(res==200){        
+      if(res.code==200){
+        this.pushMsg(userid)        
         wx.showToast({
           title: '报名成功',
         });
       
     }else{
       wx.showToast({
-        title: res.msg,
+        title: '报名失败',
         icon: 'none'
       })
     } 
     });
+    
   },
   //获取该机构学生尚未选修的课程
   _getMyorgclass(){
@@ -112,10 +114,48 @@ Page({
   },
   //机构报名*************************************************************
   orgIn(e){
-    let that = this;
-    that._orgInter();
+    wx.requestSubscribeMessage({
+      tmplIds: ['7BcxJPhRmjyDlIMHHqzXY3aDaICHOwdvVR6uHw8EvCk'],
+      success (res) {
+        console.log("可以进行推送")
+       },
+       fail (res) {
+        console.log("code:",res.errCode)
+        console.log("Mes",res.errMsg)
+       }
+    })
+    let logininfo = wx.getStorageSync('loginInfo')
+    if(!logininfo.userid){
+      wx.showToast({
+        title: '还未登陆！',
+        icon: 'none'
+      })
+    } else{
+      this._orgInter(logininfo.userid);
+    }
 
   },
+
+  pushMsg(userid){
+    wx.request({
+    url: config.service.sendMsgUrl,
+    data: { 
+      code: app.globalData.code, 
+      template_id: '7BcxJPhRmjyDlIMHHqzXY3aDaICHOwdvVR6uHw8EvCk',
+      userid: userid,
+      orgid: this.data.orgid
+    },
+    method: 'POST',
+    success: function (res) {
+    console.log("push msg");
+    console.log(res);
+    },
+    fail: function (err) { 
+    console.log("push err")
+    console.log(err);
+    }
+    });
+   },
 
   trylisten(e){
     var that=this;
