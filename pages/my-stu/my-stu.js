@@ -237,7 +237,8 @@ Page({
   _scheduelQuery(data){
     let today = new Date();
     let dayPlan = null;
-    let currentWeekNum = today.getDay();
+    let daycheck = today.getDate();
+    let currentWeekNum = parseInt(daycheck / 7) + 1;
     let weekPlan = []
     scheduleQuery(data).then(res=>{
       // console.log(res)
