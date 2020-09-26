@@ -1,11 +1,12 @@
 import {
-  getLoginInfo
+  getLoginInfo, code
 } from '../../network/login'
 
 Page({
   data: {
     account:"",
     password:"",
+    code: ''
   },
   accountinput: function (e) {
     this.setData({
@@ -19,6 +20,7 @@ Page({
   },
   login(){
     var that = this;
+    that._message()
     if (that.data.account == "") {
       wx.showToast({
         title: '用户名不能为空！',
@@ -38,17 +40,51 @@ Page({
       url: '../regist/regist'
     })
   },
+
+  _message(){
+    wx.requestSubscribeMessage({
+      tmplIds: ['7BcxJPhRmjyDlIMHHqzXY3aDaICHOwdvVR6uHw8EvCk'],
+      success (res) {
+        console.log("可以进行推送")
+       },
+       fail (res) {
+        console.log("code:",res.errCode)
+        console.log("Mes",res.errMsg)
+       }
+    })
+  },
+  
+  _pushcode() {
+    wx.login({
+      success: res => {
+        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        let data2 = {
+          userid: wx.getStorageSync('loginInfo').userid,
+          code: res.code
+        }
+        console.log("这就是我的code："+res.code)
+        code(data2).then(res1 =>{
+          console.log(res1)
+          if(res1.code==200){
+            console.log("code发送成功！")
+          }
+        })
+      }
+    })
+  },
+
   _getLoginInfo() {
     const that = this;
+    
     let data = {
       account: that.data.account,
       password: that.data.password
     }
-    console.log(data)
     getLoginInfo(data).then(res => {
       console.log(res)
       wx.setStorageSync('loginInfo', res.data)
       if(res.code==200){
+        that._pushcode()
         if(res.data.defaultRole == 2){
           wx.reLaunch({
             url: '../my-tch/my-tch',
@@ -70,6 +106,8 @@ Page({
           icon: 'none'
         })
       }
+      
+      
     });
   },
   /**
