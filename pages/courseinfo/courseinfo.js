@@ -76,7 +76,9 @@ Page({
       cancelColor: 'cancelColor',
       success:function(res){
         if(res.confirm){
-          console.log("买了买了！")
+          wx.redirectTo({
+            url: '../settlement/settlement',
+          })
         }else if(res.cancel){
           that._addCart()
         }
