@@ -13,7 +13,8 @@ Page({
   data: {
     show:"",
     getorgallinfo:"",
-    loginInfo:""
+    loginInfo:"",
+    code: ''
   },
 
   
@@ -115,6 +116,7 @@ Page({
   },
   //机构报名*************************************************************
   orgIn(e){
+    
     wx.requestSubscribeMessage({
       tmplIds: ['7BcxJPhRmjyDlIMHHqzXY3aDaICHOwdvVR6uHw8EvCk'],
       success (res) {
@@ -138,10 +140,20 @@ Page({
   },
 
   pushMsg(userid){
+
+    wx.login({
+      success: res => {
+        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        console.log("这就是我的code："+res.code)
+        this.setData({
+          code: res.code
+        })
+      }
+    })
     wx.request({
     url: "http://192.168.3.112/weixin",
     data: { 
-      code: app.globalData.code, 
+      code: this.data.code, 
       template_id: '7BcxJPhRmjyDlIMHHqzXY3aDaICHOwdvVR6uHw8EvCk',
       userid: userid,
       orgid: this.data.orgid

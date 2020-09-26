@@ -64,3 +64,11 @@ export function addCart(data){
     method: 'POST',
   });
 }
+
+// 根据courseid找到merid
+export function findmerid(data){
+  return request({
+    url: '/courseMer/find/courseId/'+data,
+    method: 'GET',
+  });
+}

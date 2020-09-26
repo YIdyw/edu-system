@@ -37,10 +37,10 @@ Page({
       id:4,
       name: '购课车'
     }, {
-      icon: 'calendar',
+      icon: 'order',
       color: 'blue',
       id:5,
-      name: '我的课表'
+      name: '订单'
     } ],
     isFaceChecked: 0,
     userInfo: {},
@@ -297,7 +297,7 @@ Page({
       })
     }else  if(that.data.isFaceChecked==5){
       wx.navigateTo({
-        url: '../classpage/classpage',
+        url: '../order/order',
       })
     }
   },

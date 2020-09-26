@@ -2,6 +2,9 @@
 import {
  idGetOrgCourse, listenClass
 } from '../../network/orginout'
+import {
+  addCart, findmerid
+} from '../../network/carts'
 Page({
 
   /**
@@ -15,18 +18,56 @@ Page({
     isstu: false,
     orgid: '',
     index: '',
+    merid: '',
     screen : {
       minHeight : 'auto'
     },
   },
 
-  
+  //根据courseid获取课程的编号merid
+  _findmerid(courseId){
+    findmerid(courseId).then(res =>{
+      if(res.code==200){
+        console.log("成功获取merid：",res.data[0].merId)
+        this.setData({
+          merid: res.data[0].merId
+        })
+      }
+    })
+  },
+
+  //加入购物车
+  _addCart(){
+    let data = {
+      userid: wx.getStorageSync('loginInfo').userid,
+      merid: this.data.merid
+    }
+    addCart(data).then(res =>{
+      if(res.code==200){
+        wx.showModal({
+          cancelColor: 'cancelColor',
+          title: '是否进入购物车？',
+          success:function(res){
+            if(res.confirm){
+              wx.redirectTo({
+                url: '../carts/carts',
+              })
+            }else if(res.cancel){
+              console.log("用户没有进入购物车")
+            }
+          }
+        })
+      }
+    })
+  },
+
   buy(){
 
   },
 
   //购买课程
   buyclass(){
+    var that = this
     wx.showModal({
       title: '是否购买？',
       content: '请选择直接购买还是加入购物车',
@@ -37,9 +78,7 @@ Page({
         if(res.confirm){
           console.log("买了买了！")
         }else if(res.cancel){
-          wx.navigateTo({
-          url: '../carts/carts?courseid='+this.data.courseinfo.courseId+'&orgid='+this.data.orgid,
-          })
+          that._addCart()
         }
       }
     })
@@ -127,6 +166,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this
     if(wx.getStorageSync('loginInfo')&&wx.getStorageSync('loginInfo').defaultRole == 3){
       this.setData({
         isstu: true
@@ -149,7 +189,7 @@ Page({
     this.getInfoCallback = res =>{
       for(let i=0;i<res.data.length;i++){
         if(res.data[i].courseId == index){
-          console.log(res.data[i])
+          that._findmerid(res.data[i].courseId)
           for(let j=0;j<res.data[i].teacherList.length;j++){
             this.setData({
               ['teacherid['+j+']']: 'teacher'+[j+1]+'Id'
@@ -172,7 +212,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-   
+    
   },
 
   /**
