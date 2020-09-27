@@ -1,86 +1,112 @@
 <!--pages/order/order.wxml-->
+
 <!-- 切换栏 -->
 <view class="swiper-tab">
-<block wx:for="{{swipertab}}" wx:key="sptab">
-<view class="swiper-tab-list {{currtab == item.index ? 'on' : ''}}" data-current="{{item.index}}" bindtap="tabSwitch">{{item.name}}</view>
-</block>
+  <block wx:for="{{swipertab}}" wx:key="sptab">
+  <view class="swiper-tab-list {{currtab == item.index ? 'on' : ''}}" data-current="{{item.index}}" bindtap="tabSwitch">{{item.name}}</view>
+  </block>
 </view>
  
 <swiper current="{{currtab}}" class="swiper-box" duration="300" style="height:{{deviceH-31}}px" bindchange="tabChange">
 <!-- 完成 -->
-<swiper-item>
-<scroll-view class="hot-box" scroll-y="true">
-<view class="orderDetails" wx:for="{{paidOrder}}" wx:key=" ">
-<view class="orderListTitle">
-<text class="userName">{{item.name}}</text>
-<text class="orderStatus">{{item.state}}</text>
-</view>
-<view class="orderListDetails">
-<view class="productImg">
-<image src="{{item.url}}" background-size="cover"></image>
-</view>
-<view class="productInfo">
-<view class="productTitle">预定时间: {{item.time}}</view>
-<text class="productPrice">当前状态：{{item.status}}</text>
-</view>
-</view>
-<view class="productCount">
-<view>
-<text>合计：￥{{item.money}}</text>
-</view>
-</view>
-</view>
-</scroll-view>
-</swiper-item>
+  <swiper-item>
+    <scroll-view class="hot-box" scroll-y="true">
+      <block wx:if="{{!padiOrder}}">
+        <view class="content" >
+          <view style="margin-top:100px;width:100%;">
+            <view style='font-size:15px;'>未有已完成订单!</view>
+          </view>
+        </view>
+      </block>
+      <block wx:else>
+      <view class="orderDetails" wx:for="{{paidOrder}}" wx:key="index">
+        <view class="orderListTitle">
+          <text class="userName">课程名称：{{item.orderItem.object.adverPhotocourseName}}</text>
+          <text class="orderStatus">商品编号：{{item.merId}}</text>
+        </view>
+        <view class="orderListDetails">
+          <navigator url="../courseinfo/courseinfo?index={{item.orderItem.object.courseId}}&orgid={{item.orderItem.object.orgId}}" class="productImg">
+            <image src="http://139.129.101.91/offline-education-system/picture/{{item.orderItem.object.adverPhoto}}" background-size="cover"></image>
+          </navigator>
+        <view class="productInfo">
+          <view class="productTitle">预定时间: {{item.orderTime}}</view>
+            <text class="productPrice">订单编号：{{item.orderId}}</text>
+          </view>
+        </view>
+        <view class="productCount">
+          <view>
+            <text>合计：￥{{item.orderPrice}}</text>
+          </view>
+        </view>
+      </view>
+      </block>
+    </scroll-view>
+  </swiper-item>
 <!-- 待付款 -->
-<swiper-item>
-<scroll-view class="hot-box" scroll-y="true">
-<view class="orderDetails" wx:for="{{tobopaidOrder}}" wx:key=" ">
-<view class="orderListTitle">
-<text class="userName">{{item.name}}</text>
-<text class="orderStatus">{{item.state}}</text>
-</view>
-<view class="orderListDetails">
-<view class="productImg">
-<image src="{{item.url}}" background-size="cover"></image>
-</view>
-<view class="productInfo">
-<view class="productTitle">预定时间: {{item.time}}</view>
-<text class="productPrice">当前状态：{{item.status}}</text>
-</view>
-</view>
-<view class="productCount">
-<view>
-<text>合计：￥{{item.money}}</text>
-</view>
-</view>
-</view>
-</scroll-view>
-</swiper-item>
+  <swiper-item>
+    <scroll-view class="hot-box" scroll-y="true">
+      <view wx:if="{{!tobepaidOrder}}">
+        <view class="content" >
+          <view style="margin-top:100px;width:100%;">
+            <view style='font-size:15px;'>未有待付款订单!</view>
+          </view>
+        </view>
+      </view>
+      <view wx:else>
+      <view class="orderDetails" wx:for="{{tobepaidOrder}}" data-menuindex='{{index}}' wx:key="index" bindtap="settlement">
+        <view class="orderListTitle">
+          <text class="userName">课程名称：{{item.orderItem.object.courseName}}</text>
+          <text class="orderStatus">商品编号：{{item.merId}}</text>
+        </view>
+        <view class="orderListDetails">
+          <image class="productImg" src="http://139.129.101.91/offline-education-system/picture/{{item.orderItem.object.adverPhoto}}" background-size="cover"></image>
+        <view class="productInfo">
+          <view class="productTitle">预定时间: {{item.orderTime}}</view>
+            <text class="productPrice">订单编号：{{item.orderId}}</text>
+          </view>
+        </view>
+        <view class="productCount">
+          <view>
+            <text>合计：￥{{item.orderPrice}}</text>
+          </view>
+        </view>
+      </view>
+      </view>
+    </scroll-view>
+  </swiper-item>
 <!-- 取消 -->
-<swiper-item>
-<scroll-view class="hot-box" scroll-y="true">
-<view class="orderDetails" wx:for="{{cancelOrder}}" wx:key=" ">
-<view class="orderListTitle">
-<text class="userName">{{item.name}}</text>
-<text class="orderStatus">{{item.state}}</text>
-</view>
-<view class="orderListDetails">
-<view class="productImg">
-<image src="{{item.url}}" background-size="cover"></image>
-</view>
-<view class="productInfo">
-<view class="productTitle">预定时间: {{item.time}}</view>
-<text class="productPrice">当前状态：{{item.status}}</text>
-</view>
-</view>
-<view class="productCount">
-<view>
-<text>合计：￥{{item.money}}</text>
-</view>
-</view>
-</view>
-</scroll-view>
-</swiper-item>
+  <swiper-item>
+    <scroll-view class="hot-box" scroll-y="true">
+      <view wx:if="{{!cancelOrder}}">
+        <view class="content" >
+          <view style="margin-top:100px;width:100%;">
+            <view style='font-size:15px;'>未有已取消订单!</view>
+          </view>
+        </view>
+      </view>
+      <view wx:else>
+      <view class="orderDetails" wx:for="{{cancelOrder}}" wx:key="index">
+        <view class="orderListTitle">
+          <text class="userName">课程名称：{{item.orderItem.object.courseName}}</text>
+          <text class="orderStatus">商品编号：{{item.merId}}</text>
+        </view>
+        <view class="orderListDetails">
+          <navigator url="../courseinfo/courseinfo?index={{item.orderItem.object.courseId}}&orgid={{item.orderItem.object.orgId}}" class="productImg">
+            <image src="http://139.129.101.91/offline-education-system/picture/{{item.orderItem.object.adverPhoto}}" background-size="cover"></image>
+          </navigator>
+        <view class="productInfo">
+          <view class="productTitle">预定时间: {{item.orderTime}}</view>
+            <text class="productPrice">订单编号：{{item.orderId}}</text>
+          </view>
+        </view>
+        <view class="productCount">
+          <view>
+            <text>合计：￥{{item.orderPrice}}</text>
+          </view>
+        </view>
+      </view>
+      </view>
+    </scroll-view>
+  </swiper-item>
  
 </swiper>

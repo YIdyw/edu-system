@@ -165,20 +165,41 @@ makeOrder() {
   let data = {
     userid: this.data.userid
   }
-  makeOrder(data).then(res =>{
-    if(res.code==200){
-      setTimeout(() => {
-        wx.showToast({
-          title: '订单提交成功！',
-          icon: "success",
-        });
-        setTimeout(() => {
-          wx.hideToast();
-        }, 1000)
-      }, 0);
-      this.getAll()
-    }
-  })
+  if(this.data.totalPrice>0){
+    wx.showModal({
+      cancelColor: 'cancelColor',
+      title: '是否购买？',
+      content: '请选择是否购买',
+      success(res){
+        if(res.confirm){
+          makeOrder(data).then(res =>{
+            console.log(res)
+            if(res.code==200){
+              setTimeout(() => {
+                wx.showToast({
+                  title: '订单提交成功！',
+                  icon: "success",
+                });
+                setTimeout(() => {
+                  wx.hideToast();
+                }, 1000)
+              }, 0);
+              wx.redirectTo({
+                url: '../settlement/settlement',
+              })
+            }
+          })
+        }
+      }
+    })
+  }else {
+    wx.showToast({
+      title: '您还未选择商品！',
+      icon: 'loading'
+    })
+  }
+  
+  
 },
 
   /**
