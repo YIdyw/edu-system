@@ -4,7 +4,7 @@
       </view>
       <view class="orderListDetails">
         <navigator url="../courseinfo/courseinfo?index={{order.orderItem.object.courseId}}&orgid={{order.orderItem.object.orgId}}" class="productImg">
-          <image src="http://139.129.101.91/offline-education-system/picture/{{order.orderItem.object.adverPhoto}}" background-size="cover"></image>
+          <image wx:if='{{order}}' src="http://139.129.101.91/offline-education-system/picture/{{order.orderItem.object.adverPhoto}}" background-size="cover"></image>
         </navigator>
       <view class="productInfo">
         <view class="productTitle">预定时间: {{order.orderTime}}</view>

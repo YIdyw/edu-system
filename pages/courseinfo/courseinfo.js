@@ -3,7 +3,7 @@ import {
  idGetOrgCourse, listenClass
 } from '../../network/orginout'
 import {
-  addCart, findmerid
+  addCart, findmerid, selectMer, unselectAllMer, makeOrder
 } from '../../network/carts'
 Page({
 
@@ -19,6 +19,7 @@ Page({
     orgid: '',
     index: '',
     merid: '',
+    userid: '',
     screen : {
       minHeight : 'auto'
     },
@@ -35,6 +36,7 @@ Page({
       }
     })
   },
+
 
   //加入购物车
   _addCart(){
@@ -61,8 +63,76 @@ Page({
     })
   },
 
-  buy(){
+  //选择该商品
+  select() {
+    let data = {
+      userid: this.data.userid,
+      merid: this.data.merid
+    }
+    selectMer(data).then(res =>{
+      if(res.code==200){
 
+        //制作订单
+        this.makeOrder()
+        
+      }
+    })                    
+  },
+
+  //取消全选
+  unselectAll() {
+    let data = {
+      userid: this.data.userid
+    }
+    unselectAllMer(data).then(res =>{
+      if(res.code==200){
+
+        //选择当前页面的商品
+        this.select()
+
+        
+      }
+    })                    
+  },
+
+  //制作订单
+  makeOrder() {
+    let data = {
+      userid: this.data.userid
+    }
+      wx.showModal({
+        cancelColor: 'cancelColor',
+        title: '是否购买？',
+        content: '请选择是否购买',
+        success(res){
+          if(res.confirm){
+            makeOrder(data).then(res =>{
+              console.log(res)
+              if(res.code==200){
+                setTimeout(() => {
+                  wx.showToast({
+                    title: '订单提交成功！',
+                    icon: "success",
+                  });
+                  setTimeout(() => {
+                    wx.hideToast();
+                  }, 1000)
+                }, 0);
+                wx.redirectTo({
+                  url: '../settlement/settlement?orderid='+res.data.orderId,
+                })
+              }
+            })
+          }
+        }
+      })
+
+  },
+
+  buy(){
+    var that = this
+    that.unselectAll()
+    
   },
 
   //购买课程
@@ -76,9 +146,7 @@ Page({
       cancelColor: 'cancelColor',
       success:function(res){
         if(res.confirm){
-          wx.redirectTo({
-            url: '../settlement/settlement',
-          })
+          that.buy()
         }else if(res.cancel){
           that._addCart()
         }
@@ -178,7 +246,8 @@ Page({
     let index = options.index
     this.setData({
       orgid: options.orgid,
-      index: options.index
+      index: options.index,
+      userid: wx.getStorageSync('loginInfo').userid
     })
     wx.getSystemInfo({
       success: (res)=> {

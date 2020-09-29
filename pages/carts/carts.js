@@ -185,7 +185,7 @@ makeOrder() {
                 }, 1000)
               }, 0);
               wx.redirectTo({
-                url: '../settlement/settlement',
+                url: '../settlement/settlement?orderid='+res.data.orderId,
               })
             }
           })
