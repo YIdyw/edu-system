@@ -272,7 +272,6 @@ Page({
   facehandler(e){
     var that=this;
     var id = e.currentTarget.id;
-    console.log(id)
     this.setData({
       isFaceChecked: id,
       
@@ -312,6 +311,30 @@ isout(){
     url: '../my/my'
   })
   wx.clearStorage()
+},
+
+//查看授权情况
+my_setting() {
+  wx.getSetting({
+    withSubscriptions: true,
+    success (res) {
+      console.log(res.authSetting)
+      // res.authSetting = {
+      //   "scope.userInfo": true,
+      //   "scope.userLocation": true
+      // }
+      console.log(res.subscriptionsSetting)
+      // res.subscriptionsSetting = {
+      //   mainSwitch: true, // 订阅消息总开关
+      //   itemSettings: {   // 每一项开关
+      //     SYS_MSG_TYPE_INTERACTIVE: 'accept', // 小游戏系统订阅消息
+      //     SYS_MSG_TYPE_RANK: 'accept'
+      //     zun-LzcQyW-edafCVvzPkK4de2Rllr1fFpw2A_x0oXE: 'reject', // 普通一次性订阅消息
+      //     ke_OZC_66gZxALLcsuI7ilCJSP2OJ2vWo2ooUPpkWrw: 'ban',
+      //   }
+      // }
+    }
+  })
 },
 
 picture2(){
@@ -388,6 +411,9 @@ picture2(){
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+
+    //this.my_setting()
+
     let today = new Date();
     let currentYear = today.getFullYear();
     let currentMonth = today.getMonth() + 1;
