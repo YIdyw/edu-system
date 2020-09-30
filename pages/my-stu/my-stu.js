@@ -37,10 +37,10 @@ Page({
       id:4,
       name: '购课车'
     }, {
-      icon: 'calendar',
+      icon: 'order',
       color: 'blue',
       id:5,
-      name: '我的课表'
+      name: '订单'
     } ],
     isFaceChecked: 0,
     userInfo: {},
@@ -238,7 +238,7 @@ Page({
     let today = new Date();
     let dayPlan = null;
     let daycheck = today.getDate();
-    let currentWeekNum = parseInt(daycheck / 7) + 1;
+    let currentWeekNum = parseInt(daycheck / 7) + 1
     let weekPlan = []
     scheduleQuery(data).then(res=>{
       // console.log(res)
@@ -298,7 +298,7 @@ Page({
       })
     }else  if(that.data.isFaceChecked==5){
       wx.navigateTo({
-        url: '../classpage/classpage',
+        url: '../order/order',
       })
     }
   },

@@ -1,0 +1,19 @@
+      <view class="orderListTitle">
+        <text class="userName">课程名称：{{order.orderItem.object.courseName}}</text>
+        <text class="orderStatus">商品编号：{{order.merId}}</text>
+      </view>
+      <view class="orderListDetails">
+        <navigator url="../courseinfo/courseinfo?index={{order.orderItem.object.courseId}}&orgid={{order.orderItem.object.orgId}}" class="productImg">
+          <image wx:if='{{order}}' src="http://139.129.101.91/offline-education-system/picture/{{order.orderItem.object.adverPhoto}}" background-size="cover"></image>
+        </navigator>
+      <view class="productInfo">
+        <view class="productTitle">预定时间: {{order.orderTime}}</view>
+          <text class="productPrice">订单编号：{{order.orderId}}</text>
+        </view>
+      </view>
+      <view class="productCount">
+        <view>
+          <text>合计：￥{{order.orderPrice}}</text>
+        </view>
+      </view>
+<button class="" bindtap="pay">支付</button>

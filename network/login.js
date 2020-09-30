@@ -8,3 +8,11 @@ export function getLoginInfo(data) {
     data: data
   })
 } 
+
+// 向后端发送code
+export function code(data) {
+  return request({
+    url: '/weixin/'+data.userid+'/'+data.code,
+    method: 'GET',
+  })
+} 
