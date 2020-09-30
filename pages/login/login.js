@@ -41,7 +41,6 @@ Page({
     })
   },
 
-  
   _message(){
     wx.requestSubscribeMessage({
       tmplIds: ['7BcxJPhRmjyDlIMHHqzXY3aDaICHOwdvVR6uHw8EvCk'],
