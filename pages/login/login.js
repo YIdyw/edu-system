@@ -20,6 +20,7 @@ Page({
   },
   login(){
     var that = this;
+    that._message()
     if (that.data.account == "") {
       wx.showToast({
         title: '用户名不能为空！',
