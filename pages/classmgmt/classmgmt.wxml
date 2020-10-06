@@ -1,5 +1,5 @@
 <!--pages/classmgmt/classmgmt.wxml-->
-<view class="cu-bar bg-white solid-bottom padding-xl" bindtap="operations" data-operations="timeSelect">
+<view class="cu-bar bg-white solid-bottom padding-xl" bindtap="operations" data-operations="freetime">
   <view class="action">
     <text class="cuIcon-title text-olive"></text>可用时间段登记
   </view>

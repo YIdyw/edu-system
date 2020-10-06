@@ -520,7 +520,7 @@ Page({
               })
               break;
           }
-        var url = 'http://139.129.101.91:8081/offline-education-system/picture/'
+        var url = 'http://139.129.101.91/offline-education-system/picture/'
         var edu = res.data.gradCertPhoto
         var deg = res.data.degreeCertPhoto
         var pri = res.data.photoId

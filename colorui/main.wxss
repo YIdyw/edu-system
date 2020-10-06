@@ -1522,7 +1522,8 @@ button.icon.lg {
 .cu-list.grid.col-3>.cu-item:nth-child(3n):after,
 .cu-list.grid.col-4>.cu-item:nth-child(4n):after,
 .cu-list.grid.col-5>.cu-item:nth-child(5n):after,
-.cu-list.grid.col-7>.cu-item:nth-child(7n):after {
+.cu-list.grid.col-7>.cu-item:nth-child(7n):after,
+.cu-list.grid.col-8>.cu-item:nth-child(8n):after {
 	border-right-width: 0
 }
 
@@ -3001,11 +3002,17 @@ scroll-view.cu-steps .cu-item {
 	height: 0;
 	width: calc((100% - 120rpx)/7);
 }
+.grid.col-8.grid-square>view {
+	padding-bottom: calc((100% - 140rpx)/8);
+	height: 0;
+	width: calc((100% - 140rpx)/8);
+}
 .grid.col-2.grid-square>view:nth-child(2n),
 .grid.col-3.grid-square>view:nth-child(3n),
 .grid.col-4.grid-square>view:nth-child(4n),
 .grid.col-5.grid-square>view:nth-child(5n),
-.grid.col-7.grid-square>view:nth-child(7n){
+.grid.col-7.grid-square>view:nth-child(7n),
+.grid.col-8.grid-square>view:nth-child(8n){
 	margin-right: 0;
 }
 
@@ -3031,7 +3038,9 @@ scroll-view.cu-steps .cu-item {
 .grid.col-7>view{
 	width: 14.285%;
 }
-
+.grid.col-8>view{
+	width: 12.5%;
+}
 /*  -- 内外边距 -- */
 
 .margin-0 {

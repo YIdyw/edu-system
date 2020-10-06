@@ -158,7 +158,7 @@ Page({
         thatWeek: thatWeek,
         tabWeek: tabWeek
       });
-    }else if(showWeek*7 - monthPlan.length <= 7){
+    }else if(showWeek*7 - monthPlan.length < 7){
       for(let k=(showWeek-1)*7; k<monthPlan.length; k++){
         thatWeek.push(monthPlan[k])
       }

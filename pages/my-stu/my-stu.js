@@ -155,7 +155,7 @@ Page({
         thatWeek: thatWeek,
         tabWeek: tabWeek
       });
-    }else if(showWeek*7 - monthPlan.length <= 7){
+    }else if(showWeek*7 - monthPlan.length < 7){
       for(let k=(showWeek-1)*7; k<monthPlan.length; k++){
         thatWeek.push(monthPlan[k])
       }
@@ -237,8 +237,8 @@ Page({
   _scheduelQuery(data){
     let today = new Date();
     let dayPlan = null;
-    let daycheck = today.getDate();
-    let currentWeekNum = parseInt(daycheck / 7) + 1
+    let daycheck = today.getDay();
+    let currentWeekNum = daycheck
     let weekPlan = []
     scheduleQuery(data).then(res=>{
       // console.log(res)

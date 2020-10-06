@@ -13,10 +13,44 @@ Page({
     day6: '0000000&00000000&000000',
     day7: '0000000&00000000&000000',
     timeSave: [],
-    week: ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日'],
+    a: [],
+    monthTitle: ['  ','日', '一', '二', '三', '四', '五', '六'],
+    timeTitle: ['8:30-9:00', '9:00-9:30', '9:30-10:00', '10:00-10:30', '10:30-11:00', '11:00-11:30', '11:30-12:00','下午',
+                '14:00-14:30','14:30-15:00', '15:00-15:30', '15:30-16:00', '16:00-16:30', '16:30-17:00','17:00-17:30','17:30-18:00','晚上',
+                '19:00-19:30','19:30-20:00', '20:00-20:30', '20:30-21:00', '21:00-21:30', '21:30-22:00',],
     modalShow: false,
     errorIdx: [],
     isSure: false,
+  },
+
+  //选择时间段
+  choose() {
+    console.log("选择了这个时间")
+  },
+  //数据处理
+  deal() {
+    let day1 = this.data.day1
+    let day2 = this.data.day2
+    let day3 = this.data.day3
+    let day4 = this.data.day4
+    let day5 = this.data.day5
+    let day6 = this.data.day6
+    let day7 = this.data.day7
+    let val = new Array()
+    for(let i = 0 ;i < 23; i++){
+      val[i] = new Array()
+          val[i][0] = this.data.timeTitle[i]
+          val[i][1] = day1[i]
+          val[i][2] = day2[i]
+          val[i][3] = day3[i]
+          val[i][4] = day4[i]
+          val[i][5] = day5[i]
+          val[i][6] = day6[i]
+          val[i][7] = day7[i]
+    }
+    this.setData({
+      a: val
+    })
   },
   timeAdd(){
     let timeSave = this.data.timeSave;
@@ -187,6 +221,7 @@ Page({
    */
   onLoad: function (options) {
     this._getFreeTime();
+    this.deal()
   },
 
   /**

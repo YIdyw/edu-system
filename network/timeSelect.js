@@ -8,17 +8,20 @@ export function timeSelect(data) {
   })
 }
 
-export function getFreeTime(teaId){
+//根据教师id查询空闲时间
+export function getFreeTime(data) {
   return request({
-    url: '/teacher/' + teaId + '/freetime',
-    method: 'GET'
+    url: '/teacher/'+data.id+'/freetime',
+    method: 'GET',
+    data: data.flag
   })
-}
+} 
 
+//根据教师id更新空闲时间
 export function updateTime(data) {
   return request({
-    url: '/teacher/' + data.teaId + '/freetime',
-    method: 'PUT',
-    data: data.freeTimes
+    url: '/teacher/'+data.id+'/freetime',
+    method: 'POST',
+    data: data.flag
   })
-}
+} 

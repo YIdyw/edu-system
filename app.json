@@ -29,7 +29,8 @@
     "pages/detail_teacher/detail_teacher",
     "pages/carts/carts",
     "pages/order/order",
-    "pages/settlement/settlement"
+    "pages/settlement/settlement",
+    "pages/freetime/freetime"
   ],
   "window": {
     "backgroundTextStyle": "light",
