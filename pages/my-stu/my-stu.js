@@ -7,7 +7,6 @@ import {
 var app = getApp()
 Page({
   data: {
-    ColorList: app.globalData.ColorList,
     current:0,
     islogin: false,
     isflag: false,
@@ -235,13 +234,18 @@ Page({
     return newPlan;
   },
   _scheduelQuery(data){
-    let today = new Date();
     let dayPlan = null;
-    let daycheck = today.getDay();
-    let currentWeekNum = daycheck
+    let today = new Date()
+    let monthcheck = this.data.monthPlan
+    
+    var year = today.getFullYear()
+    var month = today.getMonth() + 1
+    var day = today.getDate()
+    var monthday = new Date(year,month,0)
+    let currentWeekNum = parseInt((monthcheck.length - monthday.getDate() + day)/7) + 1;
+    console.log(currentWeekNum)
     let weekPlan = []
     scheduleQuery(data).then(res=>{
-      // console.log(res)
       let monthPlan = this.data.monthPlan
       for(let i=0; i<monthPlan.length; i++){
         for(let j=0; j<res.data.length; j++){
@@ -412,7 +416,9 @@ picture2(){
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      current: "mine"
+  });
     //this.my_setting()
 
     let today = new Date();
@@ -428,11 +434,9 @@ picture2(){
       showYear: currentYear,
       showMonth: currentMonth,
       currentWeek: currentWeek,
-      currentWeekNum: currentWeek,
       currentDay: currentDay,
       monthPlan: sortPlan
     });
-    console.log(this.data.currentWeekNum)
     let data = {
       id: wx.getStorageSync('loginInfo').userid,      
       limitTime: currentYear + '-' + currentMonth,
@@ -440,9 +444,7 @@ picture2(){
       userType: wx.getStorageSync('loginInfo').defaultRole,
     }
     this._scheduelQuery(data);
-    this.setData({
-      current: "mine"
-  });
+    
     let loginInfo = wx.getStorageSync('loginInfo');
     if(loginInfo){
       this.setData({
