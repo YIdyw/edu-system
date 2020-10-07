@@ -3,33 +3,28 @@
 <view class="page me">
   <view class="cu-bar bg-white">
     <view class="action">
-      <text class="cuIcon-title text-olive"></text>请注意：时间选择原则上间隔应至少为1个小时
+      <text class="cuIcon-title text-olive"></text>请注意：每个空闲时间段为半个小时
     </view>
   </view>
-  <view class="grid col-8 text-center">
-    <view class="padding" wx:for="{{monthTitle}}" wx:key="id">{{item}}</view>
-        <view wx:for="{{day1}}" wx:key="id"  class="padding {{'bg-olive solid shadow'}} {{'text-red text-bold'}}" bindtap="choose" >1</view>
-        <view wx:for="{{day2}}" wx:key="id"  class="padding {{'bg-olive solid shadow'}} {{'text-red text-bold'}}" bindtap="choose" >2</view>
-        <view wx:for="{{day3}}" wx:key="id"  class="padding {{'bg-olive solid shadow'}} {{'text-red text-bold'}}" bindtap="choose" >3</view>
-        <view wx:for="{{day4}}" wx:key="id"  class="padding {{'bg-olive solid shadow'}} {{'text-red text-bold'}}" bindtap="choose" >1</view>
-        <view wx:for="{{day5}}" wx:key="id"  class="padding {{'bg-olive solid shadow'}} {{'text-red text-bold'}}" bindtap="choose" >2</view>
-        <view wx:for="{{day6}}" wx:key="id"  class="padding {{'bg-olive solid shadow'}} {{'text-red text-bold'}}" bindtap="choose" >3</view>
-        <view wx:for="{{day7}}" wx:key="id"  class="padding {{'bg-olive solid shadow'}} {{'text-red text-bold'}}" bindtap="choose" >1</view>
-      
+  <view class="grid col-8 text-center" style="font-size:24rpx">
+    <view class="padding" wx:for="{{monthTitle}}" wx:key="ind">{{item}}</view>
+        <view wx:for="{{timeInfo}}" wx:key="index" wx:for-item="time" data-index="{{index}}" bindtap="choose" >
+          <view wx:if="{{time==0}}"  class="padding {{'bg-grey solid shadow'}} {{'text-bold'}}">
+              忙
+          </view>
+          <view wx:elif="{{time==1}}" class="padding {{'bg-olive solid shadow'}} {{'text-bold'}}">
+              闲
+          </view>
+          <view wx:elif="{{time==2}}" class="padding {{'bg-red solid shadow'}} {{'text-bold'}}">
+              占
+          </view>
+          <view wx:elif="{{time!='&'}}">
+              {{time}}
+          </view>
+      </view>
   </view>
     <view class="padding flex flex-direction">
-      <button wx:if="{{!isSure}}" class="cu-btn bg-olive lg shadow" bindtap="timeConfirm">确定</button>
-      <button wx:else class="cu-btn bg-olive lg shadow" bindtap="timeReselect">修改</button>
+      <button wx:if="{{!isSure}}" class="cu-btn bg-olive lg shadow" bindtap="add">确定</button>
+      <button wx:else class="cu-btn bg-olive lg shadow" bindtap="update">修改</button>
     </view>
-</view>
-
-<view class="cu-modal {{modalShow?'show':''}}">
-  <view class="cu-dialog">
-    <view class="padding-xl">
-      <view class="padding-xl">第【{{errorIdx}}】行时间设置错误</view>
-    </view>
-    <view class="cu-bar bg-white justify-center padding">
-      <button class="cu-btn line-olive text-olive" bindtap="hideModal">返回更改</button>
-    </view>
-  </view>
 </view>

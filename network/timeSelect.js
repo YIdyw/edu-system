@@ -11,17 +11,24 @@ export function timeSelect(data) {
 //根据教师id查询空闲时间
 export function getFreeTime(data) {
   return request({
-    url: '/teacher/'+data.id+'/freetime',
+    url: '/teacher/'+data+'/freetime',
     method: 'GET',
-    data: data.flag
   })
 } 
 
+//根据教师id添加空闲时间
+export function addTime(data) {
+  return request({
+    url: '/teacher/'+data.id+'/freetime',
+    method: 'POST',
+    data: data.flag
+  })
+} 
 //根据教师id更新空闲时间
 export function updateTime(data) {
   return request({
     url: '/teacher/'+data.id+'/freetime',
-    method: 'POST',
+    method: 'PUT',
     data: data.flag
   })
 } 
