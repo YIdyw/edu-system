@@ -242,7 +242,7 @@ Page({
     var month = today.getMonth() + 1
     var day = today.getDate()
     var monthday = new Date(year,month,0)
-    let currentWeekNum = parseInt((monthcheck.length - monthday.getDate() + day)/7) + 1;
+    let currentWeekNum = parseInt((monthcheck.length - monthday.getDate() + day - 1)/7) + 1;
     console.log(currentWeekNum)
     let weekPlan = []
     scheduleQuery(data).then(res=>{
