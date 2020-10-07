@@ -19,16 +19,16 @@ export function getFreeTime(data) {
 //根据教师id添加空闲时间
 export function addTime(data) {
   return request({
-    url: '/teacher/'+data.id+'/freetime',
+    url: '/teacher/'+data.teaid+'/freetime',
     method: 'POST',
-    data: data.flag
+    data: data
   })
 } 
 //根据教师id更新空闲时间
 export function updateTime(data) {
   return request({
-    url: '/teacher/'+data.id+'/freetime',
+    url: '/teacher/update/freetime',
     method: 'PUT',
-    data: data.flag
+    data: data
   })
 } 

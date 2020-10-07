@@ -116,32 +116,38 @@ Page({
           day1: res.data.timeInterval1.freeTimeFlag,
           isSure: true
         })
-      }else if(res.data.timeInterval2.freeTimeFlag){
+      }
+      if(res.data.timeInterval2.freeTimeFlag){
         this.setData({
           day2: res.data.timeInterval2.freeTimeFlag,
           isSure: true
         })
-      }else if(res.data.timeInterval3.freeTimeFlag){
+      }
+      if(res.data.timeInterval3.freeTimeFlag){
         this.setData({
           day3: res.data.timeInterval3.freeTimeFlag,
           isSure: true
         })
-      }else if(res.data.timeInterval4.freeTimeFlag){
+      }
+      if(res.data.timeInterval4.freeTimeFlag){
         this.setData({
           day4: res.data.timeInterval4.freeTimeFlag,
           isSure: true
         })
-      }else if(res.data.timeInterval5.freeTimeFlag){
+      }
+      if(res.data.timeInterval5.freeTimeFlag){
         this.setData({
           day5: res.data.timeInterval5.freeTimeFlag,
           isSure: true
         })
-      }else if(res.data.timeInterval6.freeTimeFlag){
+      }
+      if(res.data.timeInterval6.freeTimeFlag){
         this.setData({
           day6: res.data.timeInterval6.freeTimeFlag,
           isSure: true
         })
-      }else if(res.data.timeInterval7.freeTimeFlag){
+      }
+      if(res.data.timeInterval7.freeTimeFlag){
         this.setData({
           day7: res.data.timeInterval7.freeTimeFlag,
           isSure: true
@@ -154,15 +160,13 @@ Page({
   add() {
     let data = {
       id: wx.getStorageSync('loginInfo').userid,
-      flag : {
-        timeInterval1: this.data.day1,
-        timeInterval2: this.data.day2,
-        timeInterval3: this.data.day3,
-        timeInterval4: this.data.day4,
-        timeInterval5: this.data.day5,
-        timeInterval6: this.data.day6,
-        timeInterval7: this.data.day7,
-      }
+      timeInterval1: this.data.day1,
+      timeInterval2: this.data.day2,
+      timeInterval3: this.data.day3,
+      timeInterval4: this.data.day4,
+      timeInterval5: this.data.day5,
+      timeInterval6: this.data.day6,
+      timeInterval7: this.data.day7,
     }
     addTime(data).then(res =>{
       if(res.code==200){
@@ -176,16 +180,15 @@ Page({
 
   update() {
     let data = {
-      id: wx.getStorageSync('loginInfo').userid,
-      flag : {
-        timeInterval1: this.data.day1,
-        timeInterval2: this.data.day2,
-        timeInterval3: this.data.day3,
-        timeInterval4: this.data.day4,
-        timeInterval5: this.data.day5,
-        timeInterval6: this.data.day6,
-        timeInterval7: this.data.day7,
-      }
+      teaid: wx.getStorageSync('loginInfo').userid,
+      timeInterval1: this.data.day1,
+      timeInterval2: this.data.day2,
+      timeInterval3: this.data.day3,
+      timeInterval4: this.data.day4,
+      timeInterval5: this.data.day5,
+      timeInterval6: this.data.day6,
+      timeInterval7: this.data.day7,
+      
     }
     updateTime(data).then(res =>{
       if(res.code==200){
