@@ -53,14 +53,19 @@
   float: right; 
   flex-direction: column;
   justify-content: space-between;
-  min-height: 150rpx;
+  min-height: 50rpx;
   position: absolute; 
   top: 50rpx; 
   right: 150rpx;
+  margin-bottom: 150px;
 }
 .carts-cnt .carts-title{
+  display: flex;
+  text-align: center;
+  position: relative;
   font-size:15px;
 }
+
 .carts-cnt .carts-guige{
   font-size: 12px;
 }
@@ -68,6 +73,9 @@
   display: flex; 
   flex-direction: row; 
   font-size: 15px;
+}
+.carts-cnt .carts-subtitle .carts-price{
+  text-align: center;
 }
 .carts-list .carts-item .carts-del{
   position: absolute; 

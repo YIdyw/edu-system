@@ -2,7 +2,7 @@
 
 <block wx:if='{{isnull}}'>
   <!-- <>购物车列表 -->
-  <view class="carts-list">
+  <scroll-view  scroll-y="true" style="{{height}}rpx" class="carts-list">
     <view wx:for="{{carts}}" class="carts-item" wx:key='index'>
          <!-- wx:if 是否选择显示不同图标 -->
       <view class="carts-radio">
@@ -30,7 +30,7 @@
     <!-- //删除 -->  
     <icon class="carts-del" type="clear" size="16" color="#ccc" data-index="{{index}}" bindtap="delete" />
   </view>
-  </view>
+  </scroll-view>
  <view class="carts-footer">  
     <view class="bottomfixed">  
       <view class="inner">  

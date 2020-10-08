@@ -15,7 +15,11 @@ Page({
     isnull: true,
     courseid: '',
     userid: '',
-    orgid: ''
+    orgid: '',
+    screen : {
+      minHeight : 'auto'
+    },
+    height:''
   },
 
   getTotalPrice() {
@@ -210,6 +214,17 @@ makeOrder() {
       userid: wx.getStorageSync('loginInfo').userid
     })
     this.getAll()
+    wx.getSystemInfo({
+      success: (res)=> {
+        this.setData({
+          minHeight: res.windowHeight
+        });
+        var check = this.data.minHeight - 120
+        this.setData({
+          height: check
+        })
+      }
+    });
   },
 
   /**
