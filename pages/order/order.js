@@ -21,7 +21,7 @@ Page({
     var userid = wx.getStorageSync('loginInfo').userid
     paidOrder(userid).then(res =>{
       if(res.code==200){
-        console.log("查询已完成订单成功！",rea.data)
+        console.log("查询已完成订单成功！",res.data)
         this.setData({
           paidOrder: res.data.orderItemVOList
         })

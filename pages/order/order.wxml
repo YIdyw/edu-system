@@ -11,7 +11,7 @@
 <!-- 完成 -->
   <swiper-item>
     <scroll-view class="hot-box" scroll-y="true">
-      <block wx:if="{{!padiOrder}}">
+      <block wx:if="{{!paidOrder}}">
         <view class="content" >
           <view style="margin-top:100px;width:100%;">
             <view style='font-size:15px;'>未有已完成订单!</view>
