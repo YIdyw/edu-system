@@ -21,7 +21,6 @@
       <block wx:else>
       <view class="orderDetails" wx:for="{{paidOrder}}" wx:key="index">
         <view class="orderListTitle">
-          <text class="userName">课程名称：{{item.orderItem.object.adverPhotocourseName}}</text>
           <text class="orderStatus">商品编号：{{item.merId}}</text>
         </view>
         <view class="orderListDetails">
@@ -55,7 +54,6 @@
       <view wx:else>
       <view class="orderDetails" wx:for="{{tobepaidOrder}}" data-menuindex='{{index}}' wx:key="index" bindtap="settlement">
         <view class="orderListTitle">
-          <text class="userName">课程名称：{{item.orderItem.object.courseName}}</text>
           <text class="orderStatus">商品编号：{{item.merId}}</text>
         </view>
         <view class="orderListDetails">
@@ -87,7 +85,6 @@
       <view wx:else>
       <view class="orderDetails" wx:for="{{cancelOrder}}" wx:key="index">
         <view class="orderListTitle">
-          <text class="userName">课程名称：{{item.orderItem.object.courseName}}</text>
           <text class="orderStatus">商品编号：{{item.merId}}</text>
         </view>
         <view class="orderListDetails">

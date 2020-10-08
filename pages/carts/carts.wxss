@@ -59,10 +59,10 @@
   right: 150rpx;
   margin-bottom: 150px;
 }
-.carts-cnt .carts-title{
-  display: flex;
+.carts-cnt .carts-info .carts-title{
   text-align: center;
-  position: relative;
+  height: 120rpx;
+  width: 250rpx;
   font-size:15px;
 }
 
@@ -70,12 +70,15 @@
   font-size: 12px;
 }
 .carts-cnt .carts-subtitle{
-  display: flex; 
-  flex-direction: row; 
+  position: absolute;
   font-size: 15px;
+  position: absolute; 
+  bottom: -40rpx;
+  right: -40rpx;
 }
 .carts-cnt .carts-subtitle .carts-price{
   text-align: center;
+  
 }
 .carts-list .carts-item .carts-del{
   position: absolute; 

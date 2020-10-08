@@ -18,9 +18,9 @@
                 <image mode="aspectFill" class="carts-image" src="http://139.129.101.91/offline-education-system/picture/{{Mer.adverPhoto}}"></image>
             </navigator>
         <view class="carts-info">
-          <view class="carts-title clamp2">{{Mer.courseName}}</view>
+          <view class="carts-title">{{Mer.courseName}}</view>
           <view class="carts-subtitle">
-            <text class="carts-price c--f60">￥{{item.merPrice}}</text>
+            <view class="carts-price c--f60">￥{{item.merPrice}}</view>
           </view>
         </view>
       </view>

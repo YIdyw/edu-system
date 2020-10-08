@@ -1,5 +1,4 @@
       <view class="orderListTitle">
-        <text class="userName">课程名称：{{order.orderItem.object.courseName}}</text>
         <text class="orderStatus">商品编号：{{order.merId}}</text>
       </view>
       <view class="orderListDetails">

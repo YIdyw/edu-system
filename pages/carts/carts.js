@@ -38,7 +38,6 @@ Page({
 getAll() {
     getAll(this.data.userid).then(res=>{
       if(res.code==200){
-        console.log('获取购物车信息成功')
         this.setData({
           carts: res.data
         })

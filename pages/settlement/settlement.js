@@ -2,6 +2,9 @@
 import {
   tobepaidOrder
 } from '../../network/order'
+import {
+  payfor
+} from '../../network/pay'
 Page({
 
   /**
@@ -13,7 +16,34 @@ Page({
   },
 
   pay() {
-    console.log("getmoney")
+    let data = {
+      orderid : this.data.orderid
+    }
+    var list = ['支付宝', '微信', '银行卡']
+    wx.showActionSheet({
+      itemList: list,
+      success (res) {
+        data['type'] = list[res.tapIndex]
+        console.log("data:",data)
+        payfor(data).then(res => {
+          console.log(res.data)
+          if(res.code==200){
+            setTimeout(() => {
+              wx.showToast({
+                title: '支付成功！',
+                icon: "success",
+              });
+              setTimeout(() => {
+                wx.hideToast();
+              }, 1000)
+            }, 0);
+          }
+        })
+      },
+      fail (res) {
+        console.log(res.errMsg)
+      }
+    })
   },
   _getorder(orderid){
     var userid = wx.getStorageSync('loginInfo').userid
