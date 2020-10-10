@@ -31,10 +31,15 @@ Page({
       wx.redirectTo({
         url: '../my-t/my-t',
       });
-      wx.showToast({
-        title: '请先登记信息',
-        icon: 'none'
-      })
+      setTimeout(() => {
+        wx.showToast({
+          title: '请先登记信息！',
+          icon: "none",
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1000)
+      }, 0);
     }
   },
 

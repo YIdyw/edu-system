@@ -196,10 +196,15 @@ makeOrder() {
       }
     })
   }else {
-    wx.showToast({
-      title: '您还未选择商品！',
-      icon: 'loading'
-    })
+    setTimeout(() => {
+      wx.showToast({
+        title: '您还未选择商品！',
+        icon: "loading",
+      });
+      setTimeout(() => {
+        wx.hideToast();
+      }, 1000)
+    }, 0);
   }
   
   

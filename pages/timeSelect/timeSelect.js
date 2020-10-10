@@ -51,14 +51,24 @@ Page({
       }
       updateTime(data).then(res => {
         if(res.code == 200) {
-          wx.showToast({
-            title: '修改成功'
-          });
+          setTimeout(() => {
+            wx.showToast({
+              title: '修改成功！',
+            });
+            setTimeout(() => {
+              wx.hideToast();
+            }, 1500)
+          }, 0);
         } else {
-          wx.showToast({
-            title: '修改失败',
-            icon: "none"
-          });
+          setTimeout(() => {
+            wx.showToast({
+              title: '修改失败！',
+              icon: 'none'
+            });
+            setTimeout(() => {
+              wx.hideToast();
+            }, 1500)
+          }, 0);
         }
       })
     }
@@ -94,10 +104,15 @@ Page({
         that._timeSelect();
       }
     }else{
-      wx.showToast({
-        title: '尚未实名认证',
-        icon: 'none'
-      })
+      setTimeout(() => {
+        wx.showToast({
+          title: '尚未实名认证！',
+          icon: 'none'
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1500)
+      }, 0);
     }
   },
   checkTime() {
@@ -121,10 +136,15 @@ Page({
         return true;
       }
     }else{
-      wx.showToast({
-        title: '请至少添加一个时间段',
-        icon: 'none'
-      });
+      setTimeout(() => {
+        wx.showToast({
+          title: '请至少添加一个时间段！',
+          icon: 'none'
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1500)
+      }, 0);
     }
     return false;
   },
@@ -157,9 +177,14 @@ Page({
     }
     timeSelect(data).then(res => {
       if(res.data==200){
-        wx.showToast({
-          title: '时间添加成功'
-        });
+        setTimeout(() => {
+          wx.showToast({
+            title: '时间添加成功！',
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 1500)
+        }, 0);
       }
     });
   },

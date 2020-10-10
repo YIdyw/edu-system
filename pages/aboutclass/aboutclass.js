@@ -60,14 +60,25 @@ Page({
       console.log(res)
       if(res.code==200){   
         that._getMyclass()
-        wx.showToast({
-          title: '退选成功',
-        });
+        setTimeout(() => {
+          wx.showToast({
+            title: '退选成功！',
+            icon: "success",
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 1000)
+        }, 0);
       }else{
-        wx.showToast({
-          title: '退选失败',
-          icon: 'none'
-        })
+        setTimeout(() => {
+          wx.showToast({
+            title: '退选失败！',
+            icon: "none",
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 1000)
+        }, 0);
       }       
     });
   },
@@ -128,15 +139,26 @@ Page({
     chooseClass(data).then(res=>{
       console.log(res)
       if(res.code==200){        
-        wx.showToast({
-          title: '选修成功',
-        });
+        setTimeout(() => {
+          wx.showToast({
+            title: '选修成功！',
+            icon: "success",
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 1000)
+        }, 0);
       
       }else{
-        wx.showToast({
-          title: '选修失败',
-          icon: 'none'
-        })
+        setTimeout(() => {
+          wx.showToast({
+            title: '选修失败！',
+            icon: "none",
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 1000)
+        }, 0);
       }       
     });
   },
@@ -152,15 +174,26 @@ Page({
       console.log(res)
       if(res.code==200){ 
         that._getMyorg()       
-        wx.showToast({
-          title: '已取消',
-        });
+        setTimeout(() => {
+          wx.showToast({
+            title: '已取消！',
+            icon: "success",
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 1000)
+        }, 0);
       
       }else{
-        wx.showToast({
-          title: '操作失败',
-          icon: 'none'
-        })
+        setTimeout(() => {
+          wx.showToast({
+            title: '操作失败！',
+            icon: "none",
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 1000)
+        }, 0);
       }       
     });
   },
@@ -175,15 +208,26 @@ Page({
     signIn(data).then(res=>{
       console.log(res)
       if(res.code==200){        
-        wx.showToast({
-          title: '签到成功',
-        });
+        setTimeout(() => {
+          wx.showToast({
+            title: '签到成功！',
+            icon: "success",
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 1000)
+        }, 0);
       
       }else{
-        wx.showToast({
-          title: res.msg,
-          icon: 'none'
-        })
+        setTimeout(() => {
+          wx.showToast({
+            title: res.msg,
+            icon: "none",
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 1000)
+        }, 0);
       }       
     });
   },

@@ -69,10 +69,15 @@ _getbanner(){
   onLoad() {
     var that=this;
     that._getbanner();
-    wx.showLoading({
-      title: '加载中...',
-      mask: true
-    });
+    setTimeout(() => {
+      wx.showLoading({
+        title: '加载中...',
+        mask: true
+      });
+      setTimeout(() => {
+        wx.hideLoading();
+      }, 1500)
+    }, 0);
     wx.getSystemInfo({
       success: function (res) {
         that.setData({

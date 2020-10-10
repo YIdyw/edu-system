@@ -178,28 +178,48 @@ Page({
     let verifyName = /^[\u2E80-\u9FFF]+$/;
     if (idCard == '' || !verifyIDcard.test(idCard) || !this.checkProvince(idCard,vcity) || 
     !this.checkBirthday(idCard) || !this.checkParity(idCard)) {
-      wx.showToast({
-        title: '请输入正确身份证号',
-        icon: 'none'
-      });
+      setTimeout(() => {
+        wx.showToast({
+          title: '请确认身份证号码！',
+          icon: 'none'
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1500)
+      }, 0);
     }else if(that.data.name == '' || !verifyName.test(that.data.name)) {
-      wx.showToast({
-        title: '请输入正确姓名',
-        icon: 'none'
-      });
+      setTimeout(() => {
+        wx.showToast({
+          title: '请输入确认姓名！',
+          icon: 'none'
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1500)
+      }, 0);
     }else if(that.data.imgUrl == ''){
-      wx.showToast({
-        title: '请上传身份证照片',
-        icon: 'none'
-      });
+      setTimeout(() => {
+        wx.showToast({
+          title: '请确认身份证照片！',
+          icon: 'none'
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1500)
+      }, 0);
     }else {
       that._addAuthUser();
       wx.navigateBack({
         delta: 1,
       });
-      wx.showToast({
-        title: '认证成功',
-      })
+      setTimeout(() => {
+        wx.showToast({
+          title: '认证成功！',
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1500)
+      }, 0);
     }
   },
   // 身份证信息

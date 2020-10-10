@@ -97,10 +97,16 @@ Page({
         tabWeek: tabWeek
       });
     }else{
-      wx.showToast({
-        title: '已到本月第一周',
-        icon: 'none'
-      });
+
+      setTimeout(() => {
+        wx.showToast({
+          title: '已到本月第一周！',
+          icon: "none",
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1000)
+      }, 0);
     }
   },
   nextWeek(){
@@ -127,10 +133,15 @@ Page({
         tabWeek: tabWeek
       });
     }else{
-      wx.showToast({
-        title: '已到本月最后一周',
-        icon: 'none'
-      });
+      setTimeout(() => {
+        wx.showToast({
+          title: '已到本月最后一周！',
+          icon: "none",
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1000)
+      }, 0);
     }
   },
   viewDayDetail(e){
@@ -143,10 +154,15 @@ Page({
         thatDay: {courseInfo: courseInfo, week: week}
       })
     }else{
-      wx.showToast({
-        title: '当前没有排课',
-        icon: 'none'
-      })
+      setTimeout(() => {
+        wx.showToast({
+          title: '当前没有排课！',
+          icon: "none",
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1000)
+      }, 0);
     }
   },
   hideModal(){

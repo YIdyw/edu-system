@@ -94,14 +94,24 @@ Page({
     getPhonecode(data).then(res => {
       console.log(res)
       if(res.code==200){
-        wx.showToast({
-          title: '验证码已发送请等待',
-        });
+        setTimeout(() => {
+          wx.showToast({
+            title: '验证码发送成功！',
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 1500)
+        }, 0);
       }else{
-        wx.showToast({
-          title: '验证码发送失败',
-          icon: 'none'
-        });
+        setTimeout(() => {
+          wx.showToast({
+            title: '验证码发送失败！',
+            icon: 'none'
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 1500)
+        }, 0);
       }
     })
   },
@@ -126,41 +136,83 @@ Page({
   },
   getcode(){
     var that=this;
+    if(!(/^1[3-9]\d{9}$/.test(that.data.phone))) {
+      setTimeout(() => {
+        wx.showToast({
+          title: '手机号格式错误！',
+          icon: 'none'
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1500)
+      }, 0);
+  } else{
     that._getPhonecode()
+  }
   },
   regist: function (e) {
     var that = this
     var myReg=/^[a-zA-Z0-9_-]+@([a-zA-Z0-9]+\.)+(com|cn|net|org|mail|email)$/;
     if (that.data.account == '') {
-      wx.showToast({
-        title: '请输入账号',
-        icon: 'none'
-      });
+      setTimeout(() => {
+        wx.showToast({
+          title: '请输入账号！',
+          icon: 'none'
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1500)
+      }, 0);
     }else if(!myReg.test(that.data.email)){
-      wx.showToast({
-        title: '邮箱格式错误',
-        icon: 'none'
-      })
+      setTimeout(() => {
+        wx.showToast({
+          title: '邮箱格式错误！',
+          icon: 'none'
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1500)
+      }, 0);
     }else if(that.data.password == ''||that.data.password.length<6) {
-      wx.showToast({
-        title: '密码格式错误',
-        icon: 'none'
-      });
+      setTimeout(() => {
+        wx.showToast({
+          title: '密码格式错误！',
+          icon: 'none'
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1500)
+      }, 0);
     }else if(that.data.againpassword==''||that.data.againpassword!=that.data.password||that.data.password!=that.data.againpassword){
-      wx.showToast({
-        title: '请仔细确认密码',
-        icon: 'none'
-      });
+      setTimeout(() => {
+        wx.showToast({
+          title: '请再次确认密码！',
+          icon: 'none'
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1500)
+      }, 0);
     }else if(!(/^1[3-9]\d{9}$/.test(that.data.phone))) {
-      wx.showToast({
-        title: '手机号格式错误',
-        icon: 'none'
-      });
+      setTimeout(() => {
+        wx.showToast({
+          title: '手机号格式错误！',
+          icon: 'none'
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1500)
+      }, 0);
     }else if(that.data.index == 0){
-      wx.showToast({
-        title: '请选择角色',
-        icon: 'none'
-      });
+      setTimeout(() => {
+        wx.showToast({
+          title: '请选择格式！',
+          icon: 'none'
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1500)
+      }, 0);
     }else{
       //that._checkCode();
       that._registInfo();
@@ -190,27 +242,46 @@ Page({
             delta: 1,
           });
           if(this.data.index == 1){
-            wx.showToast({
-              title: '请先完成实名认证和信息登记！',
-              icon: 'none'
-            })
+            setTimeout(() => {
+              wx.showToast({
+                title: '请完成实名认证、信息登记！',
+                icon: 'none'
+              });
+              setTimeout(() => {
+                wx.hideToast();
+              }, 1500)
+            }, 0);
           }else{
-            wx.showToast({
-              title: '注册成功请登录',
-              icon: 'none'
-            });
+            setTimeout(() => {
+              wx.showToast({
+                title: '注册成功请登录！',
+              });
+              setTimeout(() => {
+                wx.hideToast();
+              }, 1500)
+            }, 0);
           }
         }else{
-          wx.showToast({
-            title: '注册失败，请检查',
-            icon: 'none'
-          });
+          setTimeout(() => {
+            wx.showToast({
+              title: '注册失败！',
+              icon: 'none'
+            });
+            setTimeout(() => {
+              wx.hideToast();
+            }, 1500)
+          }, 0);
         }
       }else{
-        wx.showToast({
-          title: '验证手机失败',
-          icon: 'none'
-        });
+        setTimeout(() => {
+          wx.showToast({
+            title: '验证手机失败！',
+            icon: 'none'
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 1500)
+        }, 0);
       }
     })
   },

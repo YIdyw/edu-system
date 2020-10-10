@@ -78,17 +78,27 @@ Page({
       console.log(res)
       if(res.code==200){ 
         that._myListen()
-        wx.showToast({
-          title: '取消成功',
-        });
+        setTimeout(() => {
+          wx.showToast({
+            title: '取消成功！',
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 1500)
+        }, 0);
         this.setData({
           modalName3: null
         })
       }else{
-        wx.showToast({
-          title: '退选失败',
-          icon: 'none'
-        })
+        setTimeout(() => {
+          wx.showToast({
+            title: '退选失败！',
+            icon: 'none'
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 1500)
+        }, 0);
       }
     });
   },
@@ -106,14 +116,24 @@ Page({
         modalName4: null
       })
       if(res.code==200){ 
-        wx.showToast({
-          title: '评价成功',
-        });
+        setTimeout(() => {
+          wx.showToast({
+            title: '评价成功！',
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 1500)
+        }, 0);
       }else{
-        wx.showToast({
-          title: '评价失败',
-          icon: 'none'
-        })
+        setTimeout(() => {
+          wx.showToast({
+            title: '评价失败！',
+            icon: 'none'
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 1500)
+        }, 0);
       }
     });
   },

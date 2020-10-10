@@ -105,15 +105,26 @@ Page({
       console.log(res)
       if(res.code==200){
         this.pushMsg(userid)        
-        wx.showToast({
-          title: '报名成功',
-        });
+        setTimeout(() => {
+          wx.showToast({
+            title: '报名成功！',
+            icon: "success",
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 1000)
+        }, 0);
       
     }else{
-      wx.showToast({
-        title: '报名失败',
-        icon: 'none'
-      })
+      setTimeout(() => {
+        wx.showToast({
+          title: '报名失败！',
+          icon: "none",
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1000)
+      }, 0);
     } 
     });
     
@@ -133,10 +144,15 @@ Page({
     })
     let logininfo = wx.getStorageSync('loginInfo')
     if(!logininfo.userid){
-      wx.showToast({
-        title: '还未登陆！',
-        icon: 'none'
-      })
+      setTimeout(() => {
+        wx.showToast({
+          title: '还未登陆！',
+          icon: "none",
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1000)
+      }, 0);
     } else{
       this._orgInter(logininfo.userid);
     }

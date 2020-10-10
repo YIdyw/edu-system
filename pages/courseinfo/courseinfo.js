@@ -164,10 +164,15 @@ Page({
   trylisten(){
     let logininfo = wx.getStorageSync('loginInfo')
     if (!logininfo.userid){
-      wx.showToast({
-        title: '还未登陆！',
-        icon: 'none'
-      })
+      setTimeout(() => {
+        wx.showToast({
+          title: '还未登陆！',
+          icon: "none",
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1000)
+      }, 0);
     } else {
       let data={      
         courseId:this.data.courseinfo.courseId,
@@ -176,18 +181,29 @@ Page({
       }
       listenClass(data).then(res=>{
         if(res.code==200){        
-          wx.showToast({
-            title: '试听成功',
-          });
+          setTimeout(() => {
+            wx.showToast({
+              title: '试听成功！',
+              icon: "success",
+            });
+            setTimeout(() => {
+              wx.hideToast();
+            }, 1000)
+          }, 0);
           this.setData({
             modalName: null
           })
         
       }else{
-        wx.showToast({
-          title: '现在无法试听该课程',
-          icon: 'none'
-        })
+        setTimeout(() => {
+          wx.showToast({
+            title: '现在无法试听该课程！',
+            icon: "none",
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 1000)
+        }, 0);
       } 
       });
     }  

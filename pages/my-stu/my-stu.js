@@ -134,10 +134,15 @@ Page({
         tabWeek: tabWeek
       });
     }else{
-      wx.showToast({
-        title: '已到本月第一周',
-        icon: 'none'
-      });
+      setTimeout(() => {
+        wx.showToast({
+          title: '已到本月第一周！',
+          icon: "none",
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1500)
+      }, 0);
     }
   },
   nextWeek(){
@@ -164,10 +169,15 @@ Page({
         tabWeek: tabWeek
       });
     }else{
-      wx.showToast({
-        title: '已到本月最后一周',
-        icon: 'none'
-      });
+      setTimeout(() => {
+        wx.showToast({
+          title: '已到本月最后一周！',
+          icon: "none",
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1500)
+      }, 0);
     }
   },
   viewDayDetail(e){
@@ -180,10 +190,15 @@ Page({
         thatDay: {courseInfo: courseInfo, week: week}
       })
     }else{
-      wx.showToast({
-        title: '当前没有排课',
-        icon: 'none'
-      })
+      setTimeout(() => {
+        wx.showToast({
+          title: '当前没有排课！',
+          icon: "none",
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1500)
+      }, 0);
     }
   },
   hideModal(){
@@ -347,21 +362,29 @@ picture2(){
     success: (res) => {
       var show2code=res.result;
       wx.setStorageSync('show2code',show2code);
-      wx.showToast({
-        title: '成功',
-        icon: 'success',
-        duration: 2000
-      })
+      setTimeout(() => {
+        wx.showToast({
+          title: '查询成功！',
+          icon: "success",
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1500)
+      }, 0);
       wx.navigateTo({
         url: '../code2msg/code2msg',
       })
       },
       fail: (res) => {
-      wx.showToast({
-        title: '失败',
-        icon: 'none',
-        duration: 2000
-      })
+      setTimeout(() => {
+        wx.showToast({
+          title: '查询失败！',
+          icon: "none",
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1500)
+      }, 0);
       },
       complete: (res) => {} 
   })
@@ -374,9 +397,14 @@ picture2(){
     }
     updateInfo(data).then(res =>{
       if(res.code == 200){
-        wx.showToast({
-          title: '切换成功！',
-        })
+        setTimeout(() => {
+          wx.showToast({
+            title: '切换成功！',
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 1500)
+        }, 0);
         var logininfo = this.data.loginInfo
         logininfo.defaultRole = 2
         console.log(logininfo)
@@ -405,10 +433,15 @@ picture2(){
         }
     })
     }else {
-      wx.showToast({
-        title: '该账号只有一个身份!',
-        icon: 'none'
-      })
+      setTimeout(() => {
+        wx.showToast({
+          title: '该账户只有一个身份！',
+          icon: "none",
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1500)
+      }, 0);
     }
     
   },

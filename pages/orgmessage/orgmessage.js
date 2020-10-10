@@ -39,15 +39,24 @@ Page({
     orgInter(data).then(res=>{
       console.log(res)
       if(res.code==200){        
-        wx.showToast({
-          title: '报名成功',
-        });
-      
+        setTimeout(() => {
+          wx.showToast({
+            title: '报名成功！',
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 1500)
+        }, 0);
     }else{
-      wx.showToast({
-        title: '报名失败',
-        icon: 'none'
-      })
+      setTimeout(() => {
+        wx.showToast({
+          title: '报名失败！',
+          icon: 'none'
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1500)
+      }, 0);
     } 
     });
   },
@@ -76,10 +85,15 @@ Page({
     var idxx=that.data.idxx;
     console.log(idxx.length )
     if (idxx.length == 0){
-      wx.showToast({
-        title: '需要刷新数据',
-        icon: 'none'
-      });
+      setTimeout(() => {
+        wx.showToast({
+          title: '需要刷新数据！',
+          icon: 'none'
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1500)
+      }, 0);
     } else {
       var getclass=wx.getStorageSync('getlistenclass')
       let data={      
@@ -91,15 +105,24 @@ Page({
       listenClass(data).then(res=>{
         console.log(res)
         if(res.code==200){        
-          wx.showToast({
-            title: '试听成功',
-          });
-        
+          setTimeout(() => {
+            wx.showToast({
+              title: '试听成功！',
+            });
+            setTimeout(() => {
+              wx.hideToast();
+            }, 1500)
+          }, 0);
       }else{
-        wx.showToast({
-          title: '现在无法试听该课程',
-          icon: 'none'
-        })
+        setTimeout(() => {
+          wx.showToast({
+            title: '现在无法试听该课程！',
+            icon: 'none'
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 1500)
+        }, 0);
       } 
       });
     }  
@@ -109,10 +132,15 @@ Page({
     var that = this;
     that.data.idx=e.currentTarget.id;
     if(!that.data.loginInfo.userid){
-      wx.showToast({
-        title: '还未登陆！',
-        icon: 'none'
-      })
+      setTimeout(() => {
+        wx.showToast({
+          title: '还未登录！',
+          icon: 'none'
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1500)
+      }, 0);
     } else{
       that._orgInter();
     }
@@ -122,10 +150,15 @@ Page({
     var that=this;
     that.data.idx=e.currentTarget.id;
     if(!that.data.loginInfo.userid){
-      wx.showToast({
-        title: '还未登陆！',
-        icon: 'none'
-      })
+      setTimeout(() => {
+        wx.showToast({
+          title: '还未登录！',
+          icon: 'none'
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1500)
+      }, 0);
     } else{
       this.setData({
         modalName: e.currentTarget.dataset.target
@@ -158,10 +191,15 @@ Page({
     if(wx.getStorageSync('getlistenclass').length > 0){
       that._listenClass()
     } else {
-      wx.showToast({
-        title: '现在无可选择课程',
-        icon: 'none'
-      })
+      setTimeout(() => {
+        wx.showToast({
+          title: '现在无可选择课程！',
+          icon: 'none'
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1500)
+      }, 0);
     }
     
   },

@@ -86,10 +86,15 @@ Page({
   handlePrivHome(e){
     var priv = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\*\+,;=.]+$/
     if (!priv.test(e.detail.value)){
-      wx.showToast({
-        title: '网址格式错误',
-        icon: 'none'
-      })
+      setTimeout(() => {
+        wx.showToast({
+          title: '网站格式错误！',
+          icon: "none",
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1000)
+      }, 0);
     }else{
       this.setData({
         privHome: e.detail.value
@@ -99,10 +104,15 @@ Page({
   handlePrivWeibo(e){
     var weibo = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\*\+,;=.]+$/
     if (!weibo.test(e.detail.value)){
-      wx.showToast({
-        title: '网址格式错误',
-        icon: 'none'
-      })
+      setTimeout(() => {
+        wx.showToast({
+          title: '网站格式错误！',
+          icon: "none",
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1000)
+      }, 0);
     }else{
       this.setData({
         privWeibo: e.detail.value
@@ -245,10 +255,15 @@ Page({
     }
     
     if(that.school=="" || that.eduIdx==0 || that.eduNum==""|| that.eduImg=="" || that.subjectChoose.length == 0){
-      wx.showToast({
-        title: '请完成必填项后提交',
-        icon: 'none'
-      })
+      setTimeout(() => {
+        wx.showToast({
+          title: '请完成必填项后提交！',
+          icon: "none",
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1000)
+      }, 0);
     }else{
       this._putTeacherInfo();
     }
@@ -341,9 +356,14 @@ Page({
   },
   
   _putTeacherInfo(){
-    wx.showLoading({
-      title: '教师资料上传中',
-    });
+    setTimeout(() => {
+      wx.showLoading({
+        title: '教师资料上传中',
+      });
+      setTimeout(() => {
+        wx.hideLoading();
+      }, 1500)
+    }, 0);
     let that = this.data
     let id = []
     for(let i=0; i<that.subjectChoose.length; i++){
@@ -387,9 +407,15 @@ Page({
             flag: true,
             checkinInfo: data
           });
-          wx.showToast({
-            title: '更新成功！',
-          })
+          setTimeout(() => {
+            wx.showToast({
+              title: '更新成功！',
+              icon: "success",
+            });
+            setTimeout(() => {
+              wx.hideToast();
+            }, 1000)
+          }, 0);
         }
       })
     }
@@ -401,9 +427,15 @@ Page({
             flag: true,
             checkinInfo: data
           });
-          wx.showToast({
-            title: '登记成功！',
-          })
+          setTimeout(() => {
+            wx.showToast({
+              title: '登记成功！',
+              icon: "success",
+            });
+            setTimeout(() => {
+              wx.hideToast();
+            }, 1000)
+          }, 0);
         }
       })
     }
@@ -555,10 +587,15 @@ Page({
       wx.reLaunch({
         url: '../my-tch/my-tch',
       });
-      wx.showToast({
-        title: '请先在个人中心认证',
-        icon: 'none'
-      })
+      setTimeout(() => {
+        wx.showToast({
+          title: '请先在个人中心认证！',
+          icon: "none",
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1500)
+      }, 0);
     }
     
   },

@@ -2,9 +2,11 @@ import {baseURL, timeout} from './config.js'
 
 //网络请求方法
 export default function request(options) {
-  wx.showLoading({
-    title: '数据加载中ing',
-  });
+  setTimeout(() => {
+    wx.showLoading({
+      title: '数据加载中ing',
+    });
+  }, 0);
   return new Promise((resolve, reject) => {
     wx.request({
       url: baseURL + options.url,

@@ -36,11 +36,15 @@ Page({
         })
         break
       case '2':
-        wx.showToast({
-          title: '该时间段已排课',
-          icon: 'none',
-          duration: 3000
-        })
+        setTimeout(() => {
+          wx.showToast({
+            title: '该时间段已排课！',
+            icon: "none",
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 1500)
+        }, 0);
     }
     this._split()
   },
@@ -170,10 +174,15 @@ Page({
     }
     addTime(data).then(res =>{
       if(res.code==200){
-        wx.showToast({
-          title: '添加空闲时间段成功！',
-          duration: 2000
-        })
+        setTimeout(() => {
+          wx.showToast({
+            title: '添加空闲时间段成功！',
+            icon: "success",
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 1500)
+        }, 0);
       }
     })
   },
@@ -192,10 +201,15 @@ Page({
     }
     updateTime(data).then(res =>{
       if(res.code==200){
-        wx.showToast({
-          title: '更新空闲时间段成功！',
-          duration: 2000
-        })
+        setTimeout(() => {
+          wx.showToast({
+            title: '更新空闲时间段成功！',
+            icon: "success",
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 1500)
+        }, 0);
       }
     })
   },

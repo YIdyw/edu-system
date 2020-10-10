@@ -72,10 +72,15 @@ Page({
           historyClass: historyClass
         });
       }else{
-        wx.showToast({
-          title: '暂无开课情况',
-          icon: 'none'
-        });
+        setTimeout(() => {
+          wx.showToast({
+            title: '暂无开课情况！',
+            icon: "none",
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 1000)
+        }, 0);
       }
     });
   },

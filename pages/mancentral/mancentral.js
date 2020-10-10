@@ -43,14 +43,25 @@ Page({
     userAuthed(data).then(res=>{
       console.log(res)
       if(res.code==200){   
-        wx.showToast({
-          title: '修改成功',
-        });
+        setTimeout(() => {
+          wx.showToast({
+            title: '修改成功！',
+            icon: "success",
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 1000)
+        }, 0);
       }else{
-        wx.showToast({
-          title: '修改失败',
-          icon: 'none'
-        })
+        setTimeout(() => {
+          wx.showToast({
+            title: '修改失败！',
+            icon: "none",
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 1500)
+        }, 0);
       }       
     });
   },
@@ -61,10 +72,15 @@ Page({
     let verifyMail = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
     let verify = mail.length?verifyMail.test(mail):true
     if(!verify){
-      wx.showToast({
-        title: '邮箱格式错误',
-        icon: 'none'
-      });
+      setTimeout(() => {
+        wx.showToast({
+          title: '邮箱格式错误！',
+          icon: "none",
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1500)
+      }, 0);
     }else{
       let nickname = data.nickname
       let info = (nickname?'[昵称]': '') + (mail?'[邮箱]': '')
@@ -96,10 +112,15 @@ Page({
         this.setData({
           flag: false
         });
-        wx.showToast({
-          title: '信息未改动',
-          icon: 'none'
-        });
+        setTimeout(() => {
+          wx.showToast({
+            title: '信息未改动！',
+            icon: "none",
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 1500)
+        }, 0);
       }
     }
   },

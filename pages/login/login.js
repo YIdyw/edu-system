@@ -6,7 +6,8 @@ Page({
   data: {
     account:"",
     password:"",
-    code: ''
+    code: '',
+    isflag: false
   },
   accountinput: function (e) {
     this.setData({
@@ -20,17 +21,30 @@ Page({
   },
   login(){
     var that = this;
-    that._message()
+    if(this.data.isflag){
+      that._message()
+    }
+    
     if (that.data.account == "") {
-      wx.showToast({
-        title: '用户名不能为空！',
-        icon: 'none'
-      })
+      setTimeout(() => {
+        wx.showToast({
+          title: '用户名不能为空！',
+          icon: "none",
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1500)
+      }, 0);
     }else if (that.data.password == "") {
-      wx.showToast({
-        title: '密码不能为空',
-        icon: 'none'
-      })
+      setTimeout(() => {
+        wx.showToast({
+          title: '密码不能为空！',
+          icon: "none",
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1500)
+      }, 0);
     }else{
       that._getLoginInfo();
     }
@@ -84,27 +98,47 @@ Page({
       console.log(res)
       wx.setStorageSync('loginInfo', res.data)
       if(res.code==200){
+        that.setData({
+          isflag: true
+        })
         that._pushcode()
         if(res.data.defaultRole == 2){
           wx.reLaunch({
             url: '../my-tch/my-tch',
           });
-          wx.showToast({
-            title: '登录成功',
-          });
+          setTimeout(() => {
+            wx.showToast({
+              title: '登录成功！',
+              icon: "success",
+            });
+            setTimeout(() => {
+              wx.hideToast();
+            }, 1000)
+          }, 0);
         }else if(res.data.defaultRole == 3||res.data.defaultRole==1){
           wx.reLaunch({
             url: '../my-stu/my-stu',
           });
-          wx.showToast({
-            title: '登录成功',
-          });
+          setTimeout(() => {
+            wx.showToast({
+              title: '登录成功！',
+              icon: "success",
+            });
+            setTimeout(() => {
+              wx.hideToast();
+            }, 1000)
+          }, 0);
         }
       }else{
-        wx.showToast({
-          title: '请输入正确信息',
-          icon: 'none'
-        })
+        setTimeout(() => {
+          wx.showToast({
+            title: res.msg,
+            icon: "none",
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 5000)
+        }, 0);
       }
       
       

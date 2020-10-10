@@ -84,22 +84,38 @@ Page({
           wx.navigateTo ({
             url: '../my-stu/my-stu',
             });      
-          wx.showToast({
-            title: '登记成功',
-          });
+          setTimeout(() => {
+            wx.showToast({
+              title: '登记成功！',
+              icon: "success",
+            });
+            setTimeout(() => {
+              wx.hideToast();
+            }, 1000)
+          }, 0);
         
         }else{
-          wx.showToast({
-            title: '登记失败',
-            icon: 'none'
-          })
+          setTimeout(() => {
+            wx.showToast({
+              title: '登记失败！',
+              icon: "none",
+            });
+            setTimeout(() => {
+              wx.hideToast();
+            }, 1000)
+          }, 0);
         }       
       });
     }else{
-      wx.showToast({
-        title: '手机号格式不正确，无法修改！',
-        icon: 'none'
-      }) 
+      setTimeout(() => {
+        wx.showToast({
+          title: '手机号格式错误！',
+          icon: "none",
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1500)
+      }, 0);
     }
     
   },

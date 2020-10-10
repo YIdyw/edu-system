@@ -138,10 +138,15 @@ Page({
         tabWeek: tabWeek
       });
     }else{
-      wx.showToast({
-        title: '已到本月第一周',
-        icon: 'none'
-      });
+      setTimeout(() => {
+        wx.showToast({
+          title: '已到本月第一周！',
+          icon: "none",
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1500)
+      }, 0);
     }
   },
   nextWeek(){
@@ -168,10 +173,15 @@ Page({
         tabWeek: tabWeek
       });
     }else{
-      wx.showToast({
-        title: '已到本月最后一周',
-        icon: 'none'
-      });
+      setTimeout(() => {
+        wx.showToast({
+          title: '已到本月最后一周！',
+          icon: "none",
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1500)
+      }, 0);
     }
   },
   viewDayDetail(e){
@@ -184,10 +194,15 @@ Page({
         thatDay: {courseInfo: courseInfo, week: week}
       })
     }else{
-      wx.showToast({
-        title: '当前没有排课',
-        icon: 'none'
-      })
+      setTimeout(() => {
+        wx.showToast({
+          title: '当前没有排课！',
+          icon: "none",
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1500)
+      }, 0);
     }
   },
   hideModal(){
@@ -285,10 +300,15 @@ Page({
         url: '../classmgmt/classmgmt',
       })
      }else{
-       wx.showToast({
-         title: '请先实名认证、信息登记',
-         icon: 'none'
-       })
+       setTimeout(() => {
+        wx.showToast({
+          title: '请先实名认证、信息登记！',
+          icon: "none",
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1500)
+      }, 0);
      }
     }else if(that.data.isFaceChecked==2){
       wx.navigateTo({
@@ -300,10 +320,15 @@ Page({
           url: '../notify/notify',
         })
       }else{
-        wx.showToast({
-          title: '请先实名认证、信息登记',
-          icon: 'none'
-        })
+        setTimeout(() => {
+          wx.showToast({
+            title: '请先实名认证、信息登记！',
+            icon: "none",
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 1500)
+        }, 0);
       }
     }else if(that.data.isFaceChecked==4){
       if(this.data.isflag){
@@ -332,9 +357,14 @@ Page({
     }
     updateInfo(data).then(res =>{
       if(res.code == 200){
-        wx.showToast({
-          title: '切换成功！',
-        })
+        setTimeout(() => {
+          wx.showToast({
+            title: '切换成功！',
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 1500)
+        }, 0);
         var logininfo = this.data.loginInfo
         logininfo.defaultRole = 3
         console.log(logininfo)
@@ -363,10 +393,15 @@ Page({
         }
     })
     }else {
-      wx.showToast({
-        title: '该账号只有一个身份!',
-        icon: 'none'
-      })
+      setTimeout(() => {
+        wx.showToast({
+          title: '该账号只有一个身份！',
+          icon: "none",
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1500)
+      }, 0);
     }
   },
   /**

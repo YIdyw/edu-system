@@ -114,9 +114,14 @@ Page({
       teaId: this.data.loginInfo.userid
     };
     relymgmt(data).then(res=>{
-      wx.showToast({
-        title: '挂靠确认成功',
-      });
+      setTimeout(() => {
+        wx.showToast({
+          title: '挂靠确认成功！',
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1500)
+      }, 0);
       let data = {relySelect: this.data.idx, relyProcess: 1}
       wx.setStorageSync('relyInfo', data)
     });
