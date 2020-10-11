@@ -163,6 +163,12 @@ Page({
     })
   },
 
+  chooselistentime(e){
+    this.setData({
+      time: e.detail.value
+    });
+  },
+
   trylisten(){
     let logininfo = wx.getStorageSync('loginInfo')
     if (!logininfo.userid){
@@ -179,7 +185,7 @@ Page({
       let data={      
         courseId:this.data.courseinfo.courseId,
         studentId:logininfo.userid,
-        trialTime:this.data.dateinput
+        trialTime:this.data.time+' 00:00:00'
       }
       listenClass(data).then(res=>{
         if(res.code==200){        
@@ -259,6 +265,13 @@ Page({
    */
   onLoad: function (options) {
     var that = this
+    let date = new Date()
+    let y = date.getFullYear()
+    let m = date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1
+    let d = date.getDate() + 1 < 10 ? '0' + (date.getDate()) : date.getDate() - 1
+    this.setData({
+      time: y + '-' + m + '-' + d,
+    })
     if(wx.getStorageSync('loginInfo')&&wx.getStorageSync('loginInfo').defaultRole == 3){
       this.setData({
         isstu: true
