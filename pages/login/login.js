@@ -21,10 +21,6 @@ Page({
   },
   login(){
     var that = this;
-    if(this.data.isflag){
-      that._message()
-    }
-    
     if (that.data.account == "") {
       setTimeout(() => {
         wx.showToast({
@@ -47,6 +43,7 @@ Page({
       }, 0);
     }else{
       that._getLoginInfo();
+      that._message()
     }
   }, 
   regist() {
@@ -98,9 +95,6 @@ Page({
       console.log(res)
       wx.setStorageSync('loginInfo', res.data)
       if(res.code==200){
-        that.setData({
-          isflag: true
-        })
         that._pushcode()
         if(res.data.defaultRole == 2){
           wx.reLaunch({

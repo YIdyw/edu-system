@@ -1,1 +1,9 @@
 /* pages/code2msg/code2msg.wxss */
+.courseName{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 140rpx;
+  width: 580rpx;
+  font-size: 20px;
+}

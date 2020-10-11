@@ -336,10 +336,15 @@ Page({
           url: '../relymgmt/relymgmt',
         })
       }else{
-        wx.showToast({
-          title: '请先实名认证、信息登记',
-          icon: 'none'
-        })
+        setTimeout(() => {
+          wx.showToast({
+            title: '请先实名认证、信息登记！',
+            icon: "none",
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 1500)
+        }, 0);
       }
     }
   },

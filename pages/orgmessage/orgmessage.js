@@ -50,7 +50,7 @@ Page({
     }else{
       setTimeout(() => {
         wx.showToast({
-          title: '报名失败！',
+          title: '已报名，请勿重复报名！',
           icon: 'none'
         });
         setTimeout(() => {

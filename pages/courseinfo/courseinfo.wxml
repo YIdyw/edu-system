@@ -73,8 +73,10 @@
 <view class="cu-modal {{modalName=='DialogModal1'?'show':''}}">
   <view class="cu-dialog">
     
-	    <view class="title">请输入试听时间</view>
-	    <input value="{{courseinfo.enrollStartTime}}" bindinput="dateInput"></input>
+	    <view class="title">请选择试听时间</view>
+	    <picker mode="date" start="{{courseinfo.enrollStartTime}}" end="{{courseinfo.enrollEndTime}}" bindchange="userbirth">
+		    <view class="picker">试听时间</view>
+	    </picker>
    
     <view class="cu-bar bg-white justify-end">
       <view class="action">

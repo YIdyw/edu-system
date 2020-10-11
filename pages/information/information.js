@@ -9,13 +9,13 @@ Page({
    */
   data: {
     loginInfo:"",
-    name:"",
-    grade:"",
-    school:"",
-    type:"",
-    qq:"",
+    name:'',
+    grade:'',
+    school:'',
+    type:'',
+    qq:'',
     index:'',
-    weixin:"",
+    weixin:'',
     flag:false,
     getstuinfo:"",
     picker: ['学龄前', '一年级', '二年级','三年级','四年级','五年级','六年级','初一','初二','初三','高一','高二','高三']
@@ -77,13 +77,52 @@ Page({
       qq:that.data.qq,
       weixin:that.data.weixin
     }
-    if((/^1[3-9]\d{9}$/.test(that.data.type))||that.data.type==''){
+    if(that.data.name==''||that.data.index==''||that.data.school==''||
+    that.data.type==''||that.data.qq==''||that.data.weixin==''){
+      setTimeout(() => {
+        wx.showToast({
+          title: '请将信息填写完整！',
+          icon: "none",
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1500)
+      }, 0);
+    }else if(!(/^1[3-9]\d{9}$/.test(that.data.type))){
+      setTimeout(() => {
+        wx.showToast({
+          title: '手机号格式错误！',
+          icon: "none",
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1500)
+      }, 0);
+      
+    }else if(!(/^[\u2E80-\u9FFF]+$/.test(that.data.name))){
+      setTimeout(() => {
+        wx.showToast({
+          title: '请输入真实姓名！',
+          icon: "none",
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1500)
+      }, 0);
+    }else if(!(/^[\u2E80-\u9FFF]+$/.test(that.data.school))){
+      setTimeout(() => {
+        wx.showToast({
+          title: '请输入真实学校名！',
+          icon: "none",
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1500)
+      }, 0);
+    }else{
       infoIn(data).then(res=>{
         console.log(res)
-        if(res.code==200){  
-          wx.navigateTo ({
-            url: '../my-stu/my-stu',
-            });      
+        if(res.code==200){       
           setTimeout(() => {
             wx.showToast({
               title: '登记成功！',
@@ -106,16 +145,6 @@ Page({
           }, 0);
         }       
       });
-    }else{
-      setTimeout(() => {
-        wx.showToast({
-          title: '手机号格式错误！',
-          icon: "none",
-        });
-        setTimeout(() => {
-          wx.hideToast();
-        }, 1500)
-      }, 0);
     }
     
   },
@@ -130,6 +159,11 @@ Page({
         wx.setStorageSync('getstuinfo', res.data)
         this.setData({
           getstuinfo:wx.getStorageSync('getstuinfo'),
+          name: res.data.name,
+          school: res.data.school,
+          type: res.data.type,
+          qq: res.data.qq,
+          weixin: res.data.weixin,
           flag:true
         })
         if(res.data.grade==0){

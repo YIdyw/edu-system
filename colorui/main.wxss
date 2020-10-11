@@ -1239,7 +1239,7 @@ button.icon.lg {
 
 .cu-list>.cu-item {
 	transition: all .6s ease-in-out 0s;
-	transform: translateX(0rpx)
+	transform: translateX(0rpx);
 }
 
 .cu-list>.cu-item.move-cur {

@@ -14,7 +14,8 @@ Page({
     show:"",
     getorgallinfo:"",
     loginInfo:"",
-    code: ''
+    code: '',
+    index: ''
   },
 
   
@@ -63,7 +64,7 @@ Page({
     }else{
       setTimeout(() => {
         wx.showToast({
-          title: '报名失败！',
+          title: '已报名，请勿重复报名！',
           icon: "none",
         });
         setTimeout(() => {
@@ -155,7 +156,7 @@ Page({
   },
 
   trylisten(e){
-    var that=this;
+    var that = this
     this.setData({
       modalName: e.currentTarget.dataset.target
     })
@@ -169,6 +170,9 @@ Page({
   chooseLsclass(e){
     var that=this;
     that.data.idxx=e.target.id;
+    this.setData({
+      index: e.target.id
+    })
   },
   dateInput(e){
     this.setData({
@@ -181,8 +185,12 @@ Page({
     that.data.idxx=e.target.id;
   },
   trylistenIn(e){
-    var that=this;
-    that._listenClass()
+    //var that=this;
+    //that._listenClass()
+    var index = this.data.index
+    wx.navigateTo({
+      url: '../courseinfo/courseinfo?index='+this.data.getlistenclass[index].courseId+'&orgid='+this.data.show.orgId,
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

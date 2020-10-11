@@ -20,6 +20,8 @@ Page({
     index: '',
     merid: '',
     userid: '',
+    start: '',
+    end: '',
     screen : {
       minHeight : 'auto'
     },
@@ -240,8 +242,12 @@ Page({
       }
       for(let i=0;i<res.data.length;i++){
           if(res.data[i].courseId == index){
+            var start = res.data[i].enrollStartTime.split(' ')
+            var end = res.data[i].enrollEndTime.split(' ')
             this.setData({
               courseinfo: res.data[i],
+              start: start[0],
+              end: end[0],
               flag: true
             })
           }
