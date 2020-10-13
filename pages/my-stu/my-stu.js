@@ -4,6 +4,9 @@ import {
 import {
   updateInfo
 } from '../../network/regist'
+import {
+  sign
+} from '../../network/signList'
 var app = getApp()
 Page({
   data: {
@@ -63,6 +66,44 @@ Page({
     showWeek: '',         // tab周内周选择
   },
 
+  //跳转到签到页面
+  signup(e){
+    wx.showModal({
+      cancelColor: 'cancelColor',
+      title: '签到',
+      content: '确定是否签到？',
+      success(res){
+        if(res.confirm){
+           let data = {
+             userId : wx.getStorageSync('loginInfo').userid,
+             courseId : e.currentTarget.dataset.id
+           }
+           sign(data).then(res =>{
+             if(res == 200){
+              setTimeout(() => {
+                wx.showToast({
+                  title: '签到成功！',
+                });
+                setTimeout(() => {
+                  wx.hideToast();
+                }, 1500)
+              }, 0);
+             }else{
+              setTimeout(() => {
+                wx.showToast({
+                  title: res.msg,
+                  icon: "none",
+                });
+                setTimeout(() => {
+                  wx.hideToast();
+                }, 3000)
+              }, 0);
+             }
+           })
+        }
+      }
+    })
+  },
   lastMonth(){
     let month = this.data.showMonth-1;  // 前一月
     let year = this.data.showYear;      // 当前年
@@ -266,7 +307,7 @@ Page({
         for(let j=0; j<res.data.length; j++){
           if(monthPlan[i].date == res.data[j].courseTime.substring(0, 10)){
             monthPlan[i].exist = true;
-            monthPlan[i].courseInfo.push({name: res.data[j].name, courseTime: res.data[j].courseTime, site: res.data[j].site})
+            monthPlan[i].courseInfo.push({name: res.data[j].name,courseId: res.data[j].courseId, courseTime: res.data[j].courseTime, site: res.data[j].site})
           }
           if(monthPlan[i].name == this.data.currentDay){
             dayPlan = monthPlan[i]

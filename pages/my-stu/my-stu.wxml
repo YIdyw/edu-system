@@ -99,7 +99,7 @@
   <view class="cu-timeline" wx:if="{{!tabDay}}">
     <view class="cu-time">星期{{monthTitle[thatDay.week]}}</view>
     <view wx:for="{{thatDay.courseInfo}}" wx:key='id' class="cu-item text-olive">
-      <view class="content bg-olive shadow">
+      <view bindtap="signup" data-id="{{item.courseId}}" class="content bg-olive shadow">
         <view class="text-bold margin-top">上课时间：{{item.courseTime}}</view>
         <view class="text-bold margin-top">课程名称：{{item.name}}</view>
         <view class="text-bold margin-top margin-bottom">上课地点：{{item.site}}</view>
@@ -107,9 +107,9 @@
     </view>
   </view>
   <view class="cu-timeline" wx:if="{{tabDay}}">
-    <view class="cu-time">星期{{monthTitle[dayPlan.week]}}</view>
-    <view wx:for="{{dayPlan.courseInfo}}" wx:key='id' class="cu-item text-olive">
-      <view class="content bg-olive shadow">
+    <view class="cu-time">星期{{monthTitle[thatDay.week]}}</view>
+    <view wx:for="{{thatDay.courseInfo}}" wx:key='id' class="cu-item text-olive">
+      <view bindtap="signup" data-id="{{item.courseId}}" class="content bg-olive shadow">
         <view class="text-bold margin-top">上课时间：{{item.courseTime}}</view>
         <view class="text-bold margin-top">课程名称：{{item.name}}</view>
         <view class="text-bold margin-top margin-bottom">上课地点：{{item.site}}</view>

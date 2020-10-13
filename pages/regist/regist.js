@@ -206,7 +206,7 @@ Page({
     }else if(that.data.index == 0){
       setTimeout(() => {
         wx.showToast({
-          title: '请选择格式！',
+          title: '请选择身份！',
           icon: 'none'
         });
         setTimeout(() => {
@@ -214,8 +214,21 @@ Page({
         }, 1500)
       }, 0);
     }else{
-      //that._checkCode();
-      that._registInfo();
+      that._checkCode();
+      if(this.data.count){
+        that._registInfo();
+      }else{
+        setTimeout(() => {
+          wx.showToast({
+            title: '验证码错误！',
+            icon: 'none'
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 1500)
+        }, 0);
+      }
+      
     }
   },
   _registInfo() {

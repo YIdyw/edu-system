@@ -80,7 +80,7 @@ Page({
     let sortPlan = this.sortMonthPlan(monthPlan);
     let data = {
       // id: wx.getStorageSync('loginInfo').userid,
-      id: 46,
+      id: wx.getStorageSync('loginInfo').userid,
       limitTime: year + '-' + month,
       type: 'month',
       userType: 2
@@ -105,7 +105,7 @@ Page({
     let sortPlan = this.sortMonthPlan(monthPlan);
     let data = {
       // id: wx.getStorageSync('loginInfo').userid,
-      id: 46,
+      id: wx.getStorageSync('loginInfo').userid,
       limitTime: year + '-' + month,
       type: 'month',
       userType: 2
@@ -262,7 +262,7 @@ Page({
         for(let j=0; j<res.data.length; j++){
           if(monthPlan[i].date == res.data[j].courseTime.substring(0, 10)){
             monthPlan[i].exist = true;
-            monthPlan[i].courseInfo.push({name: res.data[j].name, courseTime: res.data[j].courseTime, site: res.data[j].site})
+            monthPlan[i].courseInfo.push({name: res.data[j].name,courId: res.data[j].courseId, courseTime: res.data[j].courseTime, site: res.data[j].site})
           }
           if(monthPlan[i].name == this.data.currentDay){
             dayPlan = monthPlan[i]
@@ -434,7 +434,7 @@ Page({
     });
     let data = {
       // id: wx.getStorageSync('loginInfo').userid,
-      id: 46,
+      id: wx.getStorageSync('loginInfo').userid,
       limitTime: currentYear + '-' + currentMonth,
       type: 'month',
       userType: 2

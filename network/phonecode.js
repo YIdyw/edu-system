@@ -12,5 +12,6 @@ export function checkCode(data) {
   return request({
     url: '/user/phoneVerification',
     method: 'POST',
+    data: data
   })
 }
