@@ -231,6 +231,24 @@ Page({
     getAuthID(data).then(res => {
       if(res.code == 200){
         wx.setStorageSync('photoId', res.data.photoId)
+        setTimeout(() => {
+          wx.showToast({
+            title: '身份信息正确！',
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 1500)
+        }, 0);
+      }else{
+        setTimeout(() => {
+          wx.showToast({
+            title: '身份信息错误！',
+            icon : 'none'
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 2000)
+        }, 0);
       }
     });
   },

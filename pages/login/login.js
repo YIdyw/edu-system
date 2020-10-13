@@ -54,7 +54,7 @@ Page({
 
   _message(){
     wx.requestSubscribeMessage({
-      tmplIds: ['7BcxJPhRmjyDlIMHHqzXY3aDaICHOwdvVR6uHw8EvCk'],
+      tmplIds: ['7BcxJPhRmjyDlIMHHqzXY3aDaICHOwdvVR6uHw8EvCk','d3qSH7KhMe9G56IHrLpnEbHNFmhebSHkSae7Z0oroyk'],
       success (res) {
         console.log("可以进行推送")
        },
