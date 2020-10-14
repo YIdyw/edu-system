@@ -1,13 +1,19 @@
 import {
   getLoginInfo, code
 } from '../../network/login'
-
+import {
+  getPhonecode, updatePassWord
+} from '../../network/phonecode'
 Page({
   data: {
     account:"",
     password:"",
     code: '',
-    isflag: false
+    isflag: false,
+    modalShow: false,
+    code: '',
+    newpsword: '',
+    phone: ''
   },
   accountinput: function (e) {
     this.setData({
@@ -18,6 +24,96 @@ Page({
     this.setData({
       password: e.detail.value
     });
+  },
+
+  newpsword(e){
+    this.setData({
+      newpsword: e.detail.value
+    });
+  },
+
+  inputcode(e){
+    this.setData({
+      code: e.detail.value
+    });
+  },
+
+  inputphone(e){
+    this.setData({
+      phone: e.detail.value
+    });
+  },
+
+  getcode(){
+    let data={
+      phone: this.data.phone
+    }
+    getPhonecode(data).then(res => {
+      console.log(res)
+      if(res.code==200){
+        setTimeout(() => {
+          wx.showToast({
+            title: '验证码发送成功！',
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 1500)
+        }, 0);
+      }else{
+        setTimeout(() => {
+          wx.showToast({
+            title: '验证码发送失败！',
+            icon: 'none'
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 1500)
+        }, 0);
+      }
+    })
+  },
+
+  orgConfirm(){
+    let data = {
+        newPwd : this.data.newpsword,
+        verifyCod : this.data.code,
+        phone : this.data.phone
+    }
+    updatePassWord(data).then(res => {
+      console.log(res)
+      if(res.code==200){
+        setTimeout(() => {
+          wx.showToast({
+            title: '密码修改成功！',
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 1500)
+        }, 0);
+      }else{
+        setTimeout(() => {
+          wx.showToast({
+            title: '密码修改失败！',
+            icon: 'none'
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 1500)
+        }, 0);
+      }
+    })
+  },
+
+  hideModal(e) {
+    this.setData({
+      modalShow: false
+    })
+  },
+
+  findpsword(){
+    this.setData({
+      modalShow: true
+    })
   },
   login(){
     var that = this;

@@ -1,5 +1,5 @@
 import {
-  getAllOrganization, relymgmt, relyPorcess
+  getAllOrganization, relymgmt, relyPorcess, deleterely
 } from '../../network/organization'
 
 Page({
@@ -59,6 +59,8 @@ Page({
     this.setData({
       isRely: false
     })
+    this._deleterely()
+    this.relyReselect()
   },
   hideModal(e) {
     this.setData({
@@ -70,12 +72,12 @@ Page({
    */
   onLoad: function (options) {
     this._getAllOrgazition();
-    
-    
+    this._relyProcess();
   },
   /**获取全部机构信息 */
   _getAllOrgazition() {
       getAllOrganization().then(res => {
+        console.log("getAll")
         if(res.code == 200) {
           if(this._getcallback){
             this._getcallback(res)
@@ -93,16 +95,26 @@ Page({
       teaId: wx.getStorageSync('loginInfo').userid
     };
     relymgmt(data).then(res=>{
-      setTimeout(() => {
-        wx.showToast({
-          title: '挂靠确认成功！',
-        });
+      if(res.code==200){
         setTimeout(() => {
-          wx.hideToast();
-        }, 1500)
-      }, 0);
-      let data = {relySelect: this.data.idx, relyProcess: 1}
-      wx.setStorageSync('relyInfo', data)
+          wx.showToast({
+            title: '挂靠确认成功！',
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 1500)
+        }, 0);
+      }else{
+        setTimeout(() => {
+          wx.showToast({
+            title: '挂靠失败！',
+            icon: 'none'
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 1500)
+        }, 0);
+      }
     });
   },
   // 挂靠进度查询
@@ -111,6 +123,7 @@ Page({
       userid : wx.getStorageSync('loginInfo').userid
     }
     relyPorcess(data).then((res)=>{
+      console.log("getPro")
       if(res.code==200){
         let orgId = res.data.orgId
         if(res.data.checked==2){
@@ -140,6 +153,35 @@ Page({
       }
     });
   },
+
+  _deleterely(){
+    let data = wx.getStorageSync('loginInfo').userid
+    deleterely(data).then(res =>{
+      if(res.code==200){
+        if(res.code==200){
+          setTimeout(() => {
+            wx.showToast({
+              title: '挂靠取消成功！',
+            });
+            setTimeout(() => {
+              wx.hideToast();
+            }, 1500)
+          }, 0);
+        }else{
+          setTimeout(() => {
+            wx.showToast({
+              title: '挂靠取消失败！',
+              icon: 'none'
+            });
+            setTimeout(() => {
+              wx.hideToast();
+            }, 1500)
+          }, 0);
+        }
+      }
+    })
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -150,7 +192,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this._relyProcess();
+    
   },
 
   /**

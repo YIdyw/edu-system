@@ -32,7 +32,7 @@
 </view>
 <view class="bg-white padding">
   <view class="cu-steps">
-    <view class="cu-item {{basics==2?'text-red':'text-green'}}" wx:for="{{basicsList}}" wx:key="id">
+    <view class="cu-item {{index>basics?'':'text-green'}}" wx:for="{{basicsList}}" wx:key="id">
       <text class="cuIcon-{{item.icon}}"></text> {{item.name}}
     </view>
   </view>

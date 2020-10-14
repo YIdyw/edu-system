@@ -9,6 +9,30 @@
 	</view>
 	<view class="find" bindtap="findpsword">找回密码</view>
 	<i-button bind:click="login" type="success" shape="circle">登录</i-button>
-  <i-button bind:click="regist" type="success" shape="circle">注册</i-button>
-
+	<i-button bind:click="regist" type="success" shape="circle">注册</i-button>
+	
+	<view class="cu-modal {{modalShow?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white">
+      <view class="content">通过手机号找回密码</view>
+    </view>
+    <view class="flex">
+			<view class="title">手机号：</view>
+      <input placeholder="请输入手机号" type="number" bindtap="inputphone"></input>
+    </view>
+		<view class="flex">
+      <view class="title">新密码：</view>
+      <input placeholder="请输入新密码" bindtap="newpsword"></input>
+    </view>
+    <view class="flex">
+	    <view class="title">验证码：</view>
+	    <input placeholder="请输入验证码" bindinput="inputcode"></input>
+	    <button class="cu-btn bg-green shadow" bindtap="getcode">获取验证码</button>
+    </view>
+    <view class="cu-bar bg-white justify-around">
+      <button class="cu-btn line-olive text-olive" bindtap="hideModal">取消</button>
+      <button class="cu-btn bg-olive" bindtap="orgConfirm">确定</button>
+    </view>
+  </view>
+</view>
 </i-panel>

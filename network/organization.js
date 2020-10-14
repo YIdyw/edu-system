@@ -8,6 +8,7 @@ export function getAllOrganization() {
   });
 }
 
+//教师进行挂靠
 export function relymgmt(data) {
   return request({
     url: '/teacher/organization/'+data.orgId+ '?teaId=' + data.teaId,
@@ -15,9 +16,18 @@ export function relymgmt(data) {
   });
 }
 
+//挂靠进度查询
 export function relyPorcess(data){
   return request({
     url: '/teacher/process?userId=' + data.userid,
     method: 'GET',
+  });
+}
+
+//教师取消挂靠
+export function deleterely(data){
+  return request({
+    url: '/teacher/organization/' + data,
+    method: 'DELETE',
   });
 }
