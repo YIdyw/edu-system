@@ -71,13 +71,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this._getAllOrgazition();
     this._relyProcess();
+    this._getAllOrgazition();
+    
   },
   /**获取全部机构信息 */
   _getAllOrgazition() {
       getAllOrganization().then(res => {
-        console.log("getAll")
         if(res.code == 200) {
           if(this._getcallback){
             this._getcallback(res)
@@ -123,7 +123,6 @@ Page({
       userid : wx.getStorageSync('loginInfo').userid
     }
     relyPorcess(data).then((res)=>{
-      console.log("getPro")
       if(res.code==200){
         let orgId = res.data.orgId
         if(res.data.checked==2){
@@ -137,7 +136,6 @@ Page({
         })
         this._getcallback = res => {
           let org = res.data
-          console.log(org)
           for(let i = 0; i < org.length; i++){
             if(orgId == org[i].orgId){
               this.setData({
