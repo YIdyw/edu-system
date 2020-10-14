@@ -13,6 +13,7 @@ Page({
                  {icon: 'roundclosefill',name: '挂靠错误'},
                  {icon: 'roundcheckfill',name: '完成挂靠'}],
     basics: 0,
+    orgId: '',
     orgmessage: {},
     loginInfo:[],
     orgmsg: [],
@@ -58,7 +59,6 @@ Page({
     this.setData({
       isRely: false
     })
-    wx.setStorageSync('relyOrg', '');
   },
   hideModal(e) {
     this.setData({
@@ -70,48 +70,27 @@ Page({
    */
   onLoad: function (options) {
     this._getAllOrgazition();
-    this._relyProcess();
+    
+    
   },
   /**获取全部机构信息 */
   _getAllOrgazition() {
-    let relyInfo = wx.getStorageSync('relyInfo');
-    if(relyInfo){
       getAllOrganization().then(res => {
         if(res.code == 200) {
+          if(this._getcallback){
+            this._getcallback(res)
+          }
           this.setData({
             orgmsg: res.data,
-            orgmessage: res.data[relyInfo.relySelect],
-            idx: relyInfo.relySelect,
-            basics: relyInfo.relyProcess,
-            disabled: true
           });
         }
       });
-    }else{
-      getAllOrganization().then(res => {
-        if(res.code == 200) {
-          this.setData({
-            orgmsg: res.data,
-            orgmessage: res.data[0]
-          });
-        }
-      });
-    }
-    getAllOrganization().then(res => {
-      if(res.code == 200) {
-        this.setData({
-          orgmsg: res.data,
-          orgmessage: res.data[0]
-        });
-      }
-    });
   },
   // 机构挂靠
   _relymgmt(){
-    let relyOrg = wx.getStorageSync('relyOrg');
     let data = {
-      orgId: relyOrg.orgId,
-      teaId: this.data.loginInfo.userid
+      orgId: this.data.orgmessage.orgId,
+      teaId: wx.getStorageSync('loginInfo').userid
     };
     relymgmt(data).then(res=>{
       setTimeout(() => {
@@ -129,19 +108,35 @@ Page({
   // 挂靠进度查询
   _relyProcess(){
     let data = {
-      userId : wx.getStorageSync('loginInfo').userid
+      userid : wx.getStorageSync('loginInfo').userid
     }
     relyPorcess(data).then((res)=>{
       if(res.code==200){
-        if(res.data==2){
+        let orgId = res.data.orgId
+        if(res.data.checked==2){
           this.setData({
-            basics: 3
-          })
-        }else if(res.data==3){
-          this.setData({
-            basics: 2
+            isRely: true
           })
         }
+        this.setData({
+          basics: res.data.checked,
+          orgId: res.data.orgId
+        })
+        this._getcallback = res => {
+          let org = res.data
+          console.log(org)
+          for(let i = 0; i < org.length; i++){
+            if(orgId == org[i].orgId){
+              this.setData({
+                orgmessage: org[i],
+                idx: i,
+                disabled: true
+              })
+              break
+            }
+          }
+        }
+        this.basicsSteps();
       }
     });
   },
@@ -149,14 +144,13 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this._relyProcess();
   },
 
   /**

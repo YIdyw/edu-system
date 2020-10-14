@@ -1,12 +1,18 @@
 import {
   userAuthed
 } from '../../network/authID'
+import {
+  getPhonecode, updatePassWord
+} from '../../network/phonecode'
 Page({
   data: {
     userInfo:[],
     nickname: '',
     mail: '',
-    flag: false
+    flag: false,
+    isupdatepsword: false,
+    newpsword: '',
+    code: ''
   },
   
   gotorgd:function(e){
@@ -16,7 +22,8 @@ Page({
   },
   modifyClick(){
     this.setData({
-      flag: true
+      flag: true,
+      isupdatepsword: true
     });
   },
   nicknameModify(e){
@@ -28,6 +35,78 @@ Page({
     this.setData({
       mail: e.detail.value
     });
+  },
+
+  newpsword(e){
+    this.setData({
+      newpsword: e.detail.value
+    });
+  },
+  inputcode(e){
+    this.setData({
+      code: e.detail.value
+    });
+  },
+
+  getcode(){
+    
+    let data={
+      phone: wx.getStorageSync('loginInfo').phone
+    }
+    getPhonecode(data).then(res => {
+      console.log(res)
+      if(res.code==200){
+        setTimeout(() => {
+          wx.showToast({
+            title: '验证码发送成功！',
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 1500)
+        }, 0);
+      }else{
+        setTimeout(() => {
+          wx.showToast({
+            title: '验证码发送失败！',
+            icon: 'none'
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 1500)
+        }, 0);
+      }
+    })
+  },
+
+  updatepsword(){
+    let data = {
+        newPwd : this.data.newpsword,
+        userInfo : wx.getStorageSync('loginInfo').userid,
+        verifyCod : this.data.code
+    }
+    updatePassWord(data).then(res => {
+      console.log(res)
+      if(res.code==200){
+        setTimeout(() => {
+          wx.showToast({
+            title: '密码修改成功！',
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 1500)
+        }, 0);
+      }else{
+        setTimeout(() => {
+          wx.showToast({
+            title: '密码修改失败！',
+            icon: 'none'
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 1500)
+        }, 0);
+      }
+    })
   },
   _userAuthed(){
     let that=this;

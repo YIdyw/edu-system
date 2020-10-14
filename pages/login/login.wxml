@@ -7,7 +7,8 @@
 		<view class="title">密码</view>
 		<input placeholder="请输入密码" type="password" bindinput="passwordinput"></input>
 	</view>
-  <i-button bind:click="login" type="success" shape="circle">登录</i-button>
+	<view class="find" bindtap="findpsword">找回密码</view>
+	<i-button bind:click="login" type="success" shape="circle">登录</i-button>
   <i-button bind:click="regist" type="success" shape="circle">注册</i-button>
 
 </i-panel>

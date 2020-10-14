@@ -36,6 +36,21 @@
   <view class="padding flex flex-direction">
   <button class="cu-btn bg-grey lg" bindtap="bindclick">点击登记</button>
 </view>
+<view wx:if="{{isupdatepsword}}" class="padding flex flex-direction">
+  <button class="cu-btn bg-grey lg" bindtap="updatepassword">点击修改密码</button>
+</view>
+<view wx:else class="padding bg-grey">
+    <view class="flex">
+      <view class="title">新密码：</view>
+      <input placeholder="请输入新密码" bindtap="newpsword"></input>
+    </view>
+    <view class="flex">
+	    <view class="title">验证码：</view>
+	    <input placeholder="请输入验证码" bindinput="inputcode"></input>
+	    <button class="cu-btn bg-green shadow" bindtap="getcode">获取验证码</button>
+    </view>
+    <button bindtap="updatepsword" class="basis-xl cu-btn block line-pink lg">点击修改密码</button>
+  </view>
   </form>
 <form wx:else>
 	<view class="cu-form-group margin-top">
@@ -75,4 +90,19 @@
   <view class="padding flex flex-direction">
   <button class="cu-btn bg-grey lg" bindtap="bindclick">点击登记</button>
 </view>
+<view wx:if="{{isupdatepsword}}" class="padding flex flex-direction">
+  <button class="cu-btn bg-grey lg" bindtap="updatepassword">点击修改密码</button>
+</view>
+<view wx:else class="padding bg-grey">
+    <view class="flex">
+      <view class="title">新密码：</view>
+      <input placeholder="请输入新密码" bindtap="newpsword"></input>
+    </view>
+    <view class="flex">
+	    <view class="title">验证码：</view>
+	    <input placeholder="请输入验证码" bindinput="inputcode"></input>
+	    <button class="cu-btn bg-green shadow" bindtap="getcode">获取验证码</button>
+    </view>
+    <button bindtap="updatepsword" class="basis-xl cu-btn block line-pink lg">点击修改密码</button>
+  </view>
 </form>

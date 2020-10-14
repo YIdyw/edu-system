@@ -29,8 +29,22 @@
     <view class="flex-sub padding text-right">电话号码：</view>
     <view class="flex-treble padding">{{userInfo.phone}}</view>
   </view>
+  <view wx:if="{{isupdatepsword}}" class="padding bg-grey">
+    <view class="flex">
+      <view class="title">新密码：</view>
+      <input placeholder="请输入新密码" bindtap="newpsword"></input>
+    </view>
+    <view class="flex">
+	    <view class="title">验证码：</view>
+	    <input placeholder="请输入验证码" bindinput="inputcode"></input>
+	    <button class="cu-btn bg-green shadow" bindtap="getcode">获取验证码</button>
+    </view>
+    <button bindtap="updatepsword" class="basis-xl cu-btn block line-pink lg">点击修改密码</button>
+  </view>
+
   <view class="flex padding justify-end">
     <button wx:if="{{!userInfo.authenticated}}" class="basis-xl cu-btn block line-pink lg" bindtap="gotorgd">未认证，认证解锁更多功能</button>
     <button wx:else class="basis-xl cu-btn block line-pink lg">已认证</button>
+    
   </view>
 </view>

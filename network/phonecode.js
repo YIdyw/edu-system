@@ -15,3 +15,12 @@ export function checkCode(data) {
     data: data
   })
 }
+
+//根据验证码修改密码
+export function updatePassWord(data) {
+  return request({
+    url: '/user/findPwdBySms',
+    method: 'POST',
+    data: data
+  })
+}

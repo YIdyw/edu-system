@@ -1,7 +1,7 @@
 <view class="swiper-tab">
 	<view class="tab-item {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">我的机构</view>
 	<view class="tab-item {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">我的课程</view>
-	<view class="tab-item {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">我要选课</view>
+	<view class="tab-item {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">查找课程</view>
 </view>
 
 <!--内容主体-->
@@ -32,7 +32,6 @@
 				<view class="text-left padding">状态：{{status[idxx]}}</view>
 				<view class="padding flex flex-wrap justify-between align-center bg-white">
   				<button class="cu-btn bg-green round " bindtap="signin" id="{{idxx}}">签到</button>
-  				<button class="cu-btn bg-grey round" bindtap="deleteclass" id="{{idxx}}">取消选课</button>
 				</view>
 			</view>
 		</view>
@@ -58,7 +57,7 @@
 		</picker>
 	</view>
   <view class="padding flex flex-direction">
-   <button class="cu-btn bg-grey lg" bindtap="chooseclass1" >选修课程</button>
+   <button class="cu-btn bg-grey lg" bindtap="chooseclass1" >查看课程</button>
    </view>
 </swiper-item>
 

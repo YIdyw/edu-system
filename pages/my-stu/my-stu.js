@@ -309,11 +309,12 @@ Page({
             monthPlan[i].exist = true;
             monthPlan[i].courseInfo.push({name: res.data[j].name,courseId: res.data[j].courseId, courseTime: res.data[j].courseTime, site: res.data[j].site})
           }
-          if(monthPlan[i].name == this.data.currentDay){
-            dayPlan = monthPlan[i]
-            currentWeekNum = parseInt(i / 7) + 1
-          }
+          
           continue;
+        }
+        if(monthPlan[i].name == this.data.currentDay){
+          dayPlan = monthPlan[i]
+          currentWeekNum = parseInt(i / 7) + 1
         }
       }
       for(let k=(currentWeekNum-1)*7; k<currentWeekNum*7; k++){

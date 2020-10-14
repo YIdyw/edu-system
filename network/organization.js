@@ -10,16 +10,14 @@ export function getAllOrganization() {
 
 export function relymgmt(data) {
   return request({
-    url: '/teacher/organization/' + data.teaId,
-    method: 'POST',
-    data: data
+    url: '/teacher/organization/'+data.orgId+ '?teaId=' + data.teaId,
+    method: 'GET',
   });
 }
 
 export function relyPorcess(data){
   return request({
-    url: '/teacher/process',
+    url: '/teacher/process?userId=' + data.userid,
     method: 'GET',
-    data: data
   });
 }

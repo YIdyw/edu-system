@@ -269,8 +269,9 @@ Page({
     }) 
   },
   chooseclass1(){
-    var that=this;
-    that._chooseClass()
+    wx.navigateTo({
+      url: '../courseinfo/courseinfo?index='+this.data.getmyorgclass[this.data.index1].courseId+'&orgid='+this.data.getmyorg[this.data.index].orgId,
+    })
   },
 
   deleteclass(e){

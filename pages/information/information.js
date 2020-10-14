@@ -1,7 +1,9 @@
 import {
   infoIn,getStuInfo
 } from '../../network/information'
-
+import {
+  getPhonecode, updatePassWord
+} from '../../network/phonecode'
 Page({
 
   /**
@@ -10,6 +12,7 @@ Page({
   data: {
     loginInfo:"",
     name:'',
+    isupdatepsword: true,
     grade:'',
     school:'',
     type:'',
@@ -18,7 +21,9 @@ Page({
     weixin:'',
     flag:false,
     getstuinfo:"",
-    picker: ['学龄前', '一年级', '二年级','三年级','四年级','五年级','六年级','初一','初二','初三','高一','高二','高三']
+    picker: ['学龄前', '一年级', '二年级','三年级','四年级','五年级','六年级','初一','初二','初三','高一','高二','高三'],
+    code: '',
+    newpsword: ''
   },
 
   /**
@@ -65,6 +70,85 @@ Page({
         type: e.detail.value
         })
   },
+
+  updatepassword(){
+    this.setData({
+      isupdatepsword: false
+    })
+  },
+
+  newpsword(e){
+    this.setData({
+      newpsword: e.detail.value
+    });
+  },
+
+  inputcode(e){
+    this.setData({
+      code: e.detail.value
+    });
+  },
+
+  getcode(){
+    let data={
+      phone: wx.getStorageSync('loginInfo').phone
+    }
+    getPhonecode(data).then(res => {
+      console.log(res)
+      if(res.code==200){
+        setTimeout(() => {
+          wx.showToast({
+            title: '验证码发送成功！',
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 1500)
+        }, 0);
+      }else{
+        setTimeout(() => {
+          wx.showToast({
+            title: '验证码发送失败！',
+            icon: 'none'
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 1500)
+        }, 0);
+      }
+    })
+  },
+
+  updatepsword(){
+    let data = {
+        newPwd : this.data.newpsword,
+        userInfo : wx.getStorageSync('loginInfo').userid,
+        verifyCod : this.data.code
+    }
+    updatePassWord(data).then(res => {
+      console.log(res)
+      if(res.code==200){
+        setTimeout(() => {
+          wx.showToast({
+            title: '密码修改成功！',
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 1500)
+        }, 0);
+      }else{
+        setTimeout(() => {
+          wx.showToast({
+            title: '密码修改失败！',
+            icon: 'none'
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 1500)
+        }, 0);
+      }
+    })
+  },
+
   _infoIn(){
     var that=this;
     
