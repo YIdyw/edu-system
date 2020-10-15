@@ -26,12 +26,14 @@ Page({
     workTypes: [{ id: 0, name: '兼职', checked: true}, 
                 { id: 1, name: '全职', checked: false}],
     worktype: 0,      // 工作类型
-    subjects: [{id: 0, name: '音乐', checked: false},
-               {id: 1, name: '舞蹈', checked: false},
-               {id: 2, name: '美术', checked: false},
-               {id: 3, name: '专业艺考', checked: false}, 
-               {id: 4, name: '书法', checked: false},
-               {id: 5, name: '互联网', checked: false}],
+    subjects: [{id: 0, name: '西洋乐', checked: false},
+               {id: 1, name: '民乐', checked: false},
+               {id: 2, name: '打击乐', checked: false},
+               {id: 3, name: '声乐', checked: false}, 
+               {id: 4, name: '舞蹈', checked: false},
+               {id: 5, name: '美术', checked: false},
+               {id: 6, name: '专业艺考', checked: false},
+               {id: 7, name: '书法', checked: false}],
     subjectChoose: [],  // 擅长科目选择
     courseCategory: [], // 课程类别id
     privImg: "",        // 个人照片
@@ -131,9 +133,10 @@ Page({
     });
   },
   subjectChange(e){
-    let subs = [{id: 0, name: '音乐', checked: false}, {id: 1, name: '舞蹈', checked: false},
-                {id: 2, name: '美术', checked: false}, {id: 3, name: '专业艺考', checked: false}, 
-                {id: 4, name: '书法', checked: false}, {id: 5, name: '互联网', checked: false}]
+    let subs = [{id: 0, name: '西洋乐', checked: false},  {id: 1, name: '民乐', checked: false},
+                {id: 2, name: '打击乐', checked: false},  {id: 3, name: '声乐', checked: false}, 
+                {id: 4, name: '舞蹈', checked: false},    {id: 5, name: '美术', checked: false},
+                {id: 6, name: '专业艺考', checked: false}, {id: 7, name: '书法', checked: false}]
     let select = e.detail.value
     if(select.length <= 5){
       for(let i=0; i<select.length; i++){
@@ -282,10 +285,24 @@ Page({
   },
   _getAllSubject(){
     getAllSubject().then(res => {
+      console.log("all:", res)
       if(res.code == 200) {
         this.setData({
           courseCategory: res.data
         });
+        if(this._getcallback){
+          this._getcallback(res.data)
+        }
+      }else{
+        setTimeout(() => {
+          wx.showToast({
+            title: '请刷新页面！',
+            icon: "none",
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 3000)
+        }, 0);
       }
     })
   },
@@ -414,7 +431,7 @@ Page({
     }
     if(this.data.degNum==''){
       this.setData({
-        briefInfo: this.data.checkinInfo.degNum
+        degNum: this.data.checkinInfo.degNum
       })
     }
     
@@ -444,7 +461,9 @@ Page({
       courseType5Id: id[4] ? id[4] : '',
       photoId: that.privImgId,
       adverPhoto: that.pubImgId,
-      briefIntro: that.briefInfo
+      briefIntro: that.briefInfo,
+      checked: that.worktype
+
     }
     console.log(data)
     if(this.data.updateflag){
@@ -472,6 +491,16 @@ Page({
             setTimeout(() => {
               wx.hideToast();
             }, 1000)
+          }, 0);
+        }else{
+          setTimeout(() => {
+            wx.showToast({
+              title: res.msg,
+              icon: "none",
+            });
+            setTimeout(() => {
+              wx.hideToast();
+            }, 3000)
           }, 0);
         }
       })
@@ -504,35 +533,47 @@ Page({
       if (this.getInfoCallback) {
         this.getInfoCallback(res)
       }
-      console.log(res)
       if(res.code == 200){
+        console.log("get:", res)
         this.setData({
           checkinInfo: res.data,
           flag: true,
           updateflag: true
         });
-        let index = []
-        index.push(that.checkinInfo.courseType1Id)
-        index.push(that.checkinInfo.courseType2Id)
-        index.push(that.checkinInfo.courseType3Id)
-        index.push(that.checkinInfo.courseType4Id)
-        index.push(that.checkinInfo.courseType5Id)
-        var sindex = 0
-        console.log(index)
-        for (let i = 0; i < 6; i++) {
-          for (let j = 0; j < that.courseCategory.length; j++) {
-            if (index.indexOf(that.courseCategory[j].value)>=0) {
-              if(that.subjects[i].name == that.courseCategory[j].label){ 
-              this.setData({
-                ['subjects['+i+'.].checked']: true,
-                ['subjectChoose['+sindex+']']: i
-              })
-              sindex++
-              break;
+        this._getcallback = res => {
+          console.log(res)
+          let index = []
+          index.push(that.checkinInfo.courseType1Id)
+          index.push(that.checkinInfo.courseType2Id)
+          index.push(that.checkinInfo.courseType3Id)
+          index.push(that.checkinInfo.courseType4Id)
+          index.push(that.checkinInfo.courseType5Id)
+          var sindex = 0
+          for (let i = 0; i < 8; i++) {
+            for (let j = 0; j < res.length; j++) {
+              if (index.indexOf(res[j].value)>=0) {
+                if(that.subjects[i].name == res[j].label){ 
+                this.setData({
+                  ['subjects['+i+'.].checked']: true,
+                  ['subjectChoose['+sindex+']']: i
+                })
+                sindex++
+                break;
+                }
               }
             }
           }
-        }
+        } 
+      }else{
+        setTimeout(() => {
+          wx.showToast({
+            title: '请刷新页面！',
+            icon: "none",
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 3000)
+        }, 0);
       }
     })
   },
@@ -542,8 +583,8 @@ Page({
   onLoad: function (options) {
     let login = wx.getStorageSync('loginInfo').authenticated
     if(login){
-      this._getAllSubject();
       this._getTeacherInfo();
+      this._getAllSubject();
       this.getInfoCallback = res => {
         if (res.code == 200){
           switch(res.data.education) {

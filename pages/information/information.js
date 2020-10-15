@@ -2,7 +2,7 @@ import {
   infoIn,getStuInfo
 } from '../../network/information'
 import {
-  getPhonecode, updatePassWord
+  updatePwd
 } from '../../network/phonecode'
 Page({
 
@@ -22,7 +22,7 @@ Page({
     flag:false,
     getstuinfo:"",
     picker: ['学龄前', '一年级', '二年级','三年级','四年级','五年级','六年级','初一','初二','初三','高一','高二','高三'],
-    code: '',
+    oldpsword: '',
     newpsword: ''
   },
 
@@ -83,48 +83,20 @@ Page({
     });
   },
 
-  inputcode(e){
+  oldpsword(e){
     this.setData({
-      code: e.detail.value
+      oldpsword: e.detail.value
     });
   },
 
-  getcode(){
-    let data={
-      phone: wx.getStorageSync('loginInfo').phone
-    }
-    getPhonecode(data).then(res => {
-      console.log(res)
-      if(res.code==200){
-        setTimeout(() => {
-          wx.showToast({
-            title: '验证码发送成功！',
-          });
-          setTimeout(() => {
-            wx.hideToast();
-          }, 1500)
-        }, 0);
-      }else{
-        setTimeout(() => {
-          wx.showToast({
-            title: '验证码发送失败！',
-            icon: 'none'
-          });
-          setTimeout(() => {
-            wx.hideToast();
-          }, 1500)
-        }, 0);
-      }
-    })
-  },
-
+  
   updatepsword(){
     let data = {
         newPwd : this.data.newpsword,
-        userInfo : wx.getStorageSync('loginInfo').userid,
-        verifyCod : this.data.code
+        userid : wx.getStorageSync('loginInfo').userid,
+        oldPwd: this.data.oldpsword
     }
-    updatePassWord(data).then(res => {
+    updatePwd(data).then(res => {
       console.log(res)
       if(res.code==200){
         setTimeout(() => {
@@ -138,7 +110,7 @@ Page({
       }else{
         setTimeout(() => {
           wx.showToast({
-            title: '密码修改失败！',
+            title: res.msg,
             icon: 'none'
           });
           setTimeout(() => {

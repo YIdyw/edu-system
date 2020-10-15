@@ -10,7 +10,7 @@
   <view class="flex">
     <view class="flex-sub padding text-right">昵称：</view>
     <view wx:if="{{!flag}}" class="flex-treble padding">{{userInfo.nickname}}</view>
-    <view wx:else class="flex-treble padding solid-bottom"><input value="{{userInfo.nickname}}" bindinput="nicknameModify"></input></view>
+    <view wx:else class="flex-treble padding solid-bottom"><input value="{{userInfo.nickname}}" maxlength="30" bindinput="nicknameModify"></input></view>
   </view>
   <view class="flex">
     <view class="flex-sub padding text-right">性别：</view>
@@ -19,7 +19,7 @@
   <view class="flex">
     <view class="flex-sub padding text-right">邮箱：</view>
     <view wx:if="{{!flag}}" class="flex-treble padding">{{userInfo.mail}}</view>
-    <view wx:else class="flex-treble padding solid-bottom"><input value="{{userInfo.mail}}" bindinput="mailModify"></input></view>
+    <view wx:else class="flex-treble padding solid-bottom"><input value="{{userInfo.mail}}" maxlength="30" bindinput="mailModify"></input></view>
   </view>
   <view class="flex">
     <view class="flex-sub padding text-right">生日：</view>
@@ -31,13 +31,12 @@
   </view>
   <view wx:if="{{isupdatepsword}}" class="padding bg-grey">
     <view class="flex">
-      <view class="title">新密码：</view>
-      <input placeholder="请输入新密码" bindtap="newpsword"></input>
+      <view class="title">旧密码：</view>
+      <input placeholder="请输入旧密码" type="password" maxlength="12" bindinput="oldpsword"></input>
     </view>
     <view class="flex">
-	    <view class="title">验证码：</view>
-	    <input placeholder="请输入验证码" bindinput="inputcode"></input>
-	    <button class="cu-btn bg-green shadow" bindtap="getcode">获取验证码</button>
+	    <view class="title">新密码：</view>
+	    <input placeholder="新密码不超过12位" type="password" maxlength="12" bindinput="newpsword"></input>
     </view>
     <button bindtap="updatepsword" class="basis-xl cu-btn block line-pink lg">点击修改密码</button>
   </view>

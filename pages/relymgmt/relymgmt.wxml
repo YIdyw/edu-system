@@ -8,18 +8,40 @@
 <view class="padding bg-white" wx:if="{{!disabled && !isRely}}">
   <view class="padding flex flex-direction">
     <button class="cu-btn bg-olive lg shadow" bindtap="chooseRely">确认挂靠</button>
+
+    <view class="cu-bar bg-white solid-bottom">
+      <view class="action">
+        <text class="cuIcon-title text-olive"></text>您当前尚未挂靠机构
+      </view>
+    </view>
+
   </view>
 </view>
-<view class="padding bg-white" wx:elif="{{disabled && !isRely}}">
+<view class="padding bg-white" wx:elif="{{(disabled && !isRely)||(!disabled && isRely)}}">
   <view class="padding flex flex-direction">
     <button class="cu-btn bg-olive lg shadow" bindtap="relyReselect">重新选择</button>
+
+    <view class="cu-bar bg-white solid-bottom">
+      <view class="action">
+        <text class="cuIcon-title text-olive"></text>您已申请挂靠一个机构
+      </view>
+    </view>
+
   </view>
 </view>
 <view class="padding bg-white" wx:elif="{{disabled && isRely}}">
   <view class="padding flex flex-direction">
     <button class="cu-btn bg-olive lg shadow" bindtap="removeRely">取消挂靠</button>
+
+    <view class="cu-bar bg-white solid-bottom">
+      <view class="action">
+        <text class="cuIcon-title text-olive"></text>您已成功完成挂靠操作
+      </view>
+    </view>
+
   </view>
 </view>
+
 <view class="cu-bar bg-white solid-bottom">
   <view class="action">
     <text class="cuIcon-title text-olive"></text>您所选择的挂靠机构为：{{orgmsg[idx].name}}

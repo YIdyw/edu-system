@@ -3,7 +3,7 @@
 <view class="cu-form-group margin-top">
 	<view class="text-red">*</view>
   <view class="title">用户名</view>
-	<input placeholder="请输入用户名" type="text" maxlength="20" bindinput="useraccount"></input>
+	<input placeholder="请输入用户名" type="text" maxlength="30" bindinput="useraccount"></input>
 </view>
 
 <view class="cu-form-group">
@@ -21,19 +21,19 @@
 <view class="cu-form-group">
 	<view class="text-red">*</view>
 	<view class="title">昵称</view>
-	<input placeholder="请输入昵称" type="text" maxlength="20" bindinput="username"></input>
+	<input placeholder="请输入昵称" type="text" maxlength="30" bindinput="username"></input>
 </view>
 
 <view class="cu-form-group">
 	<view class="text-red">*</view>
 	<view class="title">邮箱</view>
-	<input placeholder="请输入邮箱" type="text" maxlength="20" bindinput="useremail"></input>
+	<input placeholder="请输入邮箱" type="text" maxlength="30" bindinput="useremail"></input>
 </view>
 
 <view class="cu-form-group">
 	<view class="text-red">*</view>
 	<view class="title">手机号码</view>
-	<input placeholder="请输入手机号" type="number" maxlength="13" bindinput="userphone"></input>
+	<input placeholder="请输入手机号" type="number" maxlength="11" bindinput="userphone"></input>
 	<view class="cu-capsule radius">
 		<view class="cu-tag bg-blue">
 			+86

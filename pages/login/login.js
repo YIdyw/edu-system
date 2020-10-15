@@ -48,36 +48,48 @@ Page({
     let data={
       phone: this.data.phone
     }
-    getPhonecode(data).then(res => {
-      console.log(res)
-      if(res.code==200){
+    if(!(/^1[3-9]\d{9}$/.test(this.data.phone))){
+      setTimeout(() => {
+        wx.showToast({
+          title: '手机号格式错误！',
+          icon: 'none'
+        });
         setTimeout(() => {
-          wx.showToast({
-            title: '验证码发送成功！',
-          });
+          wx.hideToast();
+        }, 1500)
+      }, 0);
+    } else {
+      getPhonecode(data).then(res => {
+        console.log(res)
+        if(res.code==200){
           setTimeout(() => {
-            wx.hideToast();
-          }, 1500)
-        }, 0);
-      }else{
-        setTimeout(() => {
-          wx.showToast({
-            title: '验证码发送失败！',
-            icon: 'none'
-          });
+            wx.showToast({
+              title: '验证码发送成功！',
+            });
+            setTimeout(() => {
+              wx.hideToast();
+            }, 1500)
+          }, 0);
+        }else{
           setTimeout(() => {
-            wx.hideToast();
-          }, 1500)
-        }, 0);
-      }
-    })
+            wx.showToast({
+              title: '验证码发送失败！',
+              icon: 'none'
+            });
+            setTimeout(() => {
+              wx.hideToast();
+            }, 1500)
+          }, 0);
+        }
+      })
+    }
   },
 
   orgConfirm(){
     let data = {
         newPwd : this.data.newpsword,
-        verifyCod : this.data.code,
-        phone : this.data.phone
+        verifyCode : this.data.code,
+        userInfo : this.data.phone
     }
     updatePassWord(data).then(res => {
       console.log(res)
@@ -90,6 +102,9 @@ Page({
             wx.hideToast();
           }, 1500)
         }, 0);
+        this.setData({
+          modalShow: false
+        })
       }else{
         setTimeout(() => {
           wx.showToast({
@@ -100,6 +115,9 @@ Page({
             wx.hideToast();
           }, 1500)
         }, 0);
+        this.setData({
+          modalShow: false
+        })
       }
     })
   },
@@ -150,9 +168,10 @@ Page({
 
   _message(){
     wx.requestSubscribeMessage({
-      tmplIds: ['7BcxJPhRmjyDlIMHHqzXY3aDaICHOwdvVR6uHw8EvCk','d3qSH7KhMe9G56IHrLpnEbHNFmhebSHkSae7Z0oroyk'],
+      tmplIds: ["d3qSH7KhMe9G56IHrLpnEbHNFmhebSHkSae7Z0oroyk","7BcxJPhRmjyDlIMHHqzXY3aDaICHOwdvVR6uHw8EvCk"],
       success (res) {
         console.log("可以进行推送")
+        console.log(res)
        },
        fail (res) {
         console.log("code:",res.errCode)

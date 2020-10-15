@@ -2,7 +2,7 @@
 	<view class="cu-form-group">
 		<view class="text-red">*</view>
 		<view class="title">毕业院校</view>
-		<input value="{{checkinInfo.gradSchool?checkinInfo.gradSchool:'毕业院校'}}" bindinput="handleSchool"></input>
+		<input value="{{checkinInfo.gradSchool?checkinInfo.gradSchool:'毕业院校'}}" maxlength="30" bindinput="handleSchool"></input>
 	</view>
 	<view class="cu-form-group">
 		<view class="text-red">*</view>
@@ -14,7 +14,7 @@
 	<view class="cu-form-group">
 		<view class="text-red">*</view>
 		<view class="title">学历编号</view>
-		<input value="{{checkinInfo.gradCertId?checkinInfo.gradCertId:'学历编号'}}" type="number" bindinput="handleEduNum"></input>
+		<input value="{{checkinInfo.gradCertId?checkinInfo.gradCertId:'学历编号'}}" maxlength="30" type="number" bindinput="handleEduNum"></input>
 	</view>
 	<view class="cu-form-group">
 		<view class="text-red">*</view>
@@ -40,7 +40,7 @@
 	</view>
 	<view class="cu-form-group">
 		<view class="title">学位编号</view>
-		<input value="{{checkinInfo.degreeCertId?checkinInfo.degreeCertId:'学位编号'}}"  type="number" bindinput="handleDegNum"></input>
+		<input value="{{checkinInfo.degreeCertId?checkinInfo.degreeCertId:'学位编号'}}" maxlength="30"  type="number" bindinput="handleDegNum"></input>
 	</view>
 	<view class="cu-form-group">
 		<view class="title">学位证书照片</view>
@@ -59,15 +59,15 @@
 	</view>
   <view class="cu-form-group">
 		<view class="title">培训经历数目</view>
-		<input value="{{checkinInfo.trainNum!=0?checkinInfo.trainNum:''}}" type="number" bindinput="handleTraining"></input>
+		<input value="{{checkinInfo.trainNum!=0?checkinInfo.trainNum:''}}" maxlength="2" type="number" bindinput="handleTraining"></input>
 	</view>
 	<view class="cu-form-group">
 		<view class="title">荣誉获奖数目</view>
-		<input value="{{checkinInfo.awardsNum!=0?checkinInfo.awardsNum:''}}" type="number" bindinput="handleAwards"></input>
+		<input value="{{checkinInfo.awardsNum!=0?checkinInfo.awardsNum:''}}" maxlength="2" type="number" bindinput="handleAwards"></input>
 	</view>
 	<view class="cu-form-group">
 		<view class="title">工作经历数目</view>
-		<input value="{{checkinInfo.workNum!=0?checkinInfo.workNum:''}}" type="number" bindinput="handleWorks"></input>
+		<input value="{{checkinInfo.workNum!=0?checkinInfo.workNum:''}}" maxlength="2" type="number" bindinput="handleWorks"></input>
 	</view>
 	<view class="cu-form-group">
 		<view class="title">个人主页</view>
@@ -129,7 +129,7 @@
 	</view>
 	<view class="cu-form-group solid-bottom">
 		<view class="title">个人简介</view>
-		<textarea value="{{checkinInfo.briefIntro?checkinInfo.briefIntro:''}}" bindinput="handleBrief" maxlength="60"></textarea>
+		<input value="{{checkinInfo.briefIntro?checkinInfo.briefIntro:''}}" bindinput="handleBrief"></input>
 	</view>
 	<view class="padding flex flex-direction">
 		<button class="cu-btn bg-olive shadow" bindtap="checkin">点击登记</button>
@@ -139,7 +139,7 @@
 	<view class="cu-form-group">
 		<view class="text-red">*</view>
 		<view class="title">毕业院校</view>
-		<input placeholder="{{checkinInfo.gradSchool}}" disabled></input>
+		<input placeholder="{{checkinInfo.gradSchool}}" maxlength="30" disabled></input>
 	</view>
 	<view class="cu-form-group">
 		<view class="text-red">*</view>
@@ -149,7 +149,7 @@
 	<view class="cu-form-group">
 		<view class="text-red">*</view>
 		<view class="title">学历编号</view>
-		<input placeholder="{{checkinInfo.gradCertId}}" disabled></input>
+		<input placeholder="{{checkinInfo.gradCertId}}" maxlength="30" disabled></input>
 	</view>
 	<view class="cu-form-group">
 		<view class="text-red">*</view>
@@ -173,7 +173,7 @@
 	</view>
 	<view class="cu-form-group">
 		<view class="title">学位编号</view>
-		<input placeholder="{{checkinInfo.degreeCertId?checkinInfo.degreeCertId:'待完善'}}" disabled></input>
+		<input placeholder="{{checkinInfo.degreeCertId?checkinInfo.degreeCertId:'待完善'}}" maxlength="30" disabled></input>
 	</view>
 	<view class="cu-form-group">
 		<view class="title">学位证书照片</view>
@@ -192,15 +192,15 @@
 	</view>
   <view class="cu-form-group">
 		<view class="title">培训经历数目</view>
-		<input placeholder="{{checkinInfo.trainNum}}" disabled></input>
+		<input placeholder="{{checkinInfo.trainNum}}" type="number" maxlength="2" disabled></input>
 	</view>
 	<view class="cu-form-group">
 		<view class="title">荣誉获奖数目</view>
-		<input placeholder="{{checkinInfo.awardsNum}}" disabled></input>
+		<input placeholder="{{checkinInfo.awardsNum}}" type="number" maxlength="2" disabled></input>
 	</view>
 	<view class="cu-form-group">
 		<view class="title">工作经历数目</view>
-		<input placeholder="{{checkinInfo.workNum}}" dsiabled></input>
+		<input placeholder="{{checkinInfo.workNum}}" type="number" maxlength="2" dsiabled></input>
 	</view>
 	<view class="cu-form-group">
 		<view class="title">个人主页</view>

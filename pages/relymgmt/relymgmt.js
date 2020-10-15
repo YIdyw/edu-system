@@ -78,6 +78,7 @@ Page({
   /**获取全部机构信息 */
   _getAllOrgazition() {
       getAllOrganization().then(res => {
+        console.log("机构：", res)
         if(res.code == 200) {
           if(this._getcallback){
             this._getcallback(res)
@@ -123,9 +124,10 @@ Page({
       userid : wx.getStorageSync('loginInfo').userid
     }
     relyPorcess(data).then((res)=>{
+      console.log("进度：", res)
       if(res.code==200){
         let orgId = res.data.orgId
-        if(res.data.checked==2){
+        if(res.data.checked==1){
           this.setData({
             isRely: true
           })

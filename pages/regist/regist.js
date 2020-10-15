@@ -123,13 +123,9 @@ Page({
     }
     checkCode(data).then(res => {
       if(res.code==200){
-        this.setData({
-          count:true
-        })
-      }else{
-        this.setData({
-          count:false
-        })
+        if(this._getcallback){
+          this._getcallback(true)
+        }
       }
     })
   },
@@ -214,20 +210,22 @@ Page({
       }, 0);
     }else{
       that._checkCode();
-      if(this.data.count||true){
-        that._registInfo();
-      }else{
-        setTimeout(() => {
-          wx.showToast({
-            title: '验证码错误！',
-            icon: 'none'
-          });
+      this._getcallback = res => {
+        console.log(res)
+        if(res){
+          that._registInfo();
+        } else{
           setTimeout(() => {
-            wx.hideToast();
-          }, 1500)
-        }, 0);
-      }
-      
+            wx.showToast({
+              title: '验证码错误！',
+              icon: 'none'
+            });
+            setTimeout(() => {
+              wx.hideToast();
+            }, 1500)
+          }, 0);
+        }
+      } 
     }
   },
   _registInfo() {
@@ -248,7 +246,6 @@ Page({
       wx.setStorageSync('registInfo', res.data)
       console.log(res)
      // if(that.data.count==true)
-      if(that.data.code=="123456"){
         if(res.code==200){
           wx.navigateBack({
             delta: 1,
@@ -284,17 +281,6 @@ Page({
             }, 1500)
           }, 0);
         }
-      }else{
-        setTimeout(() => {
-          wx.showToast({
-            title: '验证手机失败！',
-            icon: 'none'
-          });
-          setTimeout(() => {
-            wx.hideToast();
-          }, 1500)
-        }, 0);
-      }
     })
   },
   /**

@@ -2,7 +2,7 @@ import {
   userAuthed
 } from '../../network/authID'
 import {
-  getPhonecode, updatePassWord
+  updatePwd
 } from '../../network/phonecode'
 Page({
   data: {
@@ -12,7 +12,7 @@ Page({
     flag: false,
     isupdatepsword: false,
     newpsword: '',
-    code: ''
+    oldpsword: ''
   },
   
   gotorgd:function(e){
@@ -42,49 +42,21 @@ Page({
       newpsword: e.detail.value
     });
   },
-  inputcode(e){
+
+  oldpsword(e){
     this.setData({
-      code: e.detail.value
+      oldpsword: e.detail.value
     });
   },
 
-  getcode(){
-    
-    let data={
-      phone: wx.getStorageSync('loginInfo').phone
-    }
-    getPhonecode(data).then(res => {
-      console.log(res)
-      if(res.code==200){
-        setTimeout(() => {
-          wx.showToast({
-            title: '验证码发送成功！',
-          });
-          setTimeout(() => {
-            wx.hideToast();
-          }, 1500)
-        }, 0);
-      }else{
-        setTimeout(() => {
-          wx.showToast({
-            title: '验证码发送失败！',
-            icon: 'none'
-          });
-          setTimeout(() => {
-            wx.hideToast();
-          }, 1500)
-        }, 0);
-      }
-    })
-  },
-
+  
   updatepsword(){
     let data = {
         newPwd : this.data.newpsword,
-        userInfo : wx.getStorageSync('loginInfo').userid,
-        verifyCod : this.data.code
+        userid : wx.getStorageSync('loginInfo').userid,
+        oldPwd: this.data.oldpsword
     }
-    updatePassWord(data).then(res => {
+    updatePwd(data).then(res => {
       console.log(res)
       if(res.code==200){
         setTimeout(() => {
@@ -108,6 +80,7 @@ Page({
       }
     })
   },
+
   _userAuthed(){
     let that=this;
     let data={

@@ -28,8 +28,8 @@ export function updatePassWord(data) {
 //根据旧密码修改密码
 export function updatePwd(data) {
   return request({
-    url: '/user/findPwdBySms',
-    method: 'POST',
+    url: '/user/updatePwd',
+    method: 'PUT',
     data: data
   })
 }
