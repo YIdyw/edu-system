@@ -122,7 +122,6 @@ Page({
       verifyCode:that.data.code
     }
     checkCode(data).then(res => {
-      console.log(res)
       if(res.code==200){
         this.setData({
           count:true
@@ -215,7 +214,7 @@ Page({
       }, 0);
     }else{
       that._checkCode();
-      if(this.data.count){
+      if(this.data.count||true){
         that._registInfo();
       }else{
         setTimeout(() => {

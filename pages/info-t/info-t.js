@@ -402,6 +402,15 @@ Page({
     if(this.data.updateflag){
       updateTeacherInfo(data).then((res) => {
         console.log('更新数据')
+        console.log(res)
+        setTimeout(() => {
+          wx.showLoading({
+            title: '教师资料上传中',
+          });
+          setTimeout(() => {
+            wx.hideLoading();
+          }, 1500)
+        }, 0);
         if (res.code == 200) {
           this.setData({
             flag: true,
