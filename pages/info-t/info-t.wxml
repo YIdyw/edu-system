@@ -63,7 +63,7 @@
 	</view>
 	<view class="cu-form-group">
 		<view class="title">荣誉获奖数目</view>
-		<input value="{{checkinInfo.awardsNum!=0?checkinInfo.awardsNum:''}}" type="number" bindinput="handleTraining"></input>
+		<input value="{{checkinInfo.awardsNum!=0?checkinInfo.awardsNum:''}}" type="number" bindinput="handleAwards"></input>
 	</view>
 	<view class="cu-form-group">
 		<view class="title">工作经历数目</view>

@@ -76,7 +76,7 @@ Page({
   handleAwards(e){
     this.setData({
       awards: e.detail.value
-    });
+    })
   },
   handleWorks(e){
     this.setData({
@@ -247,11 +247,18 @@ Page({
   },
   checkin(){
     let that = this.data
+    console.log(this.data)
     if(this.data.checkinInfo){
-      this.setData({
-        school: this.data.checkinInfo.gradSchool,
-        eduNum: this.data.checkinInfo.gradCertId
-      })
+      if(this.data.school==''){
+        this.setData({
+          school: this.data.checkinInfo.gradSchool,
+       })
+      }
+      if(this.data.eduNum==''){
+        this.setData({
+          eduNum: this.data.checkinInfo.gradCertId
+        })
+      }
     }
     
     if(that.school=="" || that.eduIdx==0 || that.eduNum==""|| that.eduImg=="" || that.subjectChoose.length == 0){
@@ -374,9 +381,49 @@ Page({
         }
       }
     }
+
+    if(this.data.trainings==0){
+      this.setData({
+        trainings: this.data.checkinInfo.trainNum,
+     })
+    }
+    if(this.data.awards==0){
+      this.setData({
+        awards: this.data.checkinInfo.awardsNum
+      })
+    }
+    if(this.data.works==0){
+      this.setData({
+        works: this.data.checkinInfo.workNum,
+     })
+    }
+    if(this.data.privWeibo==''){
+      this.setData({
+        privWeibo: this.data.checkinInfo.weibo
+      })
+    }
+    if(this.data.privHome==''){
+      this.setData({
+        privHome: this.data.checkinInfo.homepage
+      })
+    }
+    if(this.data.briefInfo==''){
+      this.setData({
+        briefInfo: this.data.checkinInfo.briefIntro
+      })
+    }
+    if(this.data.degNum==''){
+      this.setData({
+        briefInfo: this.data.checkinInfo.degNum
+      })
+    }
     
+
+
+
     let data = {
       userid: wx.getStorageSync('loginInfo').userid,
+      degNum: that.degNum,
       gradSchool: that.school,
       education: that.educations[that.eduIdx],
       gradCertPhoto: that.eduImgId,
@@ -399,6 +446,7 @@ Page({
       adverPhoto: that.pubImgId,
       briefIntro: that.briefInfo
     }
+    console.log(data)
     if(this.data.updateflag){
       updateTeacherInfo(data).then((res) => {
         console.log('更新数据')
@@ -470,6 +518,7 @@ Page({
         index.push(that.checkinInfo.courseType4Id)
         index.push(that.checkinInfo.courseType5Id)
         var sindex = 0
+        console.log(index)
         for (let i = 0; i < 6; i++) {
           for (let j = 0; j < that.courseCategory.length; j++) {
             if (index.indexOf(that.courseCategory[j].value)>=0) {
