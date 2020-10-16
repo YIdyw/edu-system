@@ -49,10 +49,11 @@ Page({
     var userid = wx.getStorageSync('loginInfo').userid
     tobepaidOrder(userid).then(res =>{
       if(res.code==200){
-        for(let i=0;i<res.data.orderItemVOList.length;i++){
-          if(orderid==res.data.orderItemVOList[i].orderId){
+        console.log(res.data)
+        for(let i=0;i<res.data.orderListVOS.length;i++){
+          if(orderid==res.data.orderListVOS[i].orderId){
             this.setData({
-              order: res.data.orderItemVOList[i]
+              order: res.data.orderListVOS[i]
             })
           }
         }

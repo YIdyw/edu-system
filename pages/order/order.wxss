@@ -101,7 +101,7 @@
   margin-left: 20rpx;
   }
    
-  .orderListDetails .productImg image {
+  .productImg .orderListDetails image {
   width: 100px;
   height: 90%;
   }
