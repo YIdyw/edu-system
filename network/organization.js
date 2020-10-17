@@ -4,7 +4,8 @@ import request from './request.js'
 export function getAllOrganization() {
   return request({
     url: '/organizations/all',
-    method: 'GET'
+    method: 'POST',
+    data: {}
   });
 }
 

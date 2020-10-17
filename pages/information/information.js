@@ -96,29 +96,41 @@ Page({
         userid : wx.getStorageSync('loginInfo').userid,
         oldPwd: this.data.oldpsword
     }
-    updatePwd(data).then(res => {
-      console.log(res)
-      if(res.code==200){
+    if(this.data.newpsword.length<6){
+      setTimeout(() => {
+        wx.showToast({
+          title: '密码少于6位！',
+        });
         setTimeout(() => {
-          wx.showToast({
-            title: '密码修改成功！',
-          });
+          wx.hideToast();
+        }, 1500)
+      }, 0);
+    }else{
+      updatePwd(data).then(res => {
+        console.log(res)
+        if(res.code==200){
           setTimeout(() => {
-            wx.hideToast();
-          }, 1500)
-        }, 0);
-      }else{
-        setTimeout(() => {
-          wx.showToast({
-            title: res.msg,
-            icon: 'none'
-          });
+            wx.showToast({
+              title: '密码修改成功！',
+            });
+            setTimeout(() => {
+              wx.hideToast();
+            }, 1500)
+          }, 0);
+        }else{
           setTimeout(() => {
-            wx.hideToast();
-          }, 1500)
-        }, 0);
-      }
-    })
+            wx.showToast({
+              title: res.msg,
+              icon: 'none'
+            });
+            setTimeout(() => {
+              wx.hideToast();
+            }, 1500)
+          }, 0);
+        }
+      })
+    }
+    
   },
 
   _infoIn(){

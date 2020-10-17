@@ -1,6 +1,9 @@
 import {
   getAllSubject, addPicture, putTeacherInfo, getTeacherInfo, updateTeacherInfo
 } from '../../network/checkin'
+import {
+  cancelTime
+} from '../../network/timeSelect'
 Page({
 
   /**
@@ -509,6 +512,9 @@ Page({
       putTeacherInfo(data).then((res) => {
         console.log('插入数据')
         if (res.code == 200) {
+          cancelTime(wx.getStorageSync('loginInfo').userid).then(res=>{
+            console.log(res)
+          })
           this.setData({
             flag: true,
             checkinInfo: data

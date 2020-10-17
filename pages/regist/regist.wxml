@@ -9,7 +9,7 @@
 <view class="cu-form-group">
 	<view class="text-red">*</view>
 	<view class="title">密码</view>
-	<input placeholder="请输入密码（6~12位）" type="password" maxlength="12" bindinput="userpassword" maxlength="12"></input>
+	<input placeholder="请输入密码（6~12位）" type="password" maxlength="12" bindinput="userpassword"></input>
 </view>
 
 <view class="cu-form-group">

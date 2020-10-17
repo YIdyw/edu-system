@@ -91,35 +91,47 @@ Page({
         verifyCode : this.data.code,
         userInfo : this.data.phone
     }
-    updatePassWord(data).then(res => {
-      console.log(res)
-      if(res.code==200){
+    if(this.data.newpsword.length<6){
+      setTimeout(() => {
+        wx.showToast({
+          title: '密码少于6位！',
+        });
         setTimeout(() => {
-          wx.showToast({
-            title: '密码修改成功！',
-          });
+          wx.hideToast();
+        }, 1500)
+      }, 0);
+    }else{
+      updatePassWord(data).then(res => {
+        console.log(res)
+        if(res.code==200){
           setTimeout(() => {
-            wx.hideToast();
-          }, 1500)
-        }, 0);
-        this.setData({
-          modalShow: false
-        })
-      }else{
-        setTimeout(() => {
-          wx.showToast({
-            title: '密码修改失败！',
-            icon: 'none'
-          });
+            wx.showToast({
+              title: '密码修改成功！',
+            });
+            setTimeout(() => {
+              wx.hideToast();
+            }, 1500)
+          }, 0);
+          this.setData({
+            modalShow: false
+          })
+        }else{
           setTimeout(() => {
-            wx.hideToast();
-          }, 1500)
-        }, 0);
-        this.setData({
-          modalShow: false
-        })
-      }
-    })
+            wx.showToast({
+              title: '密码修改失败！',
+              icon: 'none'
+            });
+            setTimeout(() => {
+              wx.hideToast();
+            }, 1500)
+          }, 0);
+          this.setData({
+            modalShow: false
+          })
+        }
+      })
+    }
+    
   },
 
   hideModal(e) {

@@ -2,7 +2,7 @@
 	<view class="cu-form-group">
 		<view class="text-red">*</view>
 		<view class="title">毕业院校</view>
-		<input value="{{checkinInfo.gradSchool?checkinInfo.gradSchool:'毕业院校'}}" maxlength="30" bindinput="handleSchool"></input>
+		<input placeholder="{{checkinInfo.gradSchool?checkinInfo.gradSchool:'毕业院校'}}" maxlength="30" bindinput="handleSchool"></input>
 	</view>
 	<view class="cu-form-group">
 		<view class="text-red">*</view>
@@ -14,7 +14,7 @@
 	<view class="cu-form-group">
 		<view class="text-red">*</view>
 		<view class="title">学历编号</view>
-		<input value="{{checkinInfo.gradCertId?checkinInfo.gradCertId:'学历编号'}}" maxlength="30" type="number" bindinput="handleEduNum"></input>
+		<input placeholder="{{checkinInfo.gradCertId?checkinInfo.gradCertId:'学历编号'}}" maxlength="30" type="number" bindinput="handleEduNum"></input>
 	</view>
 	<view class="cu-form-group">
 		<view class="text-red">*</view>
@@ -40,7 +40,7 @@
 	</view>
 	<view class="cu-form-group">
 		<view class="title">学位编号</view>
-		<input value="{{checkinInfo.degreeCertId?checkinInfo.degreeCertId:'学位编号'}}" maxlength="30"  type="number" bindinput="handleDegNum"></input>
+		<input placeholder="{{checkinInfo.degreeCertId?checkinInfo.degreeCertId:'学位编号'}}" maxlength="30"  type="number" bindinput="handleDegNum"></input>
 	</view>
 	<view class="cu-form-group">
 		<view class="title">学位证书照片</view>

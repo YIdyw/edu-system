@@ -10,6 +10,7 @@ Page({
     weixin:"",
     region: ['广东省', '广州市', '海珠区'],
     imgUrl: "",
+    isflag: false
   },
   userid (e) {
     this.setData({
@@ -207,15 +208,25 @@ Page({
           wx.hideToast();
         }, 1500)
       }, 0);
-    }else {
+    }else if(!this.data.isflag){
+      setTimeout(() => {
+        wx.showToast({
+          title: '请上传正确的身份证照片！',
+          icon: 'none'
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1500)
+      }, 0);
+    }else{
       that._addAuthUser();
-      wx.navigateBack({
-        delta: 1,
-      });
       setTimeout(() => {
         wx.showToast({
           title: '认证成功！',
         });
+        wx.redirectTo({
+          url: '../my-tch/my-tch',
+        })
         setTimeout(() => {
           wx.hideToast();
         }, 1500)
@@ -228,9 +239,13 @@ Page({
     let data = {
       data: wx.getFileSystemManager().readFileSync(that.data.imgUrl[0], "base64")
     }
+ 
     getAuthID(data).then(res => {
       if(res.code == 200){
         wx.setStorageSync('photoId', res.data.photoId)
+        this.setData({
+          isflag: true
+        })
         setTimeout(() => {
           wx.showToast({
             title: '身份信息正确！',

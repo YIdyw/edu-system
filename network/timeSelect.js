@@ -24,11 +24,20 @@ export function addTime(data) {
     data: data
   })
 } 
+
 //根据教师id更新空闲时间
 export function updateTime(data) {
   return request({
     url: '/teacher/update/freetime',
     method: 'PUT',
     data: data
+  })
+} 
+
+//根据教师id初始化空闲时间
+export function cancelTime(data) {
+  return request({
+    url: '/teacher/'+data+'/freeTime',
+    method: 'POST',
   })
 } 

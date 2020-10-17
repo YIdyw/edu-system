@@ -84,7 +84,7 @@ Page({
             this._getcallback(res)
           }
           this.setData({
-            orgmsg: res.data,
+            orgmsg: res.data.organizationVOSList,
           });
         }
       });
@@ -137,7 +137,7 @@ Page({
           orgId: res.data.orgId
         })
         this._getcallback = res => {
-          let org = res.data
+          let org = res.data.organizationVOSList
           for(let i = 0; i < org.length; i++){
             if(orgId == org[i].orgId){
               this.setData({
