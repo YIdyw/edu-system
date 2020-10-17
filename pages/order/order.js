@@ -11,6 +11,7 @@ Page({
     currtab: 0,
     paidOrder: '',
     tobepaidOrder: '',
+    mercourse:[],
     cancelOrder: '',
     item: '',
     swipertab: [{ name: '已完成', index: 0 }, { name: '待付款', index: 1 }, { name: '已取消', index: 2 }],
@@ -23,9 +24,24 @@ Page({
       if(res.code==200){
         console.log("查询已完成订单成功！",res.data)
         this.setData({
-          paidOrder: res.data.orderItemVOList
+          paidOrder: res.data.orderListVOS
         })
       }
+    })
+  },
+  //进入订单详情页面
+  settledetail(e) {
+    var index = e.currentTarget.dataset.menuindex
+    console.log(index)
+    wx.redirectTo({
+      url: '../settledetail/settledetail?orderid='+this.data.cancelOrder[index].orderId,
+    })
+  },
+  settledetail2(e) {
+    var index = e.currentTarget.dataset.menuindex
+    console.log(index)
+    wx.redirectTo({
+      url: '../settledetail/settledetail?orderid='+this.data.paidOrder[index].orderId,
     })
   },
   //进入订单结算页面
@@ -43,7 +59,7 @@ Page({
         if(res.code==200){
           console.log("查询未支付订单成功！",res.data)
           this.setData({
-            tobepaidOrder: res.data.orderItemVOList,
+            tobepaidOrder: res.data.orderListVOS,
           })
         }
       })
@@ -55,7 +71,7 @@ Page({
       if(res.code==200){
         console.log("查询已取消订单成功！",res.data)
         this.setData({
-          cancelOrder: res.data.orderItemVOList
+          cancelOrder: res.data.orderListVOS
         })
       }
     })

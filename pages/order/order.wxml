@@ -11,7 +11,7 @@
 <!-- 完成 -->
   <swiper-item>
     <scroll-view class="hot-box" scroll-y="true">
-      <block wx:if="{{!paidOrder}}">
+      <block wx:if="{{paidOrder.length==0}}">
         <view class="content" >
           <view style="margin-top:100px;width:100%;">
             <view style='font-size:15px;'>未有已完成订单!</view>
@@ -19,14 +19,10 @@
         </view>
       </block>
       <block wx:else>
-      <view class="orderDetails" wx:for="{{paidOrder}}" wx:key="index">
-        <view class="orderListTitle">
-          <text class="orderStatus">商品编号：{{item.merId}}</text>
-        </view>
+    <view class="orderDetails" wx:for="{{paidOrder}}" wx:key="index" data-menuindex='{{index}}' bindtap="settledetail2" >
+      <view class="productImg"  >
         <view class="orderListDetails">
-          <navigator url="../courseinfo/courseinfo?index={{item.orderItem.object.courseId}}&orgid={{item.orderItem.object.orgId}}" class="productImg">
-            <image src="http://139.129.101.91/offline-education-system/picture/{{item.orderItem.object.adverPhoto}}" background-size="cover"></image>
-          </navigator>
+          <image src="http://139.129.101.91/offline-education-system/picture/{{item.orderItemVOList[0].orderItem.object.adverPhoto}}" background-size="cover"></image>
         <view class="productInfo">
           <view class="productTitle">预定时间: {{item.orderTime}}</view>
             <text class="productPrice">订单编号：{{item.orderId}}</text>
@@ -34,9 +30,10 @@
         </view>
         <view class="productCount">
           <view>
-            <text>合计：￥{{item.orderPrice}}</text>
+            <text>合计：￥{{item.transaction}}</text>
           </view>
         </view>
+      </view>
       </view>
       </block>
     </scroll-view>
@@ -44,7 +41,7 @@
 <!-- 待付款 -->
   <swiper-item>
     <scroll-view class="hot-box" scroll-y="true">
-      <view wx:if="{{!tobepaidOrder}}">
+      <view wx:if="{{tobepaidOrder.length==0}}">
         <view class="content" >
           <view style="margin-top:100px;width:100%;">
             <view style='font-size:15px;'>未有待付款订单!</view>
@@ -53,11 +50,8 @@
       </view>
       <view wx:else>
       <view class="orderDetails" wx:for="{{tobepaidOrder}}" data-menuindex='{{index}}' wx:key="index" bindtap="settlement">
-        <view class="orderListTitle">
-          <text class="orderStatus">商品编号：{{item.merId}}</text>
-        </view>
         <view class="orderListDetails">
-          <image class="productImg" src="http://139.129.101.91/offline-education-system/picture/{{item.orderItem.object.adverPhoto}}" background-size="cover"></image>
+          <image class="productImg" src="http://139.129.101.91/offline-education-system/picture/{{item.orderItemVOList[0].orderItem.object.adverPhoto}}" background-size="cover"></image>
         <view class="productInfo">
           <view class="productTitle">预定时间: {{item.orderTime}}</view>
             <text class="productPrice">订单编号：{{item.orderId}}</text>
@@ -65,7 +59,7 @@
         </view>
         <view class="productCount">
           <view>
-            <text>合计：￥{{item.orderPrice}}</text>
+            <text>合计：￥{{item.transaction}}</text>
           </view>
         </view>
       </view>
@@ -75,7 +69,7 @@
 <!-- 取消 -->
   <swiper-item>
     <scroll-view class="hot-box" scroll-y="true">
-      <view wx:if="{{!cancelOrder}}">
+      <view wx:if="{{cancelOrder.length==0}}">
         <view class="content" >
           <view style="margin-top:100px;width:100%;">
             <view style='font-size:15px;'>未有已取消订单!</view>
@@ -83,14 +77,10 @@
         </view>
       </view>
       <view wx:else>
-      <view class="orderDetails" wx:for="{{cancelOrder}}" wx:key="index">
-        <view class="orderListTitle">
-          <text class="orderStatus">商品编号：{{item.merId}}</text>
-        </view>
+    <view class="orderDetails" wx:for="{{cancelOrder}}" wx:key="index"  data-menuindex='{{index}}' bindtap="settledetail">
+      <view class="productImg">
         <view class="orderListDetails">
-          <navigator url="../courseinfo/courseinfo?index={{item.orderItem.object.courseId}}&orgid={{item.orderItem.object.orgId}}" class="productImg">
-            <image src="http://139.129.101.91/offline-education-system/picture/{{item.orderItem.object.adverPhoto}}" background-size="cover"></image>
-          </navigator>
+          <image src="http://139.129.101.91/offline-education-system/picture/{{item.orderItemVOList[0].orderItem.object.adverPhoto}}" background-size="cover"></image>
         <view class="productInfo">
           <view class="productTitle">预定时间: {{item.orderTime}}</view>
             <text class="productPrice">订单编号：{{item.orderId}}</text>
@@ -98,9 +88,10 @@
         </view>
         <view class="productCount">
           <view>
-            <text>合计：￥{{item.orderPrice}}</text>
+            <text>合计：￥{{item.transaction}}</text>
           </view>
         </view>
+      </view>
       </view>
       </view>
     </scroll-view>

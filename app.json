@@ -30,7 +30,8 @@
     "pages/carts/carts",
     "pages/order/order",
     "pages/settlement/settlement",
-    "pages/freetime/freetime"
+    "pages/freetime/freetime",
+    "pages/settledetail/settledetail"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -8,6 +8,17 @@ export function getAllOrder(data){
   });
 }
 
+//根据orderid获取订单的详细信息
+export function getorderdetail(data){
+  return request({
+    url:'/order/',
+    method:'POST',
+    data:{
+      orderId:data
+    }
+  })
+}
+
 // 根据userid和订单id取消订单
 export function cancelOrder(data){
   return request({
@@ -21,21 +32,35 @@ export function cancelledOrder(data){
   return request({
     url: '/order/'+data+'/cancelled',
     method: 'GET',
+    url: '/order/vo',
+    method: 'POST',
+    data:{
+      orderState:0,
+      userId:data
+    }
   });
 }
 
 // 根据userid查询已支付的订单
 export function paidOrder(data){
   return request({
-    url: '/order/'+data+'/paid',
-    method: 'GET',
+    url: '/order/vo',
+    method: 'POST',
+    data:{
+      orderState:2,
+      userId:data
+    }
   });
 }
 
 // 根据userid查询未支付的订单
 export function tobepaidOrder(data){
   return request({
-    url: '/order/'+data+'/toBePaid',
-    method: 'GET',
+    url: '/order/vo',
+    method: 'POST',
+    data:{
+      orderState:1,
+      userId:data
+    }
   });
 }
