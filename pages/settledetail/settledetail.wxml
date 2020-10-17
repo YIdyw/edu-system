@@ -1,23 +1,20 @@
-     <view wx:for="{{order.orderItemVOList}}" wx:key="index">
-       <view class="orderListTitle">
+
+    <view class="orderDetails" wx:for="{{orderdetail}}" wx:key="index">
+      <view class="orderListTitle">
         <text class="orderStatus">商品编号：{{item.merId}}</text>
       </view>
       <view class="orderListDetails">
         <navigator url="../courseinfo/courseinfo?index={{item.orderItem.object.courseId}}&orgid={{item.orderItem.object.orgId}}" class="productImg">
-          <image wx:if='{{order}}' src="http://139.129.101.91/offline-education-system/picture/{{item.orderItem.object.adverPhoto}}" background-size="cover"></image>
+          <image src="http://139.129.101.91/offline-education-system/picture/{{item.orderItem.object.adverPhoto}}" background-size="cover"></image>
         </navigator>
       <view class="productInfo">
         <view class="productTitle">预定时间: {{item.orderTime}}</view>
           <text class="productPrice">订单编号：{{item.orderId}}</text>
-          <view class="productTitle">价格: {{item.orderPrice}}</view>
         </view>
-        
-      </view>
       </view>
       <view class="productCount">
         <view>
-          <text>折扣：￥{{order.totalDiscount}}</text>
-          <text>合计：￥{{order.transaction}}</text>
+          <text>价格：￥{{item.orderPrice}}</text>
         </view>
       </view>
-<button class="" bindtap="pay">支付</button>
+    </view>

@@ -19,14 +19,12 @@
         </view>
       </block>
       <block wx:else>
-      <view class="orderDetails" wx:for="{{paidOrder}}" wx:key="index">
-        <view class="orderListTitle">
-          <text class="orderStatus">商品编号：{{item.merId}}</text>
-        </view>
+      <view class="orderDetails" wx:for="{{paidOrder}}" wx:key="index" data-menuindex='{{index}}' bindtap="settledetail" >
+      <view class="productImg"  >
         <view class="orderListDetails">
-          <navigator url="../courseinfo/courseinfo?index={{item.orderItem.object.courseId}}&orgid={{item.orderItem.object.orgId}}" class="productImg">
-            <image src="http://139.129.101.91/offline-education-system/picture/{{item.orderItem.object.adverPhoto}}" background-size="cover"></image>
-          </navigator>
+          
+            <image src="http://139.129.101.91/offline-education-system/picture/{{item.orderItemVOList[0].orderItem.object.adverPhoto}}" background-size="cover"></image>
+          
         <view class="productInfo">
           <view class="productTitle">预定时间: {{item.orderTime}}</view>
             <text class="productPrice">订单编号：{{item.orderId}}</text>
@@ -34,8 +32,9 @@
         </view>
         <view class="productCount">
           <view>
-            <text>合计：￥{{item.orderPrice}}</text>
+            <text>合计：￥{{item.transaction}}</text>
           </view>
+        </view>
         </view>
       </view>
       </block>
@@ -53,11 +52,8 @@
       </view>
       <view wx:else>
       <view class="orderDetails" wx:for="{{tobepaidOrder}}" data-menuindex='{{index}}' wx:key="index" bindtap="settlement">
-        <view class="orderListTitle">
-          <text class="orderStatus">商品编号：{{item.merId}}</text>
-        </view>
         <view class="orderListDetails">
-          <image class="productImg" src="http://139.129.101.91/offline-education-system/picture/{{item.orderItem.object.adverPhoto}}" background-size="cover"></image>
+          <image class="productImg" src="http://139.129.101.91/offline-education-system/picture/{{item.orderItemVOList[0].orderItem.object.adverPhoto}}" background-size="cover"></image>
         <view class="productInfo">
           <view class="productTitle">预定时间: {{item.orderTime}}</view>
             <text class="productPrice">订单编号：{{item.orderId}}</text>
@@ -65,7 +61,7 @@
         </view>
         <view class="productCount">
           <view>
-            <text>合计：￥{{item.orderPrice}}</text>
+            <text>合计：￥{{item.transaction}}</text>
           </view>
         </view>
       </view>
@@ -83,14 +79,12 @@
         </view>
       </view>
       <view wx:else>
-      <view class="orderDetails" wx:for="{{cancelOrder}}" wx:key="index">
-        <view class="orderListTitle">
-          <text class="orderStatus">商品编号：{{item.merId}}</text>
-        </view>
+      <view class="orderDetails" wx:for="{{cancelOrder}}" wx:key="index"  data-menuindex='{{index}}' bindtap="settledetail">
+      <view class="productImg">
         <view class="orderListDetails">
-          <navigator url="../courseinfo/courseinfo?index={{item.orderItem.object.courseId}}&orgid={{item.orderItem.object.orgId}}" class="productImg">
-            <image src="http://139.129.101.91/offline-education-system/picture/{{item.orderItem.object.adverPhoto}}" background-size="cover"></image>
-          </navigator>
+          
+            <image src="http://139.129.101.91/offline-education-system/picture/{{item.orderItemVOList[0].orderItem.object.adverPhoto}}" background-size="cover"></image>
+          
         <view class="productInfo">
           <view class="productTitle">预定时间: {{item.orderTime}}</view>
             <text class="productPrice">订单编号：{{item.orderId}}</text>
@@ -98,9 +92,10 @@
         </view>
         <view class="productCount">
           <view>
-            <text>合计：￥{{item.orderPrice}}</text>
+            <text>合计：￥{{item.transaction}}</text>
           </view>
         </view>
+       </view>
       </view>
       </view>
     </scroll-view>
