@@ -29,10 +29,10 @@ Page({
       id:2,
       name: '个人中心'
     }, {
-      icon: 'noticefill',
+      icon: 'friendfill',
       color: 'olive',
       id:3,
-      name: '通知'
+      name: '增加权限'
     }, {
       icon: 'cascades',
       color: 'cyan',
@@ -316,21 +316,16 @@ Page({
         url: '../mancentral/mancentral',
       })
     }else if(that.data.isFaceChecked==3){
-      if(this.data.isflag){
-        wx.navigateTo({
-          url: '../notify/notify',
-        })
-      }else{
-        setTimeout(() => {
-          wx.showToast({
-            title: '请先实名认证、信息登记！',
-            icon: "none",
-          });
-          setTimeout(() => {
-            wx.hideToast();
-          }, 1500)
-        }, 0);
-      }
+      wx.showModal({
+        cancelColor: 'cancelColor',
+        content : "请选择是否需要增加学生权限（选课、购课...）",
+        title : "增加学生权限",
+        success(res){
+          if(res.confirm){
+            that.addStatus()
+          }
+        }
+      })
     }else if(that.data.isFaceChecked==4){
       if(this.data.isflag){
         wx.navigateTo({
@@ -354,6 +349,68 @@ Page({
       url: '../my/my'
     });
     wx.clearStorage();
+  },
+
+  addStatus() {
+    let l1 = wx.getStorageSync('loginInfo').role1
+    let l2 = wx.getStorageSync('loginInfo').role2
+    let l3 = wx.getStorageSync('loginInfo').role3
+    var flag = 0
+    if(l1 == 2 || l1 == 3){
+      flag = flag + 1
+    }
+    if(l2 == 2 || l2 == 3){
+      flag = flag + 1
+    }
+    if(l3 == 2 || l3 == 3){
+      flag = flag + 1
+    }
+    if(flag >= 2){
+      setTimeout(() => {
+        wx.showToast({
+          title: '您已有学生权限，请点击头像！',
+          icon: "none",
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 3000)
+      }, 0);
+    }else{
+      let data = {
+        role1 : 2,
+        role2 : 3,
+        userid: this.data.loginInfo.userid
+      }
+      updateInfo(data).then(res => {
+        console.log(res)
+        if(res.code == 200){
+          setTimeout(() => {
+            wx.showToast({
+              title: '增加学生权限成功！',
+            });
+            setTimeout(() => {
+              wx.hideToast();
+            }, 3000)
+          }, 0);
+        }else{
+          setTimeout(() => {
+            wx.showToast({
+              title: '增加学生权限失败！',
+              icon : 'none'
+            });
+            setTimeout(() => {
+              wx.hideToast();
+            }, 3000)
+          }, 0);
+        }
+      })
+      var logininfo = this.data.loginInfo
+      logininfo.role1 = 2
+      logininfo.role2 = 3
+      console.log(logininfo)
+      wx.setStorageSync('loginInfo', logininfo)
+    }
+    
   },
 
   update() {
