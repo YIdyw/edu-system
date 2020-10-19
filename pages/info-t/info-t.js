@@ -49,9 +49,22 @@ Page({
     checkinInfo:[]      // 登记过时读取信息
   },
   handleSchool(e){
-    this.setData({
-      school: e.detail.value
-    });
+    if(!(/^[\u2E80-\u9FFF]+$/.test(e.detail.value))){
+      setTimeout(() => {
+        wx.showToast({
+          title: '请输入正确的学校名称！',
+          icon: "none",
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 3000)
+      }, 0);
+    }else{
+      this.setData({
+        school: e.detail.value
+      });
+    }
+    
   },
   eduChange(e){
     this.setData({

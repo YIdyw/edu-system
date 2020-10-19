@@ -39,8 +39,7 @@ Page({
     let monthPlan = this.getMonthPlan(year, month, week, day);
     let sortPlan = this.sortMonthPlan(monthPlan);
     let data = {
-      // id: wx.getStorageSync('loginInfo').userid,
-      id: 46,
+      id: wx.getStorageSync('loginInfo').userid,
       limitTime: year + '-' + month,
       type: 'month',
       userType: 2
@@ -64,8 +63,7 @@ Page({
     let monthPlan = this.getMonthPlan(year, month, week, 1);
     let sortPlan = this.sortMonthPlan(monthPlan);
     let data = {
-      // id: wx.getStorageSync('loginInfo').userid,
-      id: 46,
+      id: wx.getStorageSync('loginInfo').userid,
       limitTime: year + '-' + month,
       type: 'month',
       userType: 2
@@ -264,8 +262,7 @@ Page({
       monthPlan: sortPlan
     });
     let data = {
-      // id: wx.getStorageSync('loginInfo').userid,
-      id: 46,
+      id: wx.getStorageSync('loginInfo').userid,
       limitTime: currentYear + '-' + currentMonth,
       type: 'month',
       userType: 2
