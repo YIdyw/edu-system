@@ -7,7 +7,10 @@ import {
 import {
   sign
 } from '../../network/signList'
-var app = getApp()
+import {
+  getStuInfo
+} from '../../network/information'
+
 Page({
   data: {
     current:0,
@@ -487,6 +490,19 @@ picture2(){
     }
     
   },
+
+  //获取用户的个人信息
+  _getStuInfo(){
+    let data={
+      userid:wx.getStorageSync('loginInfo').userid
+    }
+    getStuInfo(data).then(res=>{
+      if(res.code==200){  
+        wx.setStorageSync('getstuinfo', res.data)
+      }
+    });
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -494,7 +510,7 @@ picture2(){
     this.setData({
       current: "mine"
   });
-    //this.my_setting()
+    this._getStuInfo();
 
     let today = new Date();
     let currentYear = today.getFullYear();

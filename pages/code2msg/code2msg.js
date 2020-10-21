@@ -1,5 +1,5 @@
 import {
-  getOrgAllInfo,orgInter,listenClass
+  getOrgAllInfo,orgInter
 } from '../../network/orginout'
 import {
   getMyorgclass
@@ -15,7 +15,8 @@ Page({
     getorgallinfo:"",
     loginInfo:"",
     code: '',
-    index: ''
+    index: '',
+    flag: false //判断学生是否已经登记个人信息
   },
 
   
@@ -27,6 +28,12 @@ Page({
       show:JSON.parse(wx.getStorageSync('show2code')),
       loginInfo:wx.getStorageSync('loginInfo')
     })
+    if(wx.getStorageSync('getstuinfo')){
+      this.setData({
+        flag:true
+      })
+    }
+    this.showmsg()
   },
 
   _getOrgAllInfo(){
@@ -92,46 +99,8 @@ Page({
       }
     });
   },
-  _listenClass(){
-    let that=this;
-    var idxx=that.data.idxx;
-    let getclass=wx.getStorageSync('getlistenclass')
-    let data={      
-      courseId:getclass[idxx].courseId,
-      studentId:that.data.loginInfo.userid,
-      trialTime:that.data.dateinput
-    }
-    console.log(data)
-    listenClass(data).then(res=>{
-      console.log(res)
-      if(res.code==200){   
-        setTimeout(() => {
-          wx.showToast({
-            title: '试听成功！',
-            icon: "success",
-          });
-          setTimeout(() => {
-            wx.hideToast();
-          }, 1000)
-        }, 0);     
-    }else{
-      setTimeout(() => {
-        wx.showToast({
-          title: '现在无法试听课程！',
-          icon: "none",
-        });
-        setTimeout(() => {
-          wx.hideToast();
-        }, 1000)
-      }, 0);
-    } 
-    });
-  },
-  showmsg(e){
+  showmsg(){
     var that=this;
-    this.setData({
-      modalName2: e.currentTarget.dataset.target
-    })
     that._getOrgAllInfo()
   },
   //机构报名*************************************************************
@@ -139,15 +108,15 @@ Page({
     
     
     let logininfo = wx.getStorageSync('loginInfo')
-    if(!logininfo.userid){
+    if(!this.data.flag){
       setTimeout(() => {
         wx.showToast({
-          title: '还未登陆！',
+          title: '请先登记个人信息！',
           icon: "none",
         });
         setTimeout(() => {
           wx.hideToast();
-        }, 1000)
+        }, 3000)
       }, 0);
     } else{
       this._orgInter(logininfo.userid);
@@ -155,43 +124,31 @@ Page({
 
   },
 
-  trylisten(e){
-    var that = this
-    this.setData({
-      modalName: e.currentTarget.dataset.target
-    })
-    that._getMyorgclass()
+  watchAllClass(e){
+    if(!this.data.flag){
+      setTimeout(() => {
+        wx.showToast({
+          title: '请先登记个人信息！',
+          icon: "none",
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 3000)
+      }, 0);
+    }else{
+      var that = this
+      this.setData({
+        modalName: e.currentTarget.dataset.target
+      })
+      that._getMyorgclass()
+    }
   },
   cancel(e) {
     this.setData({
       modalName: null
     })
   },
-  chooseLsclass(e){
-    var that=this;
-    that.data.idxx=e.target.id;
-    this.setData({
-      index: e.target.id
-    })
-  },
-  dateInput(e){
-    this.setData({
-      dateinput: e.detail.value
-    })
-  },
-  chooseLsclass1(e){
-    console.log(e)
-    var that=this;
-    that.data.idxx=e.target.id;
-  },
-  trylistenIn(e){
-    //var that=this;
-    //that._listenClass()
-    var index = this.data.index
-    wx.navigateTo({
-      url: '../courseinfo/courseinfo?index='+this.data.getlistenclass[index].courseId+'&orgid='+this.data.show.orgId,
-    })
-  },
+  
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

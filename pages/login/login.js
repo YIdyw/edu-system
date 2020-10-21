@@ -180,7 +180,7 @@ Page({
 
   _message(){
     wx.requestSubscribeMessage({
-      tmplIds: ["d3qSH7KhMe9G56IHrLpnEbHNFmhebSHkSae7Z0oroyk","7BcxJPhRmjyDlIMHHqzXY3aDaICHOwdvVR6uHw8EvCk"],
+      tmplIds: ["Ay8VcpCaY_bqB_uvjLntnShzPXcsv_0J4Ya3JuEwHEc","Ay8VcpCaY_bqB_uvjLntnYYmQLVFlW01ZoGdeHkugFE"],
       success (res) {
         console.log("可以进行推送")
         console.log(res)

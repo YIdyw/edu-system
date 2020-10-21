@@ -2,9 +2,8 @@
   <view class="action">
     <text class="cuIcon-title text-blue"></text>机构信息
   </view>
-  <button class="cu-btn bg-green round" bindtap="showmsg" data-target="DialogModal2">点击展示</button>
 </view>
-<view wx:if="{{modalName2=='DialogModal2'}}" class="cu-bar bg-white solid-bottom margin-top" > 
+<view  class="cu-bar bg-white solid-bottom margin-top" > 
   <view class="padding bg-white" flex-direction: column>
     <view class="text-left padding">机构名称：{{getorgallinfo.name}}</view>
     <view class="text-left padding">法人： {{getorgallinfo.legalPerson}}</view>
@@ -19,7 +18,7 @@
     <view class="padding flex flex-wrap justify-between align-center bg-white">
       <button class="cu-btn bg-green round" bindtap="orgIn" >点击报名</button>
      
-      <button class="cu-btn bg-grey round" bindtap="trylisten"  data-target="DialogModal1">查看课程</button>
+      <button class="cu-btn bg-grey round" bindtap="watchAllClass"  data-target="DialogModal1">查看课程</button>
     </view>
   </view>
 </view>

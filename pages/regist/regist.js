@@ -263,7 +263,7 @@ Page({
           }else{
             setTimeout(() => {
               wx.showToast({
-                title: '注册成功请登录！',
+                title: '请先登记信息！',
               });
               setTimeout(() => {
                 wx.hideToast();

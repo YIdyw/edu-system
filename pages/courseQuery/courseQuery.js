@@ -7,14 +7,6 @@ Page({
     tabTitle:[{id: 0, name: '正在开课'}, {id: 1, name: '开课历史'}],
     classNow: [],
     historyClass: []
-    // radioItems: [
-    //   { classname: 'cuIcon-favor', value: 1, checked: false },
-    //   { classname: 'cuIcon-favor', value: 2, checked: false },
-    //   { classname: 'cuIcon-favor', value: 3, checked: false },
-    //   { classname: 'cuIcon-favor', value: 4, checked: false },
-    //   { classname: 'cuIcon-favor', value: 5, checked: false }
-    // ],
-    // stars:0
   },
   signRecord(e){
     let courseId = e.currentTarget.dataset.id
@@ -27,25 +19,10 @@ Page({
       tabCur: e.currentTarget.dataset.id,
     })
   },
-  // radioChange: function (e) {
-  //   var radioItems = this.data.radioItems;
-  //   for (var i = 0; i < e.detail.value;i++) {
-  //     radioItems[i].checked = true; 
-  //     radioItems[i].classname = "icon-shixing";
-  //   }
-  //   for (var j = e.detail.value; j < radioItems.length; j++) {
-  //     radioItems[j].checked = false;
-  //     radioItems[j].classname = "icon-pingxing";
-  //   }
-  //   this.setData({
-  //     radioItems: radioItems,
-  //     stars: e.detail.value
-  //   });
-  // },
+
   _getCourseQuery(){
     let data = {
-      // id: wx.getStorageSync('loginInfo').userid,
-      id: 46,
+      id: wx.getStorageSync('loginInfo').userid,
       info:{
         history: true,
         name: "",
