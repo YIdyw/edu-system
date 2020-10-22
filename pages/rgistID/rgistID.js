@@ -208,6 +208,16 @@ Page({
           wx.hideToast();
         }, 1500)
       }, 0);
+    }else if(!/^[0-9]*$/.test(that.data.qq)){
+      setTimeout(() => {
+        wx.showToast({
+          title: 'qq请输入纯数字！',
+          icon: 'none'
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1500)
+      }, 0);
     }else if(!this.data.isflag){
       setTimeout(() => {
         wx.showToast({

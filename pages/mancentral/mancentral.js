@@ -145,6 +145,16 @@ Page({
           wx.hideToast();
         }, 1500)
       }, 0);
+    }else if(that.data.nickname.indexOf(" ")>=0){
+      setTimeout(() => {
+        wx.showToast({
+          title: '昵称中不能包含空格！',
+          icon: "none",
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1500)
+      }, 0);
     }else{
       let nickname = data.nickname
       let info = (nickname?'[昵称]': '') + (mail?'[邮箱]': '')

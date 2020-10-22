@@ -158,7 +158,27 @@ Page({
           wx.hideToast();
         }, 1500)
       }, 0);
-    }else if(!myReg.test(that.data.email)){
+    }else if(that.data.name == ''){
+        setTimeout(() => {
+          wx.showToast({
+            title: '请输入昵称！',
+            icon: 'none'
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 1500)
+        }, 0);
+      }else if (that.data.account.indexOf(" ")>=0 || that.data.name.indexOf(" ")>=0) {
+        setTimeout(() => {
+          wx.showToast({
+            title: '账号和昵称中不能包含空格！',
+            icon: 'none'
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 1500)
+        }, 0);
+      }else if(!myReg.test(that.data.email)){
       setTimeout(() => {
         wx.showToast({
           title: '邮箱格式错误！',

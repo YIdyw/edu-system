@@ -1,5 +1,5 @@
 import {
-  infoIn
+  infoIn, getStuInfo
 } from '../../network/information'
 import {
   updatePwd
@@ -30,7 +30,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   PickerChange(e) {
-    console.log(e);
     this.setData({
       index: e.detail.value
     })
@@ -50,11 +49,9 @@ Page({
     })
     },
   qqinput: function (e) {
-    
-    this.setData({
-    qq: e.detail.value
-    
-    })
+      this.setData({
+        qq: e.detail.value
+        })    
     },
   weixin: function (e) {
     
@@ -65,7 +62,6 @@ Page({
     },
 
   secondTel: function (e) {
-      
       this.setData({
         secondTel: e.detail.value
         })
@@ -100,6 +96,7 @@ Page({
       setTimeout(() => {
         wx.showToast({
           title: '密码少于6位！',
+          icon: 'none'
         });
         setTimeout(() => {
           wx.hideToast();
@@ -181,6 +178,16 @@ Page({
       setTimeout(() => {
         wx.showToast({
           title: '请输入真实学校名！',
+          icon: "none",
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1500)
+      }, 0);
+    }else if((!/^[0-9]*$/.test(that.data.qq))){
+      setTimeout(() => {
+        wx.showToast({
+          title: 'qq请输入纯数字！',
           icon: "none",
         });
         setTimeout(() => {
@@ -307,9 +314,21 @@ Page({
   },
   onLoad: function (options) {
     var that=this
+    that._getStudentInfo()
     that._getStuInfo()
   },
 
+  //获取用户的个人信息
+  _getStudentInfo(){
+    let data={
+      userid:wx.getStorageSync('loginInfo').userid
+    }
+    getStuInfo(data).then(res=>{
+      if(res.code==200 && wx.getStorageSync('getstuinfo')==''){  
+        wx.setStorageSync('getstuinfo', res.data)
+      }
+    });
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

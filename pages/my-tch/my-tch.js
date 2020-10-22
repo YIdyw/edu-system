@@ -7,7 +7,7 @@ import {
 import {
   updateInfo
 } from '../../network/regist'
-var app = getApp()
+
 Page({
   data: {
     loginInfo:[],
@@ -79,7 +79,6 @@ Page({
     let monthPlan = this.getMonthPlan(year, month, week, day);
     let sortPlan = this.sortMonthPlan(monthPlan);
     let data = {
-      // id: wx.getStorageSync('loginInfo').userid,
       id: wx.getStorageSync('loginInfo').userid,
       limitTime: year + '-' + month,
       type: 'month',
@@ -104,7 +103,6 @@ Page({
     let monthPlan = this.getMonthPlan(year, month, week, 1);
     let sortPlan = this.sortMonthPlan(monthPlan);
     let data = {
-      // id: wx.getStorageSync('loginInfo').userid,
       id: wx.getStorageSync('loginInfo').userid,
       limitTime: year + '-' + month,
       type: 'month',
@@ -491,7 +489,6 @@ Page({
       monthPlan: sortPlan
     });
     let data = {
-      // id: wx.getStorageSync('loginInfo').userid,
       id: wx.getStorageSync('loginInfo').userid,
       limitTime: currentYear + '-' + currentMonth,
       type: 'month',

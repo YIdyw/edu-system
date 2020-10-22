@@ -121,7 +121,7 @@ Page({
         thatWeek: thatWeek,
         tabWeek: tabWeek
       });
-    }else if(showWeek*7 - monthPlan.length <= 7){
+    }else if(showWeek*7 - monthPlan.length < 7){
       for(let k=(showWeek-1)*7; k<monthPlan.length; k++){
         thatWeek.push(monthPlan[k])
       }
@@ -220,14 +220,16 @@ Page({
         for(let j=0; j<res.data.length; j++){
           if(monthPlan[i].date == res.data[j].courseTime.substring(0, 10)){
             monthPlan[i].exist = true;
-            monthPlan[i].courseInfo.push({name: res.data[j].name, courseTime: res.data[j].courseTime, site: res.data[j].site})
+            monthPlan[i].courseInfo.push({name: res.data[j].name,courId: res.data[j].courseId, courseTime: res.data[j].courseTime, site: res.data[j].site})
           }
+          continue;
+        }
           if(monthPlan[i].name == this.data.currentDay){
             dayPlan = monthPlan[i]
             currentWeekNum = parseInt(i / 7) + 1
           }
-          continue;
-        }
+          
+        
       }
       for(let k=(currentWeekNum-1)*7; k<currentWeekNum*7; k++){
         weekPlan.push(monthPlan[k])

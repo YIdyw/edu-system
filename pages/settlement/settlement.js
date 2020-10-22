@@ -17,31 +17,30 @@ Page({
 
   pay() {
     let data = {
-      orderid : this.data.orderid
+      orderId : this.data.orderid,
+      payType : '微信'
     }
-    var list = ['支付宝', '微信', '银行卡']
-    wx.showActionSheet({
-      itemList: list,
-      success (res) {
-        data['type'] = list[res.tapIndex]
-        console.log("data:",data)
-        payfor(data).then(res => {
-          console.log(res.data)
-          if(res.code==200){
-            setTimeout(() => {
-              wx.showToast({
-                title: '支付成功！',
-                icon: "success",
-              });
+    wx.showModal({
+      cancelColor: 'cancelColor',
+      content : '请您选择是否进行支付？',
+      title : "确认是否支付",
+      success(res) {
+        if(res.confirm){
+          payfor(data).then(res => {
+            console.log(res.data)
+            if(res.code==200){
               setTimeout(() => {
-                wx.hideToast();
-              }, 1000)
-            }, 0);
-          }
-        })
-      },
-      fail (res) {
-        console.log(res.errMsg)
+                wx.showToast({
+                  title: '支付成功！',
+                  icon: "success",
+                });
+                setTimeout(() => {
+                  wx.hideToast();
+                }, 3000)
+              }, 0);
+            }
+          })
+        }
       }
     })
   },
