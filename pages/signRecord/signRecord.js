@@ -15,7 +15,7 @@ Page({
     let courseTime = e.currentTarget.dataset.time
     let courseId = this.data.courseId
     wx.navigateTo({
-      url: '../signList/signList?courseId=' + courseId + '&courseTime=' + courseTime,
+      url: '../signList/signList?courseId=' + courseId + '&courseTime=' + courseTime.substring(0, 16),
     });
   },
   /**
