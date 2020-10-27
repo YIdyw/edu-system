@@ -224,89 +224,88 @@ Page({
     
   },
   _getStuInfo(){
-
-        let data = wx.getStorageSync('getstuinfo');
-        if(data){
-        this.setData({
-          getstuinfo:data,
-          name: data.name,
-          school: data.school,
-          secondTel: data.secondTel,
-          qq: data.qq,
-          weixin: data.weixin,
-          flag:true
-        })
-        if(data.grade==0){
+        this._getcallback = data =>{
           this.setData({
-            grade:"学龄前",
-            index: 0
+            getstuinfo:data,
+            name: data.name,
+            school: data.school,
+            secondTel: data.secondTel,
+            qq: data.qq,
+            weixin: data.weixin,
+            flag:true
           })
-        }else if(data.grade==1){
+          if(data.grade==0){
+            this.setData({
+              grade:"学龄前",
+              index: 0
+            })
+          }else if(data.grade==1){
+            this.setData({
+              grade:"一年级",
+              index: 1
+            })
+          }else if(data.grade==2){
+            this.setData({
+              grade:"二年级",
+              index: 2
+            })
+          }else if(data.grade==3){
+            this.setData({
+              grade:"三年级",
+              index: 3
+            })
+          }else if(data.grade==4){
+            this.setData({
+              grade:"四年级",
+              index: 4
+            })
+          }else if(data.grade==5){
+            this.setData({
+              grade:"五年级",
+              index: 5
+            })
+          }else if(data.grade==6){
+            this.setData({
+              grade:"六年级",
+              index: 6
+            })
+          }else if(data.grade==7){
+            this.setData({
+              grade:"初一",
+              index: 7
+            })
+          }else if(data.grade==8){
+            this.setData({
+              grade:"初二",
+              index: 8
+            })
+          }else if(data.grade==9){
+            this.setData({
+              grade:"初三",
+              index: 9
+            })
+          }else if(data.grade==10){
+            this.setData({
+              grade:"高一",
+              index: 10
+            })
+          }else if(data.grade==11){
+            this.setData({
+              grade:"高二",
+              index: 11
+            })
+          }else if(data.grade==12){
+            this.setData({
+              grade:"高三",
+              index: 12
+            })
+          }else{
           this.setData({
-            grade:"一年级",
-            index: 1
-          })
-        }else if(data.grade==2){
-          this.setData({
-            grade:"二年级",
-            index: 2
-          })
-        }else if(data.grade==3){
-          this.setData({
-            grade:"三年级",
-            index: 3
-          })
-        }else if(data.grade==4){
-          this.setData({
-            grade:"四年级",
-            index: 4
-          })
-        }else if(data.grade==5){
-          this.setData({
-            grade:"五年级",
-            index: 5
-          })
-        }else if(data.grade==6){
-          this.setData({
-            grade:"六年级",
-            index: 6
-          })
-        }else if(data.grade==7){
-          this.setData({
-            grade:"初一",
-            index: 7
-          })
-        }else if(data.grade==8){
-          this.setData({
-            grade:"初二",
-            index: 8
-          })
-        }else if(data.grade==9){
-          this.setData({
-            grade:"初三",
-            index: 9
-          })
-        }else if(data.grade==10){
-          this.setData({
-            grade:"高一",
-            index: 10
-          })
-        }else if(data.grade==11){
-          this.setData({
-            grade:"高二",
-            index: 11
-          })
-        }else if(data.grade==12){
-          this.setData({
-            grade:"高三",
-            index: 12
-          })
+            flag:false
+          })     
         }
-      }else{
-        this.setData({
-          flag:false
-        })
-      }       
+      }
+         
   },
   bindclick(e){
     var that=this;
@@ -324,7 +323,10 @@ Page({
       userid:wx.getStorageSync('loginInfo').userid
     }
     getStuInfo(data).then(res=>{
-      if(res.code==200 && wx.getStorageSync('getstuinfo')==''){  
+      if(res.code==200){  
+        if(this._getcallback){
+          this._getcallback(res.data)
+        }
         wx.setStorageSync('getstuinfo', res.data)
       }
     });

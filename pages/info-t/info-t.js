@@ -560,7 +560,7 @@ Page({
           updateflag: true
         });
         this._getcallback = res => {
-          console.log(res)
+          console.log(that.checkinInfo)
           let index = []
           index.push(that.checkinInfo.courseType1Id)
           index.push(that.checkinInfo.courseType2Id)

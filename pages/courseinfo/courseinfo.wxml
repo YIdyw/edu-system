@@ -71,7 +71,7 @@
   <view class="cu-dialog">
     
 	    <view class="title">请选择试听时间</view>
-	    <picker mode="date" start="{{courseinfo.enrollStartTime}}" end="{{courseinfo.enrollEndTime}}" bindchange="chooselistentime">
+	    <picker mode="date" start="{{tomorrow}}" end="{{courseinfo.enrollEndTime}}" bindchange="chooselistentime">
 		    <view class="picker">{{time}}</view>
 	    </picker>
    

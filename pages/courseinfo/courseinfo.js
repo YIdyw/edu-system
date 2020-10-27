@@ -185,9 +185,10 @@ Page({
       let data={      
         courseId:this.data.courseinfo.courseId,
         studentId:logininfo.userid,
-        trialTime:this.data.time+' 00:00:00'
+        trialTime:this.data.time+' 16:00:00'
       }
       listenClass(data).then(res=>{
+        console.log(res)
         if(res.code==200){        
           setTimeout(() => {
             wx.showToast({
@@ -205,7 +206,7 @@ Page({
       }else{
         setTimeout(() => {
           wx.showToast({
-            title: '现在无法试听该课程！',
+            title: res.msg,
             icon: "none",
           });
           setTimeout(() => {
@@ -268,9 +269,10 @@ Page({
     let date = new Date()
     let y = date.getFullYear()
     let m = date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1
-    let d = date.getDate() + 1 < 10 ? '0' + (date.getDate()) : date.getDate() - 1
+    let d = date.getDate() + 1 < 10 ? '0' + (date.getDate()) : date.getDate() + 1
     this.setData({
-      time: y + '-' + m + '-' + d,
+      tomorrow: y + '-' + m + '-' + d,
+      time: y + '-' + m + '-' + d, 
     })
     if(wx.getStorageSync('loginInfo')&&wx.getStorageSync('loginInfo').defaultRole == 3){
       this.setData({
