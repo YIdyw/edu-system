@@ -79,9 +79,9 @@
 	</view>
 	<view class="cu-form-group">
 		<view class="title">工作类型</view>
-		<radio-group class="cu-form-group" bindchange="handleTypeChange" data-type="{{worktype}}">
+		<radio-group class="cu-form-group" bindchange="handleTypeChange">
 			<view wx:for="{{workTypes}}" wx:key="id">
-				<radio class="radio margin-left-xl" checked="{{item.checked}}"></radio>{{item.name}}
+				<radio class="radio margin-left-xl" value="{{item.value}}" checked="{{item.checked}}"></radio>{{item.name}}
 			</view>
 		</radio-group>
 	</view>

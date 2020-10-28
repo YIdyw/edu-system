@@ -26,9 +26,9 @@ Page({
     works: 0,         // 工作经历数目
     privHome: "",     // 个人主页
     privWeibo: "",    // 个人微博
-    workTypes: [{ id: 0, name: '兼职', checked: true}, 
-                { id: 1, name: '全职', checked: false}],
-    worktype: 0,      // 工作类型
+    workTypes: [{ value: '0', name: '兼职', checked: true}, 
+                { value: '1', name: '全职', checked: false}],
+    fulltime: 0,      // 工作类型
     subjects: [{id: 0, name: '西洋乐', checked: false},
                {id: 1, name: '民乐', checked: false},
                {id: 2, name: '打击乐', checked: false},
@@ -138,13 +138,16 @@ Page({
     }
   },
   handleTypeChange(e){
-    let worktype = e.currentTarget.dataset.type
     let workTypes = this.data.workTypes
-    workTypes[worktype].checked = false
-    worktype == 1? worktype=0 : worktype=1
-    workTypes[worktype].checked = true
+    for (let i = 0, len = workTypes.length; i < len; ++i) {
+      workTypes[i].checked = workTypes[i].value === e.detail.value
+      if(workTypes[i].checked){
+        this.setData({
+          fulltime:i
+        })
+      }
+    }
     this.setData({
-      worktype: worktype,
       workTypes: workTypes
     });
   },
@@ -469,7 +472,7 @@ Page({
       workNum: that.works,
       homepage: that.privHome,
       weibo: that.privWeibo,
-      fullTime: that.worktype,
+      fullTime: that.fulltime,
       courseType1Id: id[0] ? id[0] : '',
       courseType2Id: id[1] ? id[1] : '',
       courseType3Id: id[2] ? id[2] : '',
@@ -564,7 +567,7 @@ Page({
           workTypes[1].checked = true
           this.setData({
             workTypes: workTypes,
-            worktype: 1
+            fulltime: 1
           })
         }
         this._getcallback = res => {
