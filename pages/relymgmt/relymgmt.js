@@ -131,11 +131,16 @@ Page({
           this.setData({
             isRely: true
           })
+        }else if(res.data==-1){
+          this.setData({
+            basics: -1
+          })
+        }else{
+          this.setData({
+            basics: res.data.checked,
+            orgId: res.data.orgId
+          })
         }
-        this.setData({
-          basics: res.data.checked,
-          orgId: res.data.orgId
-        })
         this._getcallback = res => {
           let org = res.data.organizationVOSList
           for(let i = 0; i < org.length; i++){

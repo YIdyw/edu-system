@@ -478,7 +478,6 @@ Page({
       photoId: that.privImgId,
       adverPhoto: that.pubImgId,
       briefIntro: that.briefInfo,
-      checked: that.worktype
 
     }
     console.log(data)
@@ -559,6 +558,15 @@ Page({
           flag: true,
           updateflag: true
         });
+        if(res.data.fullTime){
+          let workTypes = this.data.workTypes
+          workTypes[0].checked = false
+          workTypes[1].checked = true
+          this.setData({
+            workTypes: workTypes,
+            worktype: 1
+          })
+        }
         this._getcallback = res => {
           console.log(that.checkinInfo)
           let index = []
@@ -675,25 +683,25 @@ Page({
         var deg = res.data.degreeCertPhoto
         var pri = res.data.photoId
         var pub = res.data.adverPhoto
-        if(edu != 1){
+        if(edu != 0){
           this.setData({
             eduImg: [url + edu],
             eduImgId: edu
           })
         }
-        if(deg != 1){
+        if(deg != 0){
           this.setData({
             degImg: [url + deg],
             degImgId: deg
           })
         }
-        if(pri != 1){
+        if(pri != 0){
           this.setData({
             privImg: [url + pri],
             privImgId: pri
           })
         }
-        if(pub != 1){
+        if(pub != 0){
           this.setData({
             pubImg: [url + pub],
             pubImgId: pub
