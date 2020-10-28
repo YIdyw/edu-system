@@ -12,7 +12,7 @@ export function getAllOrganization() {
 //教师进行挂靠
 export function relymgmt(data) {
   return request({
-    url: '/teacher/organization/'+data.orgId+ '?teaId=' + data.teaId,
+    url: '/teacher/organization/'+data.orgId+ '/' + data.teaId,
     method: 'GET',
   });
 }

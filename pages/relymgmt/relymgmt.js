@@ -96,6 +96,7 @@ Page({
       teaId: wx.getStorageSync('loginInfo').userid
     };
     relymgmt(data).then(res=>{
+      console.log(res)
       if(res.code==200){
         setTimeout(() => {
           wx.showToast({
