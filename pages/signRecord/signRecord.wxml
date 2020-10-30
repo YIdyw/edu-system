@@ -1,3 +1,4 @@
+<block wx:if="{{courseInfo.length==0}}">
 <view class="cu-list menu margin" wx:for="{{courseInfo}}" wx:key="id">
   <view class="cu-item">
     <view class="content">
@@ -9,7 +10,7 @@
       </view>
       <view class="cu-bar">
         <view class="action">
-          <view>当前课时/总课时：{{item.totalCount}}/{{item.currentCount}}</view>
+          <view>当前课时/总课时：{{item.currentCount}}/{{item.totalCount}}</view>
         </view>
          <view class="action">
           <view>总人数：{{item.totalStudent}}</view>
@@ -31,3 +32,11 @@
     </view>
   </view>
 </view>
+</block>
+<block>
+  <view class="content" >
+          <view style="margin-top:100px;width:100%;">
+            <view style='font-size:15px;'>课程未安排具体上课时间!</view>
+          </view>
+        </view>
+</block>

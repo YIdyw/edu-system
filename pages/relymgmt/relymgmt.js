@@ -130,7 +130,9 @@ Page({
         let orgId = res.data.orgId
         if(res.data.checked==1){
           this.setData({
-            isRely: true
+            isRely: true,
+            basics: res.data.checked,
+            orgId: res.data.orgId
           })
         }else if(res.data==-1){
           this.setData({
