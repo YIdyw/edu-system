@@ -1,6 +1,12 @@
-<block wx:if="{{courseInfo.length==0}}">
-<view class="cu-list menu margin" wx:for="{{courseInfo}}" wx:key="id">
-  <view class="cu-item">
+<view wx:if="{{courseInfo.length==0}}" >
+  <view class="content" >
+    <view style="margin-top:100px;width:100%;">
+      <view style='text-align:center;'>课程未安排具体上课时间!</view>
+    </view>
+  </view>
+</view>
+<view  class="cu-list menu margin" wx:for="{{courseInfo}}" wx:key="id" >
+  <view  class="cu-item">
     <view class="content">
       <view class="cu-bar">
         <view class="action">
@@ -32,11 +38,3 @@
     </view>
   </view>
 </view>
-</block>
-<block>
-  <view class="content" >
-          <view style="margin-top:100px;width:100%;">
-            <view style='font-size:15px;'>课程未安排具体上课时间!</view>
-          </view>
-        </view>
-</block>
