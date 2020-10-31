@@ -25,10 +25,18 @@ export function relyPorcess(data){
   });
 }
 
-//教师取消挂靠
+//教师申请解除挂靠
 export function deleterely(data){
   return request({
     url: '/teacher/organization/' + data,
-    method: 'DELETE',
+    method: 'PUT',
+  });
+}
+
+//教师确认驳回信息
+export function confirmreturn(data){
+  return request({
+    url: '/teacher/organization/confirm/' + data,
+    method: 'PUT',
   });
 }

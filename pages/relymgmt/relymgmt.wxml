@@ -41,6 +41,9 @@
 
   </view>
 </view>
+<view class="padding bg-white" wx:if="{{isReturn}}">
+  <button class="cu-btn bg-olive lg shadow" bindtap="reConfirm">确认驳回</button>
+</view>
 
 <view class="cu-bar bg-white solid-bottom">
   <view class="action">
@@ -52,10 +55,10 @@
     <text class="cuIcon-title text-olive"></text>您的进程已进行至：{{basicsList[basics].name}}
   </view>
 </view>
-<view class="bg-white padding">
+<view class="bg-white padding" style="padding:0px;font-size:12px;">
   <view class="cu-steps">
     <view class="cu-item {{index>basics?'':'text-green'}}" wx:for="{{basicsList}}" wx:key="id">
-      <text class="cuIcon-{{item.icon}}"></text> {{item.name}}
+      <text class="cuIcon-{{item.icon}}"></text>{{item.name}}
     </view>
   </view>
 </view>

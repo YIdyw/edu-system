@@ -4,6 +4,9 @@ import {
 import {
   cancelTime
 } from '../../network/timeSelect'
+import {
+  relyPorcess, deleterely
+} from '../../network/organization'
 Page({
 
   /**
@@ -46,7 +49,8 @@ Page({
     briefInfo: "",      // 个人简介
     flag: false,        // 是否登记过
     updateflag: false,   //信息更新标识
-    checkinInfo:[]      // 登记过时读取信息
+    checkinInfo:[],      // 登记过时读取信息
+    isRely: false        //是否已经挂靠
   },
   handleSchool(e){
     if(!(/^[\u2E80-\u9FFF]+$/.test(e.detail.value))){
@@ -151,6 +155,8 @@ Page({
       workTypes: workTypes
     });
   },
+
+
   subjectChange(e){
     let subs = [{id: 0, name: '西洋乐', checked: false},  {id: 1, name: '民乐', checked: false},
                 {id: 2, name: '打击乐', checked: false},  {id: 3, name: '声乐', checked: false}, 
@@ -207,6 +213,8 @@ Page({
       }
     });
   },
+
+
   ViewImage(e) {
     let type = e.currentTarget.dataset.type
     if(type == 'eduImg'){
@@ -231,6 +239,50 @@ Page({
       });
     }
   },
+
+    // 挂靠进度查询
+    _relyProcess(){
+      let data = {
+        userid : wx.getStorageSync('loginInfo').userid
+      }
+      relyPorcess(data).then((res)=>{
+        if(res.code==200){
+          if(res.data.checked==1 || res.data.checked==3 || res.checked==4){
+            this.setData({
+              isRely: true,
+            })
+          }
+        }
+      });
+    },
+
+    //解除挂靠
+    _deleteRely(){
+      let data = wx.getStorageSync('loginInfo').userid
+      deleterely(data).then(res =>{
+          if(res.code==200){
+            setTimeout(() => {
+              wx.showToast({
+                title: '申请解除成功！',
+              });
+              setTimeout(() => {
+                wx.hideToast();
+              }, 3000)
+            }, 0);
+          }else{
+            setTimeout(() => {
+              wx.showToast({
+                title: '申请解除失败！',
+                icon: 'none'
+              });
+              setTimeout(() => {
+                wx.hideToast();
+              }, 3000)
+            }, 0);
+          }
+      })
+    },
+
   delImg(e) {
     let type = e.currentTarget.dataset.type
     wx.showModal({
@@ -298,9 +350,23 @@ Page({
     }
   },
   modify(){
-    this.setData({
-      flag: false
-    })
+    var that = this
+    if(this.data.isRely){
+      wx.showModal({
+        cancelColor: 'cancelColor',
+        title:'教师信息修改提示',
+        content:'您目前目前不允许修改信息，请确定是否先解除挂靠关系（已排课不允许申请解除）？',
+        success:function(res){
+          if(res.confirm){
+              that._deleteRely()
+          }
+        }
+      })
+    }else{
+      this.setData({
+        flag: false
+      })
+    } 
   },
   _getAllSubject(){
     getAllSubject().then(res => {
@@ -740,7 +806,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+    this._relyProcess()
   },
 
   /**

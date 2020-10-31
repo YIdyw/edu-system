@@ -1,5 +1,5 @@
 import {
-  getAllOrganization, relymgmt, relyPorcess, deleterely
+  getAllOrganization, relymgmt, relyPorcess, deleterely, confirmreturn
 } from '../../network/organization'
 
 Page({
@@ -11,13 +11,16 @@ Page({
     basicsList: [{icon: 'usefullfill',name: '选择挂靠'},
                  {icon: 'radioboxfill',name: '等待审核'},
                  {icon: 'roundcheckfill',name: '完成挂靠'},
-                 {icon: 'roundclosefill',name: '挂靠错误'}],
+                 {icon: 'roundclosefill',name: '挂靠错误'},
+                 {icon: 'radioboxfill',name: '等待解除'},
+                 {icon: 'roundclosefill',name: '解除失败'}],
     basics: 0,
     orgId: '',
     orgmessage: {},
     loginInfo:[],
     orgmsg: [],
     modalShow: false,
+    isReturn: false,
   },
   // process
   basicsSteps() {
@@ -37,6 +40,11 @@ Page({
     this.setData({
       modalShow: true
     });
+  },
+  //驳回确认按钮
+  reConfirm(){
+    var that = this
+    that._confirmReturn()
   },
   // org确定
   orgConfirm(){
@@ -67,6 +75,7 @@ Page({
       modalShow: false
     })
   },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -128,7 +137,7 @@ Page({
       console.log("进度：", res)
       if(res.code==200){
         let orgId = res.data.orgId
-        if(res.data.checked==1){
+        if(res.data.checked==1 ||res.data.checked==3 ||res.data.checked==4){
           this.setData({
             isRely: true,
             basics: res.data.checked,
@@ -142,6 +151,11 @@ Page({
           this.setData({
             basics: res.data.checked,
             orgId: res.data.orgId
+          })
+        }
+        if(res.data.checked==4){
+          this.setData({
+            isReturn: true
           })
         }
         this._getcallback = res => {
@@ -162,14 +176,14 @@ Page({
     });
   },
 
+  //申请解除挂靠
   _deleterely(){
     let data = wx.getStorageSync('loginInfo').userid
     deleterely(data).then(res =>{
-      if(res.code==200){
         if(res.code==200){
           setTimeout(() => {
             wx.showToast({
-              title: '挂靠取消成功！',
+              title: '申请解除成功！',
             });
             setTimeout(() => {
               wx.hideToast();
@@ -178,7 +192,7 @@ Page({
         }else{
           setTimeout(() => {
             wx.showToast({
-              title: '挂靠取消失败！',
+              title: '申请解除失败！',
               icon: 'none'
             });
             setTimeout(() => {
@@ -186,10 +200,35 @@ Page({
             }, 1500)
           }, 0);
         }
-      }
     })
   },
 
+  //确认驳回
+  _confirmReturn(){
+    let data = wx.getStorageSync('loginInfo').userid
+    confirmreturn(data).then(res =>{
+      if(res.code==200){
+        setTimeout(() => {
+          wx.showToast({
+            title: '请刷新页面！',
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 3000)
+        }, 0);
+      }else{
+        setTimeout(() => {
+          wx.showToast({
+            title: '发生错误！',
+            icon: 'none'
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 3000)
+        }, 0);
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
