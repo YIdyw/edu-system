@@ -64,11 +64,30 @@ Page({
   },
   // 解除挂靠-btn
   removeRely(){
-    this.setData({
-      isRely: false
+    var that = this
+    wx.showModal({
+      cancelColor: 'cancelColor',
+      title:'取消挂靠提示',
+      content:'取消挂靠可能会影响您正常上课，请先于机构进行协商，请您确定是否要取消挂靠？',
+      success:function(res){
+        if(res.confirm){
+          if(that.data.basics==4 || that.data.basics==5){
+            setTimeout(() => {
+              wx.showToast({
+                title: '您已提交取消挂靠申请！',
+                icon: 'none'
+              });
+              setTimeout(() => {
+                wx.hideToast();
+              }, 3000)
+            }, 0);
+          }else{
+            that._deleterely()
+          }
+        }
+      }
     })
-    this._deleterely()
-    this.relyReselect()
+    
   },
   hideModal(e) {
     this.setData({
@@ -181,6 +200,9 @@ Page({
     let data = wx.getStorageSync('loginInfo').userid
     deleterely(data).then(res =>{
         if(res.code==200){
+          this.setData({
+            basics: 4
+          })
           setTimeout(() => {
             wx.showToast({
               title: '申请解除成功！',

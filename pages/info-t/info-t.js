@@ -358,7 +358,16 @@ Page({
         content:'您目前目前不允许修改信息，请确定是否先解除挂靠关系（已排课不允许申请解除）？',
         success:function(res){
           if(res.confirm){
-              that._deleteRely()
+            wx.showModal({
+              cancelColor: 'cancelColor',
+              title:'取消挂靠提示',
+              content:'取消挂靠可能会影响您正常上课，请先于机构进行协商，请您确定是否要取消挂靠？',
+              success:function(res){
+                if(res.confirm){
+                  that._deleteRely()
+                }
+              }
+            })    
           }
         }
       })

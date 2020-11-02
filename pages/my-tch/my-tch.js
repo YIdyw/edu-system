@@ -470,32 +470,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
-    this.setData({
-      current: "mine"
-  });
-  let today = new Date();
-    let currentYear = today.getFullYear();
-    let currentMonth = today.getMonth() + 1;
-    let currentWeek = today.getDay();
-    let currentDay = today.getDate();
-    let monthPlan = this.getMonthPlan(currentYear, currentMonth, currentWeek, currentDay);
-    let sortPlan = this.sortMonthPlan(monthPlan);
-    this.setData({
-      currentYear: currentYear,
-      currentMonth: currentMonth,
-      showYear: currentYear,
-      showMonth: currentMonth,
-      currentWeek: currentWeek,
-      currentDay: currentDay,
-      monthPlan: sortPlan
-    });
-    let data = {
-      id: wx.getStorageSync('loginInfo').userid,
-      limitTime: currentYear + '-' + currentMonth,
-      type: 'month',
-      userType: 2
-    }
-    this._scheduelQuery(data);
+    
     let loginInfo = wx.getStorageSync('loginInfo');
     let notify = wx.getStorageSync('notify');
     let notifyNum = 0
@@ -531,6 +506,32 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.setData({
+      current: "mine"
+  });
+  let today = new Date();
+    let currentYear = today.getFullYear();
+    let currentMonth = today.getMonth() + 1;
+    let currentWeek = today.getDay();
+    let currentDay = today.getDate();
+    let monthPlan = this.getMonthPlan(currentYear, currentMonth, currentWeek, currentDay);
+    let sortPlan = this.sortMonthPlan(monthPlan);
+    this.setData({
+      currentYear: currentYear,
+      currentMonth: currentMonth,
+      showYear: currentYear,
+      showMonth: currentMonth,
+      currentWeek: currentWeek,
+      currentDay: currentDay,
+      monthPlan: sortPlan
+    });
+    let data = {
+      id: wx.getStorageSync('loginInfo').userid,
+      limitTime: currentYear + '-' + currentMonth,
+      type: 'month',
+      userType: 2
+    }
+    this._scheduelQuery(data);
     let loginInfo = wx.getStorageSync('loginInfo');
     let notify = wx.getStorageSync('notify');
     let notifyNum = 0
