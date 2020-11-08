@@ -1,7 +1,9 @@
 import {
   getAllOrganization, relymgmt, relyPorcess, deleterely, confirmreturn
 } from '../../network/organization'
-
+import {
+  getSearch
+} from '../../network/search'
 Page({
   data: {
     isRely: false,
@@ -21,6 +23,68 @@ Page({
     orgmsg: [],
     modalShow: false,
     isReturn: false,
+  },
+  keywordsearch(){
+    this.setData({
+      keyword: e.detail.value
+    })
+  },
+  getsearch(e){
+    this.setData({
+      getsearch:e.detail.value
+    })
+  },
+
+  search(){
+    var that = this;
+    if (that.data.getsearch == "") {
+      that._getAllOrgazition()
+      setTimeout(() => {
+        wx.showToast({
+          title: '查询全部成功！',
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 3000)
+      }, 0);
+      }
+    else{
+      that._getSearch()      
+    } 
+  },
+
+  _getSearch(){
+    var that=this;
+    let data={
+      query: that.data.getsearch
+    }
+    getSearch(data).then(res => {
+      console.log(res)
+      if(res.code==200){ 
+          that.setData({
+            orgmsg: res.data.organizationVOSList,
+          })
+        setTimeout(() => {
+          wx.showToast({
+            title: '查询成功！',
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 3000)
+        }, 0);
+        
+      }else{
+        setTimeout(() => {
+          wx.showToast({
+            title: '请输入正确信息！',
+            icon: 'none'
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 3000)
+        }, 0);
+      }
+    });
   },
   // process
   basicsSteps() {

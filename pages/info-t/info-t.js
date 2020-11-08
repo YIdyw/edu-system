@@ -390,7 +390,7 @@ Page({
       }else{
         setTimeout(() => {
           wx.showToast({
-            title: '请刷新页面！',
+            title: '请刷新页面1！',
             icon: "none",
           });
           setTimeout(() => {
@@ -669,16 +669,6 @@ Page({
             }
           }
         } 
-      }else{
-        setTimeout(() => {
-          wx.showToast({
-            title: '请刷新页面！',
-            icon: "none",
-          });
-          setTimeout(() => {
-            wx.hideToast();
-          }, 3000)
-        }, 0);
       }
     })
   },
@@ -761,25 +751,25 @@ Page({
         var deg = res.data.degreeCertPhoto
         var pri = res.data.photoId
         var pub = res.data.adverPhoto
-        if(edu != 0){
+        if(!(edu == 0 || edu == 1)){
           this.setData({
             eduImg: [url + edu],
             eduImgId: edu
           })
         }
-        if(deg != 0){
+        if(!(deg == 0 || deg == 1)){
           this.setData({
             degImg: [url + deg],
             degImgId: deg
           })
         }
-        if(pri != 0){
+        if(!(pri == 0 || pri == 1)){
           this.setData({
             privImg: [url + pri],
             privImgId: pri
           })
         }
-        if(pub != 0){
+        if(!(pub == 0 || pub ==1)){
           this.setData({
             pubImg: [url + pub],
             pubImgId: pub
@@ -815,7 +805,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this._relyProcess()
+    if(this.data.flag){
+      this._relyProcess()
+    }
   },
 
   /**

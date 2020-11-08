@@ -13,6 +13,18 @@ Page({
     });
   },
 
+  isout(){
+    wx.navigateTo({
+      url: '../my/my'
+    })
+    wx.clearStorage()
+  },
+
+  choose(){
+    wx.navigateTo({
+      url: '../registNext/registNext',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -26,6 +38,10 @@ Page({
     }else if(wx.getStorageSync('loginInfo').defaultRole==3){
       wx.redirectTo({
         url: '../my-stu/my-stu',
+      })
+    }else{
+      this.setData({
+        isLogin: true
       })
     }
   },

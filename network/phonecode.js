@@ -16,6 +16,22 @@ export function checkCode(data) {
   })
 }
 
+// 获取测试验证码
+export function getPhonecodeTest(data) {
+  return request({
+    url: '/user/verifyCodeTest?phone=' + data.phone,
+    method: 'GET',
+  })
+} 
+
+//检验测试验证码
+export function checkCodeTest(data) {
+  return request({
+    url: '/user/phoneVerificationTest',
+    method: 'POST',
+    data: data
+  })
+}
 //根据验证码修改密码
 export function updatePassWord(data) {
   return request({

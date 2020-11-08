@@ -302,7 +302,7 @@ Page({
      }else{
        setTimeout(() => {
         wx.showToast({
-          title: '请先实名认证、信息登记！',
+          title: '请先完成信息登记！',
           icon: "none",
         });
         setTimeout(() => {
@@ -333,7 +333,7 @@ Page({
       }else{
         setTimeout(() => {
           wx.showToast({
-            title: '请先实名认证、信息登记！',
+            title: '请先完成信息登记！',
             icon: "none",
           });
           setTimeout(() => {

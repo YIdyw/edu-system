@@ -2,9 +2,9 @@ import request from './request.js'
 
 export function getSearch(data) {
   return request({
-    url: '/organization?orgName='+data.getsearch,
-    method: 'GET',
-   
+    url: '/organization/name',
+    method: 'POST',
+    data: data
   })
 } 
 

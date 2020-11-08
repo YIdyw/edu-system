@@ -31,7 +31,8 @@
     "pages/order/order",
     "pages/settlement/settlement",
     "pages/freetime/freetime",
-    "pages/settledetail/settledetail"
+    "pages/settledetail/settledetail",
+    "pages/registNext/registNext"
   ],
   "window": {
     "backgroundTextStyle": "light",

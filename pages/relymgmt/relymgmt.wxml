@@ -1,3 +1,12 @@
+<view class="cu-bar search bg-white">
+    <view class="search-form round">
+      <text class="cuIcon-search"></text>
+      <input type="text" placeholder="请输入关键字" confirm-type="search" bindinput="keywordsearch" bindinput="getsearch"></input>
+    </view>
+    <view class="action">
+      <button class="cu-btn bg-green shadow-blur round" bindtap="search" >搜索</button>
+    </view>
+  </view>
 
 <view class="cu-form-group">
   <view class="title">请选择挂靠机构</view>

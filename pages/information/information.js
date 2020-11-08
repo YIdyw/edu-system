@@ -17,11 +17,11 @@ Page({
     school:'',
     secondTel:'',
     qq:'',
-    index:'',
+    index:0,
     weixin:'',
     flag:false,
     getstuinfo:"",
-    picker: ['学龄前', '一年级', '二年级','三年级','四年级','五年级','六年级','初一','初二','初三','高一','高二','高三'],
+    picker: ['请选择', '学龄前', '一年级', '二年级','三年级','四年级','五年级','六年级','初一','初二','初三','高一','高二','高三'],
     oldpsword: '',
     newpsword: ''
   },
@@ -142,8 +142,8 @@ Page({
       qq:that.data.qq,
       weixin:that.data.weixin
     }
-    if(that.data.name==''||that.data.index==''||that.data.school==''||
-    that.data.type==''||that.data.qq==''||that.data.weixin==''){
+    if(that.data.name==''||that.data.index==0||that.data.school==''||
+    that.data.secondTel==''||that.data.qq==''||that.data.weixin==''){
       setTimeout(() => {
         wx.showToast({
           title: '请将信息填写完整！',
@@ -205,7 +205,7 @@ Page({
             });
             setTimeout(() => {
               wx.hideToast();
-            }, 1000)
+            }, 3000)
           }, 0);
         
         }else{
@@ -216,7 +216,7 @@ Page({
             });
             setTimeout(() => {
               wx.hideToast();
-            }, 1000)
+            }, 3000)
           }, 0);
         }       
       });
@@ -234,70 +234,70 @@ Page({
             weixin: data.weixin,
             flag:true
           })
-          if(data.grade==0){
+          if(data.grade==1){
             this.setData({
               grade:"学龄前",
-              index: 0
-            })
-          }else if(data.grade==1){
-            this.setData({
-              grade:"一年级",
               index: 1
             })
           }else if(data.grade==2){
             this.setData({
-              grade:"二年级",
+              grade:"一年级",
               index: 2
             })
           }else if(data.grade==3){
             this.setData({
-              grade:"三年级",
+              grade:"二年级",
               index: 3
             })
           }else if(data.grade==4){
             this.setData({
-              grade:"四年级",
+              grade:"三年级",
               index: 4
             })
           }else if(data.grade==5){
             this.setData({
-              grade:"五年级",
+              grade:"四年级",
               index: 5
             })
           }else if(data.grade==6){
             this.setData({
-              grade:"六年级",
+              grade:"五年级",
               index: 6
             })
           }else if(data.grade==7){
             this.setData({
-              grade:"初一",
+              grade:"六年级",
               index: 7
             })
           }else if(data.grade==8){
             this.setData({
-              grade:"初二",
+              grade:"初一",
               index: 8
             })
           }else if(data.grade==9){
             this.setData({
-              grade:"初三",
+              grade:"初二",
               index: 9
             })
           }else if(data.grade==10){
             this.setData({
-              grade:"高一",
+              grade:"初三",
               index: 10
             })
           }else if(data.grade==11){
             this.setData({
-              grade:"高二",
+              grade:"高一",
               index: 11
             })
           }else if(data.grade==12){
             this.setData({
-              grade:"高三",
+              grade:"高二",
               index: 12
+            })
+          }else if(data.grade==13){
+            this.setData({
+              grade:"高三",
+              index: 13
             })
           }else{
           this.setData({

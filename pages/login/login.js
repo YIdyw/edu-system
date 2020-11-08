@@ -236,9 +236,22 @@ Page({
               wx.hideToast();
             }, 1000)
           }, 0);
-        }else if(res.data.defaultRole == 3||res.data.defaultRole==1){
+        }else if(res.data.defaultRole == 3){
           wx.reLaunch({
             url: '../my-stu/my-stu',
+          });
+          setTimeout(() => {
+            wx.showToast({
+              title: '登录成功！',
+              icon: "success",
+            });
+            setTimeout(() => {
+              wx.hideToast();
+            }, 1000)
+          }, 0);
+        }else if(res.data.defaultRole == 1){
+          wx.reLaunch({
+            url: '../my/my',
           });
           setTimeout(() => {
             wx.showToast({

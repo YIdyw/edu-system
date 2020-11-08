@@ -2,25 +2,16 @@ import {
   registInfo
 } from '../../network/regist'
 import {
-  getPhonecode,checkCode
+  getPhonecode, checkCode, getPhonecodeTest, checkCodeTest
 } from '../../network/phonecode'
 Page({
   data: {
     account:"",
     password:"",
     againpassword:"",
-    name:"",
     phone:"",
     code:"",
-    email:"",
-    gender:0,
-    birth: "",
-    index: 2,
-    today: '',
-    picker: ['请选择', '教师','学生或家长'],
-    sex: [{ id: 0, name: '男', checked: true}, 
-          { id: 1, name: '女', checked: false}],
-    count:false
+   
   },
   useraccount (e) {
     this.setData({
@@ -34,7 +25,6 @@ Page({
   },
   againpassword(e) {
     
-  
       this.setData({
         againpassword: e.detail.value,
       });
@@ -43,11 +33,7 @@ Page({
   checkpassword(e){
     
   },
-  username (e) {
-    this.setData({
-      name: e.detail.value
-    });
-  },
+  
   userphone (e) {
     this.setData({
       phone: e.detail.value
@@ -59,39 +45,15 @@ Page({
     });
   },
 
-  useremail (e) {
-    this.setData({
-      email: e.detail.value
-    });
-  },
-  userbirth(e){
-    this.setData({
-      birth: e.detail.value
-    });
-  },
-  PickerChange(e) {
-    this.setData({
-      index: e.detail.value
-    });
-  },
-  handleSexChange(e) {
-    let gender = e.currentTarget.dataset.gender
-    let sex = this.data.sex
-    sex[gender].checked = false
-    gender == 1? gender=0 : gender=1
-    sex[gender].checked = true
-    this.setData({
-      gender: gender,
-      sex: sex
-    });
-  },
+  
+  
   _getPhonecode(){
     var that=this;
     var phone=that.data.phone;
     let data={
       phone:phone
     }
-    getPhonecode(data).then(res => {
+    getPhonecodeTest(data).then(res => {
       console.log(res)
       if(res.code==200){
         setTimeout(() => {
@@ -121,7 +83,7 @@ Page({
       phone:that.data.phone,
       verifyCode:that.data.code
     }
-    checkCode(data).then(res => {
+    checkCodeTest(data).then(res => {
       if(res.code==200){
         if(this._getcallback){
           this._getcallback(true)
@@ -147,48 +109,27 @@ Page({
   },
   regist: function (e) {
     var that = this
-    var myReg=/^[a-zA-Z0-9_-]+@([a-zA-Z0-9]+\.)+(com|cn|net|org|mail|email)$/;
     if (that.data.account == '') {
       setTimeout(() => {
         wx.showToast({
-          title: '请输入账号！',
+          title: '请输入用户名！',
           icon: 'none'
         });
         setTimeout(() => {
           wx.hideToast();
         }, 1500)
       }, 0);
-    }else if(that.data.name == ''){
+    }else if (that.data.account.indexOf(" ")>=0) {
         setTimeout(() => {
           wx.showToast({
-            title: '请输入昵称！',
+            title: '用户名中不能包含空格！',
             icon: 'none'
           });
           setTimeout(() => {
             wx.hideToast();
           }, 1500)
         }, 0);
-      }else if (that.data.account.indexOf(" ")>=0 || that.data.name.indexOf(" ")>=0) {
-        setTimeout(() => {
-          wx.showToast({
-            title: '账号和昵称中不能包含空格！',
-            icon: 'none'
-          });
-          setTimeout(() => {
-            wx.hideToast();
-          }, 1500)
-        }, 0);
-      }else if(!myReg.test(that.data.email)){
-      setTimeout(() => {
-        wx.showToast({
-          title: '邮箱格式错误！',
-          icon: 'none'
-        });
-        setTimeout(() => {
-          wx.hideToast();
-        }, 1500)
-      }, 0);
-    }else if(that.data.password == ''||that.data.password.length<6) {
+      }else if(that.data.password == ''||that.data.password.length<6) {
       setTimeout(() => {
         wx.showToast({
           title: '密码格式错误！',
@@ -218,17 +159,8 @@ Page({
           wx.hideToast();
         }, 1500)
       }, 0);
-    }else if(that.data.index == 0){
-      setTimeout(() => {
-        wx.showToast({
-          title: '请选择身份！',
-          icon: 'none'
-        });
-        setTimeout(() => {
-          wx.hideToast();
-        }, 1500)
-      }, 0);
     }else{
+        
       that._checkCode();
       this._getcallback = res => {
         console.log(res)
@@ -250,26 +182,16 @@ Page({
   },
   _registInfo() {
     const that = this;
-    var index = Number(that.data.index) + 1
     let data = {
         account: that.data.account,
         password: that.data.password,
-        nickname: that.data.name,
-        phone: that.data.phone,
-        mail: that.data.email,
-        birth: that.data.birth,
-        gender: that.data.gender,
-        defaultRole: index
+        phone: that.data.phone
     }
     console.log("data",data)
     registInfo(data).then(res => {
       wx.setStorageSync('registInfo', res.data)
       console.log(res)
-     // if(that.data.count==true)
         if(res.code==200){
-          wx.navigateBack({
-            delta: 1,
-          });
           if(this.data.index == 1){
             setTimeout(() => {
               wx.showToast({
@@ -290,6 +212,9 @@ Page({
               }, 1500)
             }, 0);
           }
+          wx.navigateTo({
+            url: '../registNext/registNext',
+          })
         }else{
           setTimeout(() => {
             wx.showToast({
@@ -307,14 +232,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let date = new Date()
-    let y = date.getFullYear()
-    let m = date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1
-    let d = date.getDate() + 1 < 10 ? '0' + (date.getDate()) : date.getDate() - 1
-    this.setData({
-      today: y + '-' + m + '-' + d,
-      birth: y + '-' + m + '-' + d,
-    })
+  
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

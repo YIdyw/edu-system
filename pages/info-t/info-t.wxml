@@ -157,7 +157,7 @@
 		<view class="grid col-2 grid-square flex-sub margin-top">
 			<view class="bg-img" wx:if="{{eduImg.length}}" wx:key='id' bindtap="ViewImage" data-url="{{eduImg}}" data-type="eduImg">
 				<image src='{{eduImg}}' mode='aspectFill'></image>
-				<view class="cu-tag bg-red" catchtap="delImg" data-type="eduImg">
+				<view class="cu-tag bg-red" catchtap="delImg" data-type="eduImg"  style="display:none;">
 					<text class="cuIcon-close"></text>
 				</view>
 			</view>
@@ -180,11 +180,11 @@
 		<view class="grid col-2 grid-square flex-sub margin-top">
 			<view class="bg-img" wx:if="{{degImg.length}}" wx:key='id' bindtap="ViewImage" data-url="{{degImg}}" data-type="degImg">
 				<image src='{{degImg}}' mode='aspectFill'></image>
-				<view class="cu-tag bg-red" catchtap="delImg" data-type="degImg">
+				<view class="cu-tag bg-red" catchtap="delImg" data-type="degImg"  style="display:none;">
 					<text class="cuIcon-close"></text>
 				</view>
 			</view>
-			<view wx:else class="solids" bindtap="chooseImg" data-type="degImg">
+			<view wx:else class="solids" data-type="degImg">
 				<text class="cuIcon-cameraadd"></text>
 			</view>
 		</view>
@@ -236,11 +236,11 @@
 		<view class="grid col-2 grid-square flex-sub margin-top">
 			<view class="bg-img" wx:if="{{privImg.length}}" wx:key='id' bindtap="ViewImage" data-url="{{privImg}}" data-type="privImg">
 				<image src='{{privImg}}' mode='aspectFill'></image>
-				<view class="cu-tag bg-red" catchtap="delImg" data-type="privImg">
+				<view class="cu-tag bg-red" catchtap="delImg" data-type="privImg"  style="display:none;">
 					<text class="cuIcon-close"></text>
 				</view>
 			</view>
-			<view wx:else class="solids" bindtap="chooseImg" data-type="privImg">
+			<view wx:else class="solids" data-type="privImg">
 				<text class="cuIcon-cameraadd"></text>
 			</view>
 		</view>
@@ -251,11 +251,11 @@
 		<view class="grid col-2 grid-square flex-sub margin-top">
 			<view class="bg-img" wx:if="{{pubImg.length}}" wx:key='id' bindtap="ViewImage" data-url="{{pubImg}}" data-type="pubImg">
 				<image src='{{pubImg}}' mode='aspectFill'></image>
-				<view class="cu-tag bg-red" catchtap="delImg" data-type="pubImg">
+				<view class="cu-tag bg-red" catchtap="delImg" data-type="pubImg"  style="display:none;">
 					<text class="cuIcon-close"></text>
 				</view>
 			</view>
-			<view wx:else class="solids" bindtap="chooseImg" data-type="pubImg">
+			<view wx:else class="solids" data-type="pubImg">
 				<text class="cuIcon-cameraadd"></text>
 			</view>
 		</view>
