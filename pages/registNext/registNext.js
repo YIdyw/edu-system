@@ -126,7 +126,7 @@ Page({
       weixin:that.data.weixin
     }
     if(that.data.nameStu==''||that.data.indexRole==''||that.data.school==''||
-    that.data.secondTel==''||that.data.qq==''||that.data.weixin==''){
+    that.data.secondTel==''){
       setTimeout(() => {
         wx.showToast({
           title: '请将学生信息填写完整！',
@@ -187,7 +187,17 @@ Page({
           wx.hideToast();
         }, 1500)
       }, 0);
-  }else{
+  }else if(!/^[a-zA-Z]([-_a-zA-Z0-9]{5,19})+$/.test(that.data.weixin)){
+    setTimeout(() => {
+      wx.showToast({
+        title: '微信格式错误！',
+        icon: 'none'
+      });
+      setTimeout(() => {
+        wx.hideToast();
+      }, 1500)
+    }, 0);
+}else{
       infoIn(data).then(res=>{
         console.log("学生：", res)
         if(res.code==200){       

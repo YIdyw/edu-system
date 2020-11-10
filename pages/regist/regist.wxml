@@ -5,7 +5,9 @@
   <view class="title">用户名</view>
 	<input placeholder="请输入用户名" type="text" maxlength="30" bindinput="useraccount"></input>
 </view>
-
+<view wx:if="{{flagaccount}}">
+用户名已被使用
+</view>
 <view class="cu-form-group">
 	<view class="text-red">*</view>
 	<view class="title">密码</view>
@@ -31,7 +33,9 @@
 		</view>
 	</view>
 </view>
-
+<view wx:if="{{flagphone}}">
+手机号已被使用
+</view>
 <view class="cu-form-group">
 	<view class="text-red">*</view>
 	<view class="title">验证码</view>

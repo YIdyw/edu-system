@@ -15,3 +15,19 @@ export function updateInfo(data) {
     data: data
   })
 }
+
+//校验用户名是否已被使用
+export function account(data) {
+  return request({
+    url: '/user/account/repetition?account='+data,
+    method: 'GET',
+  })
+}
+
+//校验电话是否已被使用
+export function phone(data) {
+  return request({
+    url: '/user/phone/repetition?phone='+data,
+    method: 'GET',
+  })
+}

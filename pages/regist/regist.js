@@ -1,9 +1,10 @@
 import {
-  registInfo
+  registInfo, account, phone
 } from '../../network/regist'
 import {
   getPhonecode, checkCode, getPhonecodeTest, checkCodeTest
 } from '../../network/phonecode'
+
 Page({
   data: {
     account:"",
@@ -11,12 +12,15 @@ Page({
     againpassword:"",
     phone:"",
     code:"",
-   
+   flagaccount: false,
+   flagphone: false
   },
   useraccount (e) {
+    var that = this
     this.setData({
       account: e.detail.value
     });
+    that._account()
   },
   userpassword (e) {
     this.setData({
@@ -35,9 +39,11 @@ Page({
   },
   
   userphone (e) {
+    var that = this
     this.setData({
       phone: e.detail.value
     });
+    that._phone()
   },
   inputcode(e){
     this.setData({
@@ -46,7 +52,36 @@ Page({
   },
 
   
-  
+  _account(){
+    let data = this.data.account
+    account(data).then(res =>{
+      if(res.code == 200){
+        this.setData({
+          flagaccount: false
+        })
+      }else{
+        this.setData({
+          flagaccount: true
+        })
+      }
+    })
+  },
+
+  _phone(){
+    let data = this.data.phone
+    phone(data).then(res =>{
+      if(res.code == 200){
+        this.setData({
+          flagphone: false
+        })
+      }else{
+        this.setData({
+          flagphone: true
+        })
+      }
+    })
+  },
+
   _getPhonecode(){
     var that=this;
     var phone=that.data.phone;

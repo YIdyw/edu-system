@@ -63,12 +63,10 @@
 		<input placeholder="请填写联系人电话" maxlength="11" type="number" bindinput="secondTel"></input>
 	</view>
   <view class="cu-form-group">
-		<view class="text-red">*</view>
 		<view class="title">QQ:</view>
 		<input placeholder="请填写QQ号" type="number" maxlength="11" bindinput="qqinput"></input>
 	</view>
   <view class="cu-form-group">
-		<view class="text-red">*</view>
 		<view class="title">微信:</view>
 		<input placeholder="请填写微信号" maxlength="50" bindinput="weixin"></input>
 	</view>

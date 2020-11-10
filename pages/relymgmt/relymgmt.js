@@ -37,6 +37,9 @@ Page({
 
   search(){
     var that = this;
+    this.setData({
+      idx: 0
+    })
     if (that.data.getsearch == "") {
       that._getAllOrgazition()
       setTimeout(() => {
@@ -64,6 +67,7 @@ Page({
           that.setData({
             orgmsg: res.data.organizationVOSList,
           })
+          that.FindChoose()
         setTimeout(() => {
           wx.showToast({
             title: '查询成功！',
@@ -99,8 +103,18 @@ Page({
       orgmessage: this.data.orgmsg[e.detail.value]
     })
   },
+
+   // 搜索挂靠机构选择
+   FindChoose() {
+    this.setData({
+      orgmessage: this.data.orgmsg[this.data.idx]
+    })
+  },
+
   // 确认挂靠-btn
   chooseRely(){
+    var that = this
+    that.FindChoose()
     this.setData({
       modalShow: true
     });
@@ -169,6 +183,7 @@ Page({
   },
   /**获取全部机构信息 */
   _getAllOrgazition() {
+    var that = this
       getAllOrganization().then(res => {
         console.log("机构：", res)
         if(res.code == 200) {
@@ -178,6 +193,7 @@ Page({
           this.setData({
             orgmsg: res.data.organizationVOSList,
           });
+          that.FindChoose()
         }
       });
   },
