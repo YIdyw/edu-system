@@ -16,11 +16,9 @@ Page({
    flagphone: false
   },
   useraccount (e) {
-    var that = this
     this.setData({
       account: e.detail.value
     });
-    that._account()
   },
   userpassword (e) {
     this.setData({
@@ -39,10 +37,17 @@ Page({
   },
   
   userphone (e) {
-    var that = this
+
     this.setData({
       phone: e.detail.value
     });
+  },
+  findaccount(){
+    var that = this
+    that._account()
+  },
+  findphone(){
+    var that = this
     that._phone()
   },
   inputcode(e){
