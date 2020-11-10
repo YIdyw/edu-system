@@ -61,12 +61,13 @@ Page({
     let data = this.data.account
     account(data).then(res =>{
       if(res.code == 200){
-        this.setData({
-          flagaccount: false
+        wx.showToast({
+          title:'用户名可用'
         })
       }else{
-        this.setData({
-          flagaccount: true
+        wx.showToast({
+          title: '当前用户名已被使用',
+          icon: 'none'
         })
       }
     })

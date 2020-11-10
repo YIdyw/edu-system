@@ -4,10 +4,9 @@
 	<view class="text-red">*</view>
   <view class="title">用户名</view>
 	<input placeholder="请输入用户名" type="text" maxlength="30" bindblur="findaccount" bindinput="useraccount"></input>
+	<view wx:if="{{flagaccount}}">手机号已被使用</view>
 </view>
-<view wx:if="{{flagaccount}}">
-用户名已被使用
-</view>
+
 <view class="cu-form-group">
 	<view class="text-red">*</view>
 	<view class="title">密码</view>
