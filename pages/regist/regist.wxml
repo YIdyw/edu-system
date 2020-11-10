@@ -4,10 +4,9 @@
 	<view class="text-red">*</view>
   <view class="title">用户名</view>
 	<input placeholder="请输入用户名" type="text" maxlength="30" bindinput="useraccount"></input>
+	<button class="cu-btn bg-green shadow" bindtap="_account">检验用户名</button>
 </view>
-<view wx:if="{{flagaccount}}">
-用户名已被使用
-</view>
+
 <view class="cu-form-group">
 	<view class="text-red">*</view>
 	<view class="title">密码</view>
