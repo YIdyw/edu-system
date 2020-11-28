@@ -7,7 +7,7 @@ import {
   getAuthID, addAuthUser, userAuthed
 } from '../../network/authID'
 
-
+var app = getApp()
 Page({
 
   /**
@@ -541,11 +541,16 @@ Page({
           }, 0);
           if(that.data.indexRole==1){
             wx.redirectTo({
-              url: '../login/login',
+              url: '../loginPhone/loginPhone',
             })
           }else if(that.data.indexRole==2){
+            if(app.globalData.isfollow){
+              wx.redirectTo({
+                url: '../code2msg/code2msg',
+              })
+            }
             wx.redirectTo({
-              url: '../login/login',
+              url: '../loginPhone/loginPhone',
             })
           }
         }else{

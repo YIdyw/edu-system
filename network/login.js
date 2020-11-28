@@ -16,3 +16,12 @@ export function code(data) {
     method: 'GET',
   })
 } 
+
+// 使用手机验证码登录
+export function loginPhone(data) {
+  return request({
+    url: '/user/loginBySms',
+    method: 'POST',
+    data: data
+  })
+}

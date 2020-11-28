@@ -1,0 +1,4 @@
+<!--pages/test/test.wxml-->
+<text>现在距离新科：{{long}}km</text>
+<text>纬度：{{lat1}}</text>
+<text>经度：{{lng1}}</text>

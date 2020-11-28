@@ -1,6 +1,9 @@
 
 <view class="page me">
   <view class="userinfo">
+    <view class="action">
+      <button class="cu-btn block line-pink round" style="position:absolute;right:0;top:0;" bindtap="picture2" size="50%">扫一扫</button>
+    </view>
     <view class="userinfo-avatar">
       <open-data type="userAvatarUrl"></open-data>
     </view>

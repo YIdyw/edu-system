@@ -49,7 +49,7 @@
   </view>
 </view>
 <view wx:else >
-<view  class="cu-list menu-avatar comment solids-top" wx:for="{{getmylisten}}" wx:for-index="idxx">
+<view  class="cu-list menu-avatar comment solids-top" wx:for="{{getmylisten}}" wx:key="key" wx:for-index="idxx">
   <view class="cu-item">
       <view class="cu-avatar round" style="background-image:url(https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=344481539,2092587051&fm=26&gp=0.jpg);"></view>
       <view class="content">

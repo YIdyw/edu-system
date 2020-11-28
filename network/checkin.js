@@ -42,3 +42,11 @@ export function getTeacherInfo(data){
     method: 'GET'
   });
 }
+
+// 教师擅长科目查询
+export function teacherCourse(data){
+  return request({
+    url:'/coursecategory/querycourse/'+data,
+    method: 'GET'
+  });
+}

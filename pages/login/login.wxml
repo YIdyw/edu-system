@@ -1,7 +1,7 @@
-<i-panel title="用户登录">
+<i-panel title="用户密码登录">
     <view class="cu-form-group margin-top">
-		<view class="title">账号</view>
-		<input placeholder="请输入账号" type="text" maxlength="30" bindinput="accountinput"></input>
+		<view class="title">账号/手机</view>
+		<input placeholder="请输入账号或手机号" type="text" maxlength="30" bindinput="accountinput"></input>
 	</view>
 	<view class="cu-form-group">
 		<view class="title">密码</view>

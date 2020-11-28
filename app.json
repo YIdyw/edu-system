@@ -32,8 +32,14 @@
     "pages/settlement/settlement",
     "pages/freetime/freetime",
     "pages/settledetail/settledetail",
-    "pages/registNext/registNext"
+    "pages/registNext/registNext",
+    "pages/registPhone/registPhone",
+    "pages/loginPhone/loginPhone",
+    "pages/test/test",
+    "pages/index/index",
+    "pages/activity/activity"
   ],
+  
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
@@ -41,5 +47,11 @@
     "navigationBarTextStyle": "black",
     "navigationStyle":"default"
   },
+  "permission": {
+      "scope.userLocation": {
+        "desc": "你的位置信息将用于小程序位置接口的效果展示" 
+      }
+    },
+  
   "sitemapLocation": "sitemap.json"
 }

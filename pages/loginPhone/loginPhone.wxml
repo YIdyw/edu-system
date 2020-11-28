@@ -1,0 +1,29 @@
+<i-panel title="用户验证码登录">
+  <view class="cu-form-group">
+	<view class="text-red">*</view>
+	<view class="title">手机号码</view>
+	<input placeholder="请输入手机号" type="number" maxlength="11" bindblur="findphone" bindinput="userphone"></input>
+	<view class="cu-capsule radius">
+		<view class="cu-tag bg-blue">
+			+86
+		</view>
+		<view class="cu-tag line-blue">
+			中国大陆
+		</view>
+	</view>
+</view>
+<view wx:if="{{flagphone}}">
+手机号未注册
+</view>
+<view class="cu-form-group">
+	<view class="text-red">*</view>
+	<view class="title">验证码</view>
+	<input placeholder="默认为123456" maxlength="6" type="number" bindinput="inputcode"></input>
+	<button class="cu-btn bg-green shadow" bindtap="getcode">获取验证码</button>
+</view>
+	<view class="find" bindtap="account">密码登录</view>
+	<i-button bind:click="login" type="success" shape="circle">登录</i-button>
+	<i-button bind:click="regist" type="success" shape="circle">注册</i-button>
+	
+
+</i-panel>

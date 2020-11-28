@@ -9,10 +9,43 @@ Page({
   },
   movetologin(){
     wx.navigateTo({
-      url: '../login/login',
+      url: '../loginPhone/loginPhone',
     });
   },
 
+  picture2(){
+    wx.scanCode({
+      success: (res) => {
+        var show2code=res.result;
+        wx.setStorageSync('show2code',show2code);
+        setTimeout(() => {
+          wx.showToast({
+            title: '查询成功！',
+            icon: "success",
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 1500)
+        }, 0);
+        wx.navigateTo({
+          url: '../code2msg/code2msg',
+        })
+        },
+        fail: (res) => {
+        setTimeout(() => {
+          wx.showToast({
+            title: '查询失败！',
+            icon: "none",
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 1500)
+        }, 0);
+        },
+        complete: (res) => {} 
+    })
+  },
+  
   isout(){
     wx.navigateTo({
       url: '../my/my'

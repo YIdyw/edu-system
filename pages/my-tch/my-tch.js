@@ -341,6 +341,10 @@ Page({
           }, 1500)
         }, 0);
       }
+    }else if(that.data.isFaceChecked==5){
+     wx.navigateTo({
+       url: '../test/test',
+     })
     }
   },
   isout(){

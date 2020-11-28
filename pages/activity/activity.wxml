@@ -1,0 +1,26 @@
+<!--pages/activity/activity.wxml-->
+<view class="padding bg-white" flex-direction: column>
+  <view class="text-left padding">活动主题：{{getorgallinfo.name}}</view>
+  <view class="text-left padding">活动时间： {{getorgallinfo.address}} </view>
+  <view class="text-left padding">活动地点：  {{getorgallinfo.contactPhone}}</view>
+  <view class="text-left padding">活动简称：  {{getorgallinfo.info1}}</view>
+  <view class="text-left padding">活动介绍：  {{getorgallinfo.info2}}</view>
+  <swiper class="screen-swiper {{'square-dot'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
+  <swiper-item wx:for="{{swiperListImage}}" wx:key="id">
+    <image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
+  </swiper-item>
+</swiper>
+<swiper class="screen-swiper {{'square-dot'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
+  <swiper-item wx:for="{{swiperListVedio}}" wx:key="id">
+    <!-- <video src="{{item.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}" objectFit="cover" wx:if="{{item.type=='video'}}"></video> -->
+    <video id="myVideo" src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400" binderror="videoErrorCallback" danmu-list="{{danmuList}}" enable-danmu danmu-btn controls></video>
+  </swiper-item>
+</swiper>
+  <view wx:for="{{trylisten}}">
+    <view>
+      <button>
+        {{item.name}}
+      </button>
+    </view>
+  </view>
+</view>

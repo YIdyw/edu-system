@@ -1,5 +1,5 @@
 import {
-  getAllSubject, addPicture, putTeacherInfo, getTeacherInfo, updateTeacherInfo
+  getAllSubject, addPicture, putTeacherInfo, getTeacherInfo, updateTeacherInfo, teacherCourse
 } from '../../network/checkin'
 import {
   cancelTime
@@ -40,6 +40,7 @@ Page({
                {id: 5, name: '美术', checked: false},
                {id: 6, name: '专业艺考', checked: false},
                {id: 7, name: '书法', checked: false}],
+    slength: 0,
     subjectChoose: [],  // 擅长科目选择
     courseCategory: [], // 课程类别id
     privImg: "",        // 个人照片
@@ -156,8 +157,44 @@ Page({
     });
   },
 
+//获取教师擅长科目
+  _teacherCourse(){
+    let sub = this.data.subjects;
+    let l = 0;
+    teacherCourse(wx.getStorageSync('loginInfo').userid).then(res =>{
+      if(res.code == 200){
+        console.log(res)
+        for(let i=0;i<res.data.length;i++){
+          for(let j=0;j<8;j++){
+            if(res.data[i]==sub[j].name){
+              sub[j].checked = true
+              l++
+            }
+          }
+        }
+        this.setData({
+          subjects: sub,
+          slength: l
+        })
+      }else{
+        setTimeout(() => {
+          wx.showToast({
+            title: '获取擅长科目出错！',
+            icon: 'none'
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 3000)
+        }, 0);
+      }
+    })
+  },
+
 
   subjectChange(e){
+    this.setData({
+      slength: 0
+    })
     let subs = [{id: 0, name: '西洋乐', checked: false},  {id: 1, name: '民乐', checked: false},
                 {id: 2, name: '打击乐', checked: false},  {id: 3, name: '声乐', checked: false}, 
                 {id: 4, name: '舞蹈', checked: false},    {id: 5, name: '美术', checked: false},
@@ -377,29 +414,30 @@ Page({
       })
     } 
   },
-  _getAllSubject(){
-    getAllSubject().then(res => {
-      console.log("all:", res)
-      if(res.code == 200) {
-        this.setData({
-          courseCategory: res.data
-        });
-        if(this._getcallback){
-          this._getcallback(res.data)
-        }
-      }else{
-        setTimeout(() => {
-          wx.showToast({
-            title: '请刷新页面1！',
-            icon: "none",
-          });
-          setTimeout(() => {
-            wx.hideToast();
-          }, 3000)
-        }, 0);
-      }
-    })
-  },
+  //获取全部课程列表
+  // _getAllSubject(){
+  //   getAllSubject().then(res => {
+  //     console.log("all:", res)
+  //     if(res.code == 200) {
+  //       this.setData({
+  //         courseCategory: res.data
+  //       });
+  //       if(this._getcallback){
+  //         this._getcallback(res.data)
+  //       }
+  //     }else{
+  //       setTimeout(() => {
+  //         wx.showToast({
+  //           title: '请刷新页面1！',
+  //           icon: "none",
+  //         });
+  //         setTimeout(() => {
+  //           wx.hideToast();
+  //         }, 3000)
+  //       }, 0);
+  //     }
+  //   })
+  // },
 
   _deu(){
     let that = this.data
@@ -645,30 +683,30 @@ Page({
             fulltime: 1
           })
         }
-        this._getcallback = res => {
-          console.log(that.checkinInfo)
-          let index = []
-          index.push(that.checkinInfo.courseType1Id)
-          index.push(that.checkinInfo.courseType2Id)
-          index.push(that.checkinInfo.courseType3Id)
-          index.push(that.checkinInfo.courseType4Id)
-          index.push(that.checkinInfo.courseType5Id)
-          var sindex = 0
-          for (let i = 0; i < 8; i++) {
-            for (let j = 0; j < res.length; j++) {
-              if (index.indexOf(res[j].value)>=0) {
-                if(that.subjects[i].name == res[j].label){ 
-                this.setData({
-                  ['subjects['+i+'.].checked']: true,
-                  ['subjectChoose['+sindex+']']: i
-                })
-                sindex++
-                break;
-                }
-              }
-            }
-          }
-        } 
+        // this._getcallback = res => {
+        //   console.log(that.checkinInfo)
+        //   let index = []
+        //   index.push(that.checkinInfo.courseType1Id)
+        //   index.push(that.checkinInfo.courseType2Id)
+        //   index.push(that.checkinInfo.courseType3Id)
+        //   index.push(that.checkinInfo.courseType4Id)
+        //   index.push(that.checkinInfo.courseType5Id)
+        //   var sindex = 0
+        //   for (let i = 0; i < 8; i++) {
+        //     for (let j = 0; j < res.length; j++) {
+        //       if (index.indexOf(res[j].value)>=0) {
+        //         if(that.subjects[i].name == res[j].label){ 
+        //         this.setData({
+        //           ['subjects['+i+'.].checked']: true,
+        //           ['subjectChoose['+sindex+']']: i
+        //         })
+        //         sindex++
+        //         break;
+        //         }
+        //       }
+        //     }
+        //   }
+        // } 
       }
     })
   },
@@ -676,10 +714,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this
     let login = wx.getStorageSync('loginInfo').authenticated
     if(login){
-      this._getTeacherInfo();
-      this._getAllSubject();
+      that._getTeacherInfo();
+      that._teacherCourse();
+      //this._getAllSubject();
+
       this.getInfoCallback = res => {
         if (res.code == 200){
           switch(res.data.education) {

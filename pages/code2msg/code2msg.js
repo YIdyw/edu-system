@@ -19,7 +19,35 @@ Page({
     flag: false //判断学生是否已经登记个人信息
   },
 
-  
+  follow(){
+    var that = this;
+    if(wx.getStorageSync('loginInfo')){
+      that.orgIn();
+    }else{
+      wx.showModal({
+        cancelColor: 'cancelColor',
+        content: '您还未登录，请您选择登录或者注册',
+        title: '关注提示',
+        confirmText: '登录',
+        cancelText: '注册',
+        success(res) {
+          if(res.confirm){
+            app.globalData.isfollow = true;
+            wx.navigateTo({
+              url: '../loginPhone/loginPhone',
+            })
+          }
+          if(res.cancel){
+            app.globalData.isfollow = true;
+            wx.navigateTo({
+              url: '../registPhone/registPhone',
+            })
+          }
+        }
+      })
+    }
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -160,7 +188,21 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+    var that = this;
+    if(app.globalData.isfollow)(
+      app.globalData.isfollow = false,
+      wx.showModal({
+        cancelColor: 'cancelColor',
+        title: '是否关注？',
+        content: '请您选择是否关注该机构？',
+        confirmText: '关注',
+        success (res) {
+          if(res.confirm){
+            that.follow()
+          }
+        }
+      })
+    )
   },
 
   /**

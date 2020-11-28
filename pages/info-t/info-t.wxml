@@ -89,7 +89,7 @@
 		<view class="text-red">*</view>
 		<view class="title">
 			<view>擅长科目</view>
-			<view class="text-center">{{subjectChoose.length}}/5</view>
+			<view class="text-center">{{slength==0?subjectChoose.length:slength}}/5</view>
 		</view>
 		<checkbox-group class="grid col-2 text-left margin-top margin-bottom" bindchange="subjectChange">
 			<view wx:for="{{subjects}}" wx:key="id">
@@ -222,7 +222,7 @@
 		<view class="text-red">*</view>
 		<view class="title">
 			<view>擅长科目</view>
-			<view class="text-center">{{subjectChoose.length}}/5</view>
+			<view class="text-center">{{slength}}/5</view>
 		</view>
 		<checkbox-group class="grid col-2 text-left margin-top margin-bottom" disabled>
 			<view wx:for="{{subjects}}" wx:key="id">
