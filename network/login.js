@@ -25,3 +25,11 @@ export function loginPhone(data) {
     data: data
   })
 }
+
+//如果当前用户为学生或者家长的话，获取他所挂靠的机构
+export function  getOrgNum(data) {
+  return request({
+    url: '/student/organizations/'+ data,
+    method: 'GET',
+  })
+}

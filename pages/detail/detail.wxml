@@ -11,7 +11,8 @@
         <view>{{institute.data.orgInfo.contactPhone}}</view>
       </view>
         
-        <button class="cu-btn bg-green round" wx:if="{{isstu}}" bindtap="orgIn">点击报名</button>
+        <!-- <button class="cu-btn bg-green round" wx:if="{{isstu}}" bindtap="orgIn">点击报名</button> -->
+        <button class="cu-btn bg-green round" wx:if="{{isstu}}" bindtap="movehome">点击报名</button>
       
     </view>
     
@@ -67,4 +68,43 @@
 </view>
     
   </view>
+
+<view class="casts">
+<view class="title" catchtap="rotateAnim2">
+<text>该机构最近的活动</text>
+<view style="transform:rotate({{degsss}}deg);transition:all 0.4s;"></view>
 </view>
+<view hidden="{{degsss==0}}">
+    <view class="cards" wx:for="{{activity.data}}" wx:for-item="item" wx:key="item">
+		<view class="card" >
+        <view bindtap="onItemClick">
+						<view class="name">
+							<text>活动名称:{{item.actName}}</text>
+						</view>
+						<view>
+            	<image class='imgBannerBack' src='../../static/img/back_banner.png' mode='scaleToFill'></image>
+              <swiper class='bannerSwiper' previous-margin="54rpx" next-margin='54rpx' indicator-dots="true" indicator-color='#B5B5B5' indicator-active-color='#fff' interval='3000' duration='500' bindchange='onChange' circular='true'>
+                <block wx:for="{{banner}}">
+                  <swiper-item>
+                    <image class="{{index==xindex?'imageBanner':'imageBanner_small'}}" src="{{item}}" id='{{item.url}}' bindtap='imageClick'></image>
+                  </swiper-item>
+                </block>
+              </swiper>
+						</view>
+						<view>
+							<image class="image" mode="aspectFill" src="图片地址"/>
+						</view>
+            <view class="title">活动开始时间:{{item.actStartTime}}</view>
+						<view class="title">活动结束时间:{{item.actEndTime}}</view>
+						<view class="title">活动介绍:{{item.actDescription}}</view>
+        </view>
+    </view>
+	<!-- 卡片与卡片的空白间隔 -->
+	<view class="space"></view>
+</view>
+</view>
+    
+  </view>
+</view>
+
+<button class="flex flex_pack_center" data-name="shareBtn"  open-type="share" >分享</button>

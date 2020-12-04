@@ -40,7 +40,8 @@
     "pages/activity/activity",
     "pages/sign/sign",
     "pages/propaganda/propaganda",
-    "pages/adver/adver"
+    "pages/adver/adver",
+    "pages/mainpage/mainpage"
   ],
   
   "window": {

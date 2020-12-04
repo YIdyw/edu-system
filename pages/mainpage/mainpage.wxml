@@ -1,0 +1,25 @@
+<navigator url="../my-stu/my-stu">返回</navigator>
+<view class="cards" wx:for="{{org}}" wx:for-item="item" wx:key="item">
+	<navigator class="nav" url="../detail/detail?orgid={{item.orgId}}">
+		<view class="card" >
+        <view bindtap="onItemClick">
+						<view class="name">
+							<text>机构名称:{{item.orgName}}</text>
+							<view class="cu-btn bg-green round">已关注</view>
+						</view>
+						<view>
+            	<image class="image" mode="aspectFill" src="图片地址"/>
+						</view>
+						<view>
+							<image class="image" mode="aspectFill" src="图片地址"/>
+						</view>
+            <view class="title">机构简称:</view>
+						<view class="title">联系电话:</view>
+						<view class="title">企业介绍:</view>
+						<view class="title">地址:</view>
+        </view>
+    </view>
+	</navigator>
+	<!-- 卡片与卡片的空白间隔 -->
+	<view class="space"></view>
+</view>

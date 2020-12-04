@@ -1,5 +1,5 @@
 import {
-  getLoginInfo, code
+  getLoginInfo, code, getOrgNum
 } from '../../network/login'
 import {
   getPhonecode, updatePassWord
@@ -244,9 +244,27 @@ Page({
             }, 1000)
           }, 0);
         }else if(res.data.defaultRole == 3){
-          wx.reLaunch({
-            url: '../my-stu/my-stu',
-          });
+          getOrgNum(res.data.userid).then(res1 =>{
+            console.log(res1)
+            if(res1.code==200){
+              console.log("机构信息获取成功")
+            }
+            if(res1.data.length == 0){
+              wx.reLaunch({
+                url: '../my-stu/my-stu',
+              });
+            }
+            else if(res1.data.length == 1){
+              wx.reLaunch({
+                url: '../detail/detail?orgid='+ res1.data[0].orgId,
+              });
+            }
+            else {
+              wx.reLaunch({
+                url: '../mainpage/mainpage',
+              });
+            }
+          })
           setTimeout(() => {
             wx.showToast({
               title: '登录成功！',
