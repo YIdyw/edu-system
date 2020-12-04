@@ -42,7 +42,7 @@ Page({
       icon: 'upstagefill',
       color: 'blue',
       id:5,
-      name: '排行'
+      name: '营销页面'
     } ],
     isFaceChecked: 0,
     notifyNum: 0,
@@ -343,7 +343,7 @@ Page({
       }
     }else if(that.data.isFaceChecked==5){
      wx.navigateTo({
-       url: '../test/test',
+       url: '../adver/adver',
      })
     }
   },

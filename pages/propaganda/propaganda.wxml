@@ -8,6 +8,7 @@
 </view>
 
 <view class="cu-form-group">
+	<view class="text-red">*</view>
 	<view class="title">姓名</view>
 	<input placeholder="请输入您的姓名" type="text" maxlength="20" bindinput="name"></input>
 </view>

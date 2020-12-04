@@ -39,7 +39,8 @@
     "pages/index/index",
     "pages/activity/activity",
     "pages/sign/sign",
-    "pages/propaganda/propaganda"
+    "pages/propaganda/propaganda",
+    "pages/adver/adver"
   ],
   
   "window": {
