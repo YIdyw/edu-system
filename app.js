@@ -46,5 +46,6 @@ App({
   globalData: {
     userInfo: null,
     isfollow: false,
+    marketers: ''
   }
 })

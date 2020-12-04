@@ -1,0 +1,20 @@
+<!--pages/sign/sign.wxml-->
+<modal hidden="{{hiddenModal}}" title="请输入手机号" confirm-text="确定" cancel-text="取消" bindcancel="cancel" bindconfirm="confirm">
+  <input placeholder="请输入手机号" type="number" maxlength="11" bindblur="findphone" bindinput="userphone"></input>
+  <view wx:if="{{flagphone}}">
+    手机号未注册
+  </view>
+</modal>
+
+<view class="cu-dialog">
+    <view class="cu-bar bg-white">
+      <view class="content">所选择的课程为：</view>
+    </view>
+  <view class="padding-xl" wx:for="{{dayPlan}}" wx:key="index" style="background-color:#20B2AA;">
+    <view bindtap="chooseCourse" data-type="{{index}}" style="font-size:20px;">
+      {{index + 1}}:{{item.courseName}}
+    </view>
+  </view> 
+</view>
+  
+

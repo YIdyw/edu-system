@@ -198,38 +198,9 @@ Page({
     });
   },
   _signIn(){
-    var that=this;
-    var idxx=that.data.idxx;
-    var getmyclass=wx.getStorageSync('getmyclass');
-    let data={
-      userid:wx.getStorageSync('loginInfo').userid,
-      courseid:getmyclass[idxx].courseId
-    }
-    signIn(data).then(res=>{
-      console.log(res)
-      if(res.code==200){        
-        setTimeout(() => {
-          wx.showToast({
-            title: '签到成功！',
-            icon: "success",
-          });
-          setTimeout(() => {
-            wx.hideToast();
-          }, 1000)
-        }, 0);
-      
-      }else{
-        setTimeout(() => {
-          wx.showToast({
-            title: res.msg,
-            icon: "none",
-          });
-          setTimeout(() => {
-            wx.hideToast();
-          }, 1000)
-        }, 0);
-      }       
-    });
+    wx.navigateTo({
+      url: '../sign/sign',
+    })
   },
     //tab栏选择**********************************************
   swichNav: function (e) {

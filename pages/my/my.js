@@ -1,4 +1,6 @@
 // pages/my/my.js
+
+var app = getApp();
 Page({
 
   /**
@@ -6,7 +8,10 @@ Page({
    */
   data: {
     isLogin: false,
+    
   },
+
+  
   movetologin(){
     wx.navigateTo({
       url: '../loginPhone/loginPhone',
@@ -17,7 +22,9 @@ Page({
     wx.scanCode({
       success: (res) => {
         var show2code=res.result;
-        wx.setStorageSync('show2code',show2code);
+        let show = JSON.parse(show2code);
+        wx.setStorageSync('show2code',show);
+
         setTimeout(() => {
           wx.showToast({
             title: '查询成功！',
@@ -27,9 +34,20 @@ Page({
             wx.hideToast();
           }, 1500)
         }, 0);
-        wx.navigateTo({
-          url: '../code2msg/code2msg',
-        })
+        if(show.type == 1){
+          wx.navigateTo({
+            url: '../code2msg/code2msg',
+          })
+        }else if(show.type == 2){
+          wx.navigateTo({
+            url: '../sign/sign',
+          })     
+        }else if(show.type == 3){
+          app.globalData.marketers = show.userid
+          wx.navigateTo({
+            url: '../propaganda/propaganda',
+          })     
+        }
         },
         fail: (res) => {
         setTimeout(() => {

@@ -53,8 +53,8 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      show:JSON.parse(wx.getStorageSync('show2code')),
-      loginInfo:wx.getStorageSync('loginInfo')
+      show: wx.getStorageSync('show2code'),
+      loginInfo: wx.getStorageSync('loginInfo')
     })
     if(wx.getStorageSync('getstuinfo')){
       this.setData({
@@ -67,7 +67,7 @@ Page({
   _getOrgAllInfo(){
     let that=this;
     let data={
-      orgid:that.data.show.orgId
+      orgid:that.data.show.content.orgId
     }
     getOrgAllInfo(data).then(res=>{
       console.log(res)

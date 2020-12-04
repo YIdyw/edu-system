@@ -37,7 +37,9 @@
     "pages/loginPhone/loginPhone",
     "pages/test/test",
     "pages/index/index",
-    "pages/activity/activity"
+    "pages/activity/activity",
+    "pages/sign/sign",
+    "pages/propaganda/propaganda"
   ],
   
   "window": {
