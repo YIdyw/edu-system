@@ -244,9 +244,7 @@ Page({
   },
   _getOrgCourse(data,index){
     idGetOrgCourse(data).then(res => {
-      if (this.getInfoCallback) {
-        this.getInfoCallback(res)
-      }
+      console.log(res)
       for(let i=0;i<res.data.length;i++){
           if(res.data[i].courseId == index){
             var start = res.data[i].enrollStartTime.split(' ')
@@ -259,12 +257,16 @@ Page({
             })
           }
       }
+      if (this.getInfoCallback) {
+        this.getInfoCallback(res)
+      }
     });
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options)
     var that = this
     let date = new Date()
     let y = date.getFullYear()

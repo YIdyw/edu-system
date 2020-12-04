@@ -39,7 +39,8 @@ Page({
     common : {},
     degs: 0,
     degss: 0,
-    orgid: ''
+    orgid: 0,
+    islogin: false
   },
   
   teacher(e){
@@ -56,11 +57,12 @@ Page({
     })
  },
   getInstituteDetail (id) {
+    console.log(id)
     var url = URL.instituteDetil + id;
     
-    //console.log(url);
+    console.log(url);
     getDetail(url).then(res => {
-      //console.log(res);
+      console.log(res);
       
       //console.log(res);
       var url1 = URL.institute_teacherDetail + res.data.orgInfo.orgId;
@@ -157,6 +159,11 @@ Page({
       this._orgInter(logininfo.userid);
     }
   },
+  movehome(){
+    wx.redirectTo({
+      url: '../my-stu/my-stu',
+    })
+  },
 
   pushMsg(userid){
     wx.request({
@@ -204,6 +211,7 @@ Page({
       degss: deg1
     })
   },
+
   
 
  
@@ -212,16 +220,14 @@ Page({
    */
   onLoad: function (option) {
     //console.log(option.judge);
+    console.log(option)
     if(wx.getStorageSync('loginInfo')&&wx.getStorageSync('loginInfo').defaultRole == 3){
       this.setData({
-        isstu: true
+        isstu: true,
+        orgid: option.orgid
       })
     }
-    this.setData({
-      orgid: option.current,
-    })
-    if(option.judge == 1) {
-      var self = this;
+    var self = this;
       wx.getSystemInfo({
        success: function( info ) {
           self.setData({
@@ -230,12 +236,14 @@ Page({
         }
       })
     //获取数据
-    self.getInstituteDetail(option.current) ;
-    self.getCourse(option.current)
-    }
-    else{
-
-    } 
+      self.getInstituteDetail(option.orgid) ;
+      self.getCourse(option.orgid)
+    // this._getOrgInfo()
+    // this.getInfoCallback = res =>{
+    //   // console.log("以下")
+    //   // console.log(res)
+      
+    // }
   },
 
    /**

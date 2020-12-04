@@ -11,7 +11,8 @@
         <view>{{institute.data.orgInfo.contactPhone}}</view>
       </view>
         
-        <button class="cu-btn bg-green round" wx:if="{{isstu}}" bindtap="orgIn">点击报名</button>
+        <!-- <button class="cu-btn bg-green round" wx:if="{{isstu}}" bindtap="orgIn">点击报名</button> -->
+        <button class="cu-btn bg-green round" wx:if="{{isstu}}" bindtap="movehome">点击报名</button>
       
     </view>
     
