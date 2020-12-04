@@ -1,6 +1,6 @@
 // pages/detail/detail.js
 import {
-  getDetail
+  getDetail, getOrgAct
 } from '../../network/search'
 import {
   orgInter
@@ -39,8 +39,10 @@ Page({
     common : {},
     degs: 0,
     degss: 0,
+    degsss: 0,
     orgid: 0,
-    islogin: false
+    islogin: false,
+    activity: {}
   },
   
   teacher(e){
@@ -212,7 +214,37 @@ Page({
     })
   },
 
+  rotateAnim2: function(){
+    let deg2 = this.data.degsss
+    deg2 = deg2 == 0 ? 90 : 0
+    this.setData({
+      degsss: deg2
+    })
+  },
   
+  //获取当前机构的近期活动
+  _getOrgAct:function(data){
+    getOrgAct(data).then(res =>{
+      // console.log(res)
+      this.setData({
+        activity: res
+      })
+      if(this.getInfoCallback){
+        this.getInfoCallback(res)
+      }
+    })
+    // console.log(this.data.activity)
+  },
+
+  onShareTimeline(res){
+        console.log(res)
+        return {
+          title: '测试小程序分享至朋友圈',
+          path: '../adver/adver',
+          imageUrl:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1594374964481&di=3ceba827e91e126012c43de3887a58c7&imgtype=0&src=http%3A%2F%2Fdmimg.5054399.com%2Fallimg%2Fpkm%2Fpk%2F13.jpg'
+        }
+    
+      },
 
  
   /**
@@ -238,12 +270,13 @@ Page({
     //获取数据
       self.getInstituteDetail(option.orgid) ;
       self.getCourse(option.orgid)
+      self._getOrgAct(option.orgid)
     // this._getOrgInfo()
-    // this.getInfoCallback = res =>{
-    //   // console.log("以下")
-    //   // console.log(res)
+    this.getInfoCallback = res =>{
+      // console.log("以下")
+      // console.log(res)
       
-    // }
+    }
   },
 
    /**

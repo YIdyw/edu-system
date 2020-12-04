@@ -30,3 +30,11 @@ export function  getOrgInfo(data) {
     method: 'GET',
   })
 }
+
+//获取当前机构的近期活动内容
+export function getOrgAct(data) {
+  return request({
+    url: '/organization/activity?orgId=' + data,
+    method: 'GET',
+  })
+}
