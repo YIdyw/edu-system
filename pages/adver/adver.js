@@ -1,4 +1,7 @@
 // pages/adver/adver.js
+import {
+  adver
+} from '../../network/adver'
 Page({
 
   /**
@@ -8,11 +11,22 @@ Page({
     info: ''
   },
 
+  _adver(){
+    //let data = wx.getStorageSync('loginInfo').userid
+    let data = 2
+    adver(data).then(res =>{
+      console.log(res)
+      if(res.code == 200){
+        console.log(res)
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that = this
+    that._adver()
   },
 
   /**
