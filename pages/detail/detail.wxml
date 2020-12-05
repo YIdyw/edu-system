@@ -12,8 +12,13 @@
       </view>
         
         <!-- <button class="cu-btn bg-green round" wx:if="{{isstu}}" bindtap="orgIn">点击报名</button> -->
-        <button class="cu-btn bg-green round" wx:if="{{isstu}}" bindtap="movehome">点击报名</button>
-      
+        <view wx:if="{{!islogin}}">
+          <button  class="cu-btn bg-green round" wx:if="{{isstu}}" bindtap="movehome">点击报名</button>
+        </view>
+        <view wx:if="{{islogin}}">
+          <button  class="cu-btn bg-green round" wx:if="{{isstu}}" bindtap="movehome">课程预约</button>
+        </view>
+
     </view>
     
     <image class="background" mode = "aspectFill" src="{{institute.data.orgInfo.adverPhoto}}"></image>
@@ -75,18 +80,17 @@
 <view style="transform:rotate({{degsss}}deg);transition:all 0.4s;"></view>
 </view>
 <view hidden="{{degsss==0}}">
-    <view class="cards" wx:for="{{activity.data}}" wx:for-item="item" wx:key="item">
+    <view class="cards" wx:for="{{activity.data.activities}}" wx:for-item="item" wx:key="item">
 		<view class="card" >
         <view bindtap="onItemClick">
 						<view class="name">
 							<text>活动名称:{{item.actName}}</text>
 						</view>
 						<view>
-            	<image class='imgBannerBack' src='../../static/img/back_banner.png' mode='scaleToFill'></image>
               <swiper class='bannerSwiper' previous-margin="54rpx" next-margin='54rpx' indicator-dots="true" indicator-color='#B5B5B5' indicator-active-color='#fff' interval='3000' duration='500' bindchange='onChange' circular='true'>
-                <block wx:for="{{banner}}">
+                <block wx:for="{{activity.data.activities.actPicture}}" wx:key="item">
                   <swiper-item>
-                    <image class="{{index==xindex?'imageBanner':'imageBanner_small'}}" src="{{item}}" id='{{item.url}}' bindtap='imageClick'></image>
+                    <image class="{{index==xindex?'imageBanner':'imageBanner_small'}}" src="http://139.129.101.91/offline-education-system{{item}}" id='{{item.url}}' bindtap='imageClick'></image>
                   </swiper-item>
                 </block>
               </swiper>

@@ -34,7 +34,19 @@ export function  getOrgInfo(data) {
 //获取当前机构的近期活动内容
 export function getOrgAct(data) {
   return request({
-    url: '/organization/activity?orgId=' + data,
-    method: 'GET',
+    url: '/organization/activity/latest',
+    method: 'POST',
+    data:{
+      orgId: data
+    }
+  })
+}
+
+
+//查询当前学生是否已经报名该机构
+export function checkOrg(data) {
+  return request({
+    url: '/student/'+data.userid+'/organization/'+data.orgid,
+    method: 'GET'
   })
 }

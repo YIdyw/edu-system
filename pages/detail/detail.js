@@ -1,6 +1,6 @@
 // pages/detail/detail.js
 import {
-  getDetail, getOrgAct
+  getDetail, getOrgAct,checkOrg
 } from '../../network/search'
 import {
   orgInter
@@ -236,6 +236,19 @@ Page({
     // console.log(this.data.activity)
   },
 
+  _checkOrg:function (data) {
+    checkOrg(data).then(res => {
+      console.log(res)
+      if(res.data.isCheck == 1){
+        this.setData({
+          islogin:true
+        })
+      }
+    })
+  },
+
+
+
   onShareTimeline(res){
         console.log(res)
         return {
@@ -258,6 +271,11 @@ Page({
         isstu: true,
         orgid: option.orgid
       })
+      let data = {
+        userid: wx.getStorageSync('loginInfo').userid,
+        orgid: option.orgid
+      }
+      this._checkOrg(data)
     }
     var self = this;
       wx.getSystemInfo({

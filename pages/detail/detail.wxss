@@ -223,5 +223,4 @@
   bottom: 0;
   border-top-left-radius: 15rpx;
   border-top-right-radius: 15rpx; 
- 
 }
