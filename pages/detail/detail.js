@@ -6,6 +6,7 @@ import {
   orgInter
 } from '../../network/orginout'
 var URL;
+var app = getApp();
 //baseURL
 URL = {
     //机构的统一地址
@@ -42,7 +43,8 @@ Page({
     degsss: 0,
     orgid: 0,
     islogin: false,
-    activity: {}
+    activity: {},
+    stuflag: false //判断学生是否已经登记个人信息
   },
   
   teacher(e){
@@ -136,35 +138,62 @@ Page({
 
    //机构报名*************************************************************
    orgIn(e){
-    wx.requestSubscribeMessage({
-      tmplIds: ['7BcxJPhRmjyDlIMHHqzXY3aDaICHOwdvVR6uHw8EvCk'],
-      success (res) {
-        console.log("可以进行推送")
-       },
-       fail (res) {
-        console.log("code:",res.errCode)
-        console.log("Mes",res.errMsg)
-       }
-    })
-    let logininfo = wx.getStorageSync('loginInfo')
-    if(!logininfo.userid){
-      setTimeout(() => {
-        wx.showToast({
-          title: '还未登陆！',
-          icon: "none",
-        });
-        setTimeout(() => {
-          wx.hideToast();
-        }, 1000)
-      }, 0);
+    if(!this.data.islogin){
+      wx.showModal({
+        cancelColor: 'cancelColor',
+        content: '您还未登录，请您选择登录或者注册',
+        title: '关注提示',
+        confirmText: '登录',
+        cancelText: '注册',
+        success(res) {
+          if(res.confirm){
+            app.globalData.isfollow = true;
+            wx.navigateTo({
+              url: '../loginPhone/loginPhone',
+            })
+          }
+          if(res.cancel){
+            app.globalData.isfollow = true;
+            wx.navigateTo({
+              url: '../registPhone/registPhone',
+            })
+          }
+        }
+      })
     } else{
       this._orgInter(logininfo.userid);
     }
   },
+
   movehome(){
-    wx.redirectTo({
-      url: '../my-stu/my-stu',
-    })
+    if(!this.data.islogin){
+      wx.showModal({
+        cancelColor: 'cancelColor',
+        content: '您还未登录，请您选择登录或者注册',
+        title: '关注提示',
+        confirmText: '登录',
+        cancelText: '注册',
+        success(res) {
+          if(res.confirm){
+            app.globalData.isfollow = true;
+            wx.navigateTo({
+              url: '../loginPhone/loginPhone',
+            })
+          }
+          if(res.cancel){
+            app.globalData.isfollow = true;
+            wx.navigateTo({
+              url: '../registPhone/registPhone',
+            })
+          }
+        }
+      })
+    } else{
+      wx.redirectTo({
+        url: '../my-stu/my-stu',
+      })
+    }
+    
   },
 
   pushMsg(userid){
@@ -247,13 +276,17 @@ Page({
     })
   },
 
-
+course(){
+  wx.redirectTo({
+    url: '../propaganda/propaganda',
+  })
+},
 
   onShareTimeline(res){
         console.log(res)
         return {
           title: '测试小程序分享至朋友圈',
-          path: '../adver/adver',
+          path: '../detail/detail?orgid='+this.data.orgid,
           imageUrl:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1594374964481&di=3ceba827e91e126012c43de3887a58c7&imgtype=0&src=http%3A%2F%2Fdmimg.5054399.com%2Fallimg%2Fpkm%2Fpk%2F13.jpg'
         }
     
@@ -264,7 +297,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (option) {
-    //console.log(option.judge);
+    if(wx.getStorageSync('getstuinfo')){
+      this.setData({
+        stuflag:true
+      })
+    }
     console.log(option)
     if(wx.getStorageSync('loginInfo')&&wx.getStorageSync('loginInfo').defaultRole == 3){
       this.setData({

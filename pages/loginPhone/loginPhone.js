@@ -172,7 +172,7 @@ Page({
         that._pushcode()
         if(app.globalData.isfollow){
           wx.redirectTo({
-            url: '../code2msg/code2msg',
+            url: '../detail/detail?orgid=' + wx.getStorageSync('show2code').content.orgId,
           })
         }
         if(res.data.defaultRole == 2){

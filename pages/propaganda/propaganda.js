@@ -5,7 +5,9 @@ import {
 import {
   reservation
 } from '../../network/reservation'
-
+import {
+  getAllSubject
+} from '../../network/checkin'
 Page({
 
   /**
@@ -16,7 +18,12 @@ Page({
     name: "",
     age: "",
     phone: "",
-    flagphone: false
+    flagphone: false,
+    subject: '',
+    idx1: 0,
+    idx2: 0,
+    subjectchildren: '',
+    courseid: ''
   },
 
   courseKind (e) {
@@ -73,6 +80,16 @@ Page({
           wx.hideToast();
         }, 3000)
       }, 0);
+    }else if (that.data.courseid == '') {
+      setTimeout(() => {
+        wx.showToast({
+          title: '请选择课程类别！',
+          icon: 'none'
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 3000)
+      }, 0);
     }else if (that.data.name.indexOf(" ")>=0) {
         setTimeout(() => {
           wx.showToast({
@@ -97,12 +114,14 @@ Page({
       that._reservation()
     }
   },
+
   _reservation(){
     let data = {
       telephone : this.data.phone,
       username : this.data.name,
       age : this.data.age,
-
+      categoryId: this.data.courseid
+      
     }
     reservation(data).then(res =>{
       if(res.code == 200){
@@ -127,11 +146,39 @@ Page({
       }
     })
   },
+
+  _getAll(){
+    getAllSubject().then(res =>{
+      console.log(res)
+      if(res.code == 200){
+        this.setData({
+          subject: res.data
+        })
+      }
+    })
+  },
+
+  PickerChange1(e){
+    this.setData({
+      idx1: e.detail.value,
+      subjectchildren: this.data.subject[e.detail.value].children,
+      idx2: 0,
+      courseid: this.data.subject[e.detail.value].children[0].value
+    })
+  },
+
+  PickerChange2(e){
+    this.setData({
+      idx2: e.detail.value,
+      courseid: this.data.subjectchildren[e.detail.value].value
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that = this
+    that._getAll()
   },
 
   /**

@@ -40,7 +40,7 @@ Page({
         }, 0);
         if(show.type == 1){
           wx.navigateTo({
-            url: '../code2msg/code2msg',
+            url: '../detail/detail?orgid='+show.content.orgId,
           })
         }else if(show.type == 2){
           wx.navigateTo({

@@ -13,7 +13,8 @@
 <view  class="cu-bar bg-white solid-bottom margin-top" wx:for="{{getmyorg}}" wx:for-index="idx" wx:key="id">
 <view class="padding bg-white" flex-direction: column>
   <view class="text-left padding">机构名称：{{getmyorg[idx].orgName}}</view>
-  <view class="text-left padding">学号：{{getmyorg[idx].internalId}}</view>
+	<view class="text-left padding">学号：{{getmyorg[idx].internalId}}</view>
+	<button class="cu-btn bg-green round " bindtap="getinorg" id="{{idx}}">进入机构</button>
  <button class="cu-btn bg-grey round " bindtap="deleteorg" id="{{idx}}">取消报名</button>
 </view>
 </view>

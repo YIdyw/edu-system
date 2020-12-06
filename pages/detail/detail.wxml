@@ -13,12 +13,12 @@
         
         <!-- <button class="cu-btn bg-green round" wx:if="{{isstu}}" bindtap="orgIn">点击报名</button> -->
         <view wx:if="{{!islogin}}">
-          <button  class="cu-btn bg-green round" wx:if="{{isstu}}" bindtap="movehome">点击报名</button>
+          <button  class="cu-btn bg-green round" style="display:flex;float:right;" bindtap="orgIn">点击报名</button>
         </view>
         <view wx:if="{{islogin}}">
-          <button  class="cu-btn bg-green round" wx:if="{{isstu}}" bindtap="movehome">课程预约</button>
+          <button  class="cu-btn bg-green round" style="display:flex;float:right;" wx:if="{{isstu}}" bindtap="course">课程预约</button>
         </view>
-
+        <button  class="cu-btn bg-green round" style="display:flex;float:right;" bindtap="movehome">个人首页</button>
     </view>
     
     <image class="background" mode = "aspectFill" src="{{institute.data.orgInfo.adverPhoto}}"></image>
@@ -111,4 +111,4 @@
   </view>
 </view>
 
-<button class="flex flex_pack_center" data-name="shareBtn"  open-type="share" >分享</button>
+<i-button type="success" open-type="share" shape="circle">分享至微信</i-button>

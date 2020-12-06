@@ -544,11 +544,6 @@ Page({
               url: '../loginPhone/loginPhone',
             })
           }else if(that.data.indexRole==2){
-            if(app.globalData.isfollow){
-              wx.redirectTo({
-                url: '../code2msg/code2msg',
-              })
-            }
             wx.redirectTo({
               url: '../loginPhone/loginPhone',
             })

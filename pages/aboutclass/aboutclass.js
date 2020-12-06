@@ -202,6 +202,13 @@ Page({
       url: '../sign/sign',
     })
   },
+
+  getinorg(e){
+    console.log(e)
+    wx.redirectTo({
+      url: '../detail/detail?orgid='+this.data.getmyorg[e.currentTarget.id].orgId,
+    })
+  },
     //tab栏选择**********************************************
   swichNav: function (e) {
     var that = this;
