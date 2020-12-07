@@ -44,7 +44,16 @@ Page({
     orgid: 0,
     islogin: false,
     activity: {},
-    stuflag: false //判断学生是否已经登记个人信息
+    stuflag: false, //判断学生是否已经登记个人信息,
+    indicatorDots: true,
+    autoplay: false, // 自动播放
+    interval: 5000, //轮播时间
+    duration: 300, // 滑动速度越大越慢
+    circular: true, //是否循环
+    beforeColor: "lightgray", //指示点颜色
+    afterColor: "red", //当前选中的指示点颜色
+    // 轮播数据 + 效果 E
+    controls: false,
   },
   
   teacher(e){
@@ -250,6 +259,15 @@ Page({
       degsss: deg2
     })
   },
+
+  // videoPlay: function() {
+  //   console.log("开始播放")
+  //   var videoplay = wx.createVideoContext("video");
+  //   videoplay.play()
+  //   this.setData({
+  //     controls: true,
+  //   })
+  // },
   
   //获取当前机构的近期活动
   _getOrgAct:function(data){
@@ -281,6 +299,7 @@ course(){
     url: '../propaganda/propaganda',
   })
 },
+
 
   onShareTimeline(res){
         console.log(res)

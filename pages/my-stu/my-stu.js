@@ -8,7 +8,7 @@ import {
   sign
 } from '../../network/signList'
 import {
-  getStuInfo
+  getStuInfo , getOrgNum
 } from '../../network/information'
 
 var app = getApp();
@@ -495,6 +495,30 @@ picture2(){
     });
   },
 
+  _judgepage:function(data){
+    console.log(data)
+    getOrgNum(data).then(res => {
+      console.log(res)
+      if(res.code==200){
+        console.log("机构信息获取成功")
+      }
+      if(res.data.length == 1){
+        wx.navigateTo({
+          url: '../detail/detail?orgid='+ res.data[0].orgId,
+        });
+      }
+      else if(res.data.length > 1){
+        wx.navigateTo({
+          url: '../mainpage/mainpage',
+        });
+      }
+      else{
+        console.log("当前用户还没有报名机构")
+      }
+    })
+  },
+
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -502,7 +526,8 @@ picture2(){
     this.setData({
       current: "mine"
   });
-    
+  // console.log(wx.getStorageSync('loginInfo'.userid))
+    this._judgepage(wx.getStorageSync('loginInfo').userid)
   },
 
   /**
