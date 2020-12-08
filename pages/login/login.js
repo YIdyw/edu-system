@@ -249,24 +249,24 @@ Page({
             if(res1.code==200){
               console.log("机构信息获取成功")
             }
-            // if(res1.data.length == 0){
-            //   wx.reLaunch({
-            //     url: '../my-stu/my-stu',
-            //   });
-            // }
-            // else if(res1.data.length == 1){
-            //   wx.reLaunch({
-            //     url: '../detail/detail?orgid='+ res1.data[0].orgId,
-            //   });
-            // }
-            // else {
-            //   wx.reLaunch({
-            //     url: '../mainpage/mainpage',
-            //   });
-            // }
-            wx.reLaunch({
-              url: '../my-stu/my-stu',
-            });
+            if(res1.data.length == 0){
+              wx.reLaunch({
+                url: '../my-stu/my-stu',
+              });
+            }
+            else if(res1.data.length == 1){
+              wx.reLaunch({
+                url: '../detail/detail?orgid='+ res1.data[0].orgId,
+              });
+            }
+            else {
+              wx.reLaunch({
+                url: '../mainpage/mainpage',
+              });
+            }
+            // wx.reLaunch({
+            //   url: '../my-stu/my-stu',
+            // });
           })
           setTimeout(() => {
             wx.showToast({

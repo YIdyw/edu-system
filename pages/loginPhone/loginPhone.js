@@ -7,6 +7,9 @@ import {
 import {
   getPhonecode, updatePassWord
 } from '../../network/phonecode'
+import {
+  getOrgNum
+} from '../../network/login'
 
 var app = getApp()
 Page({
@@ -189,9 +192,27 @@ Page({
             }, 1000)
           }, 0);
         }else if(res.data.defaultRole == 3){
-          wx.reLaunch({
-            url: '../my-stu/my-stu',
-          });
+          getOrgNum(res.data.userid).then(res1 =>{
+            if(res1.data.length == 0){
+              wx.reLaunch({
+                url: '../my-stu/my-stu',
+              });
+            }
+            else if(res1.data.length == 1){
+              wx.reLaunch({
+                url: '../detail/detail?orgid='+ res1.data[0].orgId,
+              });
+            }
+            else {
+              wx.reLaunch({
+                url: '../mainpage/mainpage',
+              });
+            }
+          })
+          
+          // wx.reLaunch({
+          //   url: '../my-stu/my-stu',
+          // });
           setTimeout(() => {
             wx.showToast({
               title: '登录成功！',

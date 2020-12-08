@@ -398,9 +398,10 @@ picture2(){
           }, 1500)
         }, 0);
         if(show.type == 1){
-          wx.navigateTo({
-            url: '../detail/detail?orgid='+show.content.orgId,
-          })
+          // wx.navigateTo({
+          //   url: '../detail/detail?orgid='+show.content.orgId,
+          // })
+          this._judgepage(wx.getStorageSync('loginInfo').userid)
         }else if(show.type == 2){
           wx.navigateTo({
             url: '../sign/sign',
@@ -527,7 +528,7 @@ picture2(){
       current: "mine"
   });
   //console.log(wx.getStorageSync('loginInfo'.userid))
-  this._judgepage(wx.getStorageSync('loginInfo').userid)
+  //this._judgepage(wx.getStorageSync('loginInfo').userid)
   },
 
   /**

@@ -91,26 +91,26 @@ Page({
         url: '../my-tch/my-tch',
       })
     }else if(wx.getStorageSync('loginInfo').defaultRole==3){
-      // getOrgNum(wx.getStorageSync('loginInfo').userid).then(res1 =>{
-      //   if(res1.data.length == 0){
-      //     wx.reLaunch({
-      //       url: '../my-stu/my-stu',
-      //     });
-      //   }
-      //   else if(res1.data.length == 1){
-      //     wx.reLaunch({
-      //       url: '../detail/detail?orgid='+res1.data[0].orgId,
-      //     });
-      //   }
-      //   else {
-      //     wx.reLaunch({
-      //       url: '../mainpage/mainpage',
-      //     });
-      //   }
-      // })
-      wx.redirectTo({
-        url: '../my-stu/my-stu',
+      getOrgNum(wx.getStorageSync('loginInfo').userid).then(res1 =>{
+        if(res1.data.length == 0){
+          wx.reLaunch({
+            url: '../my-stu/my-stu',
+          });
+        }
+        else if(res1.data.length == 1){
+          wx.reLaunch({
+            url: '../detail/detail?orgid='+res1.data[0].orgId,
+          });
+        }
+        else {
+          wx.reLaunch({
+            url: '../mainpage/mainpage',
+          });
+        }
       })
+      // wx.redirectTo({
+      //   url: '../my-stu/my-stu',
+      // })
     }else{
       this.setData({
         isLogin: true
