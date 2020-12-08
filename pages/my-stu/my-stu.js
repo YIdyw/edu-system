@@ -406,7 +406,7 @@ picture2(){
             url: '../sign/sign',
           })     
         }else if(show.type == 3){
-          app.globalData.marketers = show.userid
+          app.globalData.marketers = show.content.id
           wx.navigateTo({
             url: '../propaganda/propaganda',
           })     
@@ -526,8 +526,8 @@ picture2(){
     this.setData({
       current: "mine"
   });
-  // console.log(wx.getStorageSync('loginInfo'.userid))
-    this._judgepage(wx.getStorageSync('loginInfo').userid)
+  //console.log(wx.getStorageSync('loginInfo'.userid))
+  //this._judgepage(wx.getStorageSync('loginInfo').userid)
   },
 
   /**

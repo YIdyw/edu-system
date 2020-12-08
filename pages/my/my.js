@@ -47,7 +47,7 @@ Page({
             url: '../sign/sign',
           })     
         }else if(show.type == 3){
-          app.globalData.marketers = show.userid
+          app.globalData.marketers = show.content.id
           wx.navigateTo({
             url: '../propaganda/propaganda',
           })     

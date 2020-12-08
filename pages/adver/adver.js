@@ -1,6 +1,6 @@
 // pages/adver/adver.js
 import {
-  adver
+  adver, info
 } from '../../network/adver'
 Page({
 
@@ -8,25 +8,75 @@ Page({
    * 页面的初始数据
    */
   data: {
-    info: ''
+    info: '',
+    codeurl: '',
+    imageWidth:0,
+    imageHeight:0 
   },
 
-  _adver(){
-    //let data = wx.getStorageSync('loginInfo').userid
-    let data = 2
-    adver(data).then(res =>{
+  imgload: function(e){
+    console.log("图片加载完成="+e.detail);
+    //用来计算高宽
+    this.setData(this.wxAutoImageCal(e));
+ },
+
+  wxAutoImageCal(e){
+    //获取图片的原始长宽
+    var originalWidth = e.detail.width;
+    var originalHeight = e.detail.height;
+    var windowWidth = 0,windowHeight = 0;
+    var imageWidth= 0,imageHeight= 0;
+    var results= {};
+   //获取屏幕信息
+  wx.getSystemInfo({
+      success: function(res) {
+        windowWidth = res.windowWidth;
+        windowHeight = res.windowHeight;
+        //判断按照那种方式进行缩放
+        if(originalWidth > windowWidth){//在图片width大于手机屏幕width时候
+          imageWidth= windowWidth;
+          imageHeight= (imageWidth*originalHeight)/originalWidth;
+          results.imageWidth= imageWidth;
+          results.imageHeight= imageHeight;
+        }else{//否则展示原来的数据
+          results.imageWidth= originalWidth;
+          results.imageHeight= originalHeight;
+        }
+      }
+    })
+    return results;
+  },
+
+  _info(){
+    let data = wx.getStorageSync('loginInfo').userid
+    info(data).then(res =>{
       console.log(res)
       if(res.code == 200){
-        console.log(res)
+        this.setData({
+          info: res.data
+        })
       }
     })
   },
+  _adver(){
+    let data = wx.getStorageSync('loginInfo').userid
+    adver(data).then(res =>{
+      console.log(res)
+      if(res.code == 200){
+        this.setData({
+          codeurl: res.data
+        })
+      }
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     var that = this
     that._adver()
+    that._info()
   },
 
   /**

@@ -7,3 +7,11 @@ export function adver(data){
     method: 'GET',
   });
 }
+
+// 获取营销人员信息
+export function info(data){
+  return request({
+    url: '/promote/userId?userId='+data,
+    method: 'GET',
+  });
+}

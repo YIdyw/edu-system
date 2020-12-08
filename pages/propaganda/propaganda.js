@@ -8,6 +8,7 @@ import {
 import {
   getAllSubject
 } from '../../network/checkin'
+var app = getApp()
 Page({
 
   /**
@@ -120,8 +121,8 @@ Page({
       telephone : this.data.phone,
       username : this.data.name,
       age : this.data.age,
-      categoryId: this.data.courseid
-      
+      categoryId: this.data.courseid,
+      recommendId: app.globalData.marketers
     }
     reservation(data).then(res =>{
       if(res.code == 200){

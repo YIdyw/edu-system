@@ -164,9 +164,9 @@ Page({
     teacherCourse(wx.getStorageSync('loginInfo').userid).then(res =>{
       if(res.code == 200){
         console.log(res)
-        for(let i=0;i<res.data.length;i++){
-          for(let j=0;j<8;j++){
-            if(res.data[i]==sub[j].name){
+        for(let i = 0; i < res.data.length; i++){
+          for(let j = 0; j < 8; j++){
+            if(res.data[i] == sub[j].name){
               sub[j].checked = true
               l++
             }
@@ -190,8 +190,17 @@ Page({
     })
   },
 
+  addOne(str){
+    for(let i = 0; i< str.length; i++){
+      str[i]++;
+    }
+    this.setData({
+      subjectChoose: str
+    })
+  },
 
   subjectChange(e){
+    var that = this
     this.setData({
       slength: 0
     })
@@ -204,9 +213,9 @@ Page({
       for(let i=0; i<select.length; i++){
         subs[select[i]].checked = true
       }
+      that.addOne(select)
       this.setData({
         subjects: subs,
-        subjectChoose: select
       });
     }else{
       for(let i=0; i<select.length-1; i++){
@@ -215,8 +224,8 @@ Page({
       select.splice(5, 1)
       this.setData({
         subjects: subs,
-        subjectChoose: select
       });
+      that.addOne(select)
     }
   },
   chooseImg(e){
@@ -245,7 +254,7 @@ Page({
           this.setData({
             pubImg: res.tempFilePaths
           });
-          this.pubImgId();
+          this._pub();
         }
       }
     });
@@ -521,15 +530,7 @@ Page({
       }, 1500)
     }, 0);
     let that = this.data
-    let id = []
-    for(let i=0; i<that.subjectChoose.length; i++){
-      for(let j=0; j<that.courseCategory.length; j++){
-        if(that.subjects[that.subjectChoose[i]].name == that.courseCategory[j].label){
-          id.push(that.courseCategory[j].value)
-          break;
-        }
-      }
-    }
+    let id = that.subjectChoose
 
     if(this.data.trainings==0){
       this.setData({
