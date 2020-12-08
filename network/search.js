@@ -50,3 +50,11 @@ export function checkOrg(data) {
     method: 'GET'
   })
 }
+
+//获取学生和机构的报名关系，包括是否报名以及在当前机构是否有课
+export function getRelation(data) {
+  return request({
+    url: '/student/'+ data.userid + '/organization/' + data.orgid,
+    method: 'GET'
+  })
+}

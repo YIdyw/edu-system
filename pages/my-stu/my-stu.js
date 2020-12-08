@@ -527,7 +527,7 @@ picture2(){
       current: "mine"
   });
   //console.log(wx.getStorageSync('loginInfo'.userid))
-  //this._judgepage(wx.getStorageSync('loginInfo').userid)
+  this._judgepage(wx.getStorageSync('loginInfo').userid)
   },
 
   /**

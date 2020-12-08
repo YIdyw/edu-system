@@ -1,3 +1,34 @@
+<view>
+  <view>
+    <button catchtap="showCT">查看课表</button>
+    <view style="transform:rotate({{degs_course}}deg);transition:all 0.4s;"></view>
+  </view>
+  <view hidden="{{degs_course==0}}">
+    <view class="bg-white padding">
+      <view class="cu-bar">
+        <view class="action">
+          <text class="cuIcon-title text-olive"></text>
+          <text wx:if="{{showMonth==currentMonth}}">当前月份：{{currentMonth}}</text>
+          <text wx:else>选择月份：{{showMonth}}</text>
+        </view>
+        <view class="action">
+          <button class="cu-btn bg-oliveLight shadow" bindtap="lastMonth">上月</button>
+          <button class="cu-btn bg-oliveLight shadow" bindtap="nextMonth">下月</button>
+        </view>
+      </view>
+      <view class="grid col-7 text-center">
+        <view class="padding" wx:for="{{monthTitle}}" wx:key="id">{{item}}</view>
+        <view wx:for="{{monthPlan}}" wx:key="id"  class="padding {{item.exist?'bg-olive solid shadow': ''}} {{item.name==currentDay&&currentMonth==showMonth?'text-red text-bold':''}}" bindtap="viewDayDetail" data-exist="{{item.exist}}" data-info="{{item.courseInfo}}" data-week="{{item.week}}">{{item.name}}</view>
+      </view>
+      <view class="cu-bar margin-top">
+        <view class="action">
+          <text class="cuIcon-title text-olive"></text>注：标记部分有排课，可点击查看具体内容
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
 <view style="min-height : {{screen.minHeight}}; background-color: #2f2f2f;">
   <view class="banner">
     <view class="poster">
@@ -37,7 +68,7 @@
     <view hidden="{{degs==0}}">
     <block wx:for="{{institute_teachers.data}}" wx:key="index">
 
-  <view class="view_tupian_wenzi" bindtap="teacher" data-menuindex='{{index}}' id="{{index}}">
+    <view class="view_tupian_wenzi" bindtap="teacher" data-menuindex='{{index}}' id="{{index}}">
     
     <view class="view_wenzi2"> 
       <text>{{item.authInfo.name}}</text>

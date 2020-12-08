@@ -8,7 +8,16 @@ Page({
    * 页面的初始数据
    */
   data: {
-    org:{}
+    org:{},
+    indicatorDots: true,
+    autoplay: false, // 自动播放
+    interval: 5000, //轮播时间
+    duration: 300, // 滑动速度越大越慢
+    circular: true, //是否循环
+    beforeColor: "lightgray", //指示点颜色
+    afterColor: "red", //当前选中的指示点颜色
+    // 轮播数据 + 效果 E
+    controls: false,
   },
   //获取当前学生已经报名的唯一一个机构的信息
   _getOrgInfo(){

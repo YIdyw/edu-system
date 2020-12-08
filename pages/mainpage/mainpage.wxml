@@ -7,16 +7,32 @@
 							<text>机构名称:{{item.orgName}}</text>
 							<view class="cu-btn bg-green round">已关注</view>
 						</view>
-						<view>
-            	<image class="image" mode="aspectFill" src="图片地址"/>
+						<view wx:if="{{item.orgExtraInfo.orgPicture != null}}">
+            	<swiper class='bannerSwiper' previous-margin="54rpx" next-margin='54rpx' indicator-dots="true" indicator-color='#B5B5B5' indicator-active-color='#fff' interval='3000' duration='500' circular='true' autoplay="true">
+                <block wx:for="{{item.orgExtraInfo.orgPicture}}" wx:for-item="item1" wx:key="index">
+                  <swiper-item>
+                    <image class="{{index==xindex?'imageBanner':'imageBanner_small'}}" src="http://139.129.101.91/offline-education-system{{item.orgExtraInfo.orgPicture[index]}}" id='{{index.url}}' ></image>
+                  </swiper-item>
+                </block>
+              </swiper>
 						</view>
-						<view>
-							<image class="image" mode="aspectFill" src="图片地址"/>
+						<view wx:if="{{item.orgExtraInfo.orgVideo != null}}">
+							<swiper class="detail-banner" indicator-dots="{{indicatorDots}}"  interval="{{interval}}" duration="{{duration}}" circular="{{circular}}" indicator-color="{{beforeColor}}" indicator-active-color="{{afterColor}}" style="background: white;">
+                <swiper-item wx:for="{{item.orgExtraInfo.orgVideo}}" wx:for-item="item1" wx:key="index">
+                <!-- <view class='videocover' data-id="{{index}}"  wx:if="{{item.type==1}}"> -->
+                  <!-- <view class='videocoverbg'></view>
+                  <image src='../../../img/icon/icon-play.png' class='playbtn' bindtap="videoPlay" hidden="{{controls}}"></image>
+                  
+                  </view> -->
+
+                  <video class='box-w block' id="video" src="http://139.129.101.91/offline-education-system{{item.orgExtraInfo.orgVideo[index]}}" show-center-play-btn="true" autoplay="false" objectFit="contain" loop="false" controls="false" show-fullscreen-btn="false"></video>
+                </swiper-item>
+              </swiper>
 						</view>
-            <view class="title">机构简称:</view>
-						<view class="title">联系电话:</view>
-						<view class="title">企业介绍:</view>
-						<view class="title">地址:</view>
+            <view class="title">机构简称:{{item.orgExtraInfo.orgBriefName}}</view>
+						<view class="title">联系电话:{{item.orgExtraInfo.phone1}}</view>
+						<view class="title">企业介绍:{{item.orgExtraInfo.orgIntroduction}}</view>
+						<view class="title">地址:{{item.orgAddress}}</view>
         </view>
     </view>
 	</navigator>
