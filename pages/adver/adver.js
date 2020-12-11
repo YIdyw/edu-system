@@ -134,11 +134,8 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function (ops) {
-    console.log("分享")
-    return {
-      title: "分享卡片",
-      path: '../adver/adver',
-      }
+  onShareAppMessage: function () {
+
   }
+
 })

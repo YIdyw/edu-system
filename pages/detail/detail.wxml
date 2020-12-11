@@ -1,4 +1,4 @@
-<view>
+<view wx:if="{{isstu}}">
   <view hidden="{{degs_course!=0}}">
     <button catchtap="showCT">查看课表</button>
     <view style="transform:rotate({{degs_course}}deg);transition:all 0.4s;"></view>

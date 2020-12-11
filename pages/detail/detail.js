@@ -572,7 +572,7 @@ course(){
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.Init_showCT()
+    
     let today = new Date();
     let currentYear = today.getFullYear();
     let currentMonth = today.getMonth() + 1;
@@ -595,7 +595,11 @@ course(){
       type: 'month',
       userType: wx.getStorageSync('loginInfo').defaultRole,
     }
-    this._scheduelQuery(data);
+    if(this.data.isstu){
+      this.Init_showCT()
+      this._scheduelQuery(data);
+    }
+    
   },
 
   /**

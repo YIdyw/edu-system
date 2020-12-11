@@ -36,8 +36,8 @@
 		</view>
 	</view>
 </view>
-<view wx:if="{{flagphone}}">
-手机号已被使用
+<view wx:if="{{!flagphone}}">
+手机号尚未注册
 </view>
 <!-- <view class="cu-form-group">
 	<view class="text-red">*</view>
