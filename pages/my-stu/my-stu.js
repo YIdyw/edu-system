@@ -386,6 +386,7 @@ picture2(){
     success: (res) => {
       var show2code=res.result;
         let show = JSON.parse(show2code);
+        console.log(show)
         wx.setStorageSync('show2code',show);
 
         setTimeout(() => {
@@ -398,16 +399,18 @@ picture2(){
           }, 1500)
         }, 0);
         if(show.type == 1){
-          // wx.navigateTo({
-          //   url: '../detail/detail?orgid='+show.content.orgId,
-          // })
-          this._judgepage(wx.getStorageSync('loginInfo').userid)
+          wx.navigateTo({
+            url: '../detail/detail?orgid='+show.content.orgId,
+          })
+          //this._judgepage(wx.getStorageSync('loginInfo').userid)
         }else if(show.type == 2){
           wx.navigateTo({
             url: '../sign/sign',
           })     
         }else if(show.type == 3){
-          app.globalData.marketers = show.content.id
+          if(show.content){
+            app.globalData.marketers = show.content.id
+          }
           wx.navigateTo({
             url: '../propaganda/propaganda',
           })     

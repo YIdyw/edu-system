@@ -187,17 +187,19 @@ Page({
           wx.hideToast();
         }, 1500)
       }, 0);
-  }else if(!/^[a-zA-Z]([-_a-zA-Z0-9]{5,19})+$/.test(that.data.weixin)){
-    setTimeout(() => {
-      wx.showToast({
-        title: '微信格式错误！',
-        icon: 'none'
-      });
+  }else if(that.data.weixin!=''){
+    if(!/^[a-zA-Z]([-_a-zA-Z0-9]{5,19})+$/.test(that.data.weixin)){
       setTimeout(() => {
-        wx.hideToast();
-      }, 1500)
-    }, 0);
-}else{
+        wx.showToast({
+          title: '微信格式错误！',
+          icon: 'none'
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1500)
+      }, 0);
+  }
+  }else{
       infoIn(data).then(res=>{
         console.log("学生：", res)
         if(res.code==200){       
