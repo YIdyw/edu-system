@@ -37,6 +37,7 @@ Page({
     course : {},
     flag: false,
     isstu: false,
+    isplay: false, //视频是否自动播放
     screen : {
       minHeight : 'auto'
     },
@@ -49,6 +50,7 @@ Page({
     islogin: false,
     activity: {},
     stuflag: false, //判断学生是否已经登记个人信息,
+    issignup: false, //判断学生是否已经报名
     indicatorDots: true,
     autoplay: false, // 自动播放
     interval: 5000, //轮播时间
@@ -74,6 +76,32 @@ Page({
     showYear:'',          // tab月内月份选择（初始化为当前年）
     showMonth: '',        // tab月内月份选择（初始化为当前月）
     showWeek: '',         // tab周内周选择
+  },
+
+  //自动播放视频
+  play: function ready(){
+/** 监控视频是否需要播放 */
+let screenHeight = wx.getSystemInfoSync().windowHeight   //获取屏幕高度
+let topBottomPadding = (screenHeight - 80)/2 //取屏幕中间80的高度作为播放触发区域，然后计算上下视窗的高度 topBottomPadding
+// 80这个高度可以根据UI样式调整，我这边基本两个视频间隔高度在100左右，超过了两个视频之间的间隔，就会冲突，两个视频会同时播放，不建议过大
+
+const videoObserve = this.createIntersectionObserver()
+videoObserve.relativeToViewport({bottom: -topBottomPadding, top: -topBottomPadding})
+    .observe(`#emotion${this.data.randomId}`, (res) => {
+        let {intersectionRatio} = res
+        if(intersectionRatio === 0) {
+            //离开视界，因为视窗占比为0，停止播放
+            this.setData({
+                isplay: false
+            })
+        }else{
+            //进入视界，开始播放
+            this.setData({
+                isplay: true
+            })
+        }
+
+    })
   },
 
   //课程表内容
@@ -347,6 +375,16 @@ Page({
           }
         }
       })
+    }else if(!this.data.issignup){
+      setTimeout(() => {
+        wx.showToast({
+          title: '您已经报名了！',
+          icon: "none",
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 3000)
+      }, 0);
     } else{
       this._orgInter(logininfo.userid);
     }
@@ -496,16 +534,41 @@ Page({
       console.log(res)
       if(res.data.isCheck == 1){
         this.setData({
-          islogin:true
+          issignup :true
         })
       }
     })
   },
 
-course(){
-  wx.redirectTo({
-    url: '../propaganda/propaganda',
-  })
+course_reserve(){
+  if(!this.data.islogin){
+    wx.showModal({
+      cancelColor: 'cancelColor',
+      content: '您还未登录，请您选择登录或者注册',
+      title: '关注提示',
+      confirmText: '登录',
+      cancelText: '注册',
+      success(res) {
+        if(res.confirm){
+          app.globalData.isfollow = true;
+          wx.navigateTo({
+            url: '../loginPhone/loginPhone',
+          })
+        }
+        if(res.cancel){
+          app.globalData.isfollow = true;
+          wx.navigateTo({
+            url: '../registPhone/registPhone',
+          })
+        }
+      }
+    })
+  }else{
+    wx.redirectTo({
+      url: '../propaganda/propaganda',
+    })
+  }
+  
 },
 
 
@@ -529,7 +592,11 @@ course(){
         stuflag:true
       })
     }
-    console.log(option)
+    if(wx.getStorageSync('loginInfo')){
+      this.setData({
+        islogin: true
+      })
+    }
     if(wx.getStorageSync('loginInfo')&&wx.getStorageSync('loginInfo').defaultRole == 3){
       this.setData({
         isstu: true,

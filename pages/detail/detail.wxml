@@ -33,7 +33,7 @@
   </view>
 </view>
 
-<view style="min-height : {{screen.minHeight}}; background-color: #2f2f2f;">
+<view style="min-height : {{screen.minHeight}}; background-color: #2f2f2f;" bindtouchend="play">
   <view class="banner">
     <view class="poster">
       <image mode="aspectFit" src="{{institute.data.orgInfo.adverPhoto}}"></image>
@@ -47,12 +47,10 @@
       </view>
         
         <!-- <button class="cu-btn bg-green round" wx:if="{{isstu}}" bindtap="orgIn">点击报名</button> -->
-        <view wx:if="{{!islogin}}">
+        <view wx:if="{{!issignup}}">
           <button  class="cu-btn bg-green round" style="display:flex;float:right;" bindtap="orgIn">点击报名</button>
         </view>
-        <view wx:if="{{islogin}}">
-          <button  class="cu-btn bg-green round" style="display:flex;float:right;" wx:if="{{isstu}}" bindtap="course">课程预约</button>
-        </view>
+        <button  class="cu-btn bg-green round" style="display:flex;float:right;" bindtap="course_reserve">课程预约</button>
         <button  class="cu-btn bg-green round" style="display:flex;float:right;" bindtap="movehome">个人首页</button>
     </view>
     
@@ -140,7 +138,7 @@
                   
                   </view> -->
 
-                  <video class='box-w block' id="video" src="http://139.129.101.91/offline-education-system{{item.actVideo[index]}}" show-center-play-btn="true" autoplay="false" objectFit="cover" loop="false" controls="false" show-fullscreen-btn="false"></video>
+                  <video class='box-w block' id="video" src="http://139.129.101.91/offline-education-system{{item.actVideo[index]}}" show-center-play-btn="true" autoplay="{{flase}}" objectFit="cover" loop="false" controls="false" show-fullscreen-btn="false"></video>
                 </swiper-item>
               </swiper>
 
