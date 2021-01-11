@@ -325,7 +325,10 @@ videoObserve.relativeToViewport({bottom: -topBottomPadding, top: -topBottomPaddi
     orgInter(data).then(res=>{
       console.log(res)
       if(res.code==200){
-        this.pushMsg(userid)        
+        this.pushMsg(userid) 
+        this.setData({
+          issignup: true
+        })       
         setTimeout(() => {
           wx.showToast({
             title: '报名成功！',
@@ -375,7 +378,7 @@ videoObserve.relativeToViewport({bottom: -topBottomPadding, top: -topBottomPaddi
           }
         }
       })
-    }else if(!this.data.issignup){
+    }else if(this.data.issignup){
       setTimeout(() => {
         wx.showToast({
           title: '您已经报名了！',
@@ -386,7 +389,7 @@ videoObserve.relativeToViewport({bottom: -topBottomPadding, top: -topBottomPaddi
         }, 3000)
       }, 0);
     } else{
-      this._orgInter(logininfo.userid);
+      this._orgInter(wx.getStorageSync('loginInfo').userid);
     }
   },
 
@@ -422,24 +425,35 @@ videoObserve.relativeToViewport({bottom: -topBottomPadding, top: -topBottomPaddi
   },
 
   pushMsg(userid){
-    wx.request({
-    url: config.service.sendMsgUrl,
-    data: { 
-      code: app.globalData.code, 
-      template_id: '7BcxJPhRmjyDlIMHHqzXY3aDaICHOwdvVR6uHw8EvCk',
-      userid: userid,
-      orgid: this.data.orgid
-    },
-    method: 'POST',
-    success: function (res) {
-    console.log("push msg");
-    console.log(res);
-    },
-    fail: function (err) { 
-    console.log("push err")
-    console.log(err);
-    }
-    });
+    wx.requestSubscribeMessage({
+      tmplIds: ["Ay8VcpCaY_bqB_uvjLntnShzPXcsv_0J4Ya3JuEwHEc","Db5GfNzzqozgQdnHfpZYyFRgFIRewm1omkQe-8lF9Zc"],
+      success (res) {
+        console.log("可以进行推送")
+        console.log(res)
+       },
+       fail (res) {
+        console.log("code:",res.errCode)
+        console.log("Mes",res.errMsg)
+       }
+    })
+    // wx.request({
+    // url: config.service.sendMsgUrl,
+    // data: { 
+    //   code: app.globalData.code, 
+    //   template_id: '7BcxJPhRmjyDlIMHHqzXY3aDaICHOwdvVR6uHw8EvCk',
+    //   userid: userid,
+    //   orgid: this.data.orgid
+    // },
+    // method: 'POST',
+    // success: function (res) {
+    // console.log("push msg");
+    // console.log(res);
+    // },
+    // fail: function (err) { 
+    // console.log("push err")
+    // console.log(err);
+    // }
+    // });
    },
 
   getCourse : function(id){

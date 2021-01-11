@@ -25,7 +25,7 @@
                   
                   </view> -->
 
-                  <video class='box-w block' id="video" src="http://139.129.101.91/offline-education-system{{item.orgExtraInfo.orgVideo[index]}}" show-center-play-btn="true" autoplay="false" objectFit="contain" loop="false" controls="false" show-fullscreen-btn="false"></video>
+                  <video class='box-w block' id="video" src="http://139.129.101.91/offline-education-system{{item.orgExtraInfo.orgVideo[index]}}" show-center-play-btn="true" autoplay="{{autoplay}}" objectFit="contain" loop="false" controls="false" show-fullscreen-btn="false"></video>
                 </swiper-item>
               </swiper>
 						</view>
