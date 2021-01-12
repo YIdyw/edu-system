@@ -19,7 +19,7 @@ export function teacheragree(data){
 }
 
 // 学生申请补课
-export function askForLeave(data){
+export function askForLeave1(data){
   return request({
     url: '/appoint/'+data,
     method: 'GET',
@@ -28,7 +28,7 @@ export function askForLeave(data){
 }
 
 // 老师批准是否补课
-export function askForLeave(data){
+export function askForLeave2(data){
   return request({
     url: '/appoint/'+data,
     method: 'GET',

@@ -153,7 +153,11 @@ Page({
       console.log(res)
       if(res.code == 200){
         this.setData({
-          subject: res.data
+          subject: res.data,
+          idx1: 0,
+          subjectchildren: res.data[0].children,
+          idx2: 0,
+          courseid: res.data[0].children[0].value
         })
       }
     })
