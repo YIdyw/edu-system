@@ -1,13 +1,25 @@
 // pages/test/test.js
+
+var dateTimePicker = require('../../utils/test1.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    lat1: 0,
-    lng1: 0,
-    long: 0
+    // lat1: 0,
+    // lng1: 0,
+    // long: 0
+    isshow: false,
+    exitApp: false,
+    date: '2021-01-01',
+    time: '12:00',
+    dateTimeArray: null,
+    dateTime: null,
+    dateTimeArray1: null,
+    dateTime1: null,
+    startYear: 2020,
+    endYear: 2050
   },
 
     //地图定位精确方法
@@ -115,38 +127,113 @@ out_of_china:function (lng, lat) {
     })
     console.log("您现在距离新科："+s+"km")
   },
+
+  changeDate(e){
+    this.setData({ date:e.detail.value});
+  },
+  changeTime(e){
+    this.setData({ time: e.detail.value });
+  },
+  changeDateTime(e){
+    this.setData({ dateTime: e.detail.value });
+  },
+  changeDateTime1(e) {
+    this.setData({ dateTime1: e.detail.value });
+  },
+  changeDateTimeColumn(e){
+    var arr = this.data.dateTime, dateArr = this.data.dateTimeArray;
+
+    arr[e.detail.column] = e.detail.value;
+    dateArr[2] = dateTimePicker.getMonthDay(dateArr[0][arr[0]], dateArr[1][arr[1]]);
+
+    this.setData({
+      dateTimeArray: dateArr,
+      dateTime: arr
+    });
+  },
+  changeDateTimeColumn1(e) {
+    var arr = this.data.dateTime1, dateArr = this.data.dateTimeArray1;
+
+    arr[e.detail.column] = e.detail.value;
+    dateArr[2] = dateTimePicker.getMonthDay(dateArr[0][arr[0]], dateArr[1][arr[1]]);
+
+    this.setData({
+      dateTimeArray1: dateArr,
+      dateTime1: arr
+    });
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this;
-    wx.getLocation({
-      type: 'wgs84',
-      altitude: true,
-      isHighAccuracy: true,
-      highAccuracyExpireTime: 3500,
-      success: function (res) {
-        console.log(res)
-        var lat1 = res.latitude
-        var lng1 = res.longitude
-        var ssws=that.wgs84togcj02(lng1, lat1)
-        ssws = that.gcj02tobd09(ssws[0]  , ssws[1] )
-        //解决定位偏移
-        var ssssss1 = ssws[1] - 0.000160
-        var ssssss2 = ssws[0] - 0.000160
-                          
-        that.setData({ latitude: ssssss1.toFixed(6), longitude: ssssss2.toFixed(6) })
-            that.setData({
-                lng1: ssssss2.toFixed(6),
-                lat1: ssssss1.toFixed(6)
-            })
-        console.log("纬度："+ssssss1.toFixed(6))
-        console.log("经度："+ssssss2.toFixed(6))
-      
-        that.juli()
-        
+    var that = this
+    // 获取完整的年月日 时分秒，以及默认显示的数组
+    var obj = dateTimePicker.dateTimePicker(this.data.startYear, this.data.endYear);
+    var obj1 = dateTimePicker.dateTimePicker(this.data.startYear, this.data.endYear);
+    // 精确到分的处理，将数组的秒去掉
+    var lastArray = obj1.dateTimeArray.pop();
+    var lastTime = obj1.dateTime.pop();
+
+    this.setData({
+      dateTime: obj.dateTime,
+      dateTimeArray: obj.dateTimeArray,
+      dateTimeArray1: obj1.dateTimeArray,
+      dateTime1: obj1.dateTime
+    });
+    wx.showModal({
+      cancelColor: 'cancelColor',
+      confirmText: '已协商',
+      cancelText: '联系老师',
+      title: '补课申请',
+      content: '请先与授课老师进行协商沟通补课时间',
+      success(res){
+        if(res.confirm){
+          //选择日期和时间
+          that.setData({
+            isshow: true
+          })
+        }else if(res.cancel){
+          //退出小程序
+          wx.getSystemInfo({
+            success: function(res) {
+              if(res.SDKVersion>="2.1.0"){
+                that.setData({
+                  exitApp:true//data中的初始化变量
+                })
+              }
+            }
+          })
+        }
       }
     })
+    // var that = this;
+    // wx.getLocation({
+    //   type: 'wgs84',
+    //   altitude: true,
+    //   isHighAccuracy: true,
+    //   highAccuracyExpireTime: 3500,
+    //   success: function (res) {
+    //     console.log(res)
+    //     var lat1 = res.latitude
+    //     var lng1 = res.longitude
+    //     var ssws=that.wgs84togcj02(lng1, lat1)
+    //     ssws = that.gcj02tobd09(ssws[0]  , ssws[1] )
+    //     //解决定位偏移
+    //     var ssssss1 = ssws[1] - 0.000160
+    //     var ssssss2 = ssws[0] - 0.000160
+                          
+    //     that.setData({ latitude: ssssss1.toFixed(6), longitude: ssssss2.toFixed(6) })
+    //         that.setData({
+    //             lng1: ssssss2.toFixed(6),
+    //             lat1: ssssss1.toFixed(6)
+    //         })
+    //     console.log("纬度："+ssssss1.toFixed(6))
+    //     console.log("经度："+ssssss2.toFixed(6))
+      
+    //     that.juli()
+        
+    //   }
+    // })
     // that.setData({
     //        lat1 : 34.2316,
     //         lng1 : 108.9129
