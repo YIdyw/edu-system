@@ -579,7 +579,7 @@ course_reserve(){
     })
   }else{
     wx.redirectTo({
-      url: '../propaganda/propaganda',
+      url: '../propaganda/propaganda?orgid=' + this.data.orgid ,
     })
   }
   

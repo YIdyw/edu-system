@@ -10,13 +10,24 @@ import {
 import {
   getStuInfo , getOrgNum
 } from '../../network/information'
+import {
+  askForLeave, query_org
+} from '/../../network/courseMakeup'
+
 
 var app = getApp();
+
 Page({
   data: {
     current:0,
     islogin: false,
     isflag: false,
+    orgid: 0,
+    islayout: true,
+    causeinfo:'' ,
+    leaveStartTime:'',
+    leaveEndTime:'',
+    layoutcause_id:'',
     iconList: [{
       icon: 'addressbook',
       color: 'red',
@@ -70,21 +81,124 @@ Page({
     showWeek: '',         // tab周内周选择
   },
 
-  //跳转到签到页面
-  signup(e){
-    wx.showModal({
-      cancelColor: 'cancelColor',
-      title: '签到',
-      content: '确定是否签到？',
-      success(res){
-        if(res.confirm){
-          wx.navigateTo({
-            url: '../sign/sign',
-          })
-        }
-      }
+  //时间差
+  _deftime(currentTime, completeTime){
+    var stime = Date.parse(new Date(currentTime))
+    var etime = Date.parse(new Date(completeTime))
+    // console.log(stime)
+    // console.log(etime)
+    var usedTime = etime - stime
+
+    var days = Math.floor(usedTime / (24 *3600 *1000));
+    var leave1 = usedTime % (24 *3600 *1000)
+    var hours = Math.floor(leave1 /(3600 * 1000))
+
+    var leave2 = leave1 % (3600 * 1000)
+    var minute = Math.floor(leave2 / (60 * 1000))
+
+    var dayStr = days == 0 ? "" : days + "天"
+    var hoursStr = hours == 0 ? "" : hours + "时"
+    var time = dayStr + hoursStr + minute + "分"
+    if(days > 0 || hours >= 4){
+      var timeF = time + "可请假"
+      console.log(timeF)
+      return true
+    }
+    
+    // return timeF
+
+  },
+
+  cancelM:function(e){
+    this.setData({
+      islayout: true
     })
   },
+
+  confirmM:function(e){
+    let data = {
+      orgId: this.data.orgid ,
+      courseId: this.data.layoutcause_id,
+      leaveReason: this.data.causeinfo,
+      userId:this.data.loginInfo.userid,
+      leaveStartTime:this.data.leaveStartTime,
+      leaveEndTime:this.data.leaveEndTime
+    }
+    console.log(data)
+    askForLeave(data).then(res => {
+      if(res.code == 200){
+        this.setData({
+          islayout:true
+        })
+        wx.showModal({
+          cancelColor: 'cancelColor',
+          title: '补课',
+          content: '确定是否申请补课？',
+          success(res){
+            if(res.confirm){
+              console.log('sure')
+            }
+          }
+        })
+      }
+
+    })
+
+  },
+
+  _Cause:function(e){
+    this.setData({
+      causeinfo:e.detail.value
+    })
+  },
+  //点击课程签到，请假，补课判断
+  _judgechose(e){
+    // askForLeave()
+    console.log(e)
+    var time = e.currentTarget.dataset.data.courseTime.substring(0,16)
+    var starttime = e.currentTarget.dataset.data.courseTime.substring(0,16) + ':00'
+    var endtime = e.currentTarget.dataset.data.courseTime.substring(0,11) + e.currentTarget.dataset.data.courseTime.substring(17,23) + ':00'
+    // console.log(endtime)
+    this.setData({
+      leaveStartTime:starttime,
+      leaveEndTime:endtime,
+      layoutcause_id:e.currentTarget.dataset.data.courseId
+    })
+    var dateTimes = Date.parse(new Date())
+    // console.log(dateTimes)
+    // console.log(time)
+    query_org(e.currentTarget.dataset.data.courseId).then(res => {
+      if(res.code == 200){
+        console.log(res.data.organizationId)
+        this.setData({
+          orgid:res.data.organizationId
+        })
+      }
+    })
+    console.log(e.currentTarget)
+    if(this._deftime(dateTimes,time)){
+      this.setData({
+        islayout: false
+      })
+    }
+    //跳转到签到页面
+    else{
+      wx.showModal({
+        cancelColor: 'cancelColor',
+        title: '签到',
+        content: '确定是否签到？',
+        success(res){
+          if(res.confirm){
+            wx.navigateTo({
+              url: '../sign/sign',
+            })
+          }
+        }
+      })
+    }
+  },
+
+
   lastMonth(){
     let month = this.data.showMonth-1;  // 前一月
     let year = this.data.showYear;      // 当前年

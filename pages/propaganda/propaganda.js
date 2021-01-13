@@ -24,7 +24,8 @@ Page({
     idx1: 0,
     idx2: 0,
     subjectchildren: '',
-    courseid: ''
+    courseid: '',
+    orgid:''
   },
 
   courseKind (e) {
@@ -122,8 +123,10 @@ Page({
       username : this.data.name,
       age : this.data.age,
       categoryId: this.data.courseid,
-      recommendId: app.globalData.marketers
+      recommendId: app.globalData.marketers,
+      orgId : this.data.orgid
     }
+    console.log(data)
     reservation(data).then(res =>{
       if(res.code == 200){
         setTimeout(() => {
@@ -184,6 +187,9 @@ Page({
   onLoad: function (options) {
     var that = this
     that._getAll()
+    this.setData({
+      orgid : options.orgid
+    })
   },
 
   /**

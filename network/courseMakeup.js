@@ -34,3 +34,11 @@ export function askForLeave2(data){
     method: 'GET',
   });
 }
+
+//根据课程id查询课程所属机构
+export function query_org(data){
+  return request({
+    url:'/course/queryCourse/'+ data,
+    method:'GET'
+  })
+}
