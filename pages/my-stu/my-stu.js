@@ -14,7 +14,7 @@ import {
   askForLeave, query_org, stuMakeUp
 } from '/../../network/courseMakeup'
 
-
+var dateTimePicker = require('../../utils/test1.js');
 var app = getApp();
 
 Page({
@@ -79,6 +79,9 @@ Page({
     showYear:'',          // tab月内月份选择（初始化为当前年）
     showMonth: '',        // tab月内月份选择（初始化为当前月）
     showWeek: '',         // tab周内周选择
+    deftime: '',          //课程时间，以毫秒为单位
+    stime: null,          //补课开始时间
+    etime: null,          //补课结束时间
     isshow: false,
     exitApp: false,
     date: '2021-01-01',
@@ -155,8 +158,30 @@ Page({
 
   },
 
+  _endtime(){
+    var that = this
+    var stime = this.data.dateTimeArray1[0][this.data.dateTime1[0]]+'-'+this.data.dateTimeArray1[1][this.data.dateTime1[1]]+'-'+this.data.dateTimeArray1[2][this.data.dateTime1[2]]+' '+this.data.dateTimeArray1[3][this.data.dateTime1[3]]+':'+this.data.dateTimeArray1[4][this.data.dateTime1[4]]
+    var s = new Date(stime)
+    var e = new Date()
+    e.setTime(s.getTime() + this.data.deftime)
+    this.setData({
+      stime: stime + ':00',
+      etime: this.data.dateTimeArray1[0][this.data.dateTime1[0]]+'-'+this.data.dateTimeArray1[1][this.data.dateTime1[1]]+'-'+this.data.dateTimeArray1[2][this.data.dateTime1[2]]+' '+e.getHours()+':'+e.getMinutes()+':00'
+    })
+    that._makeup()
+  },
   //补课接口
-  _makeup(data){
+  _makeup(){
+    var that = this
+    let data = {
+      courseId: that.data.thatDay.courseInfo[0].courseId,
+      orgId: that.data.orgid,
+      userId: wx.getStorageSync('loginInfo').userid,
+      originEndTime: that.data.leaveEndTime,
+      originStartTime: that.data.leaveStartTime,
+      makeupStartTime: that.data.stime,
+      makeupEndTime: that.data.etime
+    }
     stuMakeUp(data).then(res =>{
       if(res.code == 200){
         setTimeout(() => {
@@ -182,6 +207,7 @@ Page({
   },
   changeDateTime1(e) {
     this.setData({ dateTime1: e.detail.value });
+    this._endtime()
   },
   changeDateTimeColumn1(e) {
     var arr = this.data.dateTime1, dateArr = this.data.dateTimeArray1;
@@ -197,14 +223,7 @@ Page({
   //补课
   makeup(){
     var that = this
-    let data = {
-      courseId: that.data.thatDay.courseInfo.courseId,
-      orgId: that.data.orgid,
-      userId: wx.getStorageSync('loginInfo').userId,
-      originEndTime: that.data.leaveEndTime,
-      originStartTime: that.data.leaveStartTime,
-      
-    }
+    
     // 获取完整的年月日 时分秒，以及默认显示的数组
     var obj1 = dateTimePicker.dateTimePicker(this.data.startYear, this.data.endYear);
     // 精确到分的处理，将数组的秒去掉
@@ -226,6 +245,7 @@ Page({
           that.setData({
             isshow: true
           })
+
         }else if(res.cancel){
           //退出小程序
           wx.getSystemInfo({
@@ -261,6 +281,12 @@ Page({
       layoutcause_id:e.currentTarget.dataset.data.courseId
     })
     var dateTimes = Date.parse(new Date())
+    var stime = Date.parse(this.data.leaveStartTime)
+    var etime = Date.parse(this.data.leaveEndTime)
+    this.setData({
+      deftime: etime - stime
+    })
+    
     // console.log(dateTimes)
     // console.log(time)
     query_org(e.currentTarget.dataset.data.courseId).then(res => {

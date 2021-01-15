@@ -2,7 +2,7 @@
 <scroll-view scroll-y="true" style="min-height : {{screen.minHeight}}px; background-color: #2f2f2f;">
   <view class="banner">
     <view class="poster" wx:if="{{flag}}">
-      <image class="orgimage" mode="aspectFill" src="http://139.129.101.91/offline-education-system/picture/{{courseinfo.adverPhoto}}"></image>
+      <image class="orgimage" mode="aspectFill" src="https://139.129.101.91/offline-education-system/picture/{{courseinfo.adverPhoto}}"></image>
     </view>
 
 
