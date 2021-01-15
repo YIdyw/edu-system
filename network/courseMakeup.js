@@ -9,11 +9,22 @@ export function askForLeave(data){
   });
 }
 
-// 老师批假
-export function teacheragree(data){
+// 老师查阅请假记录
+export function teache_lookup(data){
   return request({
     url: '/course/leave',
-    method: 'PUST',
+    method: 'GET',
+    data:{
+      teaId:data
+    },
+  });
+}
+
+// 老师处理请假
+export function teacher_deal(data){
+  return request({
+    url: '/course/leave',
+    method: 'PUT',
     data: data
   });
 }
