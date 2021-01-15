@@ -41,7 +41,8 @@
     "pages/sign/sign",
     "pages/propaganda/propaganda",
     "pages/adver/adver",
-    "pages/mainpage/mainpage"
+    "pages/mainpage/mainpage",
+    "pages/beforeindex/beforeindex"
   ],
   
   "window": {

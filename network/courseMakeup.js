@@ -19,19 +19,20 @@ export function teacheragree(data){
 }
 
 // 学生申请补课
-export function askForLeave1(data){
+export function stuMakeUp(data){
   return request({
-    url: '/appoint/'+data,
-    method: 'GET',
+    url: '/course/makeup',
+    method: 'POST',
     data: data
   });
 }
 
 // 老师批准是否补课
-export function askForLeave2(data){
+export function teaMakeUp(data){
   return request({
-    url: '/appoint/'+data,
-    method: 'GET',
+    url: '/course/makeup',
+    method: 'PUT',
+    data: data
   });
 }
 

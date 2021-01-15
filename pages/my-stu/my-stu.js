@@ -11,7 +11,7 @@ import {
   getStuInfo , getOrgNum
 } from '../../network/information'
 import {
-  askForLeave, query_org
+  askForLeave, query_org, stuMakeUp
 } from '/../../network/courseMakeup'
 
 
@@ -79,6 +79,14 @@ Page({
     showYear:'',          // tab月内月份选择（初始化为当前年）
     showMonth: '',        // tab月内月份选择（初始化为当前月）
     showWeek: '',         // tab周内周选择
+    isshow: false,
+    exitApp: false,
+    date: '2021-01-01',
+    time: '12:00',
+    dateTimeArray1: null,
+    dateTime1: null,
+    startYear: 2020,
+    endYear: 2050
   },
 
   //时间差
@@ -116,6 +124,7 @@ Page({
   },
 
   confirmM:function(e){
+    var that = this
     let data = {
       orgId: this.data.orgid ,
       courseId: this.data.layoutcause_id,
@@ -136,7 +145,7 @@ Page({
           content: '确定是否申请补课？',
           success(res){
             if(res.confirm){
-              console.log('sure')
+              that.makeup();
             }
           }
         })
@@ -144,6 +153,93 @@ Page({
 
     })
 
+  },
+
+  //补课接口
+  _makeup(data){
+    stuMakeUp(data).then(res =>{
+      if(res.code == 200){
+        setTimeout(() => {
+          wx.showToast({
+            title: '补课申请成功！',
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 3000)
+        }, 0);
+      }else{
+        setTimeout(() => {
+          wx.showToast({
+            title: '补课申请失败！',
+            icon: "none",
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 3000)
+        }, 0);
+      }
+    })
+  },
+  changeDateTime1(e) {
+    this.setData({ dateTime1: e.detail.value });
+  },
+  changeDateTimeColumn1(e) {
+    var arr = this.data.dateTime1, dateArr = this.data.dateTimeArray1;
+
+    arr[e.detail.column] = e.detail.value;
+    dateArr[2] = dateTimePicker.getMonthDay(dateArr[0][arr[0]], dateArr[1][arr[1]]);
+
+    this.setData({
+      dateTimeArray1: dateArr,
+      dateTime1: arr
+    });
+  },
+  //补课
+  makeup(){
+    var that = this
+    let data = {
+      courseId: that.data.thatDay.courseInfo.courseId,
+      orgId: that.data.orgid,
+      userId: wx.getStorageSync('loginInfo').userId,
+      originEndTime: that.data.leaveEndTime,
+      originStartTime: that.data.leaveStartTime,
+      
+    }
+    // 获取完整的年月日 时分秒，以及默认显示的数组
+    var obj1 = dateTimePicker.dateTimePicker(this.data.startYear, this.data.endYear);
+    // 精确到分的处理，将数组的秒去掉
+    var lastArray = obj1.dateTimeArray.pop();
+    var lastTime = obj1.dateTime.pop();
+    this.setData({
+      dateTimeArray1: obj1.dateTimeArray,
+      dateTime1: obj1.dateTime
+    });
+    wx.showModal({
+      cancelColor: 'cancelColor',
+      confirmText: '已协商',
+      cancelText: '联系老师',
+      title: '补课申请',
+      content: '请先与授课老师进行协商沟通补课时间',
+      success(res){
+        if(res.confirm){
+          //选择日期和时间
+          that.setData({
+            isshow: true
+          })
+        }else if(res.cancel){
+          //退出小程序
+          wx.getSystemInfo({
+            success: function(res) {
+              if(res.SDKVersion>="2.1.0"){
+                that.setData({
+                  exitApp:true//data中的初始化变量
+                })
+              }
+            }
+          })
+        }
+      }
+    })
   },
 
   _Cause:function(e){

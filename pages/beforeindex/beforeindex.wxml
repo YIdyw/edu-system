@@ -1,0 +1,6 @@
+<!--pages/beforeindex/beforeindex.wxml-->
+<view class="content" >
+  <view style="margin-top:50px;width:100%;">
+    <view style='font-size:20px;'>抱歉，您无法正常使用该小程序</view>
+  </view>
+</view>

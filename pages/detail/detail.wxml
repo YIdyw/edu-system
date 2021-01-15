@@ -52,7 +52,7 @@
         </view>
         <button  class="cu-btn bg-green round" style="display:flex;float:right;" bindtap="course_reserve">课程预约</button>
         <button  class="cu-btn bg-green round" style="display:flex;float:right;" bindtap="movehome">个人首页</button>
-        <button  class="cu-btn bg-green round" style="display:flex;float:right;" bindtap="test">test</button>
+        <!-- <button  class="cu-btn bg-green round" style="display:flex;float:right;" bindtap="test">test</button> -->
     </view>
     
     <image class="background" mode = "aspectFill" src="{{institute.data.orgInfo.adverPhoto}}"></image>

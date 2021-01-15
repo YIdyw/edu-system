@@ -84,38 +84,81 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this
     if(!wx.getStorageSync('loginInfo')){
-      
-    }else if(wx.getStorageSync('loginInfo').defaultRole==2){
-      wx.redirectTo({
-        url: '../my-tch/my-tch',
-      })
-    }else if(wx.getStorageSync('loginInfo').defaultRole==3){
-      getOrgNum(wx.getStorageSync('loginInfo').userid).then(res1 =>{
-        if(res1.data.length == 0){
-          wx.reLaunch({
-            url: '../my-stu/my-stu',
-          });
+    wx.showModal({
+      cancelColor: 'cancelColor',
+      confirmText: '同意',
+      cancelText: '拒绝',
+      title: '账号登录请求',
+      content: '小程序用于培训教师与学生/家长进行交流，用户需要在注册（老师或者学生/家长）账号，才能正常使用',
+      success(res){
+        if(res.confirm){
+          if(wx.getStorageSync('loginInfo').defaultRole==2){
+            wx.redirectTo({
+              url: '../my-tch/my-tch',
+            })
+          }else if(wx.getStorageSync('loginInfo').defaultRole==3){
+            getOrgNum(wx.getStorageSync('loginInfo').userid).then(res1 =>{
+              if(res1.data.length == 0){
+                wx.reLaunch({
+                  url: '../my-stu/my-stu',
+                });
+              }
+              else if(res1.data.length == 1){
+                wx.reLaunch({
+                  url: '../detail/detail?orgid='+res1.data[0].orgId,
+                });
+              }
+              else {
+                wx.reLaunch({
+                  url: '../mainpage/mainpage',
+                });
+              }
+            })
+            // wx.redirectTo({
+            //   url: '../my-stu/my-stu',
+            // })
+          }
+        }else if(res.cancel){
+          wx.redirectTo({
+            url: '../beforeindex/beforeindex',
+          })
         }
-        else if(res1.data.length == 1){
-          wx.reLaunch({
-            url: '../detail/detail?orgid='+res1.data[0].orgId,
-          });
-        }
-        else {
-          wx.reLaunch({
-            url: '../mainpage/mainpage',
-          });
-        }
-      })
-      // wx.redirectTo({
-      //   url: '../my-stu/my-stu',
-      // })
-    }else{
-      this.setData({
-        isLogin: true
-      })
-    }
+      }
+    })
+  }else if(wx.getStorageSync('loginInfo').defaultRole==2){
+    wx.redirectTo({
+      url: '../my-tch/my-tch',
+    })
+  }else if(wx.getStorageSync('loginInfo').defaultRole==3){
+    getOrgNum(wx.getStorageSync('loginInfo').userid).then(res1 =>{
+      if(res1.data.length == 0){
+        wx.reLaunch({
+          url: '../my-stu/my-stu',
+        });
+      }
+      else if(res1.data.length == 1){
+        wx.reLaunch({
+          url: '../detail/detail?orgid='+res1.data[0].orgId,
+        });
+      }
+      else {
+        wx.reLaunch({
+          url: '../mainpage/mainpage',
+        });
+      }
+    })
+    // wx.redirectTo({
+    //   url: '../my-stu/my-stu',
+    // })
+  }else{
+    this.setData({
+      isLogin: true
+    })
+  }
+
+    
   },
 
   /**
