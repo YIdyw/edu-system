@@ -125,3 +125,39 @@
     </view>
   </view>
 </view> 
+
+
+<modal height='600rpx' width='100%' hidden="{{islayout}}" title="学生请假记录" confirm-text="确认" cancel-text="取消" bindcancel="cancelM" bindconfirm="confirmM" >
+      <scroll-view class="table" scroll-y="true" scroll-x="true">
+        <view class="tr bg-w">
+          <view class="th">学生姓名</view>
+          <view class="th">请假课程</view>
+          <view class="th ">请假时间</view>
+          <view class="th">请假理由</view>
+          <view class="th">审核状态</view>
+          <view class="th">是否批准</view>
+        </view>
+        <block wx:for="{{layout}}" wx:key="index">
+          <view class="tr bg-g" wx:if="{{index % 5 == 0}}">
+            <view class="td">{{item.userName}}</view>
+            <view class="td">{{item.courseName}}</view>
+            <view class="td">{{item.leaveStartTime}}</view>
+            <view class="td">{{item.leaveReason}}</view>
+            <view class="td" wx:if="{{item.isChecked == 10}}">待审核</view>
+            <view class="td" wx:elif="{{item.isChecked == 20}}">已通过</view>
+            <view class="td" wx:else="{{item.isChecked == 30}}">未通过</view>
+            <button class="td" bindtap="changecheck"  data-index="{{index}}" disabled="{{item.isChecked==20||item.isChecked==30}}">操作</button>
+          </view>
+          <view class="tr" wx:else>
+            <view class="td">{{item.userName}}</view>
+            <view class="td">{{item.courseName}}</view>
+            <view class="td">{{item.leaveStartTime}}</view>
+            <view class="td">{{item.leaveReason}}</view>
+            <view class="td" wx:if="{{item.isChecked == 10}}">待审核</view>
+            <view class="td" wx:elif="{{item.isChecked == 20}}">已通过</view>
+            <view class="td" wx:else="{{item.isChecked == 30}}">未通过</view>
+            <button class="td" bindtap="changecheck" data-index="{{index}}" disabled="{{item.isChecked==20||item.isChecked==30}}">操作</button>
+          </view>
+        </block>
+      </scroll-view>
+</modal>

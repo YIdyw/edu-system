@@ -8,11 +8,17 @@ import {
   updateInfo
 } from '../../network/regist'
 
+import {
+  teache_lookup,teacher_deal
+} from '../../network/courseMakeup'
+
 Page({
   data: {
     loginInfo:[],
     islogin: false,
     isflag: false,
+    layout:{},
+    islayout: true,
     iconList: [{
       icon: 'addressbook',
       color: 'red',
@@ -64,6 +70,91 @@ Page({
     showYear:'',          // tab月内月份选择（初始化为当前年）
     showMonth: '',        // tab月内月份选择（初始化为当前月）
     showWeek: '',         // tab周内周选择
+  },
+
+  //老师查阅请假记录
+  _teacher_lp(){
+    // console.log(this.data.loginInfo.userid)
+    teache_lookup(this.data.loginInfo.userid).then(res => {
+      console.log(res)
+      if(res.code == 200){
+        this.setData({
+          islayout:false,
+          layout:res.data
+        })
+      }
+      if (this.getInfoCallback) {
+        this.getInfoCallback(res)     //这里为了防止网络获取延迟，设置回调函数
+      }
+    })
+  },
+
+  //修改学生申请的审核状态
+  changecheck(e){
+    console.log(e.currentTarget)
+
+    var agree = 20
+    var refuse = 30
+    var that = this
+    wx.showModal({
+      cancelColor: 'cancelColor',
+      title:'批假操作',
+        content:"确认批准学生的请假么?",
+        cancelText:'拒绝',
+        confirmText:'同意',
+        success(res){
+          if(res.confirm){
+            let data = {
+              isChecked : agree,
+              recordId : that.data.layout[e.currentTarget.dataset.index].recordId,
+              userId : that.data.loginInfo.userid
+            }
+            teacher_deal(data).then(res=>{
+              if(res.code == 200){
+                wx.showToast({
+                  title: '已同意该学生请假',
+                })
+              }
+            })
+            that.data.layout[e.currentTarget.dataset.index].isChecked = agree
+            that.setData({
+              layout:that.data.layout
+            })
+          }
+          else{
+            let data = {
+              isChecked : refuse,
+              recordId : that.data.layout[e.currentTarget.dataset.index].recordId,
+              userId : that.data.loginInfo.userid
+            }
+            teacher_deal(data).then(res=>{
+              if(res.code == 200){
+                wx.showToast({
+                  title: '已拒绝该学生请假',
+                })
+              }
+            })
+
+            that.data.layout[e.currentTarget.dataset.index].isChecked = refuse
+            that.setData({
+              layout:that.data.layout
+            })
+          }
+
+        }
+    })
+  },
+
+  cancelM(){
+    this.setData({
+      islayout:true
+    })
+  },
+
+  confirmM(){
+    this.setData({
+      islayout:true
+    })
   },
 
   lastMonth(){
@@ -496,6 +587,11 @@ Page({
         islogin: true,
         notifyNum: notifyNum
       });
+    }
+    this._teacher_lp()
+    this.getInfoCallback = res =>{
+      console.log("以下")
+      console.log(res)  
     }
   },
 
