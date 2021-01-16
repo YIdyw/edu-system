@@ -161,3 +161,7 @@
         </block>
       </scroll-view>
 </modal>
+
+<modal hidden="{{isrefuse}}" title="拒绝" confirm-text="确认拒绝" cancel-text="取消" bindcancel="cancel_refuse" bindconfirm="confirm_refuse">
+      <input bindinput='_refuse_content' type='text' placeholder="拒绝理由:" auto-focus/>
+</modal>

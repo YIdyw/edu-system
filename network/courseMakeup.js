@@ -29,6 +29,15 @@ export function teacher_deal(data){
   });
 }
 
+//老师处理结果推送给学生
+export function push_leava(data){
+  return request({
+    url: '/weixin/leaveReminder',
+    method:'POST',
+    data:data
+  });
+}
+
 // 学生申请补课
 export function stuMakeUp(data){
   return request({

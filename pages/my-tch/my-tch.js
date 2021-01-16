@@ -9,7 +9,7 @@ import {
 } from '../../network/regist'
 
 import {
-  teache_lookup,teacher_deal
+  teache_lookup,teacher_deal,push_leava
 } from '../../network/courseMakeup'
 
 Page({
@@ -19,6 +19,10 @@ Page({
     isflag: false,
     layout:{},
     islayout: true,
+    refuse_content:'',
+    isrefuse:true,
+    refuse_data:{},
+    recordId_index:'',
     iconList: [{
       icon: 'addressbook',
       color: 'red',
@@ -94,7 +98,6 @@ Page({
     console.log(e.currentTarget)
 
     var agree = 20
-    var refuse = 30
     var that = this
     wx.showModal({
       cancelColor: 'cancelColor',
@@ -107,7 +110,8 @@ Page({
             let data = {
               isChecked : agree,
               recordId : that.data.layout[e.currentTarget.dataset.index].recordId,
-              userId : that.data.loginInfo.userid
+              courseId:that.data.layout[e.currentTarget.dataset.index].courseId,
+              userId:that.data.layout[e.currentTarget.dataset.index].userId
             }
             teacher_deal(data).then(res=>{
               if(res.code == 200){
@@ -120,25 +124,23 @@ Page({
             that.setData({
               layout:that.data.layout
             })
-          }
-          else{
-            let data = {
-              isChecked : refuse,
-              recordId : that.data.layout[e.currentTarget.dataset.index].recordId,
-              userId : that.data.loginInfo.userid
+            let push_data = {
+              recordId:that.data.layout[e.currentTarget.dataset.index].recordId,
+              userId:that.data.layout[e.currentTarget.dataset.index].userId
             }
-            teacher_deal(data).then(res=>{
-              if(res.code == 200){
-                wx.showToast({
-                  title: '已拒绝该学生请假',
-                })
+        
+            push_leava(push_data).then(res => {
+              if (res.code == 200){
+                console.log("推送成功")
               }
             })
-
-            that.data.layout[e.currentTarget.dataset.index].isChecked = refuse
+          }
+          else{
             that.setData({
-              layout:that.data.layout
+              isrefuse:false,
+              recordId_index:e.currentTarget.dataset.index,
             })
+            
           }
 
         }
@@ -157,6 +159,61 @@ Page({
     })
   },
 
+  cancel_refuse(){
+    this.setData({
+      isrefuse:true,
+      refuse_content:''
+    })
+  },
+
+  _refuse_content(e){
+    this.setData({
+      refuse_content:e.detail.value
+    })
+  },
+
+  confirm_refuse(){
+    var refuse = 30
+    let data = {
+      declineReason:this.data.refuse_content,
+      isChecked : refuse,
+      recordId : this.data.layout[this.data.recordId_index].recordId,
+      courseId:this.data.layout[this.data.recordId_index].courseId,
+      userId:this.data.layout[this.data.recordId_index].userId
+    }
+    console.log(data)
+    teacher_deal(data).then(res=>{
+      if(res.code == 200){
+        wx.showToast({
+          title: '已拒绝该学生请假',
+        })
+      }
+    })
+
+    this.data.layout[this.data.recordId_index].isChecked = refuse
+    this.setData({
+      layout:this.data.layout
+    })
+    this.setData({
+      isrefuse:true
+    })
+
+    let push_data = {
+      recordId:this.data.layout[this.data.recordId_index].recordId,
+      userId:this.data.layout[this.data.recordId_index].userId
+    }
+
+    push_leava(push_data).then(res => {
+      if (res.code == 200){
+        console.log("推送成功")
+      }
+    })
+
+  },
+
+
+
+  
   lastMonth(){
     let month = this.data.showMonth-1;  // 前一月
     let year = this.data.showYear;      // 当前年
