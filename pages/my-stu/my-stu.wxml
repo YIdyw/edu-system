@@ -51,7 +51,7 @@
   </view>
   <view class="grid col-7 text-center">
     <view class="padding" wx:for="{{monthTitle}}" wx:key="id">{{item}}</view>
-    <view wx:for="{{monthPlan}}" wx:key="id"  class="padding {{item.exist?'bg-olive solid shadow': ''}} {{item.name==currentDay&&currentMonth==showMonth?'text-red text-bold':''}}" bindtap="viewDayDetail" data-exist="{{item.exist}}" data-info="{{item.courseInfo}}" data-week="{{item.week}}">{{item.name}}</view>
+    <view wx:for="{{monthPlan}}" wx:key="id"  class="padding {{item.exist?item.color: ''}} {{item.name==currentDay&&currentMonth==showMonth?'text-red text-bold':''}}" bindtap="viewDayDetail" data-exist="{{item.exist}}" data-info="{{item.courseInfo}}" data-week="{{item.week}}">{{item.name}}</view>
   </view>
   <view class="cu-bar margin-top">
     <view class="action">

@@ -19,6 +19,7 @@ var app = getApp();
 
 Page({
   data: {
+    color: 'bg-olive solid shadow',            //课表颜色
     current:0,
     islogin: false,
     isflag: false,
@@ -510,7 +511,7 @@ Page({
     let dayPlan = null;
     let today = new Date()
     let monthcheck = this.data.monthPlan
-    
+    var color = ''     //正常上课，补课颜色区分
     var year = today.getFullYear()
     var month = today.getMonth() + 1
     var day = today.getDate()
@@ -523,8 +524,17 @@ Page({
       for(let i=0; i<monthPlan.length; i++){
         for(let j=0; j<res.data.length; j++){
           if(monthPlan[i].date == res.data[j].courseTime.substring(0, 10)){
+            if(res.data[j].courseNo == -1){
+              color = 'bg-blue solid shadow'
+              monthPlan[i].courseNo = -1;
+            }else{
+              color = 'bg-olive solid shadow'
+              monthPlan[i].courseNo = 0;
+            }
             monthPlan[i].exist = true;
+            monthPlan[i].color = color;
             monthPlan[i].courseInfo.push({name: res.data[j].name,courseId: res.data[j].courseId, courseTime: res.data[j].courseTime, site: res.data[j].site})
+            
           }
           
           continue;

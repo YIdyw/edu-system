@@ -15,7 +15,7 @@
       <view class="carts-cnt">
         <!-- 点击商品图片可跳转到商品详情 -->
         <navigator url="../courseinfo/courseinfo?index={{Mer.courseId}}&orgid={{Mer.orgId}}">
-                <image mode="aspectFill" class="carts-image" src="http://139.129.101.91/offline-education-system/picture/{{Mer.adverPhoto}}"></image>
+                <image mode="aspectFill" class="carts-image" src="https://139.129.101.91/offline-education-system/picture/{{Mer.adverPhoto}}"></image>
             </navigator>
         <view class="carts-info">
           <view class="carts-title">{{Mer.courseName}}</view>
