@@ -47,6 +47,17 @@ export function stuMakeUp(data){
   });
 }
 
+// 老师查阅补课记录
+export function tealookup(data){
+  return request({
+    url: '/course/makeup',
+    method: 'GET',
+    data:{
+      teaId:data
+    },
+  });
+}
+
 // 老师批准是否补课
 export function teaMakeUp(data){
   return request({

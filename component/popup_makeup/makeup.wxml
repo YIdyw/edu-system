@@ -1,0 +1,39 @@
+<!--component/popup_makeup/makeup.wxml-->
+<modal height='600rpx' width='100%' hidden="{{ismakeup}}" title="学生补课申请记录" confirm-text="确认" cancel-text="取消" bindcancel="cancelM" bindconfirm="confirmM" >
+      <scroll-view class="table" scroll-y="true" scroll-x="true">
+        <view class="tr bg-w">
+          <view class="th">学生姓名</view>
+          <view class="th">补课课程</view>
+          <view class="th ">补课时间</view>
+          <view class="th">补课理由</view>
+          <view class="th">审核状态</view>
+          <view class="th">是否批准</view>
+        </view>
+        <block wx:for="{{makeup}}" wx:key="index">
+          <view class="tr bg-g" wx:if="{{index % 5 == 0}}">
+            <view class="td">{{item.userName}}</view>
+            <view class="td">{{item.courseName}}</view>
+            <view class="td">{{item.leaveStartTime}}</view>
+            <view class="td">{{item.declineReason}}</view>
+            <view class="td" wx:if="{{item.isChecked == 10}}">待审核</view>
+            <view class="td" wx:elif="{{item.isChecked == 20}}">已通过</view>
+            <view class="td" wx:else="{{item.isChecked == 30}}">未通过</view>
+            <button class="td" bindtap="changecheck"  data-index="{{index}}" disabled="{{item.isChecked==20||item.isChecked==30}}">操作</button>
+          </view>
+          <view class="tr" wx:else>
+            <view class="td">{{item.userName}}</view>
+            <view class="td">{{item.courseName}}</view>
+            <view class="td">{{item.leaveStartTime}}</view>
+            <view class="td">{{item.declineReason}}</view>
+            <view class="td" wx:if="{{item.isChecked == 10}}">待审核</view>
+            <view class="td" wx:elif="{{item.isChecked == 20}}">已通过</view>
+            <view class="td" wx:else="{{item.isChecked == 30}}">未通过</view>
+            <button class="td" bindtap="changecheck" data-index="{{index}}" disabled="{{item.isChecked==20||item.isChecked==30}}">操作</button>
+          </view>
+        </block>
+      </scroll-view>
+</modal>
+
+<modal hidden="{{isrefuse}}" title="拒绝" confirm-text="确认拒绝" cancel-text="取消" bindcancel="cancel_refuse" bindconfirm="confirm_refuse">
+      <input bindinput='_refuse_content' type='text' placeholder="拒绝理由:" auto-focus/>
+</modal>
