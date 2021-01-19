@@ -1,6 +1,6 @@
 // pages/carts/carts.js
 import {
-  getAll, selectMer, deleteMer, unselectMer, selectAllMer, unselectAllMer, makeOrder
+  getAll, selectMer, deleteMer, unselectMer, selectAllMer, unselectAllMer, makeOrder, childMakeOrder
 } from '../../network/carts'
 Page({
 
@@ -171,9 +171,11 @@ makeOrder() {
   if(this.data.totalPrice>0){
     wx.showModal({
       cancelColor: 'cancelColor',
-      title: '是否购买？',
-      content: '请选择是否购买',
-      success(res){
+      title: '用户类型',
+      content: '请选择直接为当前用户购买还是添加子用户购买？',
+      confirmText: '直接购买',
+      cancelText: '子用户',
+      success (res) {
         if(res.confirm){
           makeOrder(data).then(res =>{
             console.log(res)
@@ -192,6 +194,8 @@ makeOrder() {
               })
             }
           })
+        }else if(res.cancel){
+          console.log("子用户生成订单")
         }
       }
     })

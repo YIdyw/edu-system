@@ -72,3 +72,12 @@ export function findmerid(data){
     method: 'GET',
   });
 }
+
+// 子用户购买课程（生成订单）
+export function childMakeOrder(data){
+  return request({
+    url: '/subuser/add',
+    method: 'POST',
+    data: data
+  });
+}

@@ -1,7 +1,7 @@
 <view style="min-height : {{screen.minHeight}}px; background-color: #2f2f2f;">
   <view class="banner" wx:if="{{flag}}">
     <view class="poster" >
-      <image mode="aspectFit" src="https://139.129.101.91:8081/offline-education-system/picture/{{teacher.data.adverPhoto}}"></image>
+      <image mode="aspectFit" src="https://www.sanshidiboundless.com/offline-education-system/picture/{{teacher.data.adverPhoto}}"></image>
     </view>
     <view class="info">
       <view class="title">{{name}}</view>
@@ -11,7 +11,7 @@
         <view>学位: {{teacher.data.degree}}</view>
       </view>
     </view>
-    <image class="background" mode = "aspectFill" src="https://139.129.101.91:8081/offline-education-system/picture/{{teacher.data.adverPhoto}}"></image>
+    <image class="background" mode = "aspectFill" src="https://www.sanshidiboundless.com/offline-education-system/picture/{{teacher.data.adverPhoto}}"></image>
     
   </view>
 

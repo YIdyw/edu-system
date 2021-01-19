@@ -26,14 +26,14 @@
 
  <view class="courses"> 
     <view wx:if="{{flag}}">
-      <image class="fimage" mode="top" src="https://139.129.101.91:8081/offline-education-system/picture/440"></image>
+      <image class="fimage" mode="top" src="https://www.sanshidiboundless.com/offline-education-system/picture/440"></image>
      </view>
     <view wx:else>
       <view class="card" >
         <scroll-view scroll-y scroll-with-animation bindscrolltolower="lower" scroll-left="{{scrollLength}}" class='scrollX' style='height: {{winHeight-200}}px'>
         <view class="courseinfo" wx:for="{{courseinfo}}" wx:key="name">
         <view bindtap="onItemClick" data-menuindex='{{index}}'>
-            <image class="image" mode="aspectFill" src="https://139.129.101.91:8081/offline-education-system/picture/{{item.adverPhoto}}"></image>
+            <image class="image" mode="aspectFill" src="https://www.sanshidiboundless.com/offline-education-system/picture/{{item.adverPhoto}}"></image>
             <text class="time">{{item.startTime}}</text>
             <view class="title">{{item.name}}</view>
         </view>

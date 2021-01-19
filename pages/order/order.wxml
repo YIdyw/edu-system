@@ -22,7 +22,7 @@
     <view class="orderDetails" wx:for="{{paidOrder}}" wx:key="index" data-menuindex='{{index}}' bindtap="settledetail2" >
       <view class="productImg"  >
         <view class="orderListDetails">
-          <image src="https://139.129.101.91/offline-education-system/picture/{{item.orderItemVOList[0].orderItem.object.adverPhoto}}" background-size="cover"></image>
+          <image src="https://www.sanshidiboundless.com/offline-education-system/picture/{{item.orderItemVOList[0].orderItem.object.adverPhoto}}" background-size="cover"></image>
         <view class="productInfo">
           <view class="productTitle">预定时间: {{item.orderTime}}</view>
             <text class="productPrice">订单编号：{{item.orderId}}</text>
@@ -51,7 +51,7 @@
       <view wx:else>
       <view class="orderDetails" wx:for="{{tobepaidOrder}}" data-menuindex='{{index}}' wx:key="index" bindtap="settlement">
         <view class="orderListDetails">
-          <image class="productImg" src="https://139.129.101.91/offline-education-system/picture/{{item.orderItemVOList[0].orderItem.object.adverPhoto}}" background-size="cover"></image>
+          <image class="productImg" src="https://www.sanshidiboundless.com/offline-education-system/picture/{{item.orderItemVOList[0].orderItem.object.adverPhoto}}" background-size="cover"></image>
         <view class="productInfo">
           <view class="productTitle">预定时间: {{item.orderTime}}</view>
             <text class="productPrice">订单编号：{{item.orderId}}</text>
@@ -80,7 +80,7 @@
     <view class="orderDetails" wx:for="{{cancelOrder}}" wx:key="index"  data-menuindex='{{index}}' bindtap="settledetail">
       <view class="productImg">
         <view class="orderListDetails">
-          <image src="https://139.129.101.91/offline-education-system/picture/{{item.orderItemVOList[0].orderItem.object.adverPhoto}}" background-size="cover"></image>
+          <image src="https://www.sanshidiboundless.com/offline-education-system/picture/{{item.orderItemVOList[0].orderItem.object.adverPhoto}}" background-size="cover"></image>
         <view class="productInfo">
           <view class="productTitle">预定时间: {{item.orderTime}}</view>
             <text class="productPrice">订单编号：{{item.orderId}}</text>
