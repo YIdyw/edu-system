@@ -3,24 +3,36 @@ import request from './request.js'
 // 根据userid获取该用户全部商品
 export function getAll(data){
   return request({
-    url: '/shoppingCart/'+data,
-    method: 'GET',
+    url: '/shoppingCart',
+    method: 'POST',
+    data: {
+      userId: data
+    }
   });
 }
 
-// 根据userid和商品id选中指定商品
-export function selectMer(data){
+// 根据userid和商品id修改状态
+export function updateMer(data){
   return request({
-    url: '/shoppingCart/'+data.userid+'/'+data.merid+'/select',
+    url: '/shoppingCart',
     method: 'PUT',
+    data: {
+      cartState: data.cartState,
+      userId: data.userid,
+      merId: data.merid
+    }
   });
 }
 
 // 根据userid和商品id删除指定商品
 export function deleteMer(data){
   return request({
-    url: '/shoppingCart/'+data.userid+'/'+data.merid,
+    url: '/shoppingCart',
     method: 'DELETE',
+    data:{
+      userId: data.userid,
+      merId: [data.merid]
+    }
   });
 }
 

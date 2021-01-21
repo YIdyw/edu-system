@@ -1,7 +1,10 @@
 // pages/carts/carts.js
 import {
-  getAll, selectMer, deleteMer, unselectMer, selectAllMer, unselectAllMer, makeOrder, childMakeOrder
+  getAll, selectMer, deleteMer, unselectMer, selectAllMer, unselectAllMer, makeOrder, childMakeOrder, updateMer
 } from '../../network/carts'
+import {
+  addChild, getAllChild, childBuyCourse
+} from '../../network/moreChild'
 Page({
 
   /**
@@ -12,6 +15,17 @@ Page({
     hasList:false,          // 列表是否有数据
     totalPrice:0,           // 总价，初始为0
     selectAllStatus:false,    // 全选状态，默认全选
+    ischild: false,         //是否为子用户购买      
+    isadd: false,           //是否添加子用户
+    child: '',              //子用户数据
+    subId: '',
+    id: 0,
+    sex: [{ id: 0, name: '男', checked: true}, 
+    { id: 1, name: '女', checked: false}],
+    name: '',
+    gender:0,
+    birth: "",
+    secondTel:'',
     isnull: true,
     courseid: '',
     userid: '',
@@ -20,6 +34,113 @@ Page({
       minHeight : 'auto'
     },
     height:''
+  },
+
+  username (e) {
+    this.setData({
+      name: e.detail.value
+    });
+  },
+
+  userbirth(e){
+    this.setData({
+      birth: e.detail.value
+    });
+  },
+
+  handleSexChange(e) {
+    let gender = e.currentTarget.dataset.gender
+    let sex = this.data.sex
+    sex[gender].checked = false
+    gender == 1? gender=0 : gender=1
+    sex[gender].checked = true
+    this.setData({
+      gender: gender,
+      sex: sex
+    });
+  },
+
+  secondTel: function (e) {
+      this.setData({
+        secondTel: e.detail.value
+        })
+  },
+
+  choseTxtColor:function(e){
+    var id = e.currentTarget.dataset.id;  //获取自定义的ID值
+    this.setData({
+      id: id,
+      subId:  child[id].subUserId
+    })
+  },
+
+  _getAllChild(userid){
+    getAllChild(userid).then(res =>{
+      if(res.code == 200){
+        console.log(res)
+        this.setData({
+          child: res.data,
+          ischild: true
+        })
+      }
+    })
+  },
+
+  _add(){
+    this.setData({
+      isadd: true
+    })
+  },
+
+  _no(){
+    this.setData({
+      ischild: false
+    })
+  },
+
+  _ok(){
+    let data = {
+    }
+  },
+
+  hideModal(){
+    this.setData({
+      isadd: false
+    })
+  },
+
+  addChildBtn(){
+    var that = this
+    let data = {
+      subUserBirth: this.data.birth,
+      subUserGender: this.data.gender,
+      subUserName: this.data.name,
+      subUserPhone: this.data.secondTel,
+      userId: this.data.userid
+    }
+    addChild(data).then(res =>{
+      if(res.code == 200){
+        that._getAllChild(that.data.userid)
+        setTimeout(() => {
+          wx.showToast({
+            title: '添加成功！',
+            icon: "success",
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 3000)
+        }, 0);
+      }else{
+        setTimeout(() => {
+          wx.showToast({
+            title: '添加失败！',
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 3000)
+        }, 0);
+      }
+    })
   },
 
   getTotalPrice() {
@@ -40,6 +161,17 @@ getAll() {
       if(res.code==200){
         this.setData({
           carts: res.data
+        })
+        let all = false
+        for(let i = 0; i < res.data.length; i++){
+          if(res.data[i].cartState == 1){
+            all = true
+          }else{
+            all = false
+          }
+        }
+        this.setData({
+          selectAllStatus: all
         })
         this.getTotalPrice()
         if(res.data.length==0){
@@ -78,9 +210,10 @@ select(e) {
   console.log(e)
   let data = {
     userid: this.data.userid,
-    merid: this.data.carts[index].merId
+    merid: [this.data.carts[index].merId],
+    cartState: 1
   }
-  selectMer(data).then(res =>{
+  updateMer(data).then(res =>{
     if(res.code==200){
       setTimeout(() => {
         wx.showToast({
@@ -100,9 +233,10 @@ unselect(e) {
   let index = e.currentTarget.dataset.index
   let data = {
     userid: this.data.userid,
-    merid: this.data.carts[index].merId
+    merid: [this.data.carts[index].merId],
+    cartState: 0
   }
-  unselectMer(data).then(res =>{
+  updateMer(data).then(res =>{
     if(res.code==200){
       setTimeout(() => {
         wx.showToast({
@@ -118,11 +252,22 @@ unselect(e) {
   })          
 },
 
-selectAll() {
-  let data = {
-    userid: this.data.userid
+_meridAll(){
+  var merId = []
+  let carts = this.data.carts
+  for(let i = 0; i < carts.length; i++){
+    merId.push(parseInt(carts[i].merId))
   }
-  selectAllMer(data).then(res =>{
+  return merId
+},
+selectAll() {
+  let merid = this._meridAll()
+  let data = {
+    userid: this.data.userid,
+    cartState: 1,
+    merid: merid
+  }
+  updateMer(data).then(res =>{
     if(res.code==200){
       this.setData({
         selectAllStatus: true
@@ -142,10 +287,13 @@ selectAll() {
 },
 
 unselectAll() {
+  let merid = this._meridAll()
   let data = {
-    userid: this.data.userid
+    userid: this.data.userid,
+    cartState: 0,
+    merid: merid
   }
-  unselectAllMer(data).then(res =>{
+  updateMer(data).then(res =>{
     if(res.code==200){
       this.setData({
         selectAllStatus: false
@@ -195,7 +343,7 @@ makeOrder() {
             }
           })
         }else if(res.cancel){
-          console.log("子用户生成订单")
+          this._getAllChild(wx.getStorageSync('loginInfo').userid)
         }
       }
     })
@@ -239,7 +387,7 @@ makeOrder() {
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+  
   },
 
   /**

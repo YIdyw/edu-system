@@ -55,3 +55,54 @@
       </view>
     </view>
   </block>
+
+  <view class="wx-popup" wx:if="{{ischild}}">
+  <view class='popup-container'>
+    <block wx:for="{{child}}" wx:for-item="item" wx:key="index">
+    <view class="chose-txt" data-name="{{item.subUserName}}"  data-id="{{index}}" bindtap="choseTxtColor" style="{{index == id?'background:url(../../colorui/icon/half_select.png) right no-repeat; border:1rpx solid #e8580c; color: #e8580c':'baciground:url();border:1rpx solid gainsboro;color:gray'}}">
+      <text class="chose-p" >{{item.subUserName}}</text>
+    </view>
+  </block>
+    <view class="wx-popup-btn">
+      <text class="btn-add" bindtap='_add'>{{btn_add}}</text>
+      <text class="btn-no" bindtap='_no'>{{btn_no}}</text>
+      <text class="btn-ok" bindtap='_ok'>{{btn_ok}}</text>
+    </view>
+  </view>
+</view>
+
+  <i-panel title="添加子用户" wx:if="{{isadd}}">
+    <view class="cu-form-group">
+      <view class="text-red">*</view>
+	    <view class="title">姓名</view>
+	    <input placeholder="请输入子用户姓名" type="text" maxlength="30" bindinput="username"></input>
+    </view>
+
+    <view class="cu-form-group">
+	    <view class="text-red">*</view>
+	    <view class="title">出生年月日</view>
+	    <picker mode="date" start="1900-01-01" end="{{today}}" bindchange="userbirth">
+	  	  <view class="picker">{{birth}}</view>
+	    </picker>
+    </view>
+
+    <view class="cu-form-group">
+      <view class="text-red">*</view>
+	    <view class="title">性别</view>
+	    <radio-group class="cu-form-group" bindchange="handleSexChange" data-gender="{{gender}}">
+		    <view wx:for="{{sex}}" wx:key="id">
+			  <radio class="radio margin-left-xl" checked="{{item.checked}}"></radio>{{item.name}}
+		    </view>
+	    </radio-group>
+      </view>
+
+    <view class="cu-form-group">
+		  <view class="title">联系电话:</view>
+		  <input placeholder="请填写联系电话" maxlength="11" type="number" bindinput="secondTel"></input>
+    </view>
+    
+    <view class="cu-bar bg-white justify-around">
+      <button class="cu-btn line-olive text-olive" bindtap="hideModal">取消</button>
+      <button class="cu-btn bg-olive" bindtap="addChildBtn">确定</button>
+    </view>
+  </i-panel>
