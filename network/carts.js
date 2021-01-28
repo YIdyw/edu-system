@@ -88,7 +88,7 @@ export function findmerid(data){
 // 子用户购买课程（生成订单）
 export function childMakeOrder(data){
   return request({
-    url: '/subuser/add',
+    url: '/subuser/buycourse',
     method: 'POST',
     data: data
   });

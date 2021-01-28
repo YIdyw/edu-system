@@ -19,6 +19,7 @@ var app = getApp();
 
 Page({
   data: {
+    modalName: '',
     color: 'bg-olive solid shadow',            //课表颜色
     current:0,
     islogin: false,
@@ -244,7 +245,7 @@ Page({
         if(res.confirm){
           //选择日期和时间
           that.setData({
-            isshow: true
+            modalName: 'DialogModal1'
           })
 
         }else if(res.cancel){

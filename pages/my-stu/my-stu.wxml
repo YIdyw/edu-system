@@ -123,6 +123,23 @@
       <input bindinput='_Cause' type='text' placeholder="请假理由:" auto-focus/>
 </modal>
 
+<view class="cu-modal {{modalName=='DialogModal1'?'show':''}}">
+  <view class="cu-dialog">
+    
+	    <view class="title">请选择补课时间</view>
+	    <picker mode="date" start="{{tomorrow}}" end="{{courseinfo.enrollEndTime}}" bindchange="chooselistentime">
+		    <view class="picker">{{time}}</view>
+	    </picker>
+   
+    <view class="cu-bar bg-white justify-end">
+      <view class="action">
+        <button class="cu-btn line-green text-green" bindtap="cancel">取消</button>
+        <button class="cu-btn bg-green margin-left" bindtap="trylisten">确定</button>
+
+      </view>
+    </view>
+  </view>
+</view>
 
 <view wx:if="{{isshow}}">
 <view class="tui-picker-content">

@@ -18,7 +18,8 @@ Page({
     ischild: false,         //是否为子用户购买      
     isadd: false,           //是否添加子用户
     child: '',              //子用户数据
-    subId: '',
+    subId: 1,
+    merId: [],
     id: 0,
     sex: [{ id: 0, name: '男', checked: true}, 
     { id: 1, name: '女', checked: false}],
@@ -70,7 +71,7 @@ Page({
     var id = e.currentTarget.dataset.id;  //获取自定义的ID值
     this.setData({
       id: id,
-      subId:  child[id].subUserId
+      subId:  this.data.child[id].subUserId
     })
   },
 
@@ -88,7 +89,8 @@ Page({
 
   _add(){
     this.setData({
-      isadd: true
+      isadd: true,
+      ischild: false
     })
   },
 
@@ -100,7 +102,46 @@ Page({
 
   _ok(){
     let data = {
+      isOnline: true,
+      subUserId: this.data.subId,
+      shoppingCartQuery: {
+        cartState: 1,
+        userId: wx.getStorageSync('loginInfo').userid,
+        merId: this.data.merId
+      }
     }
+    var that = this
+    console.log(data)
+    that._childBuyCourse(data)
+  },
+
+  _childBuyCourse(data){
+    childBuyCourse(data).then(res =>{
+      console.log(res)
+      if(res.code == 200){
+        setTimeout(() => {
+          wx.showToast({
+            title: '子用户购买成功！',
+            icon: "success",
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 3000)
+        }, 0);
+        wx.redirectTo({
+          url: '../settlement/settlement?orderid='+res.data.orderId,
+        })
+      }else{
+        setTimeout(() => {
+          wx.showToast({
+            title: '子用户购买失败！',
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 3000)
+        }, 0);
+      }
+    })
   },
 
   hideModal(){
@@ -163,15 +204,18 @@ getAll() {
           carts: res.data
         })
         let all = false
+        let merId = []
         for(let i = 0; i < res.data.length; i++){
           if(res.data[i].cartState == 1){
             all = true
+            merId.push(res.data[i].merId)
           }else{
             all = false
           }
         }
         this.setData({
-          selectAllStatus: all
+          selectAllStatus: all,
+          merId: merId
         })
         this.getTotalPrice()
         if(res.data.length==0){
@@ -313,6 +357,7 @@ unselectAll() {
 },
 
 makeOrder() {
+  var that = this
   let data = {
     userid: this.data.userid
   }
@@ -343,7 +388,7 @@ makeOrder() {
             }
           })
         }else if(res.cancel){
-          this._getAllChild(wx.getStorageSync('loginInfo').userid)
+          that._getAllChild(wx.getStorageSync('loginInfo').userid)
         }
       }
     })
@@ -381,6 +426,14 @@ makeOrder() {
         })
       }
     });
+    let date = new Date()
+    let y = date.getFullYear()
+    let m = date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1
+    let d = date.getDate() + 1 < 10 ? '0' + (date.getDate()) : date.getDate() - 1
+    this.setData({
+      today: y + '-' + m + '-' + d,
+      birth: y + '-' + m + '-' + d,
+    })
   },
 
   /**

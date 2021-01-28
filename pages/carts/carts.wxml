@@ -64,9 +64,9 @@
     </view>
   </block>
     <view class="wx-popup-btn">
-      <text class="btn-add" bindtap='_add'>{{btn_add}}</text>
-      <text class="btn-no" bindtap='_no'>{{btn_no}}</text>
-      <text class="btn-ok" bindtap='_ok'>{{btn_ok}}</text>
+      <text class="btn-add" bindtap='_add'>添加</text>
+      <text class="btn-no" bindtap='_no'>取消</text>
+      <text class="btn-ok" bindtap='_ok'>购买</text>
     </view>
   </view>
 </view>
