@@ -300,9 +300,26 @@ Page({
       }
     })
     console.log(e.currentTarget)
-    if(this._deftime(dateTimes,time)){
+    //四小时以上并且正常课序并没有请假的
+    if(this._deftime(dateTimes,time) && e.currentTarget.dataset.data.coursetype > 0){
       this.setData({
         islayout: false
+      })
+    }
+    //已经请了假但是还没有申请补课的
+    else if(e.currentTarget.dataset.data.coursetype == -3){
+      this.makeup()
+    }
+    //已经申请了补课但是还没有通过的
+    else if(e.currentTarget.dataset.data.coursetype == -1){
+      wx.showToast({
+        title: '已申请补课，请留意通知',
+      })
+    }
+    //已经申请了补课并且已经通过了的
+    else if(e.currentTarget.dataset.data.coursetype == -2){
+      wx.showToast({
+        title: '补课请求已通过，请查询新课程',
       })
     }
     //跳转到签到页面
@@ -521,20 +538,21 @@ Page({
     console.log(currentWeekNum)
     let weekPlan = []
     scheduleQuery(data).then(res=>{
+      console.log(res)
       let monthPlan = this.data.monthPlan
       for(let i=0; i<monthPlan.length; i++){
         for(let j=0; j<res.data.length; j++){
           if(monthPlan[i].date == res.data[j].courseTime.substring(0, 10)){
-            if(res.data[j].courseNo == -1){
+            if(res.data[j].courseNo == -2){
               color = 'bg-blue solid shadow'
-              monthPlan[i].courseNo = -1;
+              monthPlan[i].courseNo = -2;
             }else{
               color = 'bg-olive solid shadow'
               monthPlan[i].courseNo = 0;
             }
             monthPlan[i].exist = true;
             monthPlan[i].color = color;
-            monthPlan[i].courseInfo.push({name: res.data[j].name,courseId: res.data[j].courseId, courseTime: res.data[j].courseTime, site: res.data[j].site})
+            monthPlan[i].courseInfo.push({name: res.data[j].name,courseId: res.data[j].courseId, courseTime: res.data[j].courseTime, site: res.data[j].site , coursetype:res.data[j].courseNo})
             
           }
           
