@@ -102,13 +102,11 @@ Page({
 
   _ok(){
     let data = {
-      isOnline: true,
+      online: true,
       subUserId: this.data.subId,
-      shoppingCartQuery: {
-        cartState: 1,
-        userId: wx.getStorageSync('loginInfo').userid,
-        merId: this.data.merId
-      }
+      cartState: 1,
+      userId: wx.getStorageSync('loginInfo').userid,
+      merId: this.data.merId
     }
     var that = this
     console.log(data)
@@ -135,6 +133,7 @@ Page({
         setTimeout(() => {
           wx.showToast({
             title: '子用户购买失败！',
+            icon: 'none'
           });
           setTimeout(() => {
             wx.hideToast();
@@ -160,6 +159,9 @@ Page({
       userId: this.data.userid
     }
     addChild(data).then(res =>{
+      that.setData({
+        isadd: false
+      })
       if(res.code == 200){
         that._getAllChild(that.data.userid)
         setTimeout(() => {

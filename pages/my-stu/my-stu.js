@@ -170,7 +170,6 @@ Page({
       stime: stime + ':00',
       etime: this.data.dateTimeArray1[0][this.data.dateTime1[0]]+'-'+this.data.dateTimeArray1[1][this.data.dateTime1[1]]+'-'+this.data.dateTimeArray1[2][this.data.dateTime1[2]]+' '+e.getHours()+':'+e.getMinutes()+':00'
     })
-    that._makeup()
   },
   //补课接口
   _makeup(){
@@ -222,6 +221,19 @@ Page({
       dateTime1: arr
     });
   },
+
+  cancel(){
+    this.setData({
+      modalName: ''
+    })
+  },
+
+  confirm(){
+    var that = this
+    that._makeup()
+  },
+
+
   //补课
   makeup(){
     var that = this
