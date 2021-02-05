@@ -12,7 +12,7 @@
   align-items: center;
 }
 .userinfo .tch{
-  position: fixed;
+  position: absolute;
   right: 20rpx;
   color: #222;
 }
