@@ -11,7 +11,7 @@ import {
   getStuInfo , getOrgNum
 } from '../../network/information'
 import {
-  askForLeave, query_org, stuMakeUp
+  askForLeave, query_org, stuMakeUp, is_checkout
 } from '/../../network/courseMakeup'
 
 var dateTimePicker = require('../../utils/test1.js');
@@ -26,6 +26,7 @@ Page({
     isflag: false,
     orgid: 0,
     islayout: true,
+    leaveoutinfo:{},
     causeinfo:'' ,
     leaveStartTime:'',
     leaveEndTime:'',
@@ -281,6 +282,7 @@ Page({
       causeinfo:e.detail.value
     })
   },
+
   //点击课程签到，请假，补课判断
   _judgechose(e){
     // askForLeave()
@@ -300,6 +302,21 @@ Page({
     this.setData({
       deftime: etime - stime
     })
+    var checkout = {
+      courseId:e.currentTarget.dataset.data.courseId,
+      userId: this.data.loginInfo.userid
+    }
+    is_checkout(checkout).then(res => {
+      if(res.code == 200){
+        console.log(res)
+        this.setData({
+          leaveoutinfo:res
+        })
+      }
+      if (this.getInfoCallback) {
+        this.getInfoCallback(res)     //这里为了防止网络获取延迟，设置回调函数
+      }
+    })
     
     // console.log(dateTimes)
     // console.log(time)
@@ -313,10 +330,38 @@ Page({
     })
     console.log(e.currentTarget)
     //四小时以上并且正常课序并没有请假的
-    if(this._deftime(dateTimes,time) && e.currentTarget.dataset.data.courseNo > 0){
-      this.setData({
-        islayout: false
-      })
+    
+    if(this._deftime(dateTimes,time) && e.currentTarget.dataset.data.coursetype > 0){
+      
+      this.getInfoCallback = res =>{
+        let check_out = false
+  
+        let data = this.data.leaveoutinfo.data
+        console.log(data)
+        for(var i=0;i<data.length;i++){
+          if(data[i].leaveStartTime.substring(0,16) == time  && data[i].isChecked == 10) {
+            check_out = true
+          }
+        }
+          if(check_out == false){
+            this.setData({
+              islayout: false
+            })
+          }
+          else{
+            var that = this
+            wx.showModal({
+              cancelColor: 'cancelColor',
+              title: '请假审核中',
+              content: '确定是否申请补课？',
+              success(res){
+                if(res.confirm){
+                  that.makeup();
+                }
+              }
+            })
+          }
+      }
     }
     //已经请了假但是还没有申请补课的
     else if(e.currentTarget.dataset.data.courseNo == -3){
