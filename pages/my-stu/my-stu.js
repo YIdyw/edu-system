@@ -335,30 +335,51 @@ Page({
       
       this.getInfoCallback = res =>{
         let check_out = false
+        let check_num = false
         let data = this.data.leaveoutinfo.data
         console.log(data)
         for(var i=0;i<data.length;i++){
-          if(data[i].leaveStartTime.substring(0,16) == time  && data[i].isChecked == 10){
+          if(data[i].leaveStartTime.substring(0,16) == time  && data[i].isChecked == 10) {
             check_out = true
+            
+          }
+          else if(data[i].leaveStartTime.substring(0,16) == time  && data[i].isChecked == 20){
+            check_out = true
+            check_num = true
           }
         }
-        if(check_out == false){
-          this.setData({
-            islayout: false
-          })
+        if(check_num){
+          var that = this
+            wx.showModal({
+              cancelColor: 'cancelColor',
+              title: '请假已通过',
+              content: '确定是否申请补课？',
+              success(res){
+                if(res.confirm){
+                  that.makeup();
+                }
+              }
+            })
         }
         else{
-          var that = this
-          wx.showModal({
-            cancelColor: 'cancelColor',
-            title: '请假审核中',
-            content: '确定是否申请补课？',
-            success(res){
-              if(res.confirm){
-                that.makeup();
+          if(check_out == false){
+            this.setData({
+              islayout: false
+            })
+          }
+          else{
+            var that = this
+            wx.showModal({
+              cancelColor: 'cancelColor',
+              title: '请假审核中',
+              content: '确定是否申请补课？',
+              success(res){
+                if(res.confirm){
+                  that.makeup();
+                }
               }
-            }
-          })
+            })
+          }
         }
       }
       
