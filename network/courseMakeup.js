@@ -12,7 +12,7 @@ export function askForLeave(data){
 // 老师查阅请假记录
 export function teache_lookup(data){
   return request({
-    url: '/course/leave',
+    url: '/course/leave/teacher',
     method: 'GET',
     data:{
       teaId:data
@@ -72,5 +72,14 @@ export function query_org(data){
   return request({
     url:'/course/queryCourse/'+ data,
     method:'GET'
+  })
+}
+
+//根据学生自己的id以及当前课程的courseid查询当前课程是否已经请假
+export function is_checkout(data){
+  return request({
+    url:'/course/leave/user',
+    method:'GET',
+    data:data
   })
 }
