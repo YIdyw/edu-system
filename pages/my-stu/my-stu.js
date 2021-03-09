@@ -313,23 +313,23 @@ Page({
     })
     console.log(e.currentTarget)
     //四小时以上并且正常课序并没有请假的
-    if(this._deftime(dateTimes,time) && e.currentTarget.dataset.data.coursetype > 0){
+    if(this._deftime(dateTimes,time) && e.currentTarget.dataset.data.courseNo > 0){
       this.setData({
         islayout: false
       })
     }
     //已经请了假但是还没有申请补课的
-    else if(e.currentTarget.dataset.data.coursetype == -3){
+    else if(e.currentTarget.dataset.data.courseNo == -3){
       this.makeup()
     }
     //已经申请了补课但是还没有通过的
-    else if(e.currentTarget.dataset.data.coursetype == -1){
+    else if(e.currentTarget.dataset.data.courseNo == -1){
       wx.showToast({
         title: '已申请补课，请留意通知',
       })
     }
     //已经申请了补课并且已经通过了的
-    else if(e.currentTarget.dataset.data.coursetype == -2){
+    else if(e.currentTarget.dataset.data.courseNo == -2){
       wx.showToast({
         title: '补课请求已通过，请查询新课程',
       })
@@ -555,20 +555,43 @@ Page({
       for(let i=0; i<monthPlan.length; i++){
         for(let j=0; j<res.data.length; j++){
           if(monthPlan[i].date == res.data[j].courseTime.substring(0, 10)){
-            if(res.data[j].courseNo == -2){
-              color = 'bg-blue solid shadow'
+            if(res.data[j].courseNo == -1){
+              color = 'bg-red solid shadow'
+              monthPlan[i].courseNo = -1;
+            }else if(res.data[j].courseNo == -2){
+              color = 'bg-green solid shadow'
               monthPlan[i].courseNo = -2;
+            }else if(res.data[j].courseNo == -3){
+              color = 'bg-blue solid shadow'
+              monthPlan[i].courseNo = -3;
+            }else if(res.data[j].courseNo == -4){
+              color = 'bg-red solid shadow'
+              monthPlan[i].courseNo = -4;
             }else{
               color = 'bg-olive solid shadow'
               monthPlan[i].courseNo = 0;
             }
             monthPlan[i].exist = true;
             monthPlan[i].color = color;
-            monthPlan[i].courseInfo.push({name: res.data[j].name,courseId: res.data[j].courseId, courseTime: res.data[j].courseTime, site: res.data[j].site , coursetype:res.data[j].courseNo})
+            monthPlan[i].courseInfo.push({name: res.data[j].name,courseId: res.data[j].courseId, courseTime: res.data[j].courseTime, site: res.data[j].site , courseNo:res.data[j].courseNo, color: color})
             
           }
           
           continue;
+        }
+        let len = monthPlan[i].courseInfo.length
+        for(var k=0;k<len;k++){
+          for(var v=k+1;v<len;v++){
+            if(monthPlan[i].courseInfo[k].courseTime==monthPlan[i].courseInfo[v].courseTime){
+              monthPlan[i].courseInfo[k].courseNo = monthPlan[i].courseInfo[v].courseNo
+              monthPlan[i].courseInfo[v] = "needToDelete"
+            }
+          }
+        }
+        let index = monthPlan[i].courseInfo.indexOf('needToDelete')
+        while(index>0){
+          monthPlan[i].courseInfo.splice(index,1)
+          index = monthPlan[i].courseInfo.indexOf({})
         }
         if(monthPlan[i].name == this.data.currentDay){
           dayPlan = monthPlan[i]

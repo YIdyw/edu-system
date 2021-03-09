@@ -4,20 +4,19 @@ import {
 Page({
 
   data: {
-    currentTab:0,
-    loginInfo:"",
-    getmyorg:"",
-    getmyorgclass:"",
-    getmyclass:"",
-    index: null,
-    index1:null,
-    idx:"",
-    idxx:"",
-    begintime:[],
-    endtime:[],
-    status:[],
-    currentTab:0,
-    current_scroll: 'tab1',
+    currentTab:0,  //头部标签，机构、课程、查找课程
+    loginInfo:"",  //个人登录信息
+    getmyorg:"",   //已报名机构
+    getmyorgclass:"", //在某机构下报名的课程
+    getmyclass:"",    //全部课程
+    index: null,      //获取机构信息机构列表下标
+    index1:null,      //获取某机构课程列表的下标
+    idx:"",          //取消某个机构报名的下标
+    idxx:"",         //退选某个课程时的下标（已废弃该功能）
+    begintime:[],    //所有课程的开始时间
+    endtime:[],      //所有课程的结束时间
+    status:[],        //所有课程的状态
+    current_scroll: 'tab1',  //查找课程时的标签
   },
 
   onLoad: function (options) {

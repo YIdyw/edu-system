@@ -388,6 +388,16 @@ videoObserve.relativeToViewport({bottom: -topBottomPadding, top: -topBottomPaddi
           wx.hideToast();
         }, 3000)
       }, 0);
+    }else if(!wx.getStorageSync('getstuinfo')){
+      setTimeout(() => {
+        wx.showToast({
+          title: '请先登记个人信息！',
+          icon: "none",
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 3000)
+      }, 0);
     } else{
       this._orgInter(wx.getStorageSync('loginInfo').userid);
     }
