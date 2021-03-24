@@ -37,18 +37,21 @@ Page({
     height:''
   },
 
+  //用户名输入框（添加子用户时用到，后面的输入信息也是如此）**********************************************
   username (e) {
     this.setData({
       name: e.detail.value
     });
   },
 
+  //子用户生日信息**********************************************
   userbirth(e){
     this.setData({
       birth: e.detail.value
     });
   },
 
+  //子用户性别**********************************************
   handleSexChange(e) {
     let gender = e.currentTarget.dataset.gender
     let sex = this.data.sex
@@ -61,12 +64,14 @@ Page({
     });
   },
 
+  //子用户电话**********************************************
   secondTel: function (e) {
       this.setData({
         secondTel: e.detail.value
         })
   },
 
+  //展示已添加子用户列表**********************************************
   choseTxtColor:function(e){
     var id = e.currentTarget.dataset.id;  //获取自定义的ID值
     this.setData({
@@ -75,6 +80,7 @@ Page({
     })
   },
 
+  //获取子用户信息**********************************************
   _getAllChild(userid){
     getAllChild(userid).then(res =>{
       if(res.code == 200){
@@ -87,6 +93,7 @@ Page({
     })
   },
 
+  //添加子用户**********************************************
   _add(){
     this.setData({
       isadd: true,
@@ -94,12 +101,14 @@ Page({
     })
   },
 
+  //不为子用户购买**********************************************
   _no(){
     this.setData({
       ischild: false
     })
   },
 
+  //选择为子用户购买**********************************************
   _ok(){
     let data = {
       online: true,
@@ -113,6 +122,7 @@ Page({
     that._childBuyCourse(data)
   },
 
+  //调用后端接口为子用户购买**********************************************
   _childBuyCourse(data){
     childBuyCourse(data).then(res =>{
       console.log(res)
@@ -143,12 +153,14 @@ Page({
     })
   },
 
+  //隐藏子用户信息**********************************************
   hideModal(){
     this.setData({
       isadd: false
     })
   },
 
+  //添加子用户功能按钮**********************************************
   addChildBtn(){
     var that = this
     let data = {
@@ -186,6 +198,7 @@ Page({
     })
   },
 
+  //获取当前购物车已选商品总价**********************************************
   getTotalPrice() {
     let carts = this.data.carts;                  // 获取购物车列表
     let total = 0;
@@ -199,6 +212,7 @@ Page({
     });
 },
 
+//获取购物车中所有商品**********************************************
 getAll() {
     getAll(this.data.userid).then(res=>{
       if(res.code==200){
@@ -229,6 +243,7 @@ getAll() {
     })                  
 },
 
+//删除某一商品**********************************************
 delete(e) {
   let index = e.currentTarget.dataset.index
   let data = {
@@ -251,6 +266,7 @@ delete(e) {
   })
 },
 
+//选择某一商品**********************************************
 select(e) {
   let index = e.currentTarget.dataset.index
   console.log(e)
@@ -275,6 +291,7 @@ select(e) {
   })                    
 },
 
+//取消某一商品的选中状态**********************************************
 unselect(e) {
   let index = e.currentTarget.dataset.index
   let data = {
@@ -298,6 +315,7 @@ unselect(e) {
   })          
 },
 
+//将所有已选商品的商品id放到数组中**********************************************
 _meridAll(){
   var merId = []
   let carts = this.data.carts
@@ -306,6 +324,8 @@ _meridAll(){
   }
   return merId
 },
+
+//全选**********************************************
 selectAll() {
   let merid = this._meridAll()
   let data = {
@@ -332,6 +352,7 @@ selectAll() {
   })                            
 },
 
+//取消全选**********************************************
 unselectAll() {
   let merid = this._meridAll()
   let data = {
@@ -358,6 +379,7 @@ unselectAll() {
   })                    
 },
 
+//制作订单**********************************************
 makeOrder() {
   var that = this
   let data = {

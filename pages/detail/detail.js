@@ -31,24 +31,24 @@ Page({
    * 页面的初始数据
    */
   data: {
-    institute : {},
-    institute_teachers : {},
-    teacher : [],
-    course : {},
-    flag: false,
-    isstu: false,
+    institute : {},//机构信息
+    institute_teachers : {},//该机构老师信息
+    teacher : [],//老师信息，已弃用
+    course : {},//课程信息
+    flag: false,//是否已报名
+    isstu: false,//是否为学生
     isplay: false, //视频是否自动播放
     screen : {
       minHeight : 'auto'
     },
-    common : {},
-    degs: 0,
-    degss: 0,
-    degsss: 0,
-    degs_course: 0,
-    orgid: 0,
-    islogin: false,
-    activity: {},
+    common : {},  //已弃用
+    degs: 0,  //“该机构下老师”标签栏的开关
+    degss: 0, //“该机构开设课程”标签栏的开关
+    degsss: 0,  //“该机构最近活动”标签栏的开关
+    degs_course: 0, //该机构课程总数
+    orgid: 0, //机构信息
+    islogin: false, //是否登录
+    activity: {}, //活动信息
     stuflag: false, //判断学生是否已经登记个人信息,
     issignup: false, //判断学生是否已经报名
     indicatorDots: true,
@@ -104,7 +104,7 @@ videoObserve.relativeToViewport({bottom: -topBottomPadding, top: -topBottomPaddi
     })
   },
 
-  //课程表内容
+  //课程表内容******************************************
   lastMonth(){
     let month = this.data.showMonth-1;  // 前一月
     let year = this.data.showYear;      // 当前年
@@ -180,11 +180,14 @@ videoObserve.relativeToViewport({bottom: -topBottomPadding, top: -topBottomPaddi
       }, 0);
     }
   },
+
+  //课程表开关
   hideModal(){
     this.setData({
       modalShow: false
     })
   },
+
   dataLeftCompleting(value){
     return parseInt(value) < 10 ? "0" + value : value;
   },
@@ -262,6 +265,7 @@ videoObserve.relativeToViewport({bottom: -topBottomPadding, top: -topBottomPaddi
     });
   },
   
+  //跳转到某老师的信息页面******************************************
   teacher(e){
     let index = e.currentTarget.dataset.menuindex
     wx.navigateTo({
@@ -269,12 +273,15 @@ videoObserve.relativeToViewport({bottom: -topBottomPadding, top: -topBottomPaddi
     })
 },
 
+  //跳转到某课程的信息页面******************************************
  course(e){
     let index = e.currentTarget.dataset.menuindex
     wx.navigateTo({
       url: '../courseinfo/courseinfo?index='+this.data.course.data[index].courseId+'&orgid='+this.data.orgid,
     })
  },
+
+  //获取institute信息******************************************
   getInstituteDetail (id) {
     console.log(id)
     var url = URL.instituteDetil + id;
@@ -316,6 +323,7 @@ videoObserve.relativeToViewport({bottom: -topBottomPadding, top: -topBottomPaddi
     
   },
 
+  //报名该机构******************************************
   _orgInter(userid){
     
     let data={
@@ -403,6 +411,7 @@ videoObserve.relativeToViewport({bottom: -topBottomPadding, top: -topBottomPaddi
     }
   },
 
+  //未登录，跳转到登录页面******************************************
   movehome(){
     if(!this.data.islogin){
       wx.showModal({
@@ -434,6 +443,7 @@ videoObserve.relativeToViewport({bottom: -topBottomPadding, top: -topBottomPaddi
     
   },
 
+  //订阅消息，推送模板******************************************
   pushMsg(userid){
     wx.requestSubscribeMessage({
       tmplIds: ["Ay8VcpCaY_bqB_uvjLntnShzPXcsv_0J4Ya3JuEwHEc","Db5GfNzzqozgQdnHfpZYyFRgFIRewm1omkQe-8lF9Zc","K-ydX0jPEK45csXyNtmqKCg-mSDyK7VLebN94IGtoBM"],
@@ -466,6 +476,7 @@ videoObserve.relativeToViewport({bottom: -topBottomPadding, top: -topBottomPaddi
     // });
    },
 
+   //获取课程信息******************************************
   getCourse : function(id){
     var url = URL.course + id
     //console.log(url)
@@ -476,6 +487,7 @@ videoObserve.relativeToViewport({bottom: -topBottomPadding, top: -topBottomPaddi
     });
   },
 
+  //控制“该机构下老师”标签开关******************************************
   rotateAnim: function(){
     let deg = this.data.degs
     deg = deg == 0 ? 90 : 0
@@ -484,6 +496,7 @@ videoObserve.relativeToViewport({bottom: -topBottomPadding, top: -topBottomPaddi
     })
   },
   
+  ////控制“该机构下课程”标签开关******************************************
   rotateAnim1: function(){
     let deg1 = this.data.degss
     deg1 = deg1 == 0 ? 90 : 0
@@ -492,6 +505,7 @@ videoObserve.relativeToViewport({bottom: -topBottomPadding, top: -topBottomPaddi
     })
   },
 
+  //控制“该机构下活动”标签开关******************************************
   rotateAnim2: function(){
     let deg2 = this.data.degsss
     deg2 = deg2 == 0 ? 90 : 0
@@ -500,7 +514,7 @@ videoObserve.relativeToViewport({bottom: -topBottomPadding, top: -topBottomPaddi
     })
   },
 
-  //初始化是否展示课表
+  //初始化是否展示课表******************************************
   Init_showCT:function(){
     let data = {
       orgid: this.data.orgid,
@@ -522,6 +536,7 @@ videoObserve.relativeToViewport({bottom: -topBottomPadding, top: -topBottomPaddi
     })
   },
 
+  //已弃用******************************************
   showCT:function(){
     let degs_course = this.data.degs_course
     degs_course = degs_course == 0 ? 90 : 0
@@ -539,7 +554,7 @@ videoObserve.relativeToViewport({bottom: -topBottomPadding, top: -topBottomPaddi
   //   })
   // },
   
-  //获取当前机构的近期活动
+  //获取当前机构的近期活动******************************************
   _getOrgAct:function(data){
     getOrgAct(data).then(res =>{
       // console.log(res)
@@ -553,6 +568,7 @@ videoObserve.relativeToViewport({bottom: -topBottomPadding, top: -topBottomPaddi
     // console.log(this.data.activity)
   },
 
+  //检查是否已报名该机构******************************************
   _checkOrg:function (data) {
     checkOrg(data).then(res => {
       console.log(res)
@@ -564,6 +580,7 @@ videoObserve.relativeToViewport({bottom: -topBottomPadding, top: -topBottomPaddi
     })
   },
 
+  //登录提示******************************************
 course_reserve(){
   if(!this.data.islogin){
     wx.showModal({
@@ -596,6 +613,7 @@ course_reserve(){
 },
 
 
+//分享功能按钮******************************************
   onShareTimeline(res){
         console.log(res)
         return {
@@ -606,7 +624,7 @@ course_reserve(){
     
       },
 
-  //测试功能
+  //测试功能******************************************
   test(){
     wx.redirectTo({
       url: '../test/test',

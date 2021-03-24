@@ -3,23 +3,28 @@ import {
 } from '../../network/courseQuery'
 Page({
   data: {
-    tabCur: 0,
-    tabTitle:[{id: 0, name: '正在开课'}, {id: 1, name: '开课历史'}],
-    classNow: [],
-    historyClass: []
+    tabCur: 0,//顶部标签选择
+    tabTitle:[{id: 0, name: '正在开课'}, {id: 1, name: '开课历史'}],//顶部标签
+    classNow: [],//正在开课信息
+    historyClass: []  //历史开课信息
   },
+
+  //进入签到名单页面******************************************
   signRecord(e){
     let courseId = e.currentTarget.dataset.id
     wx.navigateTo({
       url: '../signRecord/signRecord?courseId=' + courseId,
     })
   },
+
+  //顶部标签选择******************************************
   tabSelect(e) {
     this.setData({
       tabCur: e.currentTarget.dataset.id,
     })
   },
 
+  //获取开课信息（正在开课和历史开课）******************************************
   _getCourseQuery(){
     let data = {
       id: wx.getStorageSync('loginInfo').userid,

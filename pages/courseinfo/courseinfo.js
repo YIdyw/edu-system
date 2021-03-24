@@ -11,23 +11,23 @@ Page({
    * 页面的初始数据
    */
   data: {
-    courseinfo:'',
-    flag: false,
-    teacherid: [],
-    dateinput:'',
-    isstu: false,
-    orgid: '',
-    index: '',
-    merid: '',
-    userid: '',
-    start: '',
-    end: '',
+    courseinfo:'',//课程信息
+    flag: false,//判断该课程是否在机构课程中
+    teacherid: [],//该课程所有上课老师id
+    dateinput:'',//原输入试听时间变量，现已改为选择时间
+    isstu: false,//判断是否为学生
+    orgid: '',//机构id
+    index: '',//该课程id
+    merid: '',//该课程商品id
+    userid: '',//用户id
+    start: '',//课程开始时间
+    end: '',//课程结束时间
     screen : {
       minHeight : 'auto'
     },
   },
 
-  //根据courseid获取课程的编号merid
+  //根据courseid获取课程的编号merid**********************************************
   _findmerid(courseId){
     findmerid(courseId).then(res =>{
       if(res.code==200){
@@ -40,7 +40,7 @@ Page({
   },
 
 
-  //加入购物车
+  //加入购物车**********************************************
   _addCart(){
     let data = {
       userid: wx.getStorageSync('loginInfo').userid,
@@ -65,7 +65,7 @@ Page({
     })
   },
 
-  //选择该商品
+  //选择该商品(目前版本只允许管理员推送课程商品，用户自行选购功能未被使用)**********************************************
   select() {
     let data = {
       userid: this.data.userid,
@@ -163,12 +163,14 @@ Page({
     })
   },
 
+  //选择试听时间**********************************************
   chooselistentime(e){
     this.setData({
       time: e.detail.value
     });
   },
 
+  //选择试听**********************************************
   trylisten(){
     let logininfo = wx.getStorageSync('loginInfo')
     if (!logininfo.userid){
@@ -218,6 +220,7 @@ Page({
     }  
   },
 
+  //输入试听时间**********************************************
   dateInput(e){
     this.setData({
       dateinput: e.detail.value
@@ -242,6 +245,8 @@ Page({
       url: '../detail_teacher/detail_teacher?current='+temp[teacher]+'&name='+this.data.courseinfo.teacherList[index].name,
     })
   },
+
+  //获取机构的课程信息
   _getOrgCourse(data,index){
     idGetOrgCourse(data).then(res => {
       console.log(res)

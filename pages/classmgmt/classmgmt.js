@@ -9,6 +9,8 @@ Page({
   data: {
 
   },
+
+  //标签跳转选择（时间登记、课表查询、课程查询）**********************************************
   operations(e){
     let operation = e.currentTarget.dataset.operations
     wx.navigateTo({
@@ -18,6 +20,8 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
+
+   //获取当前登录状态**********************************************
   _getTeacherInfo(){
     let data = wx.getStorageSync('loginInfo').userid
     getTeacherInfo(data).then((res)=>{

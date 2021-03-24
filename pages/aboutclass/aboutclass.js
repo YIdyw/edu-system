@@ -27,6 +27,8 @@ Page({
     })
     
   },
+
+  //顶部标签选择函数**********************************************
   swiperChange: function (e) {   
     console.log(e);     
     this.setData({     
@@ -34,6 +36,8 @@ Page({
     })
      
   },
+
+  //获取已报名的机构列表**********************************************
   _getMyorg(){
     let data={
       userid:wx.getStorageSync('loginInfo').userid
@@ -47,6 +51,7 @@ Page({
     });
   },
 
+  //取消课程报名（已弃用）**********************************************
   _deleteClass(){
     var that=this;
     var idxx=that.data.idxx;
@@ -81,6 +86,8 @@ Page({
       }       
     });
   },
+
+  //获取已报名的课程**********************************************
   _getMyclass(){
     var that=this;
     var begintime=that.data.begintime;
@@ -110,6 +117,7 @@ Page({
     });
   },
 
+  //“查找课程”中查找某个已报名机构下的课程**********************************************
   _getMyorgclass(){
     var that=this;
     var index=that.data.index;
@@ -127,6 +135,7 @@ Page({
     });
   },
 
+  //报名课程（已弃用）**********************************************
   _chooseClass(){
     var that=this;
     var index1=that.data.index1;
@@ -161,6 +170,8 @@ Page({
       }       
     });
   },
+
+  //取消报名机构**********************************************
   _deleteOrg(){
     var that=this;
     var idx=that.data.idx;
@@ -196,12 +207,15 @@ Page({
       }       
     });
   },
+
+  //进入签到页面**********************************************
   _signIn(){
     wx.navigateTo({
       url: '../sign/sign',
     })
   },
 
+  //进入机构信息页面**********************************************
   getinorg(e){
     console.log(e)
     wx.redirectTo({
@@ -231,36 +245,45 @@ Page({
   
     }
     },
-    //选课功能**************************************************************************************
+    //查找课程中选择机构******************************************
   chooseorg(e) {
     var that=this;
     this.setData({
       index: e.detail.value
     })       
     that._getMyorgclass()
-    },    
+    },
+
+  //查找课程中选择课程**********************************************
   chooseclass(e) {
     console.log(e);
     this.setData({
       index1: e.detail.value
     }) 
   },
+
+  //查找课程中查看课程按钮**********************************************
   chooseclass1(){
     wx.navigateTo({
       url: '../courseinfo/courseinfo?index='+this.data.getmyorgclass[this.data.index1].courseId+'&orgid='+this.data.getmyorg[this.data.index].orgId,
     })
   },
 
+  //调用deleteclass取消报名课程（已弃用）**********************************************
   deleteclass(e){
     var that=this;
     that.data.idxx=e.currentTarget.id;
     that._deleteClass()
   },
+
+  //调用deleteorg取消报名机构**********************************************
   deleteorg(e){
     var that=this;
     that.data.idx=e.currentTarget.id;
     that._deleteOrg()
   },
+
+  //调用signin进入签到页面**********************************************
   signin(e){
     var that=this;
     that.data.idxx=e.currentTarget.id;

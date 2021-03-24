@@ -14,31 +14,34 @@ import {
 var app = getApp()
 Page({
   data: {
-    code: '',
+    code: '',//验证码
     isflag: false,
     modalShow: false,
-    phone: '',
-    flagphone: false
+    phone: '',//手机号
+    flagphone: false  //判断输入的手机号是否已注册
   },
 
+  //手机号******************************************
   userphone (e) {
     this.setData({
       phone: e.detail.value
     });
   },
 
+  //查询手机号是否注册******************************************
   findphone(){
     var that = this
     that._phone()
   },
 
+  //验证码输入信息框******************************************
   inputcode(e){
     this.setData({
       code: e.detail.value
     });
   },
 
-
+  //查询手机号是否注册******************************************
   _phone(){
     let data = this.data.phone
     phone(data).then(res =>{
@@ -54,7 +57,7 @@ Page({
     })
   },
 
-
+  //获取验证码查询手机号是否注册******************************************
   getcode(){
     let data={
       phone: this.data.phone
@@ -97,6 +100,7 @@ Page({
     }
   },
 
+  //登录******************************************
   login(){
     var that = this;
     if(!(/^1[3-9]\d{9}$/.test(this.data.phone))){
@@ -117,12 +121,14 @@ Page({
     
   }, 
 
+  //跳转到注册页面******************************************
   regist() {
     wx.navigateTo({
       url: '../registPhone/registPhone'
     })
   },
 
+  //消息推送，模板消息******************************************
   _message(){
     wx.requestSubscribeMessage({
       tmplIds: ["Ay8VcpCaY_bqB_uvjLntnShzPXcsv_0J4Ya3JuEwHEc","Db5GfNzzqozgQdnHfpZYyFRgFIRewm1omkQe-8lF9Zc","K-ydX0jPEK45csXyNtmqKCg-mSDyK7VLebN94IGtoBM"],
@@ -137,11 +143,14 @@ Page({
     })
   },
   
+  //跳转到用用户名登录页面******************************************
   account(){
     wx.navigateTo({
       url: '../login/login',
     })
   },
+
+  //发送 res.code 到后台换取 openId, sessionKey, unionId******************************************
   _pushcode() {
     wx.login({
       success: res => {
@@ -161,6 +170,7 @@ Page({
     })
   },
 
+  //登录主函数******************************************
   _getLoginInfo() {
     const that = this;
     

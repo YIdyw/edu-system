@@ -21,7 +21,7 @@ Page({
     isSure: false,
   },
 
-  //选择时间段
+  //选择时间段******************************************
   choose(e) {
     let index = e.currentTarget.dataset.index
     switch (this.data.timeInfo[index]){
@@ -48,7 +48,8 @@ Page({
     }
     this._split()
   },
-  //数组合并
+
+  //数组合并******************************************
   _merge() {
     let day1 = this.data.day1
     let day2 = this.data.day2
@@ -81,7 +82,7 @@ Page({
     })
   },
   
-  //数组拆分
+  //数组拆分******************************************
   _split() {
     var val = this.data.timeInfo
     var day1  = new Array()
@@ -111,7 +112,7 @@ Page({
     })
   },
 
-  //获取教师的空闲时间信息
+  //获取教师的空闲时间信息******************************************
   _getfreetime() {
     let userid = wx.getStorageSync('loginInfo').userid
     getFreeTime(userid).then(res =>{
@@ -161,6 +162,7 @@ Page({
     })
   },
 
+  //添加教师空闲时间******************************************
   add() {
     let data = {
       id: wx.getStorageSync('loginInfo').userid,
@@ -187,6 +189,7 @@ Page({
     })
   },
 
+  //更新数据******************************************
   update() {
     let data = {
       teaid: wx.getStorageSync('loginInfo').userid,

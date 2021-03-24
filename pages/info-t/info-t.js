@@ -53,6 +53,8 @@ Page({
     checkinInfo:[],      // 登记过时读取信息
     isRely: false        //是否已经挂靠
   },
+
+  //教师学校输入框******************************************
   handleSchool(e){
     if(!(/^[\u2E80-\u9FFF]+$/.test(e.detail.value))){
       setTimeout(() => {
@@ -71,41 +73,57 @@ Page({
     }
     
   },
+
+  //教师学历选择框******************************************
   eduChange(e){
     this.setData({
       eduIdx: e.detail.value
     });
   },
+
+  //教师学历编号输入框******************************************
   handleEduNum(e){
     this.setData({
       eduNum: e.detail.value
     });
   },
+
+  //教师学位选择框******************************************
   degreeChange(e){
     this.setData({
       deIdx: e.detail.value
     });
   },
+
+  //教师学位编号输入框******************************************
   handleDegNum(e){
     this.setData({
       degNum: e.detail.value
     });
   },
+
+  //培训信息******************************************
   handleTraining(e){
     this.setData({
       trainings: e.detail.value
     });
   },
+
+  //获奖信息******************************************
   handleAwards(e){
     this.setData({
       awards: e.detail.value
     })
   },
+
+  //工作信息******************************************
   handleWorks(e){
     this.setData({
       works: e.detail.value
     })
   },
+
+  //个人主页******************************************
   handlePrivHome(e){
     var priv = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\*\+,;=.]+$/
     if (!priv.test(e.detail.value)){
@@ -124,6 +142,8 @@ Page({
       });
     }
   },
+
+  //个人微博******************************************
   handlePrivWeibo(e){
     var weibo = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\*\+,;=.]+$/
     if (!weibo.test(e.detail.value)){
@@ -142,6 +162,8 @@ Page({
       });
     }
   },
+
+  //工作类型（兼职、全职）******************************************
   handleTypeChange(e){
     let workTypes = this.data.workTypes
     for (let i = 0, len = workTypes.length; i < len; ++i) {
@@ -157,7 +179,7 @@ Page({
     });
   },
 
-//获取教师擅长科目
+//获取教师擅长科目******************************************
   _teacherCourse(){
     let sub = this.data.subjects;
     let l = 0;
@@ -190,6 +212,7 @@ Page({
     })
   },
 
+  //增加擅长科目******************************************
   addOne(str){
     for(let i = 0; i< str.length; i++){
       str[i]++;
@@ -199,6 +222,7 @@ Page({
     })
   },
 
+  //擅长科目选择******************************************
   subjectChange(e){
     var that = this
     this.setData({
@@ -228,6 +252,8 @@ Page({
       that.addOne(select)
     }
   },
+
+  //选择图片******************************************
   chooseImg(e){
     let type = e.currentTarget.dataset.type
     wx.chooseImage({
@@ -260,7 +286,7 @@ Page({
     });
   },
 
-
+//预览图片******************************************
   ViewImage(e) {
     let type = e.currentTarget.dataset.type
     if(type == 'eduImg'){
@@ -286,7 +312,7 @@ Page({
     }
   },
 
-    // 挂靠进度查询
+    // 挂靠进度查询******************************************
     _relyProcess(){
       let data = {
         userid : wx.getStorageSync('loginInfo').userid
@@ -302,7 +328,7 @@ Page({
       });
     },
 
-    //解除挂靠
+    //解除挂靠******************************************
     _deleteRely(){
       let data = wx.getStorageSync('loginInfo').userid
       deleterely(data).then(res =>{
@@ -329,6 +355,7 @@ Page({
       })
     },
 
+    //删除图片******************************************
   delImg(e) {
     let type = e.currentTarget.dataset.type
     wx.showModal({
@@ -360,11 +387,15 @@ Page({
       }
     });
   },
+
+  //个人简介******************************************
   handleBrief(e){
     this.setData({
       briefInfo: e.detail.value
     });
   },
+
+  //教师提交信息时，补充上次提交信息（教师提交信息时，会先判断这些是否修改了，未修改就用上次提交的信息提交）******************************************
   checkin(){
     let that = this.data
     console.log(this.data)
@@ -395,6 +426,8 @@ Page({
       this._putTeacherInfo();
     }
   },
+
+  //教师修改信息（提交信息与修改信息不同，第一次为提交，后面都为修改）******************************************
   modify(){
     var that = this
     if(this.data.isRely){
@@ -448,6 +481,7 @@ Page({
   //   })
   // },
 
+  //学历证书照片******************************************
   _deu(){
     let that = this.data
     if (that.eduImg.length) {
@@ -466,6 +500,7 @@ Page({
     }
   },
 
+  //学位证书照片******************************************
   _deg() {
     let that = this.data
     if (that.degImg.length) {
@@ -484,6 +519,7 @@ Page({
     }
   },
 
+  //个人照片******************************************
   _priv() {
     let that = this.data
     if (that.privImg.length) {
@@ -502,6 +538,7 @@ Page({
     }
   },
 
+  //宣传照片******************************************
   _pub() {
     let that = this.data
     if (that.pubImg.length) {
@@ -520,6 +557,7 @@ Page({
     }
   },
   
+  //教师上传信息******************************************
   _putTeacherInfo(){
     setTimeout(() => {
       wx.showLoading({
@@ -598,6 +636,7 @@ Page({
 
     }
     console.log(data)
+    //判断是更新信息还是提交信息
     if(this.data.updateflag){
       updateTeacherInfo(data).then((res) => {
         console.log('更新数据')
@@ -661,6 +700,8 @@ Page({
       })
     }
   },
+
+  //获取教师信息******************************************
   _getTeacherInfo(){
     let that = this.data
     let data = wx.getStorageSync('loginInfo').userid
@@ -793,6 +834,7 @@ Page({
         var deg = res.data.degreeCertPhoto
         var pri = res.data.photoId
         var pub = res.data.adverPhoto
+        //判断是否有提交的照片信息，为空时可能为0或1
         if(!(edu == 0 || edu == 1)){
           this.setData({
             eduImg: [url + edu],

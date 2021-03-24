@@ -14,12 +14,14 @@ Page({
     imageHeight:0 
   },
 
+  //加载图片**********************************************
   imgload: function(e){
     console.log("图片加载完成="+e.detail);
     //用来计算高宽
     this.setData(this.wxAutoImageCal(e));
  },
 
+  //自动展示图片格式**********************************************
   wxAutoImageCal(e){
     //获取图片的原始长宽
     var originalWidth = e.detail.width;
@@ -47,6 +49,7 @@ Page({
     return results;
   },
 
+  //获取营销人员相关信息**********************************************
   _info(){
     let data = wx.getStorageSync('loginInfo').userid
     info(data).then(res =>{
@@ -58,6 +61,8 @@ Page({
       }
     })
   },
+
+  //获取宣传二维码**********************************************
   _adver(){
     let data = wx.getStorageSync('loginInfo').userid
     adver(data).then(res =>{

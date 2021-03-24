@@ -29,11 +29,14 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
+
+   //学生年级**********************************************
   PickerChange(e) {
     this.setData({
       index: e.detail.value
     })
   },
+  //学生姓名**********************************************
   name: function (e) {
     
     this.setData({
@@ -41,6 +44,8 @@ Page({
     
     })
     },
+
+    //学生学校**********************************************
   school: function (e) {
     
     this.setData({
@@ -48,11 +53,15 @@ Page({
     
     })
     },
+
+    //学生qq**********************************************
   qqinput: function (e) {
       this.setData({
         qq: e.detail.value
         })    
     },
+
+    //学生微信**********************************************
   weixin: function (e) {
     
     this.setData({
@@ -61,31 +70,35 @@ Page({
     })
     },
 
+    //学生备用电话**********************************************
   secondTel: function (e) {
       this.setData({
         secondTel: e.detail.value
         })
   },
 
+  //选择修改密码**********************************************
   updatepassword(){
     this.setData({
       isupdatepsword: false
     })
   },
 
+  //新密码**********************************************
   newpsword(e){
     this.setData({
       newpsword: e.detail.value
     });
   },
 
+  //旧密码**********************************************
   oldpsword(e){
     this.setData({
       oldpsword: e.detail.value
     });
   },
 
-  
+  //更新密码**********************************************
   updatepsword(){
     let data = {
         newPwd : this.data.newpsword,
@@ -130,6 +143,7 @@ Page({
     
   },
 
+  //学生信息更新**********************************************
   _infoIn(){
     var that=this;
     
@@ -223,6 +237,8 @@ Page({
     }
     
   },
+
+  //获取学生信息**********************************************
   _getStuInfo(){
         this._getcallback = data =>{
           this.setData({
@@ -307,17 +323,20 @@ Page({
       }
          
   },
+
+  //调用更新信息功能**********************************************
   bindclick(e){
     var that=this;
     that._infoIn();         
   },
+
   onLoad: function (options) {
     var that=this
     that._getStudentInfo()
     that._getStuInfo()
   },
 
-  //获取用户的个人信息
+  //获取用户的个人信息**********************************************
   _getStudentInfo(){
     let data={
       userid:wx.getStorageSync('loginInfo').userid

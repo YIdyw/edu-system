@@ -8,44 +8,51 @@ import {
 var app = getApp()
 Page({
   data: {
-    account:"",
-    password:"",
-    code: '',
-    isflag: false,
-    modalShow: false,
-    code: '',
-    newpsword: '',
-    phone: ''
+    account:"",//用户名
+    password:"",//密码
+    code: '',//验证码
+    isflag: false,//是否修改密码
+    modalShow: false,//是否显示修改密码框
+    newpsword: '',//新密码
+    phone: ''//手机号
   },
+
+  //用户名输入框******************************************
   accountinput: function (e) {
     this.setData({
       account: e.detail.value
     });
   },
+
+  //密码输入框******************************************
   passwordinput: function (e) {
     this.setData({
       password: e.detail.value
     });
   },
 
+  //新密码输入框******************************************
   newpsword(e){
     this.setData({
       newpsword: e.detail.value
     });
   },
 
+  //验证码输入框******************************************
   inputcode(e){
     this.setData({
       code: e.detail.value
     });
   },
 
+  //验证码输入框******************************************
   inputphone(e){
     this.setData({
       phone: e.detail.value
     });
   },
 
+  //获取验证码******************************************
   getcode(){
     let data={
       phone: this.data.phone
@@ -87,6 +94,7 @@ Page({
     }
   },
 
+  //确认修改密码******************************************
   orgConfirm(){
     let data = {
         newPwd : this.data.newpsword,
@@ -136,17 +144,21 @@ Page({
     
   },
 
+  //隐藏修改密码信息框******************************************
   hideModal(e) {
     this.setData({
       modalShow: false
     })
   },
 
+  //找回密码信息框******************************************
   findpsword(){
     this.setData({
       modalShow: true
     })
   },
+
+  //登录******************************************
   login(){
     var that = this;
     if (that.data.account == "") {
@@ -174,12 +186,15 @@ Page({
       that._message()
     }
   }, 
+
+  //跳转到注册页面******************************************
   regist() {
     wx.navigateTo({
       url: '../regist/regist'
     })
   },
 
+  //消息推送，模板消息******************************************
   _message(){
     wx.requestSubscribeMessage({
       tmplIds: ["Ay8VcpCaY_bqB_uvjLntnShzPXcsv_0J4Ya3JuEwHEc","Db5GfNzzqozgQdnHfpZYyFRgFIRewm1omkQe-8lF9Zc","K-ydX0jPEK45csXyNtmqKCg-mSDyK7VLebN94IGtoBM",],
@@ -194,6 +209,7 @@ Page({
     })
   },
   
+  //发送 res.code 到后台换取 openId, sessionKey, unionId******************************************
   _pushcode() {
     wx.login({
       success: res => {
@@ -213,6 +229,7 @@ Page({
     })
   },
 
+  //获取登录信息******************************************
   _getLoginInfo() {
     const that = this;
     

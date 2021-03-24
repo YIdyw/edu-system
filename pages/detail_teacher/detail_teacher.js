@@ -83,15 +83,16 @@ import {
 Page({
 
   data: {
-    teacher : {},
-    name : {},
+    teacher : {},//老师个人信息
+    name : {},//老师姓名
     screen : {
       minHeight : 'auto'
     },
-    flag : false
+    flag : false  //控制图片显示（能查询到该老师信息就为真）
 
   },
 
+  //获取老师信息******************************************
     getTeacherDetail: function(id){
     var url ='/teacher/' + id
     getDetail(url).then(res =>{
