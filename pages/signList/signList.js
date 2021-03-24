@@ -1,3 +1,4 @@
+// 教师在课程管理中课程查询里点击具体签到情况查询后，再查看某节课具体签到名单的页面
 import {
   signList
 } from '../../network/signList'
@@ -12,6 +13,8 @@ Page({
     signInRoster: [],
     unSignInRoster:[]
   },
+
+  // 根据当前选中的某节课的 courseId 以及上课时间 courseTime 来获取当前课的签到的名单和未签到的名单
   _getSignList(){
     let data = {
       courseId: this.data.courseId,

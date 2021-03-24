@@ -1,3 +1,4 @@
+// 教师挂靠管理
 import {
   getAllOrganization, relymgmt, relyPorcess, deleterely, confirmreturn
 } from '../../network/organization'
@@ -24,17 +25,22 @@ Page({
     modalShow: false,
     isReturn: false,
   },
+
+  // 已弃用
   keywordsearch(){
     this.setData({
       keyword: e.detail.value
     })
   },
+
+  // 获取用户输入的内容
   getsearch(e){
     this.setData({
       getsearch:e.detail.value
     })
   },
 
+  // 根据用户的输入查找相关的机构，如果用户输入为空，则查询全部机构，否则调用 _getSearch()
   search(){
     var that = this;
     this.setData({
@@ -56,6 +62,7 @@ Page({
     } 
   },
 
+  // 如果用户输入不为空，则根据输入获取相关的机构列表，如果获取的列表为空，则提示用户输入正确信息 
   _getSearch(){
     var that=this;
     let data={

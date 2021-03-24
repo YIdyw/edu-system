@@ -1,3 +1,4 @@
+// 教师的个人中心
 import {
   userAuthed
 } from '../../network/authID'
@@ -15,41 +16,50 @@ Page({
     oldpsword: ''
   },
   
+  // 跳转到教师身份认证页面
   gotorgd:function(e){
     wx.redirectTo({
       url: '../rgistID/rgistID'
     })
   },
+
+  // 修改信息按钮，点击修改信息后，修改标志变量 flag 然后可以对个人信息进行修改
   modifyClick(){
     this.setData({
       flag: true,
       isupdatepsword: true
     });
   },
+
+  // 获取用户修改时填入的昵称名
   nicknameModify(e){
     this.setData({
       nickname: e.detail.value
     });
   },
+
+  // 获取用户修改时填入的邮箱
   mailModify(e){
     this.setData({
       mail: e.detail.value
     });
   },
 
+  // 获取用户输入的新密码
   newpsword(e){
     this.setData({
       newpsword: e.detail.value
     });
   },
 
+  // 获取用户输入的旧密码
   oldpsword(e){
     this.setData({
       oldpsword: e.detail.value
     });
   },
 
-  
+  // 修改密码
   updatepsword(){
     let data = {
         newPwd : this.data.newpsword,
@@ -93,6 +103,7 @@ Page({
     
   },
 
+  // 修改教师的个人信息，将新的数据传入后端
   _userAuthed(){
     let that=this;
     let data={
@@ -129,6 +140,9 @@ Page({
       }       
     });
   },
+
+  // 确认修改信息按钮，校验用户新的输入是否正确，如果正确并确定修改
+  // 则调用 _userAuthed() 将信息传给后端，如果并未改动，则提示用户信息未改变
   infoConfirm(){
     let that=this
     let data = this.data

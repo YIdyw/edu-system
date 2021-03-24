@@ -1,3 +1,4 @@
+// 当前页面已被弃用
 import {
   getAllorg, getOrgCourse
 } from '../../network/orginout'

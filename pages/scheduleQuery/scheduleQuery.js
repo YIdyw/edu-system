@@ -1,3 +1,4 @@
+// 课程表页面
 import {
   scheduleQuery
 } from '../../network/scheduleQuery'
@@ -215,6 +216,7 @@ Page({
     let currentWeekNum = null;
     let weekPlan = []
     scheduleQuery(data).then(res=>{
+      console.log(res)
       let monthPlan = this.data.monthPlan
       for(let i=0; i<monthPlan.length; i++){
         for(let j=0; j<res.data.length; j++){

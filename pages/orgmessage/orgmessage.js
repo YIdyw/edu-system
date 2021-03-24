@@ -1,3 +1,4 @@
+// 该页面已弃用
 import {
   orgInter,listenClass
 } from '../../network/orginout'

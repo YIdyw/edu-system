@@ -1,4 +1,5 @@
 // pages/order/order.js
+// 全部订单的查询页面
 import {
   cancelledOrder, paidOrder, tobepaidOrder
 } from '../../network/order'

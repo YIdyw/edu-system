@@ -1,4 +1,5 @@
 // pages/settledetail/settledetail.js
+// 单个订单的详细信息
 import {
   getorderdetail
 } from '../../network/order'
@@ -13,6 +14,8 @@ Page({
 
  },
 
+ // 此页面同支付订单页面，可以查看某个点击的订单详细信息
+ // 支付订单页面增加了选择支付的功能
  _orderdetail:function(){
    var orderid = this.data.orderid
    getorderdetail(orderid).then(res =>{
