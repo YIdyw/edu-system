@@ -19,11 +19,10 @@ var app = getApp();
 
 Page({
   data: {
-    modalName: '',
-    color: 'bg-olive solid shadow',            //课表颜色
-    current:0,
-    islogin: false,
-    isflag: false,
+    modalName: '',                             //补课时间选择器，值为DialogModal1时显示
+    color: 'bg-olive solid shadow',            //课表颜色                                         
+    islogin: false,                             //是否已登录
+    isflag: false,                              
     orgid: 0,
     islayout: true,
     leaveoutinfo:{},
@@ -184,7 +183,11 @@ Page({
       makeupStartTime: that.data.stime,
       makeupEndTime: that.data.etime
     }
+    console.log(data)
     stuMakeUp(data).then(res =>{
+      that.setData({
+        modalName: ''
+      })
       if(res.code == 200){
         setTimeout(() => {
           wx.showToast({
@@ -248,6 +251,7 @@ Page({
       dateTimeArray1: obj1.dateTimeArray,
       dateTime1: obj1.dateTime
     });
+    this._endtime()
     wx.showModal({
       cancelColor: 'cancelColor',
       confirmText: '已协商',
@@ -872,9 +876,7 @@ picture2(){
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      current: "mine"
-  });
+    
   //console.log(wx.getStorageSync('loginInfo'.userid))
   //this._judgepage(wx.getStorageSync('loginInfo').userid)
   },
