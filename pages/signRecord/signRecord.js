@@ -1,3 +1,4 @@
+// 教师在课程管理中的课程查询中查看某个课程已上课的签到情况（签到人数/总人数）
 import {
   signRecord
 } from '../../network/signRecord'
@@ -11,6 +12,9 @@ Page({
     courseId: '',
     courseInfo : []
   },
+
+  // 点击跳转到当前选择的某节具体课程中的详细签到情况页面
+  // 查看具体的每个学生在这节课的签到情况
   signList(e){
     let courseTime = e.currentTarget.dataset.time
     let courseId = this.data.courseId
@@ -18,9 +22,8 @@ Page({
       url: '../signList/signList?courseId=' + courseId + '&courseTime=' + courseTime.substring(0, 16),
     });
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
+  
+  //根据当前老师的 id 查询当前老师的某门具体课程中已经上过的课的签到情况
   _getSignRecord(){
     let data = {
       id: this.data.courseId
@@ -33,6 +36,10 @@ Page({
       }
     });
   },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
   onLoad: function (options) {
     this.setData({
       courseId: options.courseId

@@ -1,4 +1,5 @@
 // pages/mainpage/mainpage.js
+// 用户关注的机构列表，如果用户关注多个机构的时候，该页面即为初始页面
 import {
    getOrgInfo
 } from '../../network/search'

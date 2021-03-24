@@ -1,5 +1,5 @@
 // pages/test/test.js
-
+// 开发过程中的测试页面，未应用在正式项目中
 var dateTimePicker = require('../../utils/test1.js');
 Page({
 

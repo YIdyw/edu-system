@@ -1,3 +1,4 @@
+// 教师身份认证页面
 import {
   getAuthID, addAuthUser, userAuthed
 } from '../../network/authID'
@@ -12,6 +13,10 @@ Page({
     imgUrl: "",
     isflag: false
   },
+
+  /*
+   ** 以下函数均为对用户的输入进行记录以及对点击事件的响应和对输入的校验
+   */
   userid (e) {
     this.setData({
       idcard: e.detail.value

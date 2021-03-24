@@ -1,3 +1,7 @@
+// 用户注册
+/* 
+ ** 该页面与利用手机号注册用户页面功能基本相同，故不做过多介绍
+ */
 import {
   registInfo, account, phone
 } from '../../network/regist'
@@ -15,6 +19,7 @@ Page({
    flagaccount: false,
    flagphone: false
   },
+
   useraccount (e) {
     this.setData({
       account: e.detail.value

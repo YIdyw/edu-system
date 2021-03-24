@@ -1,4 +1,5 @@
 // pages/registNext/registNext.js
+// 简单注册后的详细信息填写以及角色选择
 import {
   infoIn
 } from '../../network/information'
@@ -45,6 +46,9 @@ Page({
    
   },
 
+  /*
+   ** 获取用户的输入信息以及对信息的校验
+   */
   username (e) {
     this.setData({
       name: e.detail.value

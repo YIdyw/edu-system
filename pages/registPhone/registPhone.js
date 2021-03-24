@@ -1,3 +1,4 @@
+// 用手机号注册
 import {
   registInfo, phone
 } from '../../network/regist'
@@ -13,25 +14,27 @@ Page({
    flagphone: false
   },
   
+  // 获取用户输入的手机号
   userphone (e) {
-
     this.setData({
       phone: e.detail.value
     });
   },
 
+  // 调用 _phone() 函数查找该手机号是否已经注册
   findphone(){
     var that = this
     that._phone()
   },
 
+  // 获取用户输入的验证码
   inputcode(e){
     this.setData({
       code: e.detail.value
     });
   },
 
-
+  // 根据用户输入的手机号查找是否已经注册
   _phone(){
     let data = this.data.phone
     phone(data).then(res =>{
@@ -47,6 +50,8 @@ Page({
     })
   },
 
+  // 根据用户的手机号，调用后端接口向该手机发送验证码
+  // 并根据后端返回消息，提示用户验证码是否已经发送
   _getPhonecode(){
     var that=this;
     var phone=that.data.phone;
@@ -78,6 +83,7 @@ Page({
     })
   },
 
+  // 根据当前手机号以及发送的验证码的关联，校验用户输入的验证码是否正确
   _checkCode(){
     var that=this
     let data={
@@ -93,6 +99,7 @@ Page({
     })
   },
 
+  // 校验手机号的格式，校验无误就发送验证码
   getcode(){
     var that=this;
     if(!(/^1[3-9]\d{9}$/.test(that.data.phone))) {
@@ -109,6 +116,8 @@ Page({
     that._getPhonecode()
   }
   },
+
+  // 注册用户的整体流程，对上述的一系列函数的调用
   regist: function (e) {
     var that = this
     if(!(/^1[3-9]\d{9}$/.test(that.data.phone))) {
@@ -122,7 +131,6 @@ Page({
         }, 1500)
       }, 0);
     }else{
-        
       that._checkCode();
       this._getcallback = res => {
         console.log(res)
@@ -142,6 +150,9 @@ Page({
       } 
     }
   },
+
+  // 注册完成后给当前用户进行用户信息完整度标记
+  // 并根据标记情况提醒用户完成实名认证以及信息登记，同时跳转到信息登记页面
   _registInfo() {
     const that = this;
     let data = {

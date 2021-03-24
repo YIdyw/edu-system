@@ -1,5 +1,5 @@
 // pages/my/my.js
-
+// 入口页面
 var app = getApp();
 import {
   getOrgNum
@@ -15,13 +15,15 @@ Page({
     
   },
 
-  
+  // 跳转到使用手机登陆页面
   movetologin(){
     wx.navigateTo({
       url: '../loginPhone/loginPhone',
     });
   },
 
+  // 扫一扫，扫码成功后根据二维码的类型进行跳转
+  // type = 1(跳转到机构页面), type = 2(跳转到签到页面), type = 3(跳转到课程预约页面) 
   picture2(){
     wx.scanCode({
       success: (res) => {
@@ -68,6 +70,7 @@ Page({
     })
   },
   
+  // 登出，清空缓存
   isout(){
     wx.navigateTo({
       url: '../my/my'
@@ -75,6 +78,7 @@ Page({
     wx.clearStorage()
   },
 
+  // 点击选择身份，跳转到详细信息注册页面
   choose(){
     wx.navigateTo({
       url: '../registNext/registNext',
@@ -83,6 +87,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
+  // 权限获取请求，以及根据内存信息跳转到相应的教师页面或学生页面
   onLoad: function (options) {
     var that = this
     if(!wx.getStorageSync('loginInfo')){

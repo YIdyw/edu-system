@@ -1,4 +1,5 @@
 // pages/propaganda/propaganda.js
+// 课程预约页面
 import {
   phone
 } from '../../network/regist'
@@ -28,28 +29,35 @@ Page({
     orgid:''
   },
 
+  // 获取用户选择的课程种类
   courseKind (e) {
     this.setData({
       courseKind: e.detail.value
     });
   },
+
+  // 获取用户输入的姓名
   name (e) {
     this.setData({
       name: e.detail.value
     });
   },
+
+  // 获取用户输入的年龄
   age(e) {
       this.setData({
         age: e.detail.value,
       });
   },
 
+  // 获取用户输入的手机号
   userphone (e) {
     this.setData({
       phone: e.detail.value
     });
   },
 
+  //校验用户输入的手机号是否已被注册
   findphone(){
     var that = this
     that._phone()
@@ -70,6 +78,8 @@ Page({
     })
   },
 
+  // 预约按钮功能，判断用户的输入和选择是否为空以及格式是否正确，并做相关提示
+  // 如果均正确，则调用 _reservation() 实现课程预约
   reserve(){
     var that = this
     if (that.data.name == '') {
@@ -117,6 +127,7 @@ Page({
     }
   },
 
+  // 课程预约
   _reservation(){
     let data = {
       telephone : this.data.phone,
@@ -151,6 +162,7 @@ Page({
     })
   },
 
+  // 获取所有的课程类型
   _getAll(){
     getAllSubject().then(res =>{
       console.log(res)
@@ -166,6 +178,7 @@ Page({
     })
   },
 
+  // 课程类型选择
   PickerChange1(e){
     this.setData({
       idx1: e.detail.value,
@@ -175,6 +188,7 @@ Page({
     })
   },
 
+  // 详细课程类型选择
   PickerChange2(e){
     this.setData({
       idx2: e.detail.value,

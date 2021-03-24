@@ -1,4 +1,5 @@
 // pages/notify/notify.js
+// 开发过程用于开发添加机构、课程的页面（目前未被使用）
 Page({
 
   /**

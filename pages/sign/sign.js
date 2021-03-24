@@ -1,4 +1,5 @@
 // pages/sign/sign.js
+// 签到页面
 import {
   sign
 } from '../../network/signList'
@@ -26,12 +27,14 @@ Page({
     flagphone: false
   },
 
+  // 获取当前用户输入的手机号
   userphone (e) {
     this.setData({
       phone: e.detail.value
     });
   },
 
+  // 通过调用 _phone() 函数来标记当前输入的手机号是否是已注册的用户
   findphone(){
     var that = this
     that._phone()
@@ -53,6 +56,7 @@ Page({
   },
 
   //确定按钮
+  // 根据之前对用户输入的电话号码的校验来显示对应的响应
   confirm(){
     var that = this
     if(this.data.flagphone){
@@ -84,6 +88,7 @@ Page({
   },
 
   //获取课程信息
+  // 根据手机号获取当天的课程信息
   _signCourse(){
     let data = this.data.phone
     signCourse(data).then(res =>{
@@ -217,6 +222,7 @@ out_of_china:function (lng, lat) {
     }
   },
 
+  // 签到
   _sign(){
     let data = {
       userId : this.data.userid,
@@ -245,9 +251,7 @@ out_of_china:function (lng, lat) {
       }
     })
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
+  
 
      // 签到课程选择
   chooseCourse(e) {
@@ -260,6 +264,9 @@ out_of_china:function (lng, lat) {
     that.juli()
   },
 
+  /**
+   * 生命周期函数--监听页面加载
+   */
   onLoad: function (options) {
     var that = this;
     

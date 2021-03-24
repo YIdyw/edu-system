@@ -1,4 +1,5 @@
 // pages/timeSelect/timeSelect.js
+// 当前页面已弃用
 import {
   timeSelect, getFreeTime, updateTime
 } from '../../network/timeSelect'

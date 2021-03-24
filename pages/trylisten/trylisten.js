@@ -1,3 +1,4 @@
+//试听页面
 import {
   getAllorg,deleteListen
 } from '../../network/orginout'
@@ -14,6 +15,8 @@ Page({
     flag:0,
     esmessage:""
   },
+
+  // 获取当前用户的试听课程列表
   _myListen(){
     let that=this;
     let data={
@@ -65,6 +68,7 @@ Page({
   //   });
   // },
 
+  // 取消当前用户试听的某节课程，然后重新获取当前用户的试听课程列表，刷新页面
   _deleteListen(){
     var that=this
     var courseId=wx.getStorageSync('getmylisten')[0].courseId
@@ -102,6 +106,7 @@ Page({
       }
     });
   },
+  // 当前学生对试听的某节课程进行评价
   _estimateClass(){
     var that=this;
     let data={
@@ -137,6 +142,8 @@ Page({
       }
     });
   },
+
+  // 以下五个函数即为对课程评价时打星的个数
   changeColor1: function () {
     var that = this;
     that.setData({
@@ -167,6 +174,9 @@ Page({
       flag: 5
     });
   },
+
+  // 以下的函数均为页面的操作函数，用来对应页面中的点击事件
+  // 响应评价，退选等按钮
   estimate(e){
     this.setData({
       modalName4: e.currentTarget.dataset.target
@@ -224,6 +234,8 @@ Page({
     var that=this;
     that._deleteListen()
   },
+
+  // 渲染页面
   onLoad: function (options) {
     var that=this;
     // that._getAllorg()

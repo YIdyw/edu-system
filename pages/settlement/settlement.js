@@ -1,4 +1,5 @@
 // pages/order/order.js
+// 订单支付页面
 import {
   tobepaidOrder
 } from '../../network/order'
@@ -15,6 +16,7 @@ Page({
     order: ''
   },
 
+  // 确认支付页面，并在用户点击确定后，调用支付接口(暂未测试)
   pay() {
     let data = {
       orderId : this.data.orderid,
@@ -44,6 +46,9 @@ Page({
       }
     })
   },
+
+  // 根据当前用户的尚未支付订单列表以及所点击的订单 id 获取当前点击的订单的具体信息
+  // 注：此处的订单 id 来自于订单列表页面的点击跳转传参
   _getorder(orderid){
     var userid = wx.getStorageSync('loginInfo').userid
     tobepaidOrder(userid).then(res =>{
