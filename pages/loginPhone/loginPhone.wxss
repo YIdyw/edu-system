@@ -1,4 +1,22 @@
 /* pages/loginPhone/loginPhone.wxss */
+.a{
+  background: #2655CF;
+}
+.b{
+  background: #2655CF;
+}
+.c{
+  position: absolute;
+  left: 30rpx;
+  font-size: 26px;
+  font-family: Microsoft YaHei;
+  font-weight: 300;
+  color: #FFFFFF;
+  line-height: 48px;
+  border-radius: 2px;
+}
+
+
 .cu-form-group .title {
   min-width: calc(4em + 30rpx);
 }

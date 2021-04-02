@@ -3,15 +3,19 @@ import {
   userAuthed
 } from '../../network/authID'
 import {
-  updatePwd
+  updatePwd, setPassword
 } from '../../network/phonecode'
+import {
+  getPassword
+} from '../../network/getcode'
 Page({
   data: {
     userInfo:[],
     nickname: '',
     mail: '',
     flag: false,
-    isupdatepsword: false,
+    isupdatepsword: true, //是否修改密码
+    ishasPassword: false, //是否有密码
     newpsword: '',
     oldpsword: ''
   },
@@ -45,6 +49,13 @@ Page({
     });
   },
 
+   //选择修改密码**********************************************
+   updatepassword(){
+    this.setData({
+      isupdatepsword: false
+    })
+  },
+
   // 获取用户输入的新密码
   newpsword(e){
     this.setData({
@@ -57,6 +68,71 @@ Page({
     this.setData({
       oldpsword: e.detail.value
     });
+  },
+
+  //判断用户是否有密码**********************************************
+  _hasPassword(){
+    let data = {
+      userId: wx.getStorageSync('loginInfo').userid
+    }
+    getPassword(data).then(res =>{
+      if(res.code == 200){
+        if(res.msg == "请设置密码"){
+          this.setData({
+            ishasPassword: false
+          })
+        } else if(res.msg == "已设置密码"){
+          this.setData({
+            ishasPassword: true
+          })
+        }else{
+            console.log("接口出错！");
+        }
+      }
+    })
+  },
+
+  //新设置密码**********************************************
+  setPassword(){
+    let data = {
+      userid: wx.getStorageSync('loginInfo').userid,
+      password: this.data.newpsword
+    }
+    console.log(data)
+    if(this.data.newpsword.length<6){
+      setTimeout(() => {
+        wx.showToast({
+          title: '密码少于6位！',
+          icon: 'none'
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1500)
+      }, 0);
+    }else{
+      setPassword(data).then(res =>{
+        if(res.code==200){
+          setTimeout(() => {
+            wx.showToast({
+              title: '密码修改成功！',
+            });
+            setTimeout(() => {
+              wx.hideToast();
+            }, 3000)
+          }, 0);
+        }else{
+          setTimeout(() => {
+            wx.showToast({
+              title: res.msg,
+              icon: 'none'
+            });
+            setTimeout(() => {
+              wx.hideToast();
+            }, 3000)
+          }, 0);
+        }
+      })
+    }
   },
 
   // 修改密码
@@ -219,6 +295,8 @@ Page({
     this.setData({
       userInfo:wx.getStorageSync('loginInfo')
     });
+    var that = this;
+    that._hasPassword();
   },
 
   /**

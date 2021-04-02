@@ -46,11 +46,7 @@
   ],
   
   "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "乐学小优",
-    "navigationBarTextStyle": "black",
-    "navigationStyle":"default"
+    "navigationStyle":"custom"
   },
   "permission": {
       "scope.userLocation": {

@@ -633,15 +633,24 @@ Page({
           for(var v=k+1;v<len;v++){
             if(monthPlan[i].courseInfo[k].courseTime==monthPlan[i].courseInfo[v].courseTime){
               monthPlan[i].courseInfo[k].courseNo = monthPlan[i].courseInfo[v].courseNo
-              monthPlan[i].courseInfo[v] = "needToDelete"
+              monthPlan[i].courseInfo[v].courseNo = -999
             }
           }
         }
-        let index = monthPlan[i].courseInfo.indexOf('needToDelete')
-        while(index>0){
-          monthPlan[i].courseInfo.splice(index,1)
-          index = monthPlan[i].courseInfo.indexOf({})
+        for(var l=0;l<len;l++){
+          if(monthPlan[i].courseInfo[l]){
+            if(monthPlan[i].courseInfo[l].courseNo==-999){
+              monthPlan[i].courseInfo.splice(l,1)
+              l = 0;
+              len = monthPlan[i].courseInfo.length
+            }
+          } 
         }
+        // let index = monthPlan[i].courseInfo.indexOf('needToDelete')
+        // while(index>0){
+        //   monthPlan[i].courseInfo.splice(index,1)
+        //   index = monthPlan[i].courseInfo.indexOf({})
+        // }
         if(monthPlan[i].name == this.data.currentDay){
           dayPlan = monthPlan[i]
           currentWeekNum = parseInt(i / 7) + 1

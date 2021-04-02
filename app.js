@@ -2,6 +2,15 @@
 App({
   onLaunch: function () {
 
+    //获取系统信息
+    wx.getSystemInfo({
+      success: res => {
+        this.time = res
+      }
+    })
+    //获取胶囊信息
+    this.nav = wx.getMenuButtonBoundingClientRect()
+
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())

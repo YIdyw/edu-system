@@ -29,11 +29,9 @@ Page({
     let data = {
       id: wx.getStorageSync('loginInfo').userid,
       info:{
-        history: true,
         name: "",
         pageNum: 1,
-        pageSize: 10,
-        typeId: 0
+        pageSize: 10
       }
     }
     getCourseQuery(data).then(res => {
@@ -41,7 +39,19 @@ Page({
         let classNow = []
         let historyClass = []
         let today = new Date();
-        let now = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate()
+        let month;
+        let day;
+        if((today.getMonth() + 1) >= 1 && (today.getMonth() + 1) <= 9){
+          month = '-0' + (today.getMonth() + 1);
+        }else{
+          month = '-' + (today.getMonth() + 1);
+        }
+        if(today.getDate() >= 1 && today.getDate() <= 9){
+          day = '-0' + today.getDate();
+        }else{
+          day = '-' + today.getDate();
+        }
+        let now = today.getFullYear() + month + day
         for(let i=0; i<res.data.length; i++){
           if(res.data[i].endTime > now){
             classNow.push(res.data[i])

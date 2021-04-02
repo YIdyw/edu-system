@@ -8,3 +8,12 @@ export function getCode(data) {
     data: data
   })
 } 
+
+// 获取用户是否有密码
+export function getPassword(data) {
+  return request({
+    url: '/user/hasPassword',
+    method: 'GET',
+    data: data
+  })
+} 

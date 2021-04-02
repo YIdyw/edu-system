@@ -49,3 +49,12 @@ export function updatePwd(data) {
     data: data
   })
 }
+
+//为用户设置新密码（最开始无密码）
+export function setPassword(data) {
+  return request({
+    url: '/user/setNewPassword',
+    method: 'POST',
+    data: data
+  })
+}

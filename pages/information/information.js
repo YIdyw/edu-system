@@ -2,8 +2,11 @@ import {
   infoIn, getStuInfo
 } from '../../network/information'
 import {
-  updatePwd
+  updatePwd, setPassword
 } from '../../network/phonecode'
+import {
+  getPassword
+} from '../../network/getcode'
 Page({
 
   /**
@@ -12,7 +15,8 @@ Page({
   data: {
     loginInfo:"",
     name:'',
-    isupdatepsword: true,
+    isupdatepsword: true, //是否修改密码
+    ishasPassword: false, //是否有密码
     grade:'',
     school:'',
     secondTel:'',
@@ -96,6 +100,70 @@ Page({
     this.setData({
       oldpsword: e.detail.value
     });
+  },
+
+  //判断用户是否有密码**********************************************
+  _hasPassword(){
+    let data = {
+      userId: wx.getStorageSync('loginInfo').userid
+    }
+    getPassword(data).then(res =>{
+      if(res.code == 200){
+        if(res.msg == "请设置密码"){
+          this.setData({
+            ishasPassword: false
+          })
+        } else if(res.msg == "已设置密码"){
+          this.setData({
+            ishasPassword: true
+          })
+        }else{
+            console.log("接口出错！");
+        }
+      }
+    })
+  },
+
+  //新设置密码**********************************************
+  setPassword(){
+    let data = {
+      userid: wx.getStorageSync('loginInfo').userid,
+      password: this.data.newpsword
+    }
+    if(this.data.newpsword.length<6){
+      setTimeout(() => {
+        wx.showToast({
+          title: '密码少于6位！',
+          icon: 'none'
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1500)
+      }, 0);
+    }else{
+      setPassword(data).then(res =>{
+        if(res.code==200){
+          setTimeout(() => {
+            wx.showToast({
+              title: '密码修改成功！',
+            });
+            setTimeout(() => {
+              wx.hideToast();
+            }, 3000)
+          }, 0);
+        }else{
+          setTimeout(() => {
+            wx.showToast({
+              title: res.msg,
+              icon: 'none'
+            });
+            setTimeout(() => {
+              wx.hideToast();
+            }, 3000)
+          }, 0);
+        }
+      })
+    }
   },
 
   //更新密码**********************************************
@@ -334,6 +402,7 @@ Page({
     var that=this
     that._getStudentInfo()
     that._getStuInfo()
+    that._hasPassword()
   },
 
   //获取用户的个人信息**********************************************
