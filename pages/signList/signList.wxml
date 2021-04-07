@@ -1,4 +1,8 @@
 <!--pages/signList/signList.wxml-->
+<!-- 导航栏 -->
+<i-navigator></i-navigator>
+
+
 <view class="bg-white padding">
   <view class="grid col-3 margin text-center bg-olive shadow">
     <view class="padding text-bold">签到编号</view>

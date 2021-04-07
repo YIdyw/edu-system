@@ -1,5 +1,8 @@
 <!--pages/carts/carts.wxml-->
 
+<!-- 导航栏 -->
+<i-navigator></i-navigator>
+
 <block wx:if='{{isnull}}'>
   <!-- <>购物车列表 -->
   <scroll-view  scroll-y="true" style="{{height}}rpx" class="carts-list">

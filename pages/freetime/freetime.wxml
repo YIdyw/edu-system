@@ -1,4 +1,6 @@
 <!--pages/timeSelect/timeSelect.wxml-->
+<!-- 导航栏 -->
+<i-navigator></i-navigator>
 
 <view class="page me">
   <view class="cu-bar bg-white">

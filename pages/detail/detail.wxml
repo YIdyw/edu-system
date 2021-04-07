@@ -1,3 +1,6 @@
+<!-- 导航栏 -->
+<i-navigator></i-navigator>
+
 <view wx:if="{{isstu}}">
   <view hidden="{{degs_course!=0}}">
     <button catchtap="showCT">查看课表</button>

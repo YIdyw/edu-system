@@ -1,4 +1,8 @@
 <!--pages/propaganda/propaganda.wxml-->
+<!-- 导航栏 -->
+<i-navigator></i-navigator>
+
+
 <i-panel title="预约课程">
 
 <view class="cu-form-group">

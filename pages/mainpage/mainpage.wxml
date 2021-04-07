@@ -1,3 +1,6 @@
+<!-- 导航栏 -->
+<i-navigator></i-navigator>
+
 <navigator url="../my-stu/my-stu">个人首页</navigator>
 <view class="cards" wx:for="{{org}}" wx:for-item="item" wx:key="item">
 	<navigator class="nav" url="../detail/detail?orgid={{item.orgId}}">

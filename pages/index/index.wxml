@@ -1,4 +1,7 @@
 <!--pages/index/index.wxml-->
+<!-- 导航栏 -->
+<i-navigator></i-navigator>
+
 <view class="padding bg-white" flex-direction: column>
   <view class="text-left padding">机构名称：{{getorgallinfo.name}}</view>
   <view class="text-left padding">机构地址： {{getorgallinfo.address}} </view>

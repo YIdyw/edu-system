@@ -1,3 +1,7 @@
+<!-- 导航栏 -->
+<i-navigator></i-navigator>
+
+
 <!-- <view class="cu-bar bg-white margin-top">
   <view class="action">
     <text class="cuIcon-title text-orange "></text> 请选择机构来获取试听课程

@@ -1,4 +1,7 @@
 <!--pages/registNext/registNext.wxml-->
+<!-- 导航栏 -->
+<i-navigator></i-navigator>
+
 
 <view class="cu-form-group">
 	<view class="title">昵称</view>

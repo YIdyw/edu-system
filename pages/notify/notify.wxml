@@ -1,3 +1,6 @@
+<!-- 导航栏 -->
+<i-navigator></i-navigator>
+
 <wxs src='../../wxs/utils.wxs' module='tools'/>
 <view class="cu-list menu-avatar">
   <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{notify}}" wx:key="id" bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}">

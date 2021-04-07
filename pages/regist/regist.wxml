@@ -1,3 +1,7 @@
+<!-- 导航栏 -->
+<i-navigator></i-navigator>
+
+
 <i-panel title="用户注册">
 
 <view class="cu-form-group margin-top">

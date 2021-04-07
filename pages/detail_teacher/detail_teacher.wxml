@@ -1,3 +1,6 @@
+<!-- 导航栏 -->
+<i-navigator></i-navigator>
+
 <view style="min-height : {{screen.minHeight}}px; background-color: #2f2f2f;">
   <view class="banner" wx:if="{{flag}}">
     <view class="poster" >

@@ -1,4 +1,7 @@
 <!--pages/courseinfo/courseinfo.wxml-->
+<!-- 导航栏 -->
+<i-navigator></i-navigator>
+
 <scroll-view scroll-y="true" style="min-height : {{screen.minHeight}}px; background-color: #2f2f2f;">
   <view class="banner">
     <view class="poster" wx:if="{{flag}}">

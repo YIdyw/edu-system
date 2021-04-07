@@ -1,4 +1,8 @@
 <!--pages/beforeindex/beforeindex.wxml-->
+
+<!-- 导航栏 -->
+<i-navigator></i-navigator>
+
 <view class="content" >
   <view style="margin-top:50px;width:100%;">
     <view style='font-size:20px;'>抱歉，您无法正常使用该小程序</view>

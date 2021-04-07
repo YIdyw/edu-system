@@ -1,4 +1,7 @@
 <!--pages/activity/activity.wxml-->
+<!-- 导航栏 -->
+<i-navigator></i-navigator>
+
 <view class="padding bg-white" flex-direction: column>
   <view class="text-left padding">活动主题：{{getorgallinfo.name}}</view>
   <view class="text-left padding">活动时间： {{getorgallinfo.address}} </view>

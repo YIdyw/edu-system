@@ -1,4 +1,6 @@
 {
   
-  "usingComponents": {}
+  "usingComponents": {
+    "i-navigator": "../../component/navigator/navigator"
+  }
 }

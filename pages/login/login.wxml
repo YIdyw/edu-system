@@ -1,3 +1,6 @@
+<!-- 导航栏 -->
+<i-navigator></i-navigator>
+
 <i-panel title="用户密码登录">
     <view class="cu-form-group margin-top">
 		<view class="title">账号/手机</view>

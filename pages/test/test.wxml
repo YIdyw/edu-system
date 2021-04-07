@@ -1,4 +1,7 @@
 <!--pages/test/test.wxml-->
+<!-- 导航栏 -->
+<i-navigator></i-navigator>
+
 <view wx:if="{{isshow}}">
 
 <!-- <view class="tui-picker-content">

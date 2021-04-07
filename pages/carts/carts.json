@@ -1,6 +1,6 @@
 {
   "component": true,
   "usingComponents": {
-
+    "i-navigator": "../../component/navigator/navigator"
   }
 }

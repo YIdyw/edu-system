@@ -1,3 +1,7 @@
+<!-- 导航栏 -->
+<i-navigator></i-navigator>
+
+
 <view wx:if="{{courseInfo.length==0}}" >
   <view class="content" >
     <view style="margin-top:100px;width:100%;">

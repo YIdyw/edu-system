@@ -1,3 +1,7 @@
+<!-- 导航栏 -->
+<i-navigator></i-navigator>
+
+
 <view wx:for="{{order.orderItemVOList}}" wx:key="index">
        <view class="orderListTitle">
         <text class="orderStatus">商品编号：{{item.merId}}</text>

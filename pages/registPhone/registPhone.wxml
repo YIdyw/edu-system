@@ -1,4 +1,8 @@
 <!--pages/registPhone/registPhone.wxml-->
+<!-- 导航栏 -->
+<i-navigator></i-navigator>
+
+
 <i-panel title="用户手机号注册">
 
 <view class="cu-form-group">

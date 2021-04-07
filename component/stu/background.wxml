@@ -1,0 +1,2 @@
+<!--component/stu/background.wxml-->
+<image src='../image/bg_pic1@2x.jpg'></image>

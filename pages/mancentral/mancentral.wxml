@@ -1,3 +1,6 @@
+<!-- 导航栏 -->
+<i-navigator></i-navigator>
+
 <view class="margin text-center">
   <button wx:if="{{!flag}}" class="cu-btn block bg-olive lg shadow" bindtap="modifyClick">点击修改信息</button>
   <button wx:else class="cu-btn block bg-olive lg shadow" bindtap="infoConfirm">确认修改信息</button>

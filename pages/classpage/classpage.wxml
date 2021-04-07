@@ -1,3 +1,6 @@
+<!-- 导航栏 -->
+<i-navigator></i-navigator>
+
 <view class="bg-white padding-xs margin">
   <scroll-view scroll-x class="nav">
     <view class="flex text-center">
