@@ -1,8 +1,18 @@
 /* pages/loginPhone/loginPhone.wxss */
 
+#radius_code {
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+#radius_phone {
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
 
 .cu-form-group .title {
   min-width: calc(4em + 30rpx);
+  font-size: 16px;
 }
 
 .find{
@@ -10,3 +20,56 @@
   font-size: larger;
   text-align: right;
 }
+
+.btn {
+  text-align: center;
+}
+
+.btn_code {
+  margin-top: 20px;
+  margin-bottom: 25px;
+  margin-left: 15px;
+  font-size: 18px;
+  display: inline-block;
+  color: blue;
+}
+
+.btn_pwd {
+  margin-top: 20px;
+  margin-bottom: 25px;
+  margin-right: 15px;
+  font-size: 18px;
+  display: inline-block;
+}
+
+.divLine {
+  background: #2655CF;
+  width: 50%;
+  height: 4rpx;
+  margin-top: 10px;
+  margin-left: 20px;
+ }
+
+ .text-red {
+   margin-top: 5px;
+   margin-right: 5px;
+ }
+ 
+ .btn_register {
+   display: inline-block;
+ }
+
+ .btn_re {
+   display: inline-block;
+   color: #2655CF;
+ }
+
+ .register {
+   margin-top: 30px;
+   text-align: center;
+   font-size: 15px;
+ }
+
+ .for_height {
+  margin-top: 40px;
+ }

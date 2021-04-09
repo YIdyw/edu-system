@@ -14,6 +14,9 @@ import {
 var app = getApp()
 Page({
   data: {
+    globalData:app.time.statusBarHeight, //状态栏高度,
+    globalDatas:app.nav.height + (app.nav.top - app.time.statusBarHeight)*2 + app.nav.top - app.time.statusBarHeight, //导航栏高度
+    globalDatassh: app.nav.height, //胶囊高度
     code: '',//验证码
     isflag: false,
     modalShow: false,
@@ -260,6 +263,13 @@ Page({
       
       
     });
+  },
+
+  // 跳转到密码登陆
+  navto_login() {
+    wx.redirectTo({
+      url: '../login/login'
+    })
   },
   /**
    * 生命周期函数--监听页面加载

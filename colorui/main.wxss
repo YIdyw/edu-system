@@ -2358,7 +2358,9 @@ button.icon.lg {
 
 .cu-form-group {
 	background-color: var(--white);
-	padding: 1rpx 30rpx;
+	padding: 1rpx 20rpx;
+	margin-left: 30rpx;
+	margin-right: 30rpx;
 	display: flex;
 	align-items: center;
 	min-height: 100rpx;
