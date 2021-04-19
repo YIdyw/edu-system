@@ -3,7 +3,7 @@
 <!-- 导航栏 -->
 <i-navigator></i-navigator>
 
-<!-- 切换栏 -->
+<!-- 切换栏 --> 
 <view class="swiper-tab" style="top:{{globalData+globalDatas}}px;">
   <block wx:for="{{swipertab}}" wx:key="sptab">
   <view class="swiper-tab-list {{currtab == item.index ? 'on' : ''}}" data-current="{{item.index}}" bindtap="tabSwitch">{{item.name}}</view>

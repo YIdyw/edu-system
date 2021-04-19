@@ -22,4 +22,6 @@
       <text class="navigator3" bindtap="back" style="height:{{globalDatassh}}px">乐学小优</text>
   </view>
 </view>
-<view style="height: {{globalData+globalDatas}}px;"></view>
+
+<view  style="height:{{globalData+globalDatas}}px;"></view>
+

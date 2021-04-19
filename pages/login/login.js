@@ -323,6 +323,12 @@ Page({
       
     });
   },
+
+  navto_loginPhone() {
+    wx.redirectTo({
+      url: '../loginPhone/loginPhone'
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

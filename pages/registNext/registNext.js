@@ -43,7 +43,8 @@ Page({
     imgUrl: "",
     isflag: false,
     loginInfo:"",
-   
+    isboxshow: false,
+    cur_Role: 0,
   },
 
   /*
@@ -70,6 +71,38 @@ Page({
     this.setData({
       indexRole: e.detail.value
     });
+  },
+
+  openbox() {
+    this.setData({
+      isboxshow : true
+    })
+  },
+
+  change_show() {
+    this.setData({
+      isboxshow : false
+    })
+  },
+
+  closePicker() {
+    this.setData({
+      isboxshow : false
+    })
+  },
+
+  change_box(e) {
+    // console.log(e);
+    this.setData({
+      cur_Role : e.detail.value[0],
+    })
+  },
+
+  getValue() {
+    this.setData({
+      indexRole : this.data.cur_Role,
+      isboxshow : false
+    })
   },
 
   handleSexChange(e) {

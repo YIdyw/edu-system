@@ -21,6 +21,7 @@ Page({
     cancelOrder: '',
     item: '',
     swipertab: [{ name: '已完成', index: 0 }, { name: '待付款', index: 1 }, { name: '已取消', index: 2 }],
+    deviceH: 0
   },
 
   //查询已完成订单
