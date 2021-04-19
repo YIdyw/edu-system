@@ -78,6 +78,19 @@ Page({
     showWeek: '',         // tab周内周选择
   },
 
+
+  stu_course(){
+    wx.navigateTo({
+      url: '../stuCourse/stuCourse',
+    })
+  },
+
+  stu_info(){
+    wx.navigateTo({
+      url: '../stuInfo/stuInfo',
+    })
+  },
+
   //自动播放视频
   play: function ready(){
 /** 监控视频是否需要播放 */
@@ -446,7 +459,7 @@ videoObserve.relativeToViewport({bottom: -topBottomPadding, top: -topBottomPaddi
   //订阅消息，推送模板******************************************
   pushMsg(userid){
     wx.requestSubscribeMessage({
-      tmplIds: ["Ay8VcpCaY_bqB_uvjLntnShzPXcsv_0J4Ya3JuEwHEc","Db5GfNzzqozgQdnHfpZYyFRgFIRewm1omkQe-8lF9Zc","K-ydX0jPEK45csXyNtmqKCg-mSDyK7VLebN94IGtoBM"],
+      tmplIds: ["Ay8VcpCaY_bqB_uvjLntnShzPXcsv_0J4Ya3JuEwHEc","Db5GfNzzqozgQdnHfpZYyFRgFIRewm1omkQe-8lF9Zc","K-ydX0jPEK45csXyNtmqKCg-mSDyK7VLebN94IGtoBM","RKOKxheH_QW6QmqQt8uXOVFd8UOWWeulCKoKp0XFg_I"],
       success (res) {
         console.log("可以进行推送")
         console.log(res)

@@ -1,0 +1,108 @@
+<!--pages/stuCourse/stuCourse.wxml-->
+
+<!-- 导航栏 -->
+<i-navigator></i-navigator>
+
+<!--垂直滚动-->
+<scroll-view scroll-y="true" class="scrolly" style="top: {{globalData+globalDatas}}px;white-space: nowrap; display: flex;" >
+<!-- display: inline-block-->
+<view style="display: flex;" class="info">
+ <view style="background: #2655CF; width: {{(deviceW-50)/4}}px; display: inline-block" class="infoscroll">
+   <view class="textInfo">学生编号</view>
+   <view class="textInfo">1</view>
+   <view class="textInfo">2</view>
+   <view class="textInfo">3</view>
+   <view class="textInfo">4</view>
+   <view class="textInfo">5</view>
+   <view class="textInfo">6</view>
+   <view class="textInfo">7</view>
+   <view class="textInfo">8</view>
+   <view class="textInfo">9</view>
+   <view class="textInfo">10</view>
+ </view>
+ <view style="background: green; width: {{(deviceW-50)/4}}px; display: inline-block" class="infoscroll">
+  <view class="textInfo">学生姓名</view>
+  <view class="textInfo">1</view>
+   <view class="textInfo">2</view>
+   <view class="textInfo">3</view>
+   <view class="textInfo">4</view>
+   <view class="textInfo">5</view>
+   <view class="textInfo">6</view>
+   <view class="textInfo">7</view>
+   <view class="textInfo">8</view>
+   <view class="textInfo">9</view>
+   <view class="textInfo">10</view>
+ </view>
+
+ <scroll-view scroll-x="true" style="background: yellow; width: {{(deviceW-50)/2}}px; display: flex" class="scrollx">
+   <view style="display:inline-block" class="infoscroll">
+    <view class="textInfo">余课课时</view>
+    <view class="textInfo">1</view>
+   <view class="textInfo">2</view>
+   <view class="textInfo">3</view>
+   <view class="textInfo">4</view>
+   <view class="textInfo">5</view>
+   <view class="textInfo">6</view>
+   <view class="textInfo">7</view>
+   <view class="textInfo">8</view>
+   <view class="textInfo">9</view>
+   <view class="textInfo">10</view>
+   </view>
+
+   <view style="display:inline-block" class="infoscroll">
+    <view class="textInfo">已结课时</view>
+    <view class="textInfo">1</view>
+   <view class="textInfo">2</view>
+   <view class="textInfo">3</view>
+   <view class="textInfo">4</view>
+   <view class="textInfo">5</view>
+   <view class="textInfo">6</view>
+   <view class="textInfo">7</view>
+   <view class="textInfo">8</view>
+   <view class="textInfo">9</view>
+   <view class="textInfo">10</view>
+   </view>
+
+   <view style="display:inline-block" class="infoscroll">
+    <view class="textInfo">余补课时</view>
+    <view class="textInfo">1</view>
+   <view class="textInfo">2</view>
+   <view class="textInfo">3</view>
+   <view class="textInfo">4</view>
+   <view class="textInfo">5</view>
+   <view class="textInfo">6</view>
+   <view class="textInfo">7</view>
+   <view class="textInfo">8</view>
+   <view class="textInfo">9</view>
+   <view class="textInfo">10</view>
+   </view>
+
+   <view style="display:inline-block" class="infoscroll">
+    <view class="textInfo">待补课时</view>
+    <view class="textInfo">1</view>
+   <view class="textInfo">2</view>
+   <view class="textInfo">3</view>
+   <view class="textInfo">4</view>
+   <view class="textInfo">5</view>
+   <view class="textInfo">6</view>
+   <view class="textInfo">7</view>
+   <view class="textInfo">8</view>
+   <view class="textInfo">9</view>
+   <view class="textInfo">10</view>
+   </view>
+  </scroll-view>
+  <view style="display:inline-block; width: 50px;" class="infoscroll">
+    <view class="buttonInfo">更多</view>
+    <button class="buttonInfo">more</button>
+    <button class="buttonInfo">more</button>
+    <button class="buttonInfo">more</button>
+    <button class="buttonInfo">more</button>
+    <button class="buttonInfo">more</button>
+    <button class="buttonInfo">more</button>
+    <button class="buttonInfo">more</button>
+    <button class="buttonInfo">more</button>
+    <button class="buttonInfo">more</button>
+    <button class="buttonInfo">more</button>
+  </view>
+</view>
+</scroll-view>

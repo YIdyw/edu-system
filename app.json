@@ -42,12 +42,20 @@
     "pages/propaganda/propaganda",
     "pages/adver/adver",
     "pages/mainpage/mainpage",
-    "pages/beforeindex/beforeindex"
+    "pages/beforeindex/beforeindex",
+    "pages/stuInfo/stuInfo",
+    "pages/stuCourse/stuCourse",
+    "pages/teaCourse/teaCourse"
   ],
   
   "window": {
     "navigationStyle":"custom"
   },
+  "usingComponents": {
+    "navigationBar":"/component/navigator/navigator"
+  },
+  
+
   "permission": {
       "scope.userLocation": {
         "desc": "你的位置信息将用于小程序位置接口的效果展示" 

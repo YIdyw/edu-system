@@ -1,7 +1,7 @@
 //app.js
 App({
   onLaunch: function () {
-
+    
     //获取系统信息
     wx.getSystemInfo({
       success: res => {
@@ -56,6 +56,7 @@ App({
   globalData: {
     userInfo: null,
     isfollow: false,
-    marketers: ''
+    marketers: '',
+    statusBarHeight: ''
   }
 })

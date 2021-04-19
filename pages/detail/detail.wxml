@@ -53,6 +53,8 @@
         <view wx:if="{{!issignup}}">
           <button  class="cu-btn bg-green round" style="display:flex;float:right;" bindtap="orgIn">点击报名</button>
         </view>
+        <button  class="cu-btn bg-green round" style="display:flex;float:right;" bindtap="stu_course">学生课程</button>
+        <button  class="cu-btn bg-green round" style="display:flex;float:right;" bindtap="stu_info">学生信息</button>
         <button  class="cu-btn bg-green round" style="display:flex;float:right;" bindtap="course_reserve">课程预约</button>
         <button  class="cu-btn bg-green round" style="display:flex;float:right;" bindtap="movehome">个人首页</button>
         <!-- <button  class="cu-btn bg-green round" style="display:flex;float:right;" bindtap="test">test</button> -->

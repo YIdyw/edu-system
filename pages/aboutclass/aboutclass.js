@@ -1,6 +1,8 @@
 import {
   getMyorg,getMyclass,deleteOrg,signIn,getMyorgclass,chooseClass,deleteClass
 } from '../../network/aboutclass'
+
+var app = getApp()
 Page({
 
   data: {
@@ -17,6 +19,9 @@ Page({
     endtime:[],      //所有课程的结束时间
     status:[],        //所有课程的状态
     current_scroll: 'tab1',  //查找课程时的标签
+    globalData:app.time.statusBarHeight, //状态栏高度,
+    globalDatas:app.nav.height + (app.nav.top - app.time.statusBarHeight)*2 + app.nav.top - app.time.statusBarHeight, //导航栏高度
+    globalDatassh: app.nav.height, //胶囊高度
   },
 
   onLoad: function (options) {

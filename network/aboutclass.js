@@ -72,10 +72,20 @@ export function estimateClass(data) {
     data:data
   })
 } 
+
+
 //获取学生的试听课程
 export function myListen(data) {
   return request({
     url: '/student/'+data.userid+'/coursetrial',
+    method: 'GET',
+  })
+} 
+
+//获取教师某课程下学生的上课、余课情况
+export function teaCourse(data) {
+  return request({
+    url: '/course/teacher/'+ data.courseId+'/'+data.userId,
     method: 'GET',
   })
 } 

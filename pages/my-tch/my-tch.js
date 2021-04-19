@@ -88,6 +88,14 @@ Page({
     showWeek: '',         // tab周内周选择
   },
   
+  //教师课程信息选择查看
+  chooseCourse(e){
+    console.log(e.currentTarget.dataset.data.courId);
+    wx.navigateTo({
+      url: '../teaCourse/teaCourse?courseId=' + e.currentTarget.dataset.data.courId,
+    })
+  },
+
   lastMonth(){
     let month = this.data.showMonth-1;  // 前一月
     let year = this.data.showYear;      // 当前年
