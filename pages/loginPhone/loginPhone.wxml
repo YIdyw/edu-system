@@ -9,19 +9,22 @@
 		</view>
 
 	</view>
+	<form>
   <view class="cu-form-group" id="radius_phone">
 		<view class="text-red">*</view>
 		<view class="title">手机号码</view>
 		<input placeholder="请输入手机号" type="number" maxlength="11" bindblur="findphone" bindinput="userphone"></input>
 	</view>
-<view wx:if="{{flagphone}}">
+
+	<view class="cu-form-group" id="radius_code">
+		<view class="text-red">*</view>
+		<view class="title">验证码</view>
+		<input placeholder="默认为123456" maxlength="6" type="number" bindinput="inputcode"></input>
+		<button class="cu-btn bg-green shadow" bindtap="getcode">获取验证码</button>
+	</view>
+	</form>
+	<view wx:if="{{flagphone}}">
 手机号未注册
-</view>
-<view class="cu-form-group" id="radius_code">
-	<view class="text-red">*</view>
-	<view class="title">验证码</view>
-	<input placeholder="默认为123456" maxlength="6" type="number" bindinput="inputcode"></input>
-	<button class="cu-btn bg-green shadow" bindtap="getcode">获取验证码</button>
 </view>
 <view class="for_height">
 	<i-button  bind:click="login" type="success" shape="circle">登录</i-button>

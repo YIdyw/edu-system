@@ -1,1 +1,295 @@
 /* pages/registNext/registNext.wxss */
+
+.content, 
+.stu_form,
+.tch_form {
+  position: relative;
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.cu-form-group {
+  position: relative;
+}
+
+.content .cu-form-group .title, 
+.stu_form .cu-form-group .title,
+.tch_form .cu-form-group .title {
+  position: absolute;
+  left: 20px;
+}
+
+.content .cu-form-group:first-child,
+.stu_form .cu-form-group:first-child,
+.tch_form .cu-form-group:first-child {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.content .cu-form-group:last-child, 
+.stu_form .cu-form-group:last-child, 
+.tch_form .cu-form-group:last-child {
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.content .cu-form-group .text-red, 
+.stu_form .cu-form-group .text-red, 
+.tch_form .cu-form-group .text-red {
+  margin-right: 5px;
+}
+
+.for_height {
+  margin-top: 50rpx;
+}
+
+picker {
+  height: 90rpx;
+}
+
+/* pick-view */
+.picker_box {
+  flex: 1;
+	padding-right: 40rpx;
+	overflow: hidden;
+  position: relative;
+  height: 90rpx;
+}
+
+.picker_box .picker {
+  line-height: 90rpx;
+	font-size: 28rpx;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	width: 100%;
+	text-align: right;
+}
+
+.picker_box::after {
+  font-family: "cuIcon";
+	display: block;
+	content: "\e6a3";
+	position: absolute;
+	font-size: 34rpx;
+	color: var(--grey);
+	line-height: 90rpx;
+	width: 60rpx;
+	text-align: center;
+	top: 0;
+	bottom: 0;
+	right: -20rpx;
+	margin: auto;
+}
+
+/* // 设置头部的取消和确定按钮 */
+/* picker-view .btns {
+  width: 100%;
+  height: 100rpx;
+  color: #baa076;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+} */
+
+/* picker-view .btns view {
+  width: 20%;
+  text-align: center;
+  font-size: 32rpx;
+  z-index: 3;
+} */
+
+picker-view {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background-color: #FFF;
+  text-align: center;
+  box-sizing: border-box;
+  width: 100%;
+  height: 0;
+  border-top-left-radius: 20rpx;
+  border-top-right-radius: 20rpx;
+  z-index: 3 ;
+  padding-bottom: 5px;
+}
+
+/* // 添加弹出的过渡动画 */
+picker-view.show {
+  /* height: 62%;
+  transition: all 3s; */
+  animation: showbox .3s linear .1s 1 forwards;
+}
+
+@keyframes showbox {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: 62%;
+  }
+}
+
+/* // 设置单列数据的样式 */
+picker-view-column {
+  border-top-right-radius: 100rpx;
+  border-top-left-radius: 100rpx;
+  color: #B8B8B8;
+  font-size: 25px;
+  height: 100%;
+  /* margin-top: 47rpx; */
+}
+
+/* // 设置选中框的样式
+.pickerCol {
+  width: 100%;
+  height: 50rpx;
+  color: #baa076;
+  border-top: 1px solid #f2f3f5;
+  border-bottom: 1px solid #f2f3f5;
+}
+
+/* // 添加前面的三角形 */
+/* .pickerCol::before {
+  width: 10rpx; 
+  height: 28rpx;
+  position: absolute;
+  left: 200rpx;
+  top: 15rpx;
+  background-image: url(//demo.17weiju.com/wxsh/wxsh/image/food-sjx.png);
+  background-size: 100% 100%;
+} */
+
+/* // 这里的两个伪类有默认样式（两条线），但是介于我已经重写了before，这里就取消after的显示 */
+/* .pickerCol::after {
+  display: none;
+} */ 
+
+/* // 自定义选中的时候字体颜色和大小 */
+.pick-text {
+  color: #333333;
+  font-size: 25px;
+}
+
+.banner {
+  position: fixed;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  top: 0;
+  height: 100%;
+  z-index: 2;
+}
+
+.btns {
+  position: absolute;
+  bottom: 0;
+  z-index: 3;
+  width: 100%;
+  padding: 0 40px;
+  animation: move_btn .1s ease 0s 1 forwards;
+}
+
+@keyframes move_btn {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: 90px;
+  }
+}
+
+
+.box_cancel {
+  float: left;
+  width: 148px;
+  border: 1px solid #2655CF;
+  color: #2655CF;
+}
+
+.box_confirm {
+  float: right;
+  width: 150px;
+  background: #2655CF;
+  color: #FFFFFF;
+}
+
+radio::before{
+  z-index: 1;
+}
+
+radio .wx-radio-input.wx-radio-input-checked {
+  background-color: #3D7CF0!important;
+}
+
+
+.cu-form-group input {
+  position: absolute;
+  left: 110px;
+}
+
+.cu-form-group radio-group {
+  position: absolute;
+  left: 66px;
+  top: 0;
+  height: 46px;
+  padding: 0;
+}
+
+.area-top {
+  position: relative;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  display: flex;
+  margin-left: 30rpx;
+  margin-right: 30rpx;
+  padding: 1rpx 20rpx;
+  min-height: 90rpx;
+}
+
+.area-top::after {
+  content: ' ';
+	width: 97%;
+	height: 1px;
+	background: #E5E5E5;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+}
+
+.area-top .action {
+  position: absolute;
+  left: 20px;
+  top: 8px;
+  text-align: justify;
+  font-size: 30rpx;
+  height: 60rpx;
+  line-height: 20rpx;
+}
+
+.area-top .area-img {
+  position: absolute;
+  top: 6px;
+  right: 20rpx;
+  text-align: justify;
+  font-size: 30rpx;
+  height: 60rpx;
+  line-height: 70rpx;
+}
+
+.for-con {
+  position: relative;
+}
+
+.line {
+  position: absolute;
+  left: 20px;
+  top: 0;
+  width: 100%;
+  height: 1px;
+  background: #E5E5E5;
+}
+
+

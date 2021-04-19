@@ -22,10 +22,11 @@
 		</view>
 
 	</view>
+	<form>
   <view class="cu-form-group" id="radius_phone">
 		<view class="text-red">*</view>
 		<view class="title">账号/手机号</view>
-		<input placeholder="请输入账号或手机号" type="number" maxlength="11" bindblur="findphone" bindinput="userphone"></input>
+		<input placeholder="请输入账号或手机号" type="text" maxlength="30" bindinput="accountinput"></input>
 	</view>
 
 <view class="cu-form-group" id="radius_pwd">
@@ -33,6 +34,7 @@
 	<view class="title">密码</view>
 	<input placeholder="请输入密码" type="password" maxlength="12" bindinput="passwordinput"></input>
 </view>
+</form>
 <view class="find_pwd" bindtap="findpsword">找回密码</view>
 <view class="for_height">
 	<i-button  bind:click="login" type="success" shape="circle">登录</i-button>

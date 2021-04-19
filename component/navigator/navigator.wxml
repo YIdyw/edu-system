@@ -7,4 +7,4 @@
   </view>
 </view>
 
-<view  style="margin-top:{{globalData+globalDatas}}px;"></view>
+<view  style="height:{{globalData+globalDatas}}px;"></view>
