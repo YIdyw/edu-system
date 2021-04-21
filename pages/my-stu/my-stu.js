@@ -801,7 +801,7 @@ picture2(){
             app.globalData.marketers = show.content.id
           }
           wx.navigateTo({
-            url: '../propaganda/propaganda',
+            url: '../propaganda/propaganda?orgid='+show.content.orgId,
           })     
         } 
       },

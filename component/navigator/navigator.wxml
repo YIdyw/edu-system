@@ -17,10 +17,12 @@
 
 <!--component/navigator/navigator.wxml-->
 <view class="navigator">
+
   <view class="navigator1"> </view>
   <view class="navigator2" bindtap="back">
     <text class="navigator3"> 乐学小优
 		</text>
+
   </view>
 </view>
 

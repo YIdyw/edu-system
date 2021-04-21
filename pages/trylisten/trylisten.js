@@ -106,6 +106,7 @@ Page({
       }
     });
   },
+  
   // 当前学生对试听的某节课程进行评价
   _estimateClass(){
     var that=this;
