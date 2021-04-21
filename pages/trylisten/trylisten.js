@@ -3,7 +3,7 @@ import {
   getAllorg,deleteListen
 } from '../../network/orginout'
 import {
-  getMylisten,estimateClass,myListen
+  getMylisten,estimateClass,myListen,getRemark
 } from '../../network/aboutclass'
 Page({
 
@@ -35,6 +35,20 @@ Page({
     }
     });
   },
+
+  _getRemark(){
+    let data = {
+      userId: wx.getStorageSync('loginInfo').userid,
+      courseId:wx.getStorageSync('getmylisten')[0].courseId,
+    }
+    getRemark(data).then(res=>{
+      if(res.code == 200){
+        console.log(res)
+      }
+    })
+  },
+
+
   // _getMylisten(){
   //   var that=this;
   //   var idx=that.data.idx;
@@ -241,6 +255,7 @@ Page({
     var that=this;
     // that._getAllorg()
     that._myListen()
+    that._getRemark()
   },
 
   /**

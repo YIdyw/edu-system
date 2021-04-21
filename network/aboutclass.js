@@ -73,6 +73,14 @@ export function estimateClass(data) {
   })
 } 
 
+//获取评价信息
+export function getRemark(data) {
+  return request({
+    url: '/queryCourseRemark/'+data.userId+'/'+data.courseId,
+    method: 'GET',
+  })
+} 
+
 
 //获取学生的试听课程
 export function myListen(data) {
