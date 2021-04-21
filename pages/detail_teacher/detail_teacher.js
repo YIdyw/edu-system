@@ -1,6 +1,6 @@
 // pages/detail_teacher/detail_teacher.js
 import {
-  getDetail
+  getDetail, getTeacherCourse
 } from '../../network/search'
 
 // Page({
@@ -88,8 +88,18 @@ Page({
     screen : {
       minHeight : 'auto'
     },
+    degs: 0, 
+    teacher_course: {},
     flag : false  //控制图片显示（能查询到该老师信息就为真）
 
+  },
+
+  rotateAnim: function(){
+    let deg = this.data.degs
+    deg = deg == 0 ? 90 : 0
+    this.setData({
+      degs: deg,
+    })
   },
 
   //获取老师信息******************************************
@@ -100,7 +110,17 @@ Page({
         teacher : res,
         flag : true
       });
+      this._getTeacherCourse(res.data.userid)
     });
+  },
+
+  _getTeacherCourse:function(id) {
+    getTeacherCourse(id).then(res => {
+      console.log(res)
+      this.setData({
+        teacher_course: res.data
+      })
+    })
   },
 
   onLoad: function(options){

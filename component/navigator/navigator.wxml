@@ -17,11 +17,13 @@
 
 <!--component/navigator/navigator.wxml-->
 <view class="navigator">
-  <view class="navigator1" style="height:{{globalData}}px"> </view>
-  <view class="navigator2" style="height:{{globalDatas}}px"> 
-      <text class="navigator3" bindtap="back" decode="true" style="height:{{globalDatassh}}px">&lt; 乐学小优</text>
+
+  <view class="navigator1"> </view>
+  <view class="navigator2" bindtap="back">
+    <text class="navigator3"> 乐学小优
+		</text>
+
   </view>
 </view>
 
-<view  style="height:{{globalData+globalDatas}}px;"></view>
-
+<view  style="height:128rpx;"></view>

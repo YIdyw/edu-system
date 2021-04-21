@@ -1,20 +1,4 @@
 /* pages/login/login.wxss */
-#radius_pwd {
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
-}
-
-#radius_phone {
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
-}
-
-
-.cu-form-group .title {
-  min-width: calc(4em + 30rpx);
-  font-size: 16px;
-}
-
 .find{
   color: darkcyan;
   font-size: larger;
@@ -23,38 +7,50 @@
 
 .btn {
   text-align: center;
+  height: 140rpx;
+  width: 100%;
+  padding: 43rpx 221rpx 67rpx;
 }
 
 .btn_code {
-  margin-top: 20px;
-  margin-bottom: 25px;
-  margin-left: 15px;
-  font-size: 18px;
-  display: inline-block;
+  float: right;
+  height: 30rpx;
+  line-height: 30rpx;
+  font-size: 30rpx;
+  font-weight: 300;
+  color: #333333;
+  
 }
 
 .btn_pwd {
-  margin-top: 20px;
-  margin-bottom: 25px;
-  margin-right: 15px;
-  font-size: 18px;
-  display: inline-block;
-  color: blue;
+  float: left;
+  height: 30rpx;
+  line-height: 30rpx;
+  font-size: 30rpx;
+  color: #2655CF;
+  position: relative;
 }
 
 .divLine {
   background: #2655CF;
-  width: 50%;
+  width: 50rpx;
   height: 4rpx;
-  margin-top: 10px;
-  margin-left: 20px;
+  position: absolute;
+  top: 50rpx;
+  left: 50%;
+  margin-left: -25rpx;
  }
 
+
  .text-red {
-   margin-top: 5px;
-   margin-right: 5px;
- }
- 
+  position: absolute;
+  left: 30rpx;
+  top: 35rpx;
+  font-size: 26rpx;
+  font-weight: 400;
+  color: #FF0000;
+}
+
  .btn_register {
    display: inline-block;
  }
@@ -65,19 +61,20 @@
  }
 
  .register {
-   margin-top: 30px;
+   margin-top: 60rpx;
    text-align: center;
-   font-size: 15px;
+   font-size: 24rpx;
  }
 
  .find_pwd {
-   margin-top: 10px;
+   margin-top: 20rpx;
    text-align: right;
-   margin-right: 30px;
-   margin-left: 70%;
+   margin-right: 60rpx;
    color: #FF0000;
+   font-size: 24rpx;
+   height: 24rpx;
  }
 
  .for_height {
-  margin-top: 10px;
+  margin-top: 36rpx;
  }

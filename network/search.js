@@ -58,3 +58,10 @@ export function getRelation(data) {
     method: 'GET'
   })
 }
+
+export function getTeacherCourse(data) {
+  return request ({
+    url: '/promote/userId?userId=' + data,
+    method: 'GET'
+  })
+}

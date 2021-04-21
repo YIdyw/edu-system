@@ -61,6 +61,31 @@ Page({
       id:5,
       name: '订单'
     } ],
+    imgList: [{
+      id: 0,
+      url: '../../colorui/icon/icon_信息登记@2x.png',
+      name: '信息登记'
+    }, {
+      id: 1,
+      url: '../../colorui/icon/icon_课程相关@2x.png',
+      name: '课程相关'
+    }, {
+      id: 2,
+      url: '../../colorui/icon/icon_扫一扫@2x.png',
+      name: '扫一扫'
+    }, {
+      id: 3,
+      url: '../../colorui/icon/icon_我的试听@2x.png',
+      name: '我的试听'
+    }, {
+      id: 4,
+      url: '../../colorui/icon/icon_购物车@2x.png',
+      name: '购物车'
+    }, {
+      id: 5,
+      url: '../../colorui/icon/icon_订单@2x.png',
+      name: '订单'
+    }],
     isFaceChecked: 0,
     userInfo: {},
     tabCur: 0,

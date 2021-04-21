@@ -23,8 +23,19 @@
   </view>
   
   <view class="casts">
-    <view class="title">该老师擅长科目</view>
+    <view class="title" catchtap="rotateAnim">
+    <text>该老师教授课程</text>
+    <view style="transform:rotate({{degs}}deg);transition:all 0.4s;"></view>
+    </view>
+    <view hidden="{{degs==0}}">
+    <block wx:for="{{teacher_course.course}}" wx:key="index">
 
-    
+    <view class="view_wenzi2" style="background-color:white"> 
+      <text>{{item}}</text>
+    </view>
+
+  
+</block>
+</view>
   </view>
 </view>

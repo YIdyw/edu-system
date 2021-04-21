@@ -27,13 +27,13 @@
 		<view class="title">性别</view>
 		<radio-group class="cu-form-group" bindchange="handleSexChange" data-gender="{{gender}}">
 			<view wx:for="{{sex}}" wx:key="id">
-				<radio class="margin-left-xl" checked="{{item.checked}}" style="margin-right:5px" id="{{index}}"></radio>
-				<label for="{{index}}" style="line-height:90rpx; font-size:26rpx ">{{item.name}}</label>
+				<radio class="margin-left-xl" checked="{{item.checked}}" style="margin-right:19rpx" id="{{index}}"></radio>
+				<label for="{{index}}" style="line-height:80rpx; font-size:26rpx ">{{item.name}}</label>
 			</view>
 		</radio-group>
 	</view>
 
-	<view class="cu-form-group margin-bottom">
+	<view class="cu-form-group">
 		<view class="text-red">*</view>
 		<view class="title">请选择默认角色</view>
 	<!-- <picker bindchange="PickerRole" value="{{indexRole}}" range="{{pickerRole}}">
@@ -92,7 +92,7 @@
 </view>
 <view wx:elif="{{indexRole==1}}" class="tch_form">
 	<form>
-		<view class="cu-form-group">
+		<view class="cu-form-group margin-top">
 			<view class="text-red">*</view>
 			<view class="title">身份证</view>
 			<input placeholder="请输入身份证号" maxlength="18" bindinput="cardid"></input>
@@ -130,7 +130,7 @@
 			<view class="area-img">{{imgUrl.length}}/1</view>
 		</view>
 
-	<!-- <view class="line"></view> -->
+	<view class="line"></view>
 	<view class="cu-form-group area" style="padding-top:10px">
 			<view class="grid col-4 grid-square flex-sub" >
 				<view class="bg-img" wx:if="{{imgUrl.length}}" wx:key='id' bindtap="ViewImage" data-url="{{imgUrl}}">
@@ -157,7 +157,7 @@
 </view>
 
 
-<picker-view wx:if="{{isboxshow}}" indicator-style="height:80px;" bindchange="change_box" class="{{ isboxshow ? 'show' : '' }}" bindcancel="true" >
+<picker-view indicator-class="pickerCol" wx:if="{{isboxshow}}" bindchange="change_box" class="{{ isboxshow ? 'show' : '' }}" bindcancel="true" >
 			<view class='btns'>
 				<!-- <view bindtap="closePicker">取消</view>  -->
 				<button class="box_cancel" bindtap="closePicker" shape="circle">取消</button>
@@ -165,6 +165,6 @@
 				 <button class="box_confirm" bindtap="getValue" shape="circle">确定</button>
 			</view>
 			<picker-view-column>
-				<view wx:for="{{pickerRole}}" wx:key="index" style="line-height: 80px; text-align:center;" class="{{ cur_Role === index ? 'pick-text' : '' }}">{{item}}</view>
+				<view wx:for="{{pickerRole}}" wx:key="index" class="{{ cur_Role === index ? 'pick-text' : '' }}">{{item}}</view>
 			</picker-view-column>
 		</picker-view>

@@ -49,9 +49,9 @@
     color:#fff!important;
     background:#2655CF!important;
     border-radius: 2px;
-    font-size: 18px;
-    margin-right: 16px;
-    margin-left: 16px;
+    font-size: 28rpx;
+    margin-right: 30rpx;
+    margin-left: 30rpx;
   }
 
   .i-btn-success::after{
