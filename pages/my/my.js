@@ -15,11 +15,29 @@ Page({
     
   },
 
+  //消息推送，模板消息******************************************
+  _message(){
+    wx.requestSubscribeMessage({
+      tmplIds: ["K-ydX0jPEK45csXyNtmqKCg-mSDyK7VLebN94IGtoBM","RKOKxheH_QW6QmqQt8uXOVFd8UOWWeulCKoKp0XFg_I",],
+      success (res) {
+        console.log("可以进行推送")
+        console.log(res)
+       },
+       fail (res) {
+        console.log("code:",res.errCode)
+        console.log("Mes",res.errMsg)
+       }
+    })
+  },
+
+
   // 跳转到使用手机登陆页面
   movetologin(){
+    var that = this
     wx.navigateTo({
       url: '../loginPhone/loginPhone',
     });
+    that._message();
   },
 
   // 扫一扫，扫码成功后根据二维码的类型进行跳转
@@ -51,7 +69,7 @@ Page({
         }else if(show.type == 3){
           app.globalData.marketers = show.content.id
           wx.navigateTo({
-            url: '../propaganda/propaganda',
+            url: '../propaganda/propaganda?orgid='+show.content.orgId,
           })     
         }
         },
