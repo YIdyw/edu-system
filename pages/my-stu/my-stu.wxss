@@ -381,7 +381,7 @@
   margin-bottom: 0;
 }
 
-.stu-list .stu-item image {
+.stu-list .stu-item .for-image {
   width: 88rpx;
   height: 88rpx;
   background-repeat:no-repeat;

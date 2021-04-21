@@ -10,6 +10,7 @@
   padding-top: 7rpx;
   opacity: 1;
   background-color: #2655CF;
+  z-index: 2;
 }
 .navigator1{
   width: 727rpx;
