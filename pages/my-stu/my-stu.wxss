@@ -722,9 +722,14 @@
 
 .data-left {
   position: absolute;
-  top: 35rpx;
+  top: 10rpx;
   left: 34rpx;
   text-align: center;
+  width: 199rpx;
+  margin-left: -20rpx;
+  border-right: 1px dotted #CCCCCC;
+  height: 126rpx;
+  padding-top: 25rpx;
 }
 
 .course-right {

@@ -20,18 +20,16 @@
       </view>
     </view>
   </view> 
-</view> -->
+</view>  -->
 <view class="back-img" style="background-image:url('../../colorui/icon/bg_pic1@2x.png');">
-<!-- <view class="back-img" style="background-image:url('../../colorui/icon/bg_pic1@2x.png');"> -->
-<view class="back-img" style="background-image:url('colorui/icon/bg_pic1@2x.png');">
-
+<!-- <view class="back-img" style="background-image:url('colorui/icon/bg_pic1@2x.png');"> -->
   <view class="home-font">
     <text>乐学小优</text>
   </view>
 </view>
 
-<!-- <view class="user-box" style="background-image:url('../../colorui/icon/psl_hp_pic3@2x.png');"> -->
-<view class="user-box" style="background-image:url('colorui/icon/psl_hp_pic3@2x.png');">
+<view class="user-box" style="background-image:url('../../colorui/icon/psl_hp_pic3@2x.png');">
+<!-- <view class="user-box" style="background-image:url('colorui/icon/psl_hp_pic3@2x.png');"> -->
   <view class="userinfo-avatar">
     <open-data type="userAvatarUrl"></open-data>
   </view>
@@ -164,24 +162,26 @@
   </view>
 </view>
 
-<view class="bg-white padding" wx:if="{{tabCur==2}}">
+<view class="bg-white padding-sm" wx:if="{{tabCur==2}}">
+
   <view class="cu-timeline" wx:if="{{!tabDay}}">
     <view class="cu-time">星期{{monthTitle[thatDay.week]}}</view>
-    <view wx:for="{{thatDay.courseInfo}}" wx:key='id' class="cu-item text-olive">
-      <view bindtap="_judgechose" data-data="{{item}}" data-id="{{item.courseId}}" class="content {{item.exist?item.color: ''}} shadow">
-        <view class="text-bold margin-top">上课时间：{{item.courseTime}}</view>
-        <view class="text-bold margin-top">课程名称：{{item.name}}</view>
-        <view class="text-bold margin-top margin-bottom">上课地点：{{item.site}}</view>
+    <view wx:for="{{thatDay.courseInfo}}" wx:key='id' class="cu-item text-mybluea">
+      <view bindtap="_judgechose" data-data="{{item}}" data-id="{{item.courseId}}" class="content bg-{{item.exist?item.color: 'mybluea'}} shadow" style="padding:0; text-align:center">
+        <view class="text-bold" style="color:#FFFFFF">{{item.courseTime}}</view>
+        <view class="text-bold" style="color:#FFFFFF">{{item.name}}</view>
+        <view class="text-bold" style="color:#FFFFFF">{{item.site}}</view>
       </view>
     </view>
   </view>
+
   <view class="cu-timeline" wx:if="{{tabDay}}">
     <view class="cu-time">星期{{monthTitle[dayPlan.week]}}</view>
-    <view wx:for="{{dayPlan.courseInfo}}" wx:key='id' class="cu-item text-olive">
-      <view bindtap="_judgechose" data-data="{{item}}" data-id="{{item.courseId}}" class="content bg-olive shadow">
-        <view class="text-bold margin-top">上课时间：{{item.courseTime}}</view>
-        <view class="text-bold margin-top">课程名称：{{item.name}}</view>
-        <view class="text-bold margin-top margin-bottom">上课地点：{{item.site}}</view>
+    <view wx:for="{{dayPlan.courseInfo}}" wx:key='id' class="cu-item text-mybluea">
+      <view bindtap="_judgechose" data-data="{{item}}" data-id="{{item.courseId}}" class="content bg-mybluea shadow" style="padding:0; text-align:center">
+        <view class="text-bold" style="color:#FFFFFF">{{item.courseTime}}</view>
+        <view class="text-bold" style="color:#FFFFFF">{{item.name}}</view>
+        <view class="text-bold" style="color:#FFFFFF">{{item.site}}</view>
       </view>
     </view>
   </view>
