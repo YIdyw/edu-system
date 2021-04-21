@@ -30,6 +30,9 @@ page {
 	--gray: #aaaaaa;
 	--ghostWhite: #f1f1f1;
 	--white: #ffffff;
+	--mygray: #CCCCCC;
+	--myblue: #EDF2FE;
+	--mybluea: #2655CF;
 	/* 浅色 */
 	--redLight: #fadbd9;
 	--orangeLight: #fde6d2;
@@ -197,10 +200,9 @@ checkbox::before {
 	position: absolute;
 	color: var(--white) !important;
 	top: 50%;
-	margin-top: -8px;
-	right: 5px;
-	font-size: 32rpx;
-	line-height: 16px;
+	margin-top: -14rpx;
+	right: 10rpx;
+	font-size: 28rpx;
 	pointer-events: none;
 	transform: scale(1, 1);
 	transition: all 0.3s ease-in-out 0s;
@@ -210,8 +212,8 @@ checkbox::before {
 radio .wx-radio-input,
 checkbox .wx-checkbox-input {
 	margin: 0;
-	width: 24px;
-	height: 24px;
+	width: 40rpx;
+	height: 40rpx;
 }
 
 checkbox.round .wx-checkbox-input {
@@ -1233,9 +1235,15 @@ button.icon.lg {
 	filter: grayscale(1);
 }
 
+.cu-list {
+	margin-right: 4%;
+	margin-left: 4%;
+}
+
 .cu-list+.cu-list {
 	margin-top: 30rpx
 }
+
 
 .cu-list>.cu-item {
 	transition: all .6s ease-in-out 0s;
@@ -2004,8 +2012,23 @@ button.icon.lg {
 	padding: 0 20rpx;
 }
 
-.nav .cu-item.cur {
+/* .nav .cu-item.cur {
 	border-bottom: 4rpx solid;
+} */
+
+.nav .cu-item.cur {
+	position: relative;
+}
+
+.nav .cu-item.cur::after {
+	content: ' ';
+	width: 70px;
+	height: 3px;
+	background: #2655CF;
+	position: absolute;
+	bottom: 0;
+	right: 50%;
+	margin-right: -35px;
 }
 
 /* ==================
@@ -2024,6 +2047,7 @@ button.icon.lg {
 	font-size: 26rpx;
 	color: #888;
 	display: block;
+	float: left;
 }
 
 .cu-timeline>.cu-item {
@@ -2359,12 +2383,11 @@ button.icon.lg {
 .cu-form-group {
 	position: relative;
 	background-color: var(--white);
-	padding: 1rpx 20rpx;
 	margin-left: 30rpx;
 	margin-right: 30rpx;
 	display: flex;
 	align-items: center;
-	min-height: 90rpx;
+	min-height: 80rpx;
 	justify-content: space-between;
 }
 
@@ -2372,9 +2395,19 @@ button.icon.lg {
 	border-top: 1rpx solid #eee;
 } */
 
+.cu-form-group:first-child {
+	border-top-left-radius: 20rpx;
+	border-top-right-radius: 20rpx;
+}
+
+.cu-form-group:last-child {
+	border-bottom-left-radius: 20rpx;
+	border-bottom-right-radius: 20rpx;
+}
+
 .cu-form-group::after {
 	content: ' ';
-	width: 97%;
+	width: 660rpx;
 	height: 1px;
 	background: #E5E5E5;
 	position: absolute;
@@ -2389,20 +2422,27 @@ button.icon.lg {
 }
 
 .cu-form-group .title {
-	text-align: justify;
-	padding-right: 30rpx;
-	font-size: 30rpx;
-	position: relative;
-	height: 60rpx;
-	line-height: 60rpx;
+	position: absolute;
+  top: 25rpx;
+  left: 51rpx;
+  font-size: 28rpx;
+  color: #333333;
 }
 
 .cu-form-group input {
-	flex: 1;
-	font-size: 15px;
-	color: #555;
-	padding-right: 20rpx;
+	position: absolute;
+	left: 186rpx;
+	top: 27rpx;
+	font-size: 26rpx;
+	color: #9D9D9D;
+	font-weight: 300;
+	height: 26rpx;
+	line-height: 26rpx;
+	font-family: Microsoft YaHei;
+	/* min-height: 26rpx; */
+	margin-top: -6rpx;
 }
+
 
 .cu-form-group>text[class*="cuIcon-"] {
 	font-size: 36rpx;
@@ -3504,6 +3544,16 @@ scroll-view.cu-steps .cu-item {
 	color: var(--white);
 }
 
+.bg-myblue {
+	background-color: var(--myblue);
+	color: var(--white);
+}
+
+.bg-mybluea {
+	background-color: var(--mybluea);
+	color: var(--white)!important;
+}
+
 .bg-purple {
 	background-color: var(--purple);
 	color: var(--white);
@@ -3964,6 +4014,26 @@ scroll-view.cu-steps .cu-item {
 .lines-gray {
 	color: var(--gray);
 }
+
+.text-mygray,
+.line-mygray,
+.lines-mygray {
+	color: var(--mygray);
+}
+
+.text-myblue,
+.line-myblue,
+.lines-myblue {
+	color: var(--myblue);
+}
+
+
+.text-mybluea,
+.line-mybluea,
+.lines-mybluea {
+	color: var(--mybluea);
+}
+
 
 .text-black,
 .line-black,

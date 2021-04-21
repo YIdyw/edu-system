@@ -4,7 +4,7 @@
 	<view class="btn">
 		<view class="btn_pwd" bindtap="navto_login">密码登录</view>
 		<view class="btn_code">
-			验证码登陆
+			验证码登录
 			<view class="divLine"></view>
 		</view>
 
@@ -20,14 +20,18 @@
 		<view class="text-red">*</view>
 		<view class="title">验证码</view>
 		<input placeholder="默认为123456" maxlength="6" type="number" bindinput="inputcode"></input>
-		<button class="cu-btn bg-green shadow" bindtap="getcode">获取验证码</button>
+		<button class="get-code bg-green shadow" bindtap="getcode">获取验证码</button>
 	</view>
 	</form>
 	<view wx:if="{{flagphone}}">
 手机号未注册
 </view>
 <view class="for_height">
-	<i-button  bind:click="login" type="success" shape="circle">登录</i-button>
+	<i-button  bind:click="login" type="success" shape="circle" style="border-radius: 8rpx">
+	
+	<text decode="true">登&nbsp;录</text>
+	
+	</i-button>
 	</view>
 	<!-- <i-button bind:click="regist" type="success" shape="circle">注册</i-button> -->
 	<view class="register">

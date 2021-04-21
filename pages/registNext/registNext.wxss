@@ -1,14 +1,22 @@
 /* pages/registNext/registNext.wxss */
 
-.content, 
+/* .content, 
 .stu_form,
 .tch_form {
   position: relative;
   margin-top: 15px;
   font-size: 14px;
+} */
+.content {
+  margin-top: 0 30rpx;
+  height: 424rpx;
+  padding-top: 20rpx;
+  width: 690rp;
+  font-size: 28rpx;
 }
 
-.cu-form-group {
+
+/* .cu-form-group {
   position: relative;
 }
 
@@ -31,55 +39,60 @@
 .tch_form .cu-form-group:last-child {
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
-}
+} */
 
 .content .cu-form-group .text-red, 
 .stu_form .cu-form-group .text-red, 
 .tch_form .cu-form-group .text-red {
-  margin-right: 5px;
-}
+  position: absolute;
+   left: 30rpx;
+   top: 35rpx;
+   font-size: 26rpx;
+   font-weight: 400;
+   color: #FF0000;
+} 
 
 .for_height {
-  margin-top: 50rpx;
+  margin-top: 60rpx;
 }
 
 picker {
-  height: 90rpx;
+  height: 80rpx;
+  line-height: 80rpx;
 }
 
 /* pick-view */
 .picker_box {
   flex: 1;
-	padding-right: 40rpx;
 	overflow: hidden;
   position: relative;
-  height: 90rpx;
+  font-size: 26rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  float: right;
+  padding-right: 30rpx;
 }
 
 .picker_box .picker {
-  line-height: 90rpx;
-	font-size: 28rpx;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	overflow: hidden;
-	width: 100%;
-	text-align: right;
+  text-align: right;
+  float: right;
 }
 
-.picker_box::after {
+.picker_box::before {
   font-family: "cuIcon";
 	display: block;
 	content: "\e6a3";
-	position: absolute;
-	font-size: 34rpx;
-	color: var(--grey);
-	line-height: 90rpx;
-	width: 60rpx;
+	/* position: absolute; */
+	color: #C1C1C1;
+	width: 14rpx;
 	text-align: center;
-	top: 0;
-	bottom: 0;
-	right: -20rpx;
-	margin: auto;
+	/* top: 0;
+  left: 646rpx; */
+  float: right;
+  margin-left: 16rpx;
 }
 
 /* // 设置头部的取消和确定按钮 */
@@ -110,11 +123,11 @@ picker-view {
   text-align: center;
   box-sizing: border-box;
   width: 100%;
-  height: 0;
+  /* height: 0; */
   border-top-left-radius: 20rpx;
   border-top-right-radius: 20rpx;
   z-index: 3 ;
-  padding-bottom: 5px;
+  /* padding-bottom: 70rpx; */
 }
 
 /* // 添加弹出的过渡动画 */
@@ -129,7 +142,7 @@ picker-view.show {
     height: 0;
   }
   100% {
-    height: 62%;
+    height: 818rpx;
   }
 }
 
@@ -138,18 +151,20 @@ picker-view-column {
   border-top-right-radius: 100rpx;
   border-top-left-radius: 100rpx;
   color: #B8B8B8;
-  font-size: 25px;
+  font-size: 34rpx;
   height: 100%;
-  /* margin-top: 47rpx; */
+  line-height: 98rpx;
+  margin-top: -65rpx;
 }
 
-/* // 设置选中框的样式
+ /* // 设置选中框的样式 */
 .pickerCol {
-  width: 100%;
-  height: 50rpx;
+  width: 646rpx;
+  margin-left: 52rpx;
+  height: 98rpx;
   color: #baa076;
-  border-top: 1px solid #f2f3f5;
-  border-bottom: 1px solid #f2f3f5;
+  border-top: 1px solid #CCCCCC;
+  border-bottom: 1px solid #CCCCCC;
 }
 
 /* // 添加前面的三角形 */
@@ -171,7 +186,6 @@ picker-view-column {
 /* // 自定义选中的时候字体颜色和大小 */
 .pick-text {
   color: #333333;
-  font-size: 25px;
 }
 
 .banner {
@@ -188,7 +202,9 @@ picker-view-column {
   bottom: 0;
   z-index: 3;
   width: 100%;
-  padding: 0 40px;
+  /* height: 76rpx; */
+  padding: 0 106rpx;
+  margin-bottom: -50rpx;
   animation: move_btn .1s ease 0s 1 forwards;
 }
 
@@ -197,21 +213,23 @@ picker-view-column {
     height: 0;
   }
   100% {
-    height: 90px;
+    height: 146rpx;
   }
 }
 
 
 .box_cancel {
   float: left;
-  width: 148px;
+  width: 250rpx;
   border: 1px solid #2655CF;
   color: #2655CF;
 }
 
+
+
 .box_confirm {
   float: right;
-  width: 150px;
+  width: 250rpx;
   background: #2655CF;
   color: #FFFFFF;
 }
@@ -232,9 +250,8 @@ radio .wx-radio-input.wx-radio-input-checked {
 
 .cu-form-group radio-group {
   position: absolute;
-  left: 66px;
+  left: 130rpx;
   top: 0;
-  height: 46px;
   padding: 0;
 }
 
@@ -246,37 +263,38 @@ radio .wx-radio-input.wx-radio-input-checked {
   margin-left: 30rpx;
   margin-right: 30rpx;
   padding: 1rpx 20rpx;
-  min-height: 90rpx;
+  height: 80rpx;
 }
 
-.area-top::after {
+/* .area-top::after {
   content: ' ';
 	width: 97%;
-	height: 1px;
+	height: 1rpx;
 	background: #E5E5E5;
 	position: absolute;
 	bottom: 0;
 	right: 0;
-}
+} */
 
 .area-top .action {
+  display: inline-block;
   position: absolute;
-  left: 20px;
-  top: 8px;
+  left: 51rpx;
+  top: 26rpx;
   text-align: justify;
-  font-size: 30rpx;
-  height: 60rpx;
-  line-height: 20rpx;
+  font-size: 28rrpx;
+  height: 28rpx;
+  line-height: 100%;
 }
 
 .area-top .area-img {
   position: absolute;
-  top: 6px;
-  right: 20rpx;
+  top: 28rpx;
+  right: 29rpx;
   text-align: justify;
-  font-size: 30rpx;
-  height: 60rpx;
-  line-height: 70rpx;
+  font-size: 26rpx;
+  /* height: 60rpx; */
+  line-height: 100%;
 }
 
 .for-con {
@@ -285,10 +303,10 @@ radio .wx-radio-input.wx-radio-input-checked {
 
 .line {
   position: absolute;
-  left: 20px;
-  top: 0;
-  width: 100%;
-  height: 1px;
+  right: 30rpx;
+  bottom: 240rpx;
+  width: 660rpx;
+  height: 2rpx;
   background: #E5E5E5;
 }
 

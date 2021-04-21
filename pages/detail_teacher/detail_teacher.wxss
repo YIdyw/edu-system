@@ -75,6 +75,18 @@
   background: -webkit-gradient(linear, 0 0,0 100%,from(#333),to(#2f2f2f) );
   box-shadow: 0 -1px 3px #111;
   border-top: solid 1px #444;
+  display: flex;
+  justify-content: space-between;
+}
+
+.casts .title view::after {
+  display: inline-block;
+  content: '';
+  width: 18rpx;
+  height: 18rpx;
+  border-top: 3rpx solid #fff;
+  border-right: 3rpx solid #fff;
+  transform: rotate(45deg);
 }
 
 .casts scroll-view {
