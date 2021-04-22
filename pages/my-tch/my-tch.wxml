@@ -1,4 +1,4 @@
-<view class="page me">
+<!-- <view class="page me">
   <view class="userinfo">
     <view class="tch">
     <text>教师</text>
@@ -7,9 +7,9 @@
       <open-data type="userAvatarUrl"></open-data>
     </view>
     <text>点击头像切换身份</text>
-   <!-- <open-data type="userNickName"></open-data> -->
+    <open-data type="userNickName"></open-data> -->
 
-    <view class="padding-xl"  wx:if="{{islogin == false}}">
+    <!--<view class="padding-xl"  wx:if="{{islogin == false}}">
       <view class="margin-tb-sm text-center">
         <button class="cu-btn block line-pink lg" bindtap="movetologin">未登录，点击登录</button>
       </view>
@@ -22,9 +22,43 @@
     </view>
 
   </view> 
+</view> -->
+
+<view class="back-img" style="background-image:url('../../colorui/icon/bg_pic1@2x.png');">
+<!-- <view class="back-img" style="background-image:url('colorui/icon/bg_pic1@2x.png');"> -->
+  <view class="home-font">
+    <text>乐学小优</text>
+  </view>
 </view>
 
-<view class="cu-list grid col-3 no-border">
+<view class="user-box" style="background-image:url('../../colorui/icon/psl_hp_pic3@2x.png');">
+<!-- <view class="user-box" style="background-image:url('colorui/icon/psl_hp_pic3@2x.png');"> -->
+  <view class="userinfo-avatar">
+    <open-data type="userAvatarUrl"></open-data>
+  </view>
+  <view class="userinfo-name">
+    <text decode='true'>Hi! &nbsp; {{loginInfo.nickname}}</text>
+  </view>
+  <view class="userinfo-type">
+    <view class="left">
+      <view class="left-line"></view>
+    </view>
+    <text class="div-line">教师</text>
+    <view class="right">
+      <view class="right-line"></view>
+    </view>
+  </view>
+  <view>
+    <view class='btns'>
+				<!-- <view bindtap="closePicker">取消</view>  -->
+				<button class="box_cancel" bindtap="tobe" shape="circle">切换身份</button>
+				<!-- <view bindtap="getValue">确认</view> -->
+				 <button class="box_confirm" bindtap="isout" shape="circle">退出</button>
+			</view>
+  </view>
+</view>
+
+<!-- <view class="cu-list grid col-3 no-border">
   <view class="cu-item" wx:for="{{iconList}}" wx:key="id" bindtap="facehandler" data-id="{{item.id}}">
     <view class="cuIcon-{{item.icon}} text-{{item.color}}">
       <view class="cu-tag badge" wx:if="{{index==3 && notifyNum}}">
@@ -33,17 +67,24 @@
   </view>
     <text>{{item.name}}</text>
   </view>
+</view> -->
+
+<view class="stu-list">
+  <view class="stu-item" wx:for="{{imgList}}" wx:key="id"  bindtap="facehandler" data-id="{{item.id}}">
+    <view class="for-image" style="background-image:url({{item.url}})" id="{{item.id}}"></view>
+    <text>{{item.name}}</text>
+  </view>
 </view>
 
-<view class="bg-white padding-xs margin">
+<!-- <view class="bg-white padding-xs margin">
   <scroll-view scroll-x class="nav">
     <view class="flex text-center">
       <view class="cu-item flex-sub {{index==tabCur?'text-olive cur':''}}" wx:for="{{tabTitle}}" wx:key="id" bindtap="tabSelect" data-id="{{item.id}}">{{item.name}}</view>
     </view>
   </scroll-view>
-</view>
+</view> -->
 
-<view class="bg-white padding" wx:if="{{tabCur==0}}">
+<!-- <view class="bg-white padding" wx:if="{{tabCur==0}}">
   <view class="cu-bar">
     <view class="action">
       <text class="cuIcon-title text-olive"></text>
@@ -122,8 +163,135 @@
       </view>
     </view>
   </view>
-</view> 
+</view>  -->
 
+
+<view class="course-time">
+  <scroll-view scroll-x class="nav">
+    <view class="flex text-center">
+      <view class="cu-item flex-sub {{index==tabCur?'text-blue cur':''}}" wx:for="{{tabTitle}}" wx:key="id" bindtap="tabSelect" data-id="{{item.id}}">{{item.name}}</view>
+    </view>
+  </scroll-view>
+  <view class="bg-white" wx:if="{{tabCur==0}}">
+    <view class="cu-bar">
+      <!-- <view class="action">
+        <text class="cuIcon-title text-olive"></text>
+        <text wx:if="{{showMonth==currentMonth}}">当前月份：{{currentMonth}}</text>
+        <text wx:else>选择月份：{{showMonth}}</text>
+      </view> -->
+      <!-- <text>{{showYear}}年{{showMonth}}月</text> -->
+      <!-- <view class="cu-bar::before" bindtap="lastMonth"></view> -->
+      <view class="last-month" bindtap="lastMonth"></view>
+      <text>{{showYear}}年{{showMonth}}月</text>
+      <view class="next-month" bindtap="nextMonth"></view>
+      <!-- <view class="action">
+        <button class="cu-btn bg-oliveLight shadow" bindtap="lastMonth">上月</button>
+        <button class="cu-btn bg-oliveLight shadow" bindtap="nextMonth">下月</button>
+      </view> -->
+      <view class="back-month">回到当前月</view>
+    </view>
+    <view class="actual">
+      <view class="week-title">
+        <view class="week-seven" wx:for="{{monthTitle}}" wx:key="id">{{item}}</view>
+      </view>
+      <view class="week-col">
+        <view wx:for="{{monthPlan}}" wx:key="id"  class="week-day {{item.exist?'bg-olive': ''}} {{item.name==currentDay&&currentMonth==showMonth?'text-red text-bold':''}}" bindtap="viewDayDetail" data-exist="{{item.exist}}" data-info="{{item.courseInfo}}" data-week="{{item.week}}" style="border-radius:50%">{{item.name}}</view>
+      </view>
+    </view>
+    <view class="end">
+      <view class="red-line"></view>
+      <view class="word">
+        注：标记部分有排课，可点击查看具体内容
+      </view>
+    </view>
+  </view>
+
+<view class="bg-white padding-sm stu-week" wx:if="{{tabCur==1}}">
+  <view class="stu-week-title">
+    <view class="lastandnext">
+      <view class="stu-lastweek" bindtap="lastWeek">上周</view>
+      <!-- <view class="for-circle"></view> -->
+      <view class="stu-nextweek" bindtap="nextWeek">下周</view>
+    </view>
+  </view>
+  <view class="stu-week-content">
+  
+    <view class="cu-timeline" wx:if="{{tabWeek}}">
+      <view class="cu-time">第{{currentWeekNum}}周</view>
+      <view class="cu-item text-{{index==currentWeek?'mybluea': 'mygray'}}" wx:for="{{weekPlan}}" wx:for-item="dayInfo" wx:key="id" data-info="{{dayInfo.courseInfo}}" data-exist="{{dayInfo.exist}}" data-week="{{dayInfo.week}}" bindtap="viewDayDetail">
+        <view class="content bg-{{index==currentWeek?'mybluea':'myblue'}} shadow" wx:if="{{dayInfo.exist}}">
+          <view class="text-bold data-left">
+          <view class="top-word" style="color:{{index==currentWeek?'white':''}}">{{dayInfo.date}}</view>
+          <view class="bottom-word" style="color:{{index==currentWeek?'white':''}}">星期{{monthTitle[dayInfo.week]}}</view>
+          </view>
+          <!-- <view class="text-bold course-right" wx:for="{{dayInfo.courseInfo}}" wx:key="id">{{item.name}}</view> -->
+          <!-- <view style="color:{{index==currentWeek?'white!important':''}}"> -->
+          <view class="text-bold course-right-has" style="color:{{index==currentWeek?'white':''}}" wx:key="id" >
+            <view>今日有{{dayInfo.courseInfo.length}}门课</view>
+            <view>点击查看</view>
+          </view>
+          <!-- </view> -->
+        </view>
+        <view class="content bg-{{index==currentWeek?'mybluea':'myblue'}} shadow" wx:else>
+          <view class="text-bold data-left">
+            <view style="color:#666666">{{dayInfo.date}}</view>
+            <view style="color:#2655CF">星期{{monthTitle[dayInfo.week]}}</view>
+          </view>
+          <view class="text-bold course-right">本日无排课情况</view>
+        </view>
+      </view>
+    </view>
+    
+    <view class="cu-timeline" wx:if="{{!tabWeek}}">
+      <view class="cu-time">第{{showWeek}}周</view>
+      <view class="cu-item text-mygray" wx:for="{{thatWeek}}" wx:for-item="dayInfo" wx:key="id"   data-info="{{dayInfo.courseInfo}}" data-exist="{{dayInfo.exist}}" data-week="{{dayInfo.week}}" bindtap="viewDayDetail">
+        <view class="content bg-{{dayInfo.exist?'myblue':'mygray'}} shadow" wx:if="{{dayInfo.exist}}">
+          <view class="text-bold data-left">
+            <view class="text-bold" style="color:#666666">{{dayInfo.date}}</view>
+            <view style="color:#2655CF">星期{{monthTitle[dayInfo.week]}}</view>
+          </view>
+          <view class="text-bold course-right-has" wx:key="id">
+            <view>今日有{{dayInfo.courseInfo.length}}门课</view>
+            <view>点击查看</view>
+          </view>
+        </view>
+        <view class="content bg-myblue shadow" wx:else>
+          <view class="text-bold data-left">
+            <view style="color:#666666">{{dayInfo.date}}</view>
+            <view style="color:#2655CF">星期{{monthTitle[dayInfo.week]}}</view>
+          </view>
+          <view class="text-bold course-right">本日无排课情况</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="bg-white padding-sm" wx:if="{{tabCur==2}}" style="margin-top:30rpx">
+
+  <view class="cu-timeline" wx:if="{{!tabDay}}">
+    <view class="cu-time">星期{{monthTitle[thatDay.week]}}</view>
+    <view wx:for="{{thatDay.courseInfo}}" wx:key='id' class="cu-item text-mybluea">
+      <view bindtap="_judgechose" data-data="{{item}}" data-id="{{item.courseId}}" class="content bg-{{item.exist?item.color: 'mybluea'}} shadow" style="padding:0; text-align:center">
+        <view class="text-bold" style="color:#FFFFFF">{{item.courseTime}}</view>
+        <view class="text-bold" style="color:#FFFFFF">{{item.name}}</view>
+        <view class="text-bold" style="color:#FFFFFF">{{item.site}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="cu-timeline" wx:if="{{tabDay}}">
+    <view class="cu-time">星期{{monthTitle[dayPlan.week]}}</view>
+    <view wx:for="{{dayPlan.courseInfo}}" wx:key='id' class="cu-item text-mybluea">
+      <view bindtap="_judgechose" data-data="{{item}}" data-id="{{item.courseId}}" class="content bg-mybluea shadow" style="padding:0; text-align:center">
+        <view class="text-bold" style="color:#FFFFFF">{{item.courseTime}}</view>
+        <view class="text-bold" style="color:#FFFFFF">{{item.name}}</view>
+        <view class="text-bold" style="color:#FFFFFF">{{item.site}}</view>
+      </view>
+    </view>
+  </view>
+</view>
+</view>
 
   <leave id='leave' ></leave>
   <makeup id='makeup' ></makeup>

@@ -193,7 +193,7 @@
 .userinfo-avatar {
   position: absolute;
   top: 16rpx;
-  left: 289rpx;
+  left: 290rpx;
   display: block;
   overflow: hidden;
   width: 112rpx;
@@ -206,7 +206,8 @@
   position: absolute;
   top: 160rpx;
   left: 275rpx;
-  width: 141rpx;
+  width: 275rpx;
+  text-align: left;
   height: 34rpx;
   font-size: 34rpx;
   font-family: Microsoft YaHei;
@@ -669,6 +670,8 @@
 	color: #666666;
 	display: block;
   padding: 0;
+  margin-top: -35rpx;
+  margin-left: 7rpx;
 }
 
 .cu-timeline>.cu-item {
