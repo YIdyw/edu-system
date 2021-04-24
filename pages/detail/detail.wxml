@@ -1,7 +1,7 @@
 <!-- 导航栏 -->
-<i-navigator></i-navigator>
+<!-- <i-navigator></i-navigator> -->
 
-<view wx:if="{{isstu}}">
+<!-- <view wx:if="{{isstu}}">
   <view hidden="{{degs_course!=0}}">
     <button catchtap="showCT">查看课表</button>
     <view style="transform:rotate({{degs_course}}deg);transition:all 0.4s;"></view>
@@ -34,9 +34,130 @@
       </view>
     </view>
   </view>
+</view> -->
+<view class="back-img" style="background-image:url('../../colorui/icon/bg_pic2@2x.png');">
+<!-- <view class="back-img" style="background-image:url('colorui/icon/bg_pic2@2x.png');"> -->
+  <view class="home-font">
+    <text>乐学小优</text>
+  </view>
 </view>
 
-<view style="min-height : {{screen.minHeight}}; background-color: #2f2f2f;" bindtouchend="play">
+<view class="institute">
+  <view class="institute_title">{{institute.data.orgInfo.name}}</view>
+  <view class="institute_info">
+    <text decode="true">{{institute.data.orgInfo.province}}{{institute.data.orgInfo.city}}{{institute.data.orgInfo.district}}{{institute.data.orgInfo.address}}&nbsp;/&nbsp;{{institute.data.orgInfo.contactPhone}}</text>
+  </view>
+  <view class="institute_way">
+    <view class="way_content" bindtap="orgIn">
+      <view class="way_image" style="background-image:url(../../colorui/icon/icon_click_in@2x.png)"></view>
+      <view class="way_name">点击报名</view>
+    </view>
+    <view class="way_content" bindtap="course_reserve">
+      <view class="way_image" style="background-image:url(../../colorui/icon/icon_interview@2x.png)" ></view>
+      <view class="way_name">课程预约</view>
+    </view>
+    <view class="way_content" bindtap="movehome">
+      <view class="way_image" style="background-image:url(../../colorui/icon/icon_self_page@2x.png)"></view>
+      <view class="way_name">个人首页</view>
+    </view>
+  </view>
+</view>
+
+<view class="institute_content">
+  <view catchtap="rotateAnim">
+    <view class="content_title">该机构下老师</view>
+    <view class="for_rotate" style="transform:rotate({{degs}}deg);transition:all 0.8s;"></view>
+  </view>
+  <view class="actual_content" hidden="{{degs==0}}">
+    <view class="test" wx:for="{{institute_teachers.data}}" wx:key="index">
+      <view bindtap="teacher" data-menuindex='{{index}}' id="{{index}}">
+        <view class="teacher_content"> 
+          <view>{{item.authInfo.name}}</view>
+          <view class="text_small">
+            <view>手机号</view>
+            <view>邮箱</view> 
+          </view>
+          <view class="text_alittle">
+            <view class="text_justify"><text decode="true">:&nbsp;{{item.baseInfo.phone}}</text></view>
+            <view class="text_justify"><text decode="true">:&nbsp;{{item.baseInfo.mail}}</text></view>
+          </view>
+        </view>
+      </view>  
+    </view>
+  </view>
+</view>
+
+<view class="institute_content" >
+  <view catchtap="rotateAnim1">
+    <view class="content_title" >该机构开设课程</view>
+    <view class="for_rotate" style="transform:rotate({{degss}}deg);transition:all 0.8s;"></view>
+  </view>
+  <view class="actual_content" hidden="{{degss==0}}">
+    <view class="test" wx:for="{{course.data}}" wx:key="index">
+      <view bindtap="course" data-menuindex='{{index}}' id="{{index}}">
+        <view class="teacher_image" style="background-image:url('https://www.sanshidiboundless.com/offline-education-system/picture/{{item.adverPhoto}}')"></view>
+        <view class="teacher_content"> 
+          <view>{{item.name}}</view>
+          <view class="text_small">
+            <view>开课时间</view>
+            <view>结课时间</view> 
+          </view>
+          <view class="text_alittle">
+            <view class="text_justify"><text decode="true">:&nbsp;{{item.startTime}}</text></view>
+            <view class="text_justify"><text decode="true">:&nbsp;{{item.endTime}}</text></view>
+          </view>
+        </view>
+      </view>  
+    </view>
+  </view>
+</view>
+
+<view class="institute_content">
+  <view catchtap="rotateAnim2">
+    <view class="content_title">该机构最近的活动</view>
+    <view class="for_rotate" style="transform:rotate({{degsss}}deg);transition:all 0.8s;"></view>
+  </view>
+  <view hidden="{{degsss==0}}">
+    <view class="cards" wx:for="{{activity.data.activities}}" wx:for-item="item" wx:key="item">
+		  <view class="card" >
+        <view bindtap="onItemClick">
+					<view class="name">
+						<text>活动名称:{{item.actName}}</text>
+					</view>
+					<view>
+            <swiper class='bannerSwiper' previous-margin="54rpx" next-margin='54rpx' indicator-dots="true" indicator-color='#B5B5B5' indicator-active-color='#fff' interval='3000' duration='500' circular='true' autoplay="true">
+              <block wx:for="{{item.actPicture}}" wx:for-item="item1" wx:key="index">
+                <swiper-item>
+                  <image class="{{index==xindex?'imageBanner':'imageBanner_small'}}" src="https://www.sanshidiboundless.com/offline-education-system{{item.actPicture[index]}}" id='{{index.url}}' ></image>
+                </swiper-item>
+              </block>
+            </swiper>
+					</view>
+					<view>
+						<swiper class="detail-banner" indicator-dots="{{indicatorDots}}"  interval="{{interval}}" duration="{{duration}}" circular="{{circular}}" indicator-color="{{beforeColor}}" indicator-active-color="{{afterColor}}" style="background: white;">
+              <swiper-item wx:for="{{item.actVideo}}" wx:for-item="item1" wx:key="index">
+                <view class='videocover' data-id="{{index}}"  wx:if="{{item.type==1}}">
+                <view class='videocoverbg'></view>
+                  <image src='../../../img/icon/icon-play.png' class='playbtn' bindtap="videoPlay" hidden="{{controls}}"></image>  
+                </view>
+                <video class='box-w block' id="video" src="https://www.sanshidiboundless.com/offline-education-system{{item.actVideo[index]}}" show-center-play-btn="true" autoplay="{{flase}}" objectFit="cover" loop="false" controls="false" show-fullscreen-btn="false"></video>
+              </swiper-item>
+            </swiper>
+					</view>
+          <view class="title">活动开始时间:{{item.actStartTime}}</view>
+					<view class="title">活动结束时间:{{item.actEndTime}}</view>
+					<view class="title">活动介绍:{{item.actDescription}}</view>
+        </view>
+    </view>
+	 卡片与卡片的空白间隔 
+	<view class="space"></view>
+  </view>
+</view>
+</view>
+
+
+
+<!-- <view style="min-height : {{screen.minHeight}}; background-color: #2f2f2f;" bindtouchend="play">
   <view class="banner">
     <view class="poster">
       <image mode="aspectFit" src="{{institute.data.orgInfo.adverPhoto}}"></image>
@@ -49,22 +170,22 @@
         <view>{{institute.data.orgInfo.contactPhone}}</view>
       </view>
         
-        <!-- <button class="cu-btn bg-green round" wx:if="{{isstu}}" bindtap="orgIn">点击报名</button> -->
-        <view wx:if="{{!issignup}}">
+         <button class="cu-btn bg-green round" wx:if="{{isstu}}" bindtap="orgIn">点击报名</button> -->
+        <!--<view wx:if="{{!issignup}}">
           <button  class="cu-btn bg-green round" style="display:flex;float:right;" bindtap="orgIn">点击报名</button>
         </view>
         <button  class="cu-btn bg-green round" style="display:flex;float:right;" bindtap="stu_course">学生课程</button>
         <button  class="cu-btn bg-green round" style="display:flex;float:right;" bindtap="stu_info">学生信息</button>
         <button  class="cu-btn bg-green round" style="display:flex;float:right;" bindtap="course_reserve">课程预约</button>
         <button  class="cu-btn bg-green round" style="display:flex;float:right;" bindtap="movehome">个人首页</button>
-        <!-- <button  class="cu-btn bg-green round" style="display:flex;float:right;" bindtap="test">test</button> -->
-    </view>
+         <button  class="cu-btn bg-green round" style="display:flex;float:right;" bindtap="test">test</button> -->
+    <!--</view>
     
     <image class="background" mode = "aspectFill" src="{{institute.data.orgInfo.adverPhoto}}"></image>
     
-  </view>
+  </view> -->
 
-  <view class="summary">
+  <!-- <view class="summary">
     "{{institute.data.orgInfo.introduction}}"
   </view>
   
@@ -120,46 +241,42 @@
 </view>
 <view hidden="{{degsss==0}}">
     <view class="cards" wx:for="{{activity.data.activities}}" wx:for-item="item" wx:key="item">
-		<view class="card" >
+		  <view class="card" >
         <view bindtap="onItemClick">
-						<view class="name">
-							<text>活动名称:{{item.actName}}</text>
-						</view>
-						<view>
-              <swiper class='bannerSwiper' previous-margin="54rpx" next-margin='54rpx' indicator-dots="true" indicator-color='#B5B5B5' indicator-active-color='#fff' interval='3000' duration='500' circular='true' autoplay="true">
-                <block wx:for="{{item.actPicture}}" wx:for-item="item1" wx:key="index">
-                  <swiper-item>
-                    <image class="{{index==xindex?'imageBanner':'imageBanner_small'}}" src="https://www.sanshidiboundless.com/offline-education-system{{item.actPicture[index]}}" id='{{index.url}}' ></image>
-                  </swiper-item>
-                </block>
-              </swiper>
-              
-						</view>
-						<view>
-							<swiper class="detail-banner" indicator-dots="{{indicatorDots}}"  interval="{{interval}}" duration="{{duration}}" circular="{{circular}}" indicator-color="{{beforeColor}}" indicator-active-color="{{afterColor}}" style="background: white;">
-                <swiper-item wx:for="{{item.actVideo}}" wx:for-item="item1" wx:key="index">
-                <!-- <view class='videocover' data-id="{{index}}"  wx:if="{{item.type==1}}"> -->
-                  <!-- <view class='videocoverbg'></view>
-                  <image src='../../../img/icon/icon-play.png' class='playbtn' bindtap="videoPlay" hidden="{{controls}}"></image>
-                  
-                  </view> -->
-
-                  <video class='box-w block' id="video" src="https://www.sanshidiboundless.com/offline-education-system{{item.actVideo[index]}}" show-center-play-btn="true" autoplay="{{flase}}" objectFit="cover" loop="false" controls="false" show-fullscreen-btn="false"></video>
+					<view class="name">
+						<text>活动名称:{{item.actName}}</text>
+					</view>
+					<view>
+            <swiper class='bannerSwiper' previous-margin="54rpx" next-margin='54rpx' indicator-dots="true" indicator-color='#B5B5B5' indicator-active-color='#fff' interval='3000' duration='500' circular='true' autoplay="true">
+              <block wx:for="{{item.actPicture}}" wx:for-item="item1" wx:key="index">
+                <swiper-item>
+                  <image class="{{index==xindex?'imageBanner':'imageBanner_small'}}" src="https://www.sanshidiboundless.com/offline-education-system{{item.actPicture[index]}}" id='{{index.url}}' ></image>
                 </swiper-item>
-              </swiper>
-
-						</view>
-            <view class="title">活动开始时间:{{item.actStartTime}}</view>
-						<view class="title">活动结束时间:{{item.actEndTime}}</view>
-						<view class="title">活动介绍:{{item.actDescription}}</view>
+              </block>
+            </swiper>
+					</view>
+					<view>
+						<swiper class="detail-banner" indicator-dots="{{indicatorDots}}"  interval="{{interval}}" duration="{{duration}}" circular="{{circular}}" indicator-color="{{beforeColor}}" indicator-active-color="{{afterColor}}" style="background: white;">
+              <swiper-item wx:for="{{item.actVideo}}" wx:for-item="item1" wx:key="index">
+                <view class='videocover' data-id="{{index}}"  wx:if="{{item.type==1}}"> -->
+                <!-- <view class='videocoverbg'></view>
+                  <image src='../../../img/icon/icon-play.png' class='playbtn' bindtap="videoPlay" hidden="{{controls}}"></image>  
+                </view> -->
+            <!-- <video class='box-w block' id="video" src="https://www.sanshidiboundless.com/offline-education-system{{item.actVideo[index]}}" show-center-play-btn="true" autoplay="{{flase}}" objectFit="cover" loop="false" controls="false" show-fullscreen-btn="false"></video>
+              </swiper-item>
+            </swiper>
+					</view>
+          <view class="title">活动开始时间:{{item.actStartTime}}</view>
+					<view class="title">活动结束时间:{{item.actEndTime}}</view>
+					<view class="title">活动介绍:{{item.actDescription}}</view>
         </view>
     </view>
-	<!-- 卡片与卡片的空白间隔 -->
-	<view class="space"></view>
-</view>
+	 卡片与卡片的空白间隔 -->
+<!--	<view class="space"></view>
+  </view>
 </view>
     
   </view>
-</view>
+</view> -->
 
-<i-button type="success" open-type="share" shape="circle">分享至微信</i-button>
+<!-- <i-button type="success" open-type="share" shape="circle">分享至微信</i-button> -->

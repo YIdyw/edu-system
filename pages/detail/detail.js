@@ -503,7 +503,7 @@ videoObserve.relativeToViewport({bottom: -topBottomPadding, top: -topBottomPaddi
   //控制“该机构下老师”标签开关******************************************
   rotateAnim: function(){
     let deg = this.data.degs
-    deg = deg == 0 ? 90 : 0
+    deg = deg == 0 ? 180 : 0
     this.setData({
       degs: deg,
     })
@@ -512,7 +512,7 @@ videoObserve.relativeToViewport({bottom: -topBottomPadding, top: -topBottomPaddi
   ////控制“该机构下课程”标签开关******************************************
   rotateAnim1: function(){
     let deg1 = this.data.degss
-    deg1 = deg1 == 0 ? 90 : 0
+    deg1 = deg1 == 0 ? 180 : 0
     this.setData({
       degss: deg1
     })
@@ -521,7 +521,7 @@ videoObserve.relativeToViewport({bottom: -topBottomPadding, top: -topBottomPaddi
   //控制“该机构下活动”标签开关******************************************
   rotateAnim2: function(){
     let deg2 = this.data.degsss
-    deg2 = deg2 == 0 ? 90 : 0
+    deg2 = deg2 == 0 ? 180 : 0
     this.setData({
       degsss: deg2
     })

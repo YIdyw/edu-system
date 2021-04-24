@@ -1,4 +1,4 @@
-.banner {
+/* .banner {
   overflow: hidden;
   height: 535rpx;
   background-color: #fff;
@@ -132,39 +132,39 @@
   align-items: center;
   
   /* 圆角 */
-  border-radius: 20rpx;
+  /* border-radius: 20rpx; */
 
   /* 边 */
-  border: 3rpx solid #E0E3DA;
+  /* border: 3rpx solid #E0E3DA;
   box-shadow:5rpx 5rpx 5rpx 5rpx #E0E3DA;
 
   background-color: #ffffff;
-  margin: 30rpx;
+  margin: 30rpx; */
 
   /* padding使得文字和图片不至于贴着边框 */
-  padding: 30rpx;
+  /* padding: 30rpx;
 
-}
+} */
 
 /* 图片 */
 
-.image_1 {
+/* .image_1 {
   width: 100rpx;
   height: 100rpx;
-}
+} */
 
 /* 包裹两行文字 */
 
-.view_wenzi2 {
+/* .view_wenzi2 {
   width: 100%;
   margin-left: 25rpx;
   display: flex;
   flex-direction: column;
-}
+} */
 
 /* 小字 */
 
-.text_small {
+/* .text_small {
   font-size: 30rpx;
   word-break: break-all;
   color: #7a7878;
@@ -223,26 +223,224 @@
   bottom: 0;
   border-top-left-radius: 15rpx;
   border-top-right-radius: 15rpx; 
-}
+} */
 
 /* 轮播图 */
  
-.detail-banner {
+/* .detail-banner {
   width: 100%;
   height: 700rpx;
   padding: 0 0 40rpx 0;
-}
+} */
  
 
 /* video */
  
-.box-w {
+/* .box-w {
   width: 100%;
   height: 700rpx;
-}
+} */
  
-.ico-share {
+/* .ico-share {
   width: 18px;
   height: 18px;
   display: block;
+} */ 
+
+
+.back-img {
+  position: relative;
+  width: 750rpx;
+  height: 450rpx;
+  background-repeat:no-repeat;
+  background-size:cover;
+}
+
+
+.home-font {
+  position: absolute;
+  display: block;
+  top: 70rpx;
+  left: 30rpx;
+  width: 200rpx;
+  height: 50rpx;
+  color: #FFFFFF;
+}
+
+.home-font text {
+  float: right;
+  margin-top: 10rpx;
+  font-size: 30rpx;
+  font-family: Microsoft YaHei;
+  font-weight: 300;
+  box-sizing: border-box!important;
+  /* margin-bottom: 10rpx; */
+}
+
+.home-font::before {
+  content: '\e6bb';
+  font-family: "cuIcon";
+  margin-right: 21.1rpx;
+  font-size: 50rpx;
+}
+
+.institute {
+  height: 366rpx;
+  width: 690rpx;
+  margin: -79rpx auto 0;
+  /* background-color: pink; */
+  background-color: #FFFFFF;
+  position: relative;
+  border-radius: 20rpx;
+}
+
+.institute_title {
+  height: 36rpx;
+  font-size: 36rpx;
+  color: #333333;
+  font-weight: 400;
+  position: absolute;
+  top: 40rpx;
+  left: 30rpx;
+}
+
+.institute_info {
+  height: 22rpx;
+  font-size: 22rpx;
+  font-weight: 300;
+  color: #888888;
+  position: absolute;
+  left: 30rpx;
+  top: 105rpx;
+}
+
+.institute_way {
+  height: 239rpx;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  /* background-color: blue; */
+  padding: 60rpx 53rpx 60rpx 55rpx;
+}
+
+.way_content {
+  height: 119rpx;
+  width: 121rpx;
+  float: left;
+  margin-left: 108rpx;
+  /* background-color: red; */
+  text-align: center;
+}
+
+.way_content:first-child {
+  margin-left: 0;
+}
+
+.way_content .way_image {
+  height: 60rpx;
+  width: 58rpx;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-left: 31rpx;
+}
+
+.way_content .way_name {
+  height: 30rpx;
+  font-size: 30rpx;
+  font-weight: 300;
+  color: #333333;
+  margin-top: 29rpx;
+}
+
+.institute_content {
+  width: 690rpx;
+  /* height: 80rpx; */
+  margin: 20rpx auto 0;
+  /* background-color: pink; */
+  background-color: #FFFFFF;
+  border-radius: 20rpx;
+  padding: 0 30rpx;
+  /* position: relative; */
+}
+
+.institute_content .content_title {
+  width: 50%;
+  height: 80rpx;
+  font-size: 30rpx;
+  font-weight: 400;
+  color: #333333;
+  line-height: 80rpx;
+  /* float: left; */
+}
+
+.institute_content .for_rotate {
+  position: relative;
+  float: right;
+  width: 40rpx;
+  height: 40rpx;
+  margin-top: -60rpx;
+  /* background-color: blue; */
+  text-align: center;
+}
+
+.institute_content .for_rotate::after {
+  content: '';
+  display: inline-block;
+  width: 16rpx;
+  height: 16rpx;
+  border-top: 3rpx solid #C1C1C1;
+  border-right: 3rpx solid #C1C1C1;
+  transform: rotate(135deg);
+  line-height: 40rpx;
+}
+
+.actual_content {
+  width: 100%;
+  /* background-color: pink; */
+}
+
+.test {
+  height: 168rpx;
+  padding: 30rpx 31rpx;
+  border-bottom: 1px solid #E5E5E5;
+  /* background-color: blue; */
+}
+
+.teacher_content {
+  float: left;
+  height: 110rpx;
+  /* background-color: red; */
+  font-size: 28rpx;
+  color: #333333;
+}
+
+.text_small {
+  font-size: 22rpx;
+  color: #999999; 
+  text-align-last: justify;
+  float: left;
+}
+
+.text_justify {
+  text-align: left;
+}
+
+.text_alittle {
+  font-size: 25rpx;
+  text-align: left;
+  float: left;
+  margin-top: 7rpx;
+  color: #999999; 
+}
+
+.teacher_image {
+  margin-right: 30rpx;
+  height: 108rpx;
+  width: 108rpx;
+  border-radius: 50%;
+  /* background-color: red; */
+  background-size: cover;
+  background-repeat: no-repeat;
+  float: left;
 }
