@@ -154,7 +154,7 @@
     
     <view class="cu-timeline" wx:if="{{!tabWeek}}">
       <view class="cu-time">第{{showWeek}}周</view>
-      <view class="cu-item text-mygray" wx:for="{{thatWeek}}" wx:for-item="dayInfo" wx:key="id"   data-info="{{dayInfo.courseInfo}}" data-exist="{{dayInfo.exist}}" data-week="{{dayInfo.week}}" bindtap="viewDayDetail" hidden="{{dayInfo== null}}" wx:if="{{weekPlan[index] != null}}">
+      <view class="cu-item text-mygray" wx:for="{{thatWeek}}" wx:for-item="dayInfo" wx:key="id"   data-info="{{dayInfo.courseInfo}}" data-exist="{{dayInfo.exist}}" data-week="{{dayInfo.week}}" bindtap="viewDayDetail" wx:if="{{weekPlan[index] != null}}">
         <view class="content bg-{{dayInfo.exist?'myblue':'mygray'}} shadow" wx:if="{{dayInfo.exist}}">
           <view class="text-bold data-left">
             <view class="text-bold" style="color:#666666">{{dayInfo.date}}</view>
