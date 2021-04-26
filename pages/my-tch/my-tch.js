@@ -68,43 +68,43 @@ Page({
     }],
     imgList: [{
       id: 0,
-      url: '../../colorui/icon/icon_sign_in@2x.png',
-      // url: 'colorui/icon/icon_sign_in@2x.png',
+      // url: '../../colorui/icon/icon_sign_in@2x.png',
+      url: 'icon/icon_sign_in@2x.png',
       name: '信息登记'
     }, {
       id: 1,
-      url: '../../colorui/icon/icon_array_course@2x.png',
-      // url: 'colorui/icon/icon_about_course@2x.png',
+      // url: '../../colorui/icon/icon_array_course@2x.png',
+      url: 'icon/icon_array_course@2x.png',
       name: '课程管理'
     }, {
       id: 2,
-      url: '../../colorui/icon/icon_mancenter@2x.png',
-      // url: 'colorui/icon/icon_mancenter@2x.png',
+      // url: '../../colorui/icon/icon_mancenter@2x.png',
+      url: 'icon/icon_mancenter@2x.png',
       name: '个人中心'
     }, {
       id: 3,
-      url: '../../colorui/icon/icon_add_power@2x.png',
-      // url: 'colorui/icon/icon_add_power@2x.png',
+      // url: '../../colorui/icon/icon_add_power@2x.png',
+      url: 'icon/icon_add_power@2x.png',
       name: '增加权限'
     }, {
       id: 4,
-      url: '../../colorui/icon/icon_array_lieon@2x.png',
-      // url: 'colorui/icon/icon_array_lieon@2x.png',
+      // url: '../../colorui/icon/icon_array_lieon@2x.png',
+      url: 'icon/icon_array_lieon@2x.png',
       name: '挂靠管理'
     }, {
       id: 5,
-      url: '../../colorui/icon/icon_sold_page@2x.png',
-      // url: 'colorui/icon/icon_sold_page@2x.png',
+      // url: '../../colorui/icon/icon_sold_page@2x.png',
+      url: 'icon/icon_sold_page@2x.png',
       name: '营销页面'
     }, {
       id: 6,
-      url: '../../colorui/icon/icon_leave@2x.png',
-      // url: 'colorui/icon/icon_leave@2x.png',
+      // url: '../../colorui/icon/icon_leave@2x.png',
+      url: 'icon/icon_leave@2x.png',
       name: '请假申请'
     }, {
       id: 7,
-      url: '../../colorui/icon/icon_makeup@2x.png',
-      // url: 'colorui/icon/icon_makeup@2x.png',
+      // url: '../../colorui/icon/icon_makeup@2x.png',
+      url: 'icon/icon_makeup@2x.png',
       name: '补课申请'
     }],
     isFaceChecked: 0,

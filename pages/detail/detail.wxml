@@ -35,7 +35,8 @@
     </view>
   </view>
 </view> -->
-<view class="back-img" style="background-image:url('../../colorui/icon/bg_pic2@2x.png');">
+<view class="back-img">
+  <image class="back=img" src="icon/bg_pic2@2x.png"></image>
 <!-- <view class="back-img" style="background-image:url('colorui/icon/bg_pic2@2x.png');"> -->
   <view class="home-font">
     <text>乐学小优</text>
@@ -49,15 +50,15 @@
   </view>
   <view class="institute_way">
     <view class="way_content" bindtap="orgIn">
-      <view class="way_image" style="background-image:url(../../colorui/icon/icon_click_in@2x.png)"></view>
+      <image class="way_image" src="icon/icon_click_in@2x.png"></image>
       <view class="way_name">点击报名</view>
     </view>
     <view class="way_content" bindtap="course_reserve">
-      <view class="way_image" style="background-image:url(../../colorui/icon/icon_interview@2x.png)" ></view>
+      <image class="way_image" src="icon/icon_interview@2x.png" ></image>
       <view class="way_name">课程预约</view>
     </view>
     <view class="way_content" bindtap="movehome">
-      <view class="way_image" style="background-image:url(../../colorui/icon/icon_self_page@2x.png)"></view>
+      <image class="way_image" src="icon/icon_self_page@2x.png"></image>
       <view class="way_name">个人首页</view>
     </view>
   </view>

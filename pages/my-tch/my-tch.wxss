@@ -148,6 +148,10 @@
   background-size:cover;
 }
 
+.back-img image {
+  width: 100%;
+}
+
 
 .home-font {
   position: absolute;

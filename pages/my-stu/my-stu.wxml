@@ -21,15 +21,17 @@
     </view>
   </view> 
 </view>  -->
-<view class="back-img" style="background-image:url('../../colorui/icon/bg_pic1@2x.png');">
-<!-- <view class="back-img" style="background-image:url('colorui/icon/bg_pic1@2x.png');"> -->
+<view class="back-img">
+  <image class="back=img" src="icon/bg_pic1@2x.png"></image>
+<!-- <view class="back-img" style="background-image:url('icon/bg_pic1@2x.png');"> -->
   <view class="home-font">
     <text>乐学小优</text>
   </view>
 </view>
 
-<view class="user-box" style="background-image:url('../../colorui/icon/psl_hp_pic3@2x.png');">
-<!-- <view class="user-box" style="background-image:url('colorui/icon/psl_hp_pic3@2x.png');"> -->
+<view class="user-box">
+  <image class="user-box" src="icon/psl_hp_pic3@2x.png" style="width:100%; margin:0"></image>
+<!-- <view class="user-box" style="background-image:url('icon/psl_hp_pic3@2x.png');"> -->
   <view class="userinfo-avatar">
     <open-data type="userAvatarUrl"></open-data>
   </view>
@@ -65,7 +67,8 @@
 </view> -->
 <view class="stu-list">
   <view class="stu-item" wx:for="{{imgList}}" wx:key="id">
-    <view class="for-image" style="background-image:url({{item.url}})" id="{{item.id}}" bindtap="facehandler"></view>
+    <!-- <view class="for-image" style="background-image:url({{item.url}})" id="{{item.id}}" bindtap="facehandler"></view> -->
+    <image  class="for-image" src="{{item.url}}" id="{{item.id}}" bindtap="facehandler"></image>
     <text>{{item.name}}</text>
   </view>
 </view>

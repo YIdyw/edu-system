@@ -142,12 +142,15 @@
 
 .back-img {
   position: relative;
-  width: 750rpx;
+  width: 100%;
   height: 450rpx;
   background-repeat:no-repeat;
   background-size:cover;
 }
 
+.back-img image {
+  width: 100%;
+}
 
 .home-font {
   position: absolute;

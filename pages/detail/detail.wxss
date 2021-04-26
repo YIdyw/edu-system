@@ -256,6 +256,10 @@
   background-size:cover;
 }
 
+.back-img image {
+  width: 100%;
+}
+
 
 .home-font {
   position: absolute;
@@ -342,7 +346,7 @@
   width: 58rpx;
   background-repeat: no-repeat;
   background-size: cover;
-  margin-left: 31rpx;
+  /* margin-left: 31rpx; */
 }
 
 .way_content .way_name {
@@ -350,7 +354,7 @@
   font-size: 30rpx;
   font-weight: 300;
   color: #333333;
-  margin-top: 29rpx;
+  margin-top: 24rpx;
 }
 
 .institute_content {
