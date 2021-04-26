@@ -571,7 +571,7 @@ Page({
         if(res.code==200){   
           setTimeout(() => {
             wx.showToast({
-              title: '修改成功！',
+              title: '注册成功！',
               icon: "success",
             });
             setTimeout(() => {

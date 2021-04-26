@@ -29,7 +29,6 @@
   </view>
 </view>
 
-</view>
 <!-- <view class="user-box" style="background-image:url('../../colorui/icon/psl_hp_pic3@2x.png');"> -->
 
 <view class="user-box">
@@ -129,7 +128,7 @@
   
     <view class="cu-timeline" wx:if="{{tabWeek}}">
       <view class="cu-time">第{{currentWeekNum}}周</view>
-      <view class="cu-item text-{{index==currentWeek?'mybluea': 'mygray'}}" wx:for="{{weekPlan}}" wx:for-item="dayInfo" wx:key="id" data-info="{{dayInfo.courseInfo}}" data-exist="{{dayInfo.exist}}" data-week="{{dayInfo.week}}" bindtap="viewDayDetail">
+      <view class="cu-item text-{{index==currentWeek?'mybluea': 'mygray'}}" wx:for="{{weekPlan}}" wx:for-item="dayInfo" wx:key="id" data-info="{{dayInfo.courseInfo}}" data-exist="{{dayInfo.exist}}" data-week="{{dayInfo.week}}" bindtap="viewDayDetail" wx:if="{{weekPlan[index] != null}}">
         <view class="content bg-{{index==currentWeek?'mybluea':'myblue'}} shadow" wx:if="{{dayInfo.exist}}">
           <view class="text-bold data-left">
           <view class="top-word" style="color:{{index==currentWeek?'white':''}}">{{dayInfo.date}}</view>
@@ -143,7 +142,7 @@
           </view>
           <!-- </view> -->
         </view>
-        <view class="content bg-{{index==currentWeek?'mybluea':'myblue'}} shadow" wx:else>
+        <view class="content bg-{{index==currentWeek?'mybluea':'myblue'}} shadow" wx:else >
           <view class="text-bold data-left">
             <view style="color:#666666">{{dayInfo.date}}</view>
             <view style="color:#2655CF">星期{{monthTitle[dayInfo.week]}}</view>
@@ -155,7 +154,7 @@
     
     <view class="cu-timeline" wx:if="{{!tabWeek}}">
       <view class="cu-time">第{{showWeek}}周</view>
-      <view class="cu-item text-mygray" wx:for="{{thatWeek}}" wx:for-item="dayInfo" wx:key="id"   data-info="{{dayInfo.courseInfo}}" data-exist="{{dayInfo.exist}}" data-week="{{dayInfo.week}}" bindtap="viewDayDetail">
+      <view class="cu-item text-mygray" wx:for="{{thatWeek}}" wx:for-item="dayInfo" wx:key="id"   data-info="{{dayInfo.courseInfo}}" data-exist="{{dayInfo.exist}}" data-week="{{dayInfo.week}}" bindtap="viewDayDetail" hidden="{{dayInfo== null}}" wx:if="{{weekPlan[index] != null}}">
         <view class="content bg-{{dayInfo.exist?'myblue':'mygray'}} shadow" wx:if="{{dayInfo.exist}}">
           <view class="text-bold data-left">
             <view class="text-bold" style="color:#666666">{{dayInfo.date}}</view>
