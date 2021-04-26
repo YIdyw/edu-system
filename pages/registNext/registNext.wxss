@@ -204,7 +204,7 @@ picker-view-column {
   width: 100%;
   /* height: 76rpx; */
   padding: 0 106rpx;
-  margin-bottom: -50rpx;
+  margin-bottom: -40rpx;
   animation: move_btn .1s ease 0s 1 forwards;
 }
 
