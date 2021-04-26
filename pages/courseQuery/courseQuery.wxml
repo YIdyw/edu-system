@@ -30,7 +30,10 @@
           <view>开课时间：{{item.startTime}}至{{item.endTime}}</view>
         </view>
       </view>
-      <view class="cu-bar flex justify-end">
+      <view class="cu-bar">
+        <view class="action">
+          <button class="bg-olive margin-bottom text-sm" bindtap="courseInfo" data-id="{{item.courseId}}">学生课程信息</button>
+        </view>
         <view class="action">
           <button class="bg-olive margin-bottom text-sm" bindtap="signRecord" data-id="{{item.courseId}}">具体签到情况查询</button>
         </view>

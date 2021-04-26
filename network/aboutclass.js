@@ -97,3 +97,19 @@ export function teaCourse(data) {
     method: 'GET',
   })
 } 
+
+//获取教师某课程下学生的课程信息
+export function teaCourseInfo(data) {
+  return request({
+    url: '/statistics/teacher/'+data.teaId+'/teaching',
+    method: 'GET',
+  })
+} 
+
+//获取学生的课程信息
+export function myCourse(data) {
+  return request({
+    url: '/statistics/student/'+data.stuId+'/courseRecord',
+    method: 'GET',
+  })
+} 

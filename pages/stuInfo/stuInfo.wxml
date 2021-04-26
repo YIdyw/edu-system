@@ -13,7 +13,7 @@
       <view class="th ">数据值</view>
     </view>
     <view class="table-wrap">
-      <block wx:for="{{listData}}" wx:key="{{key}}">
+      <block wx:for="{{listData}}" wx:key="key">
         <view class="tr">
           <view class="td">{{item.col1}}</view>
           <view class="td">{{item.col2}}</view>

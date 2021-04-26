@@ -106,13 +106,43 @@
           <text class="cuIcon-title text-olive"></text>
           <view class="cu-form-group">
 	          <view class="title">评价</view>
-	          <input placeholder="在此评价" type="text" bindinput="message"></input>
+	          <input class="input" placeholder="在此评价" type="text" bindinput="message"> 评价</input>
           </view>
         </view>
       </view>
       <view class="cu-bar flex justify-end">
         <view class="action">
           <button class="bg-olive margin-bottom text-sm" bindtap="estimateClass1">点击提交</button>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view wx:if="{{modalName4=='DialogModal5'}}" bindtap="display" class="cu-list menu margin" >
+  <view class="cu-item">
+    <view class="content">
+      <view class="cu-bar">
+      <view class="action">
+        <view class="stars  {{flag>=1? 'cuIcon-favorfill text-red':'cuIcon-favor text-red'}}" bindtap="changeColor1"></view>
+        <view class="stars  {{flag>=2? 'cuIcon-favorfill text-red':'cuIcon-favor text-red'}}" bindtap="changeColor2"></view>
+        <view class="stars  {{flag>=3? 'cuIcon-favorfill text-red':'cuIcon-favor text-red'}}" bindtap="changeColor3"></view>
+        <view class="stars  {{flag>=4? 'cuIcon-favorfill text-red':'cuIcon-favor text-red'}}" bindtap="changeColor4"></view>
+        <view class="stars  {{flag>=5? 'cuIcon-favorfill text-red':'cuIcon-favor text-red'}}" bindtap="changeColor5"></view>
+      </view>
+      </view>
+      <view class="cu-bar">
+        <view class="action">
+          <text class="cuIcon-title text-olive"></text>
+          <view class="cu-form-group">
+	          <view class="title">评价</view>
+	          <input class="input" placeholder="{{remark}}" disabled>评价</input>
+          </view>
+        </view>
+      </view>
+      <view class="cu-bar flex justify-end">
+        <view class="action">
+          <button class="bg-gray margin-bottom text-sm" bindtap="estimateClass1" disabled>已评价</button>
         </view>
       </view>
     </view>

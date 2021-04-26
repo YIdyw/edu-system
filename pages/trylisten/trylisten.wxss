@@ -5,3 +5,25 @@ radio-group{
   justify-content: flex-start;
   padding: 0 15px;
 }
+
+.word{
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    font-size: 28rpx;
+    color: #333333;
+}
+
+.input {
+  position: absolute;
+  left: 186rpx;
+  top: 27rpx;
+  font-size: 26rpx;
+  color: #9D9D9D;
+  font-weight: 300;
+  height: 26rpx;
+  width: 100px;
+  line-height: 26rpx;
+  font-family: Microsoft YaHei;
+  margin-top: -6rpx;
+}

@@ -216,7 +216,7 @@ Page({
   //进入签到页面**********************************************
   _signIn(){
     wx.navigateTo({
-      url: '../sign/sign',
+      url: '../stuInfo/stuInfo?courseId='+this.data.getmyclass[this.data.idxx].courseId,
     })
   },
 

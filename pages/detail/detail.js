@@ -79,17 +79,6 @@ Page({
   },
 
 
-  stu_course(){
-    wx.navigateTo({
-      url: '../stuCourse/stuCourse',
-    })
-  },
-
-  stu_info(){
-    wx.navigateTo({
-      url: '../stuInfo/stuInfo',
-    })
-  },
 
   //自动播放视频
   play: function ready(){
@@ -618,7 +607,7 @@ course_reserve(){
       }
     })
   }else{
-    wx.redirectTo({
+    wx.navigateTo({
       url: '../propaganda/propaganda?orgid=' + this.data.orgid ,
     })
   }

@@ -29,7 +29,7 @@
     <text>乐学小优</text>
   </view>
 </view>
-
+</view>
 <!-- <view class="user-box" style="background-image:url('../../colorui/icon/psl_hp_pic3@2x.png');"> -->
 <view class="user-box" style="background-image:url('colorui/icon/psl_hp_pic3@2x.png');">
   <view class="userinfo-avatar">

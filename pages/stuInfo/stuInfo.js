@@ -1,4 +1,7 @@
 // pages/stuInfo/stuInfo.js
+import{
+  myCourse
+} from '../../network/aboutclass'
 
 var app = getApp()
 Page({
@@ -9,18 +12,13 @@ Page({
   data: {
     deviceW: '',
     deviceH: '',
+    courseId: '',
     globalData:app.time.statusBarHeight, //状态栏高度,
     globalDatas:app.nav.height + (app.nav.top - app.time.statusBarHeight)*2 + app.nav.top - app.time.statusBarHeight, //导航栏高度
     globalDatassh: app.nav.height, //胶囊高度
-    listData:[{ "col1": "第一列1", "col2": "第二列1"},
-    { "col1": "第一列2", "col2": "第二列2"},
-    { "col1": "第一列3", "col2": "第二列3"},
-    { "col1": "第一列4", "col2": "第二列4"},
-    { "col1": "第一列5", "col2": "第二列5"},
-    { "col1": "第一列6", "col2": "第二列6"},
-    { "col1": "第一列7", "col2": "第二列7"},
-    { "col1": "第一列8", "col2": "第二列8" }]
+    listData:[]
   },
+
 
   //获取设备信息
   getDeviceInfo: function () {
@@ -35,11 +33,40 @@ Page({
     })
   },
 
+
+  _myCourse(){
+    let courseInfo = [];
+    let data = {
+      stuId: wx.getStorageSync('loginInfo').userid
+    }
+    myCourse(data).then(res=>{
+      if(res.code == 200){
+        for(let i = 0; i < res.data.length; i++){
+          if(res.data[i].courseId == this.data.courseId){
+            courseInfo = [{'col1': "类型", 'col2': res.data[i].courseType},
+            {'col1': "机构名称", 'col2': res.data[i].orgName},
+            {'col1': "教师姓名", 'col2': res.data[i].teaName},
+            {'col1': "剩余课时", 'col2': res.data[i].remainCourseTime},
+            {'col1': "剩余补课", 'col2': res.data[i].remainMakeUpTime},
+            {'col1': "总课时", 'col2': res.data[i].totalCourseTime},
+            {'col1': "累计已上", 'col2': res.data[i].consumedCourseTime},
+            {'col1': "累计已补", 'col2': res.data[i].consumedMakeupTime}];
+          }
+        }
+        this.setData({
+          listData: courseInfo
+        })
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      courseId: options.courseId
+    })
+    this._myCourse()
   },
 
   /**

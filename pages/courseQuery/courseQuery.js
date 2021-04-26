@@ -9,6 +9,13 @@ Page({
     historyClass: []  //历史开课信息
   },
 
+  //进入该课程学生信息页面******************************************
+  courseInfo(e){
+    wx.navigateTo({
+      url: '../stuCourse/stuCourse?courseId='+e.currentTarget.dataset.id,
+    })
+  },
+
   //进入签到名单页面******************************************
   signRecord(e){
     let courseId = e.currentTarget.dataset.id

@@ -13,7 +13,9 @@ Page({
   data: {
     idx:"",
     flag:0,
-    esmessage:""
+    remark: '',
+    esmessage:"",
+    modalName4:null
   },
 
   // 获取当前用户的试听课程列表
@@ -42,12 +44,26 @@ Page({
       courseId:wx.getStorageSync('getmylisten')[0].courseId,
     }
     getRemark(data).then(res=>{
+      console.log(res)
       if(res.code == 200){
-        console.log(res)
+        this.setData({
+          flag: res.data.star,
+          remark: res.data.remark,
+          modalName4: 'DialogModal5'
+        })
+      }else{
+        this.setData({
+          modalName4: 'DialogModal4'
+        })
       }
     })
   },
 
+  display(){
+    this.setData({
+      modalName4: null
+    })
+  },
 
   // _getMylisten(){
   //   var that=this;
@@ -193,9 +209,13 @@ Page({
   // 以下的函数均为页面的操作函数，用来对应页面中的点击事件
   // 响应评价，退选等按钮
   estimate(e){
-    this.setData({
-      modalName4: e.currentTarget.dataset.target
-    })
+    var that = this
+    if(this.data.modalName4 == null){
+      that._getRemark()
+    }else{
+      that.display()
+    }
+    
   },
   choosedelete(e){
     this.setData({
@@ -255,7 +275,6 @@ Page({
     var that=this;
     // that._getAllorg()
     that._myListen()
-    that._getRemark()
   },
 
   /**
