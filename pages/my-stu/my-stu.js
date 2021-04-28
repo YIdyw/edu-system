@@ -191,6 +191,28 @@ Page({
 
   },
 
+  back_to_month() {
+    let month = this.data.currentMonth;    // 当前月
+    let year = this.data.showYear;        // 当前年
+    let lastMonthDate = new Date(year, month-1, 1);     // 当前月第一天
+    let week = lastMonthDate.getDay();                // 当前月第一天星期
+    let monthPlan = this.getMonthPlan(year, month, week, 1);
+    let sortPlan = this.sortMonthPlan(monthPlan);
+    let data = {
+      // id: wx.getStorageSync('loginInfo').userid,
+      id: wx.getStorageSync('loginInfo').userid, 
+      limitTime: year + '-' + month,
+      type: 'month',
+      userType: wx.getStorageSync('loginInfo').defaultRole,
+    }
+    this.setData({
+      showMonth: month,
+      showYear: year,
+      monthPlan: sortPlan
+    });
+    this._scheduelQuery(data);
+  },
+
   _endtime(){
     var that = this
     var stime = this.data.dateTimeArray1[0][this.data.dateTime1[0]]+'-'+this.data.dateTimeArray1[1][this.data.dateTime1[1]]+'-'+this.data.dateTimeArray1[2][this.data.dateTime1[2]]+' '+this.data.dateTimeArray1[3][this.data.dateTime1[3]]+':'+this.data.dateTimeArray1[4][this.data.dateTime1[4]]

@@ -25,7 +25,7 @@
 </view> -->
 
 <view class="back-img">
-  <image class="back=img" src="icon/bg_pic1@2x.png"></image>
+  <image class="back-img" src="icon/bg_pic1@2x.png"></image>
 <!-- <view class="back-img" style="background-image:url('colorui/icon/bg_pic1@2x.png');"> -->
   <view class="home-font">
     <text>乐学小优</text>
@@ -191,7 +191,7 @@
         <button class="cu-btn bg-oliveLight shadow" bindtap="lastMonth">上月</button>
         <button class="cu-btn bg-oliveLight shadow" bindtap="nextMonth">下月</button>
       </view> -->
-      <view class="back-month">回到当前月</view>
+      <view class="back-month" bindtap="back_to_month">回到当前月</view>
     </view>
     <view class="actual">
       <view class="week-title">

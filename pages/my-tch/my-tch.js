@@ -137,6 +137,28 @@ Page({
     })
   },
 
+  back_to_month() {
+    let month = this.data.currentMonth;    // 当前月
+    let year = this.data.showYear;        // 当前年
+    let lastMonthDate = new Date(year, month-1, 1);     // 当前月第一天
+    let week = lastMonthDate.getDay();                // 当前月第一天星期
+    let monthPlan = this.getMonthPlan(year, month, week, 1);
+    let sortPlan = this.sortMonthPlan(monthPlan);
+    let data = {
+      // id: wx.getStorageSync('loginInfo').userid,
+      id: wx.getStorageSync('loginInfo').userid, 
+      limitTime: year + '-' + month,
+      type: 'month',
+      userType: wx.getStorageSync('loginInfo').defaultRole,
+    }
+    this.setData({
+      showMonth: month,
+      showYear: year,
+      monthPlan: sortPlan
+    });
+    this._scheduelQuery(data);
+  },
+
   lastMonth(){
     let month = this.data.showMonth-1;  // 前一月
     let year = this.data.showYear;      // 当前年
