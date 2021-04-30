@@ -67,7 +67,7 @@ export function getMylisten(data) {
 //学生对课程进行评价
 export function estimateClass(data) {
   return request({
-    url: '/添加课程评价',
+    url: '/add-course-remark',
     method: 'POST',
     data:data
   })

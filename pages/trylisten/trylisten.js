@@ -146,6 +146,7 @@ Page({
       star:that.data.flag,
       stuid:wx.getStorageSync('loginInfo').userid
     }
+    console.log(data)
     estimateClass(data).then(res=>{
       console.log(res)
       this.setData({

@@ -20,6 +20,7 @@ Page({
     name: "",
     age: "",
     phone: "",
+    flag: false, //是否已经点击预约按钮
     flagphone: false,
     subject: '',
     idx1: 0,
@@ -122,6 +123,16 @@ Page({
           wx.hideToast();
         }, 1500)
       }, 0);
+    }else if(this.data.flag){
+      setTimeout(() => {
+        wx.showToast({
+          title: '请勿重复点击！',
+          icon: 'none'
+        });
+        setTimeout(() => {
+          wx.hideToast();
+        }, 1500)
+      }, 0);
     }else{
       that._reservation()
     }
@@ -137,15 +148,20 @@ Page({
       recommendId: app.globalData.marketers,
       orgId : this.data.orgid
     }
-    console.log(data)
     reservation(data).then(res =>{
       if(res.code == 200){
+        this.setData({
+          flag: true
+        })
         setTimeout(() => {
           wx.showToast({
             title: '预约成功！',
           });
           setTimeout(() => {
             wx.hideToast();
+            wx.navigateBack({
+              delta: 1,
+            })
           }, 3000)
         }, 0);
       }else{
