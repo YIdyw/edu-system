@@ -343,7 +343,6 @@ Page({
   //点击课程签到，请假，补课判断
   _judgechose(e){
     // askForLeave()
-    console.log(e)
     var time = e.currentTarget.dataset.data.courseTime.substring(0,16)
     var starttime = e.currentTarget.dataset.data.courseTime.substring(0,16) + ':00'
     var endtime = e.currentTarget.dataset.data.courseTime.substring(0,11) + e.currentTarget.dataset.data.courseTime.substring(17,23) + ':00'
@@ -385,10 +384,10 @@ Page({
         })
       }
     })
-    console.log(e.currentTarget)
+    console.log(e)
     //四小时以上并且正常课序并没有请假的
     
-    if(this._deftime(dateTimes,time) && e.currentTarget.dataset.data.coursetype > 0){
+    if(this._deftime(dateTimes,time) && e.currentTarget.dataset.data.courseNo > 0){
       
       this.getInfoCallback = res =>{
         let check_out = false

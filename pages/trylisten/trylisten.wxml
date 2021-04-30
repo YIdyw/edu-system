@@ -69,8 +69,8 @@
         </view>
         <view class="margin-top-sm flex justify-between">
           <view>
-            <text class="cuIcon-appreciatefill text-gray" bindtap="estimate" data-target="DialogModal4"></text>
-            <text class="cuIcon-close text-red margin-left-sm" bindtap="choosedelete" data-target="DialogModal3"></text>
+            <text class="cuIcon-appreciatefill text-gray" bindtap="estimate" data-index="{{idxx}}" data-target="DialogModal4"></text>
+            <text class="cuIcon-close text-red margin-left-sm" bindtap="choosedelete" data-index="{{idxx}}" data-target="DialogModal3"></text>
           </view>
         </view>
         

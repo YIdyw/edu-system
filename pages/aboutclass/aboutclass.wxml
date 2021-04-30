@@ -35,7 +35,8 @@
 				<view class="text-left padding">辅助教师：{{getmyclass[idxx].assistantList.teacher1name}}</view>
 				<view class="text-left padding">状态：{{status[idxx]}}</view>
 				<view class="padding flex flex-wrap justify-between align-center bg-white">
-  				<button class="cu-btn bg-green round " bindtap="signin" id="{{idxx}}">查看</button>
+					<!-- 新需求，学生查看某课程详细信息 -->
+  				<!-- <button class="cu-btn bg-green round " bindtap="signin" id="{{idxx}}">查看</button> -->
 				</view>
 			</view>
 		</view>
