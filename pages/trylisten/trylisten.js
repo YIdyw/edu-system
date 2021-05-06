@@ -41,7 +41,7 @@ Page({
   _getRemark(){
     let data = {
       userId: wx.getStorageSync('loginInfo').userid,
-      courseId:wx.getStorageSync('getmylisten')[0].courseId,
+      courseId:wx.getStorageSync('getmylisten')[this.data.idx].courseId,
     }
     getRemark(data).then(res=>{
       console.log(res)
@@ -53,6 +53,8 @@ Page({
         })
       }else{
         this.setData({
+          flag: 0,
+          remark: '',
           modalName4: 'DialogModal4'
         })
       }
@@ -101,7 +103,7 @@ Page({
   // 取消当前用户试听的某节课程，然后重新获取当前用户的试听课程列表，刷新页面
   _deleteListen(){
     var that=this
-    var courseId=wx.getStorageSync('getmylisten')[0].courseId
+    var courseId=wx.getStorageSync('getmylisten')[that.data.idx].courseId
     console.log(courseId)
     let data={
       userid:wx.getStorageSync('loginInfo').userid,
@@ -141,11 +143,12 @@ Page({
   _estimateClass(){
     var that=this;
     let data={
-      courseid:wx.getStorageSync('getmylisten')[0].courseId,
+      courseid:wx.getStorageSync('getmylisten')[that.data.idx].courseId,
       remark:that.data.esmessage,
       star:that.data.flag,
       stuid:wx.getStorageSync('loginInfo').userid
     }
+    console.log(data)
     estimateClass(data).then(res=>{
       console.log(res)
       this.setData({
@@ -210,6 +213,9 @@ Page({
   // 响应评价，退选等按钮
   estimate(e){
     var that = this
+    that.setData({
+      idx: e.currentTarget.dataset.index
+    })
     if(this.data.modalName4 == null){
       that._getRemark()
     }else{
@@ -219,7 +225,8 @@ Page({
   },
   choosedelete(e){
     this.setData({
-      modalName3: e.currentTarget.dataset.target
+      modalName3: e.currentTarget.dataset.target,
+      idx: e.currentTarget.dataset.index
     })
   },
   chooseorg(e){

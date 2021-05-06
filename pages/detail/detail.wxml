@@ -53,10 +53,11 @@
       <image class="way_image" src="icon/icon_click_in@2x.png"></image>
       <view class="way_name">点击报名</view>
     </view>
-    <view class="way_content" bindtap="course_reserve">
+    <!-- 预约课程需要推荐人信息，从该功能按钮跳转到预约页面缺少推荐人信息 -->
+    <!-- <view class="way_content" bindtap="course_reserve">
       <image class="way_image" src="icon/icon_interview@2x.png" ></image>
       <view class="way_name">课程预约</view>
-    </view>
+    </view> -->
     <view class="way_content" bindtap="movehome">
       <image class="way_image" src="icon/icon_self_page@2x.png"></image>
       <view class="way_name">个人首页</view>
