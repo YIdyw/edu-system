@@ -3,6 +3,8 @@
 import {
    getOrgInfo
 } from '../../network/search'
+
+var app = getApp()
 Page({
 
   /**
@@ -19,6 +21,17 @@ Page({
     afterColor: "red", //当前选中的指示点颜色
     // 轮播数据 + 效果 E
     controls: false,
+    statusBarHeight: app.time.statusBarHeight,
+    navigationBarHeight: (app.time.statusBarHeight + 44),
+    globalData:app.time.statusBarHeight, //状态栏高度,
+    globalDatas:app.nav.height + (app.nav.top - app.time.statusBarHeight)*2 + app.nav.top - app.time.statusBarHeight, //导航栏高度
+    globalDatassh: app.nav.height, //胶囊高度
+  },
+
+  back_self() {
+    wx.redirectTo({
+      url: '../my-stu/my-stu',
+    })
   },
   //获取当前学生已经报名的唯一一个机构的信息
   _getOrgInfo(){

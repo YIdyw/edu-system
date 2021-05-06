@@ -1,14 +1,40 @@
 <!-- 导航栏 -->
-<i-navigator></i-navigator>
+<!--component/navigator/navigator.wxml-->
+<!-- <view class="navbar" style="height: {{navigationBarHeight}}px">
+  <view style="height: {{statusBarHeight}}px"></view>
+  <view class='title-container'>
+    <view class='capsule' wx:if="{{ back || home }}">
+      <view class="back" bindtap='back' wx:if="{{back}}">
+        <image class="image" src='../../colorui/icon/back.png'></image>         
+      </view>
+      <view class="home" bindtap='backHome' wx:if="{{home}}">
+        <image class="image" src='../../colorui/icon/home.png'></image>
+      </view>
+    </view>
+    <view class='title'>{{text}}</view>
+  </view>
+</view>
+<view style="height: {{navigationBarHeight}}px; background: #2655CF;"></view> -->
 
-<navigator url="../my-stu/my-stu">个人首页</navigator>
+<!--component/navigator/navigator.wxml-->
+<view class="navigator" style="height:{{globalDatas+globalData}}px">
+
+  <view class="navigator1" style="height:{{globalData}}px"> </view>
+  <view class="navigator2" bindtap="back_self" style="height:{{globalDatassh}}px">
+    <text class="navigator3">个人首页</text>
+  </view>
+</view>
+
+<view  style="height:{{globalDatas+globalData}}px;"></view>
+
+<!-- <navigator url="../my-stu/my-stu">个人首页</navigator> -->
 <view class="cards" wx:for="{{org}}" wx:for-item="item" wx:key="item">
 	<navigator class="nav" url="../detail/detail?orgid={{item.orgId}}">
 		<view class="card" >
         <view bindtap="onItemClick">
 						<view class="name">
 							<text>机构名称:{{item.orgName}}</text>
-							<view class="cu-btn bg-green round">已关注</view>
+							<view class="cu-btn">已关注</view>
 						</view>
 						<view wx:if="{{item.orgExtraInfo.orgPicture != null}}">
             	<swiper class='bannerSwiper' previous-margin="54rpx" next-margin='54rpx' indicator-dots="true" indicator-color='#B5B5B5' indicator-active-color='#fff' interval='3000' duration='500' circular='true' autoplay="true">
@@ -32,10 +58,10 @@
                 </swiper-item>
               </swiper>
 						</view>
-            <view class="title">机构简称:{{item.orgExtraInfo.orgBriefName}}</view>
-						<view class="title">联系电话:{{item.orgExtraInfo.phone1}}</view>
-						<view class="title">企业介绍:{{item.orgExtraInfo.orgIntroduction}}</view>
-						<view class="title">地址:{{item.orgAddress}}</view>
+            <view class="title"><text decode="true">机构简称:&nbsp;&nbsp;{{item.orgExtraInfo.orgBriefName}}</text></view>
+						<view class="title"><text decode="true">联系电话:&nbsp;&nbsp;{{item.orgExtraInfo.phone1}}</text></view>
+						<view class="title"><text decode="true">企业介绍:&nbsp;&nbsp;{{item.orgExtraInfo.orgIntroduction}}</text></view>
+						<view class="title"><text decode="true">地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址:&nbsp;&nbsp;{{item.orgAddress}}</text></view>
         </view>
     </view>
 	</navigator>
