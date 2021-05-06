@@ -28,60 +28,60 @@
 .usermotto{
   margin-top: 10rpx;
 }
+
 .page {
- 
-  margin-left: 10rpx;
-   
-  margin-right: 10rpx;
-   
-  }
+  margin-left: 10rpx;   
+  margin-right: 10rpx;  
+}
    
    
-  .swiper-tab {
-   
+.swiper-tab {
   display: flex;
-   
   flex-direction: row;
-   
-  line-height: 80rpx;
-   
-  border-bottom: 2rpx solid #fff;
-   
-  }
+  line-height: 86rpx;
+  border-bottom: 1rpx solid #FFCCCC;
+  background-color: #FFFFFF;
+}
+
   scroll-view{
     height: 100%;
   }
    
    
-  .tab-item {
-   
+.tab-item {
   width: 33.3%;
-   
   text-align: center;
-   
-  font-size: 15px;
-   
-  color: #777;
-   
-  }
-   
-   
-  .swiper {
-   
-  height: 1100px;
-   
-  background: #fff;
-   
-  }
+  font-size: 30rpx;
+  color: #333333;
+  font-weight: 400;
+  
+}
    
    
-  .on {
+.swiper {
+  height: 1100px;   
+  /* background: #fff; */
+}
    
-  color: rgb(255, 185, 204);
    
-  border-bottom: 5rpx solid rgb(255, 185, 204);
-   
-  }
+.on {
+  color: #2655CF; 
+  /* border-bottom: 5rpx solid rgb(255, 185, 204);  */
+  position: relative;
+}
+
+.on::after {
+  content: '';
+  /* display: block; */
+  position: absolute;
+  top: 82rpx;
+  right: 50%;
+  margin-right: -50rpx;
+  height: 4rpx;
+  width: 100rpx;
+  background-color: #2655CF;
+}
+
   .select_box{
   width:45%;
   height:70%;
@@ -133,3 +133,26 @@
   padding: 10rpx;
 }
  
+.cu-form-group {
+  padding: 0 30rpx;
+}
+
+.cu-form-group .title {
+  position: absolute;
+  top: 50%;
+  margin-top: -18rpx;
+  left: 30rpx;
+}
+
+.cu-form-group picker {
+  padding-right: 36rpx;
+}
+
+.cu-form-group picker::after {
+  color: #C1C1C1;
+}
+
+.cu-btn {
+  background-color: #2655CF;
+  color: white;
+}

@@ -43,16 +43,16 @@
 </swiper-item>
  
 <swiper-item>
- 
-<view class="cu-form-group margin-top">
+<form>
+<view class="cu-form-group margin-top-sm">
 		<view class="title">选择机构</view>
 		<picker bindchange="chooseorg" value="{{index}}" range="{{getmyorg}}" range-key="{{'orgName'}}">
 			<view class="picker">
 				{{index?getmyorg[index].orgName:'点击选择'}}
 			</view>
 		</picker>
-	</view>
-  <view class="cu-form-group margin-top">
+</view>
+<view class="cu-form-group">
  	<view class="title">选择课程</view>
 		<picker bindchange="chooseclass" value="{{index1}}" range="{{getmyorgclass}}" range-key="{{'name'}}">
 			<view class="picker">
@@ -60,9 +60,10 @@
 			</view>
 		</picker>
 	</view>
-  <view class="padding flex flex-direction">
-   <button class="cu-btn bg-grey lg" bindtap="chooseclass1" >查看课程</button>
-   </view>
+	</form>
+  <view class="padding flex flex-direction margin-top">
+   <button class="cu-btn bg-grey lg" style="font-size:28rpx" bindtap="chooseclass1" >查看课程</button>
+  </view>
 </swiper-item>
 
 </swiper>
