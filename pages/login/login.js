@@ -218,6 +218,7 @@ Page({
           userid: wx.getStorageSync('loginInfo').userid,
           code: res.code
         }
+        console.log("这就是我的code："+res.code);
         code(data2).then(res1 =>{
           if(res1.code==200){
             console.log("code发送成功！")
