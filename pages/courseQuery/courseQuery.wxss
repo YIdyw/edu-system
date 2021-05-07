@@ -1,1 +1,83 @@
 /* pages/courseQuery/courseQuery.wxss */
+.head {
+  padding: 0 125rpx 0 124rpx;
+}
+
+.nav .cu-item {
+  height: 86rpx;
+  line-height: 86rpx;
+  margin: 0;
+  padding: 0;
+  flex: 0;
+  width: 125rpx;
+}
+
+.flex {
+  justify-content: space-between;
+}
+
+.nav .cu-item.cur {
+  color: #2655CF;
+}
+
+.nav .cu-item.cur::after {
+  width: 100rpx;
+  height: 4rpx;
+  margin-right: -50rpx;
+}
+
+.my-content {
+  margin: 20rpx 30rpx 0 30rpx;
+  height: 280rpx;
+  border-radius: 20rpx;
+}
+
+.my-content:last-child {
+  margin-bottom: 30rpx;
+}
+
+.cu-list.menu>.cu-item {
+  display: block;
+  padding: 0;
+}
+
+.cu-list.menu>.cu-item .cu-bar:first-child {
+  display: flex;
+  align-items: center;
+  padding: 26rpx 30rpx;
+  border-bottom: 1px solid #CCCCCC;
+  font-size: 30rpx;
+  color: #333333;
+}
+
+.cu-bar .action:first-child {
+  margin-left: 0;
+}
+
+.cu-bar .action:last-child {
+  margin-right: 0;
+}
+
+.cuIcon-favorfill::before {
+  color:  #F9DD1E;
+}
+
+.cu-list.menu>.cu-item .cu-bar:nth-child(2) {
+  padding-left: 30rpx;
+  font-size: 26rpx;
+  color: #333333;
+}
+
+.cu-list.menu>.cu-item .cu-bar:last-child {
+  padding-left: 30rpx;
+  padding-bottom: 30rpx;
+  min-height: 92rpx;
+  height: 92rpx;
+}
+
+.cu-list.menu>.cu-item .cu-bar:last-child>.action button {
+  font-size: 26rpx;
+  height: 62rpx;
+  border-radius: 31rpx;
+  background: linear-gradient(-90deg, #5BBAF7, #2655CF);
+}

@@ -1,20 +1,20 @@
 <!-- 导航栏 -->
 <i-navigator></i-navigator>
 
-<view class="bg-white padding-xs">
+<view class="bg-white head">
   <scroll-view scroll-x class="nav">
     <view class="flex text-center">
-      <view class="cu-item flex-sub {{index==tabCur?'text-olive cur':''}}" wx:for="{{tabTitle}}" wx:key="id" bindtap="tabSelect" data-id="{{item.id}}">{{item.name}}</view>
+      <view class="cu-item flex-sub {{index==tabCur?'cur':''}}" wx:for="{{tabTitle}}" wx:key="id" bindtap="tabSelect" data-id="{{item.id}}">{{item.name}}</view>
     </view>
   </scroll-view>
 </view>
 
-<view class="cu-list menu margin" wx:if="{{tabCur==0}}" wx:for="{{classNow}}" wx:key="id">
+<view class="cu-list menu my-content" wx:if="{{tabCur==0}}" wx:for="{{classNow}}" wx:key="id">
   <view class="cu-item">
-    <view class="content">
+    <view>
       <view class="cu-bar">
         <view class="action">
-          <text class="cuIcon-title text-orange"></text>{{item.name}}
+          {{item.name}}
         </view>
         <view class="action">
           <view class="cuIcon-favorfill text-red"></view>
@@ -25,8 +25,7 @@
         </view>
       </view>
       <view class="cu-bar">
-        <view class="action">
-          <text class="cuIcon-title text-olive"></text>
+        <view class="action" style="font-size: 26rpx">
           <view>开课时间：{{item.startTime}}至{{item.endTime}}</view>
         </view>
       </view>
@@ -36,18 +35,19 @@
           <button class="bg-olive margin-bottom text-sm" bindtap="courseInfo" data-id="{{item.courseId}}">学生课程信息</button>
         </view> -->
         <view class="action">
-          <button class="bg-olive margin-bottom text-sm" bindtap="signRecord" data-id="{{item.courseId}}">具体签到情况查询</button>
+          <button class="bg-olive text-sm" bindtap="signRecord" data-id="{{item.courseId}}">具体签到情况查询</button>
         </view>
       </view>
     </view>
   </view>
 </view>
-<view class="cu-list menu margin" wx:if="{{tabCur==1}}" wx:for="{{historyClass}}" wx:key="id">
+
+<view class="cu-list menu my-content" wx:if="{{tabCur==1}}" wx:for="{{historyClass}}" wx:key="id">
   <view class="cu-item">
-    <view class="content">
+    <view>
       <view class="cu-bar">
         <view class="action">
-          <text class="cuIcon-title text-orange"></text>{{item.name}}
+          {{item.name}}
         </view>
         <view class="action">
           <view class="cuIcon-favorfill text-red"></view>
@@ -58,14 +58,13 @@
         </view>
       </view>
       <view class="cu-bar">
-        <view class="action">
-          <text class="cuIcon-title text-olive"></text>
+        <view class="action"  style="font-size: 26rpx">
           <view>开课时间：{{item.startTime}}至{{item.endTime}}</view>
         </view>
       </view>
       <view class="cu-bar flex justify-end">
         <view class="action">
-          <button class="bg-olive margin-bottom text-sm" bindtap="signRecord" data-id="{{item.courseId}}">具体签到情况查询</button>
+          <button class="bg-olive text-sm" bindtap="signRecord" data-id="{{item.courseId}}">具体签到情况查询</button>
         </view>
       </view>
     </view>
