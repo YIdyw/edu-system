@@ -2,20 +2,72 @@
 <!-- 导航栏 -->
 <i-navigator></i-navigator>
 
-<view class="cu-bar bg-white solid-bottom padding-xl" bindtap="operations" data-operations="freetime">
-  <view class="action">
-    <text class="cuIcon-title text-olive"></text>可用时间段登记
+  <!-- <view class="cu-form-group">
+		<view class="text-red">*</view>
+		<view class="title">年级</view>
+		<picker bindchange="PickerChange" value="{{index}}" range="{{picker}}">
+			<view class="picker">
+				{{index?picker[index]:'请选择'}}
+			</view>
+		</picker>
+	</view> -->
+
+<!-- <form>
+  <view class="cu-form-group bg-white" bindtap="operations" data-operations="freetime" style="margin-top: 30rpx">
+    <view class="action">
+       <text class="cuIcon-title text-olive"></text>可用时间段登记 -->
+      <!-- <view class="content_title" >该机构开设课程</view>
+      <view class="for_rotate" style="transform:rotate({{degss}}deg);transition:all 0.8s;"></view>
+    </view>
   </view>
-</view>
-<view class="cu-bar bg-white solid-bottom padding-xl" bindtap="operations" data-operations="scheduleQuery">
-  <view class="action">
-    <text class="cuIcon-title text-olive"></text>课表查询
+  <view class="cu-form-group bg-white" bindtap="operations" data-operations="scheduleQuery">
+    <view class="action">
+      <text class="cuIcon-title text-olive"></text>课表查询
+    </view>
   </view>
-</view>
-<view class="cu-bar bg-white solid-bottom padding-xl" bindtap="operations" data-operations="courseQuery">
-  <view class="action">
-    <text class="cuIcon-title text-olive"></text>课程查询
+  <view class="cu-form-group bg-white" bindtap="operations" data-operations="courseQuery">
+    <view class="action">
+      <text class="cuIcon-title text-olive"></text>课程查询
+    </view>
   </view>
+</form>  -->
+<view>
+  <view class="institute_content clearfix"  bindtap="operations" data-operations="freetime">
+    <view class="time_signin">
+    </view>
+    <view class="time_signin_content">
+      <view class="content_title" >可用时间段登记</view>
+      <view class="for_rotate" style="transform:rotate({{degss}}deg);transition:all 0.8s;"></view>
+    </view>
+  </view>
+  <view class="institute_content clearfix"  bindtap="operations" data-operations="scheduleQuery">
+    <view class="search_table">
+    </view>
+    <view class="search_table_content">
+      <view class="content_title" >课表查询</view>
+      <view class="for_rotate" style="transform:rotate({{degss}}deg);transition:all 0.8s;"></view>
+    </view>
+  </view>
+  <!-- <view class="institute_content"  bindtap="operations" data-operations="scheduleQuery">
+    <view>
+      <view class="content_title" >课表查询</view>
+      <view class="for_rotate" style="transform:rotate({{degss}}deg);transition:all 0.8s;"></view>
+    </view>
+  </view> -->
+  <view class="institute_content clearfix"  bindtap="operations" data-operations="courseQuery">
+    <view class="search_course">
+    </view>
+    <view class="search_course_content" style="border-bottom: 0px">
+      <view class="content_title" >课程查询</view>
+      <view class="for_rotate" style="transform:rotate({{degss}}deg);transition:all 0.8s;"></view>
+    </view>
+  </view>
+  <!-- <view class="institute_content"  bindtap="operations" data-operations="courseQuery">
+    <view>
+      <view class="content_title" >课程查询</view>
+      <view class="for_rotate" style="transform:rotate({{degss}}deg);transition:all 0.8s;"></view>
+    </view>
+  </view> -->
 </view>
 <!-- <view class="cu-bar bg-white solid-bottom padding-xl" bindtap="operations" data-operations="gradeQuery">
   <view class="action">

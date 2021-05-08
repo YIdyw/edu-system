@@ -12,16 +12,14 @@
 <swiper class="swiper" current="{{currentTab}}" duration="200" bindchange="swiperChange">
  <!--我的机构 -->
 <swiper-item>
- 
-<view  class="cu-bar bg-white solid-bottom margin-top" wx:for="{{getmyorg}}" wx:for-index="idx" wx:key="id">
-<view class="padding bg-white" flex-direction: column>
-  <view class="text-left padding">机构名称：{{getmyorg[idx].orgName}}</view>
-	<view class="text-left padding">学号：{{getmyorg[idx].internalId}}</view>
-	<button class="cu-btn bg-green round " bindtap="getinorg" id="{{idx}}">进入机构</button>
- <button class="cu-btn bg-grey round " bindtap="deleteorg" id="{{idx}}">取消报名</button>
-</view>
-</view>
- 
+	<view  class="org_cards" wx:for="{{getmyorg}}" wx:for-index="idx" wx:key="id">
+		<view class=" bg-white" flex-direction: column>
+			<view class="text-left">机构名称：{{getmyorg[idx].orgName}}</view>
+			<view class="text-left">学号：{{getmyorg[idx].internalId}}</view>
+			<button class="cu-btn bg-green round " bindtap="getinorg" id="{{idx}}">进入机构</button>
+			<button class="cu-btn bg-grey round " bindtap="deleteorg" id="{{idx}}">取消报名</button>
+		</view>
+	</view>
 </swiper-item>
  <!--我的课程-->
 <swiper-item>

@@ -37,10 +37,11 @@
 							<view class="cu-btn">已关注</view>
 						</view>
 						<view wx:if="{{item.orgExtraInfo.orgPicture != null}}">
-            	<swiper class='bannerSwiper' previous-margin="54rpx" next-margin='54rpx' indicator-dots="true" indicator-color='#B5B5B5' indicator-active-color='#fff' interval='3000' duration='500' circular='true' autoplay="true">
+            	<!-- <swiper class='bannerSwiper' previous-margin="54rpx" next-margin='54rpx' indicator-dots="true" indicator-color='#B5B5B5' indicator-active-color='#fff' interval='3000' duration='500' circular='true' autoplay="true"> -->
+              <swiper class='bannerSwiper' indicator-dots="true" indicator-color='#2655CF' indicator-active-color='#fff' interval='3000' duration='500' circular='true' autoplay="true">
                 <block wx:for="{{item.orgExtraInfo.orgPicture}}" wx:for-item="item1" wx:key="index">
                   <swiper-item>
-                    <image class="{{index==xindex?'imageBanner':'imageBanner_small'}}" src="https://www.sanshidiboundless.com/offline-education-system{{item.orgExtraInfo.orgPicture[index]}}" id='{{index.url}}' ></image>
+                    <image class="imageBanner_small" src="https://www.sanshidiboundless.com/offline-education-system{{item.orgExtraInfo.orgPicture[index]}}" id='{{index.url}}' ></image>
                   </swiper-item>
                 </block>
               </swiper>
@@ -54,7 +55,7 @@
                   
                   </view> -->
 
-                  <video class='box-w block' id="video" src="https://www.sanshidiboundless.com/offline-education-system{{item.orgExtraInfo.orgVideo[index]}}" show-center-play-btn="true" autoplay="{{autoplay}}" objectFit="contain" loop="false" controls="false" show-fullscreen-btn="false"></video>
+                  <video class='box-w block' id="video" src="https://www.sanshidiboundless.com/offline-education-system{{item.orgExtraInfo.orgVideo[index]}}" show-center-play-btn="true" autoplay="{{autoplay}}" object-fit="fill" loop="false" controls="false" show-fullscreen-btn="false" catchtap="prevent_loop"></video>
                 </swiper-item>
               </swiper>
 						</view>

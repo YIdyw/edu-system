@@ -29,6 +29,10 @@
   margin-top: 10rpx;
 }
 
+page {
+  height: 100%;
+}
+
 .page {
   margin-left: 10rpx;   
   margin-right: 10rpx;  
@@ -59,8 +63,12 @@
    
    
 .swiper {
-  height: 1100px;   
+  height: calc(100% - 214rpx);   
   /* background: #fff; */
+}
+
+.swiper-item {
+  height: 100%;
 }
    
    
@@ -155,4 +163,16 @@
 .cu-btn {
   background-color: #2655CF;
   color: white;
+}
+
+.org_cards {
+  margin: 20rpx 30rpx 0;
+  padding: 30rpx;
+  height: 240rpx;
+  background-color: #FFFFFF;
+  border-radius: 20rpx;
+}
+
+.org_cards:last-child {
+  margin-bottom: 30rpx;
 }

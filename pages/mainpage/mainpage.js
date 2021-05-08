@@ -17,8 +17,8 @@ Page({
     interval: 5000, //轮播时间
     duration: 300, // 滑动速度越大越慢
     circular: true, //是否循环
-    beforeColor: "lightgray", //指示点颜色
-    afterColor: "red", //当前选中的指示点颜色
+    beforeColor: "blue", //指示点颜色
+    afterColor: "white", //当前选中的指示点颜色
     // 轮播数据 + 效果 E
     controls: false,
     statusBarHeight: app.time.statusBarHeight,
@@ -26,6 +26,10 @@ Page({
     globalData:app.time.statusBarHeight, //状态栏高度,
     globalDatas:app.nav.height + (app.nav.top - app.time.statusBarHeight)*2 + app.nav.top - app.time.statusBarHeight, //导航栏高度
     globalDatassh: app.nav.height, //胶囊高度
+  },
+
+  prevent_loop() {
+    console.log("阻止冒泡")
   },
 
   back_self() {
