@@ -240,9 +240,10 @@
     </view>
 </view>
 </view>
-<button wx:if="{{exitApp}}"  open-type="exit" target="miniProgram">
+
+<!-- <button wx:if="{{exitApp}}"  open-type="exit" target="miniProgram">
   <navigator>关闭按钮</navigator>
-</button>
+</button> -->
 
 </view>
 
