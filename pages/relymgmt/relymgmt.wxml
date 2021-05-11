@@ -1,97 +1,123 @@
 <!-- 导航栏 -->
 <i-navigator></i-navigator>
 
-<view class="cu-bar search bg-white">
-    <view class="search-form round">
+<view class="search">
+  <view class="search_icon"></view>
+  <view class="search_input">
+    <input type="text" placeholder="请输入关键字" confirm-type="search" bindinput="keywordsearch" bindinput="getsearch"></input>
+  </view>
+  <view class="search_title" bindtap="search">搜索</view>
+    <!-- <view class="search-form round">
       <text class="cuIcon-search"></text>
       <input type="text" placeholder="请输入关键字" confirm-type="search" bindinput="keywordsearch" bindinput="getsearch"></input>
     </view>
     <view class="action">
       <button class="cu-btn bg-green shadow-blur round" bindtap="search" >搜索</button>
-    </view>
-  </view>
-
-<view class="cu-form-group">
-  <view class="title">请选择挂靠机构</view>
-  <picker bindchange="PickerChange" value="{{idx}}" range="{{orgmsg}}" range-key="name" disabled="{{disabled}}">
-    <view class="picker">{{orgmsg[idx].name}}</view>
-  </picker>
+    </view> -->
 </view>
-<view class="padding bg-white" wx:if="{{!disabled && !isRely}}">
-  <view class="padding flex flex-direction">
-    <button class="cu-btn bg-olive lg shadow" bindtap="chooseRely">确认挂靠</button>
 
-    <view class="cu-bar bg-white solid-bottom">
-      <view class="action">
-        <text class="cuIcon-title text-olive"></text>您当前尚未挂靠机构
-      </view>
+<view class="choose_org">
+  <form>
+    <view class="cu-form-group">
+      <view class="title">请选择挂靠机构</view>
+      <picker bindchange="PickerChange" value="{{idx}}" range="{{orgmsg}}" range-key="name" disabled="{{disabled}}">
+        <view class="picker">{{orgmsg[idx].name}}</view>
+      </picker>
     </view>
-
-  </view>
+  </form>
 </view>
-<view class="padding bg-white" wx:elif="{{(disabled && !isRely)||(!disabled && isRely)}}">
-  <view class="padding flex flex-direction">
-    <button class="cu-btn bg-olive lg shadow" bindtap="relyReselect">重新选择</button>
 
-    <view class="cu-bar bg-white solid-bottom">
-      <view class="action">
-        <text class="cuIcon-title text-olive"></text>您已申请挂靠一个机构
-      </view>
-    </view>
 
+<view class="margin-top had_choose" wx:if="{{!disabled && !isRely}}">
+  <view class="padding flex flex-direction" style="padding-top: 0">
+    <button class="cu-btn choose_btn lg shadow" bindtap="chooseRely">确认挂靠</button>
+    <view class="choose_ad">您当前尚未挂靠机构</view>
   </view>
 </view>
-<view class="padding bg-white" wx:elif="{{disabled && isRely}}">
-  <view class="padding flex flex-direction">
-    <button class="cu-btn bg-olive lg shadow" bindtap="removeRely">取消挂靠</button>
 
-    <view class="cu-bar bg-white solid-bottom">
-      <view class="action">
-        <text class="cuIcon-title text-olive"></text>您已成功完成挂靠操作
-      </view>
-    </view>
-
+<view class="margin-top had_choose" wx:elif="{{(disabled && !isRely)||(!disabled && isRely)}}">
+  <view class="padding flex flex-direction" style="padding-top:0">
+    <button class="cu-btn choose_btn lg shadow" bindtap="relyReselect">重新选择</button>
+    <view class="choose_ad">您已申请挂靠一个机构</view>
   </view>
 </view>
+
+<view class="margin-top had_choose" wx:elif="{{disabled && isRely}}">
+  <view class="padding flex flex-direction" style="padding-top:0">
+    <button class="cu-btn choose_btn lg shadow" bindtap="removeRely">取消挂靠</button>
+    <view class="choose_ad">您已成功完成挂靠操作</view>
+  </view>
+</view>
+
 <view class="padding bg-white" wx:if="{{isReturn}}">
   <button class="cu-btn bg-olive lg shadow" bindtap="reConfirm">确认驳回</button>
 </view>
 
-<view class="cu-bar bg-white solid-bottom">
-  <view class="action">
-    <text class="cuIcon-title text-olive"></text>您所选择的挂靠机构为：{{orgmsg[idx].name}}
-  </view>
-</view>
-<view class="cu-bar bg-white solid-bottom">
-  <view class="action">
-    <text class="cuIcon-title text-olive"></text>您的进程已进行至：{{basicsList[basics].name}}
-  </view>
-</view>
-<view class="bg-white padding" style="padding:0px;font-size:12px;">
-  <view class="cu-steps">
-    <view class="cu-item {{index>basics?'':'text-green'}}" wx:for="{{basicsList}}" wx:key="id">
-      <text class="cuIcon-{{item.icon}}"></text>{{item.name}}
+
+<view class="rely_content">
+  <form>
+    <view class="cu-form-group">
+      <view class="blue_line"></view>
+      <view class="title">您所选择的挂靠机构为</view>
+      <view class="content">{{orgmsg[idx].name}}</view>
     </view>
-  </view>
-</view>
-<view class="cu-bar bg-white solid-bottom">
-  <view class="action">
-    <text class="cuIcon-title text-olive"></text>所选机构详细信息如下：
-  </view>
-</view>
-<view  class="cu-bar bg-white solid-bottom">
-  <view class="padding bg-white" flex-direction: column>
-    <view class="text-left padding">机构名称：{{orgmessage.name}}</view>
-    <view class="text-left padding">法人： {{orgmessage.legalPerson}}</view>
-    <view class="text-left padding">信用代码： {{orgmessage.creditCode}}</view>
-    <view class="text-left padding">成立时间：  {{orgmessage.estabDate}}</view>
-    <view class="text-left padding">员工规模：  {{orgmessage.staffScale}}</view>
-    <view class="text-left padding">招生规模：  {{orgmessage.recruitScale}}</view>
-    <view class="text-left padding">机构地址： {{orgmessage.address}} </view>
-    <view class="text-left padding">营业执照编号：  {{orgmessage.licenseNumber}}</view>
-    <view class="text-left padding">机构联系人：  {{orgmessage.contactName}}</view>
-    <view class="text-left padding">联系人电话：  {{orgmessage.contactPhone}}</view>
-  </view>
+    <view class="cu-form-group">
+      <view class="blue_line"></view>
+      <view class="title">您的进程已进行至</view>
+      <view class="content">{{basicsList[basics].name}}</view>
+    </view>
+    <view class="cu-form-group">
+      <view class="cu-steps">
+        <view class="cu-item {{index>basics?'':'text-mybluea'}}" wx:for="{{basicsList}}" wx:key="id">
+          <text class="cuIcon-{{item.icon}}"></text>{{item.name}}
+        </view>
+      </view>
+    </view>
+    <view class="cu-form-group">
+      <view class="blue_line"></view>
+      <view class="title">所选机构详细信息如下</view>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">机构名称</view>
+      <view class="content">{{orgmessage.name}}</view>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">法人</view>
+      <view class="content">{{orgmessage.legalPerson}}</view>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">信用代码</view>
+      <view class="content">{{orgmessage.creditCode}}</view>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">成立时间</view>
+      <view class="content">{{orgmessage.estabDate}}</view>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">员工规模</view>
+      <view class="content">{{orgmessage.staffScale}}</view>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">招生规模</view>
+      <view class="content">{{orgmessage.recruitScale}}</view>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">机构地址</view>
+      <view class="content">{{orgmessage.address}}</view>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">营业执照编号</view>
+      <view class="content">{{orgmessage.licenseNumber}}</view>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">机构联系人</view>
+      <view class="content">{{orgmessage.contactName}}</view>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">联系人电话</view>
+      <view class="content">{{orgmessage.contactPhone}}</view>
+    </view>
+  </form>
 </view>
 
 <view class="cu-modal {{modalShow?'show':''}}">

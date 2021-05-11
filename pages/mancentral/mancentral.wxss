@@ -1,1 +1,107 @@
 /* pages/mancentral/mancentral.wxss */
+/* pages/information/information.wxss */
+/* .cu-form-group .title {
+  min-width: calc(4em + 30rpx);
+} */
+
+.cu-form-group {
+  padding: 0 30rpx;
+}
+
+.cu-form-group .text-red {
+  /* display: flex; */
+  height: 10rpx;
+  width: 11rpx;
+  font-size: 26rpx;
+  position: absolute;
+  line-height: 95rpx;
+  top: 0;
+  left: 30rpx;
+}
+
+.cu-form-group .title {
+  position: absolute;
+  left: 30rpx;
+  top: 0;
+  /* margin-top: -11rpx; */
+  height: 28rpx;
+  /* width: 60rpx; */
+  font-size: 28rpx;
+  line-height: 80rpx;
+}
+
+
+.cu-form-group picker .picker {
+  line-height: 80rpx;
+}
+
+.cu-form-group picker::after {
+  line-height: 80rpx;
+  color: #FFC1C1C1;
+}
+
+.cu-form-group input {
+  position: absolute;
+  left: 215rpx;
+  margin-top: -8rpx;
+}
+
+.cu-btn {
+  background-color: #2655CF;
+  color: white;
+  font-size: 28rpx;
+}
+
+.cu-btn.lg {
+  font-size: 28rpx;
+}
+
+.cu-form-group .content {
+  position: absolute;
+  left: 215rpx;
+  color: #9D9D9D;
+  font-size: 26rpx;
+}
+
+.for_authen {
+  height: 105rpx;
+  width: 111.5rpx;
+  position: absolute;
+  /* background-color: blue; */
+  top: -12rpx;
+  right: 17rpx;
+  z-index: 2;
+}
+
+.auth_circle {
+  height: 100rpx;
+  width: 100rpx;
+  border: 5rpx solid #F14C4C;
+  border-radius: 50%;
+  margin-top: 2.5rpx;
+  margin-left: 5.75rpx;
+}
+
+.auth_row {
+  height: 40rpx;
+  width: 120rpx;
+  text-align: center;
+  border: 2rpx solid #F14C4C;
+  position: absolute;
+  font-size: 23.63rpx;
+  line-height: 40rpx;
+  top: 50%;
+  margin-top: -20rpx;
+  left: -4.25rpx;
+  transform: rotate(45deg);
+  z-index: 3;
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 10rpx;
+}
+
+.for_auth_no .no_authen {
+  background-color: transparent;
+  color: #F66060;
+  border: 1px solid #F66060;
+  border-radius: 8rpx;
+}

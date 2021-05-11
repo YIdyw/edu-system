@@ -4,41 +4,41 @@
 <i-navigator></i-navigator>
 
 <!-- 切换栏 --> 
-<view class="swiper-tab" style="top:{{globalData+globalDatas}}px;">
+<!-- <view class="swiper-tab" style="top:{{globalData+globalDatas}}px;"> -->
+<view class="swiper-tab">
   <block wx:for="{{swipertab}}" wx:key="sptab">
   <view class="swiper-tab-list {{currtab == item.index ? 'on' : ''}}" data-current="{{item.index}}" bindtap="tabSwitch">{{item.name}}</view>
   </block>
 </view>
- 
-<view class="test" style="top:{{globalData+globalDatas+40}}px;">
-<swiper current="{{currtab}}" class="swiper-box" duration="300"  style="height:{{deviceH-31}}px;" bindchange="tabChange">
+<view style="height: 86rpx"></view>
+<swiper current="{{currtab}}" class="swiper" duration="300"  bindchange="tabChange">
 <!-- 完成 -->
   <swiper-item>
     <scroll-view class="hot-box" scroll-y="true">
       <block wx:if="{{paidOrder.length==0}}">
         <view class="content" >
-          <view style="margin-top:100px;width:100%;">
+          <view>
             <view style='font-size:15px;'>未有已完成订单!</view>
           </view>
         </view>
       </block>
       <block wx:else>
     <view class="orderDetails" wx:for="{{paidOrder}}" wx:key="index" data-menuindex='{{index}}' bindtap="settledetail2" >
-      <view class="productImg"  >
         <view class="orderListDetails">
-          <image src="https://www.sanshidiboundless.com/offline-education-system/picture/{{item.orderItemVOList[0].orderItem.object.adverPhoto}}" background-size="cover"></image>
-        <view class="productInfo">
-          <view class="productTitle">预定时间: {{item.orderTime}}</view>
-            <text class="productPrice">订单编号：{{item.orderId}}</text>
+          <image src="https://www.sanshidiboundless.com/offline-education-system/picture/{{item.orderItemVOList[0].orderItem.object.adverPhoto}}"></image>
+        </view>
+        <view class="orderListInfo">
+          <view class="productInfo">
+            <view class="productTitle">预定时间: {{item.orderTime}}</view>
+              <text class="productPrice">订单编号: {{item.orderId}}</text>
+          </view>
+          <view class="productCount">
+            <view>
+              <text>合计：￥{{item.transaction}}</text>
+            </view>
+          </view>
           </view>
         </view>
-        <view class="productCount">
-          <view>
-            <text>合计：￥{{item.transaction}}</text>
-          </view>
-        </view>
-      </view>
-      </view>
       </block>
     </scroll-view>
   </swiper-item>
@@ -47,7 +47,7 @@
     <scroll-view class="hot-box" scroll-y="true">
       <view wx:if="{{tobepaidOrder.length==0}}">
         <view class="content" >
-          <view style="margin-top:100px;width:100%;">
+          <view>
             <view style='font-size:15px;'>未有待付款订单!</view>
           </view>
         </view>
@@ -56,17 +56,20 @@
       <view class="orderDetails" wx:for="{{tobepaidOrder}}" data-menuindex='{{index}}' wx:key="index" bindtap="settlement">
         <view class="orderListDetails">
           <image class="productImg" src="https://www.sanshidiboundless.com/offline-education-system/picture/{{item.orderItemVOList[0].orderItem.object.adverPhoto}}" background-size="cover"></image>
-        <view class="productInfo">
-          <view class="productTitle">预定时间: {{item.orderTime}}</view>
-            <text class="productPrice">订单编号：{{item.orderId}}</text>
+        </view>
+        
+        <view class="orderListInfo">
+          <view class="productInfo">
+            <view class="productTitle">预定时间: {{item.orderTime}}</view>
+              <text class="productPrice">订单编号: {{item.orderId}}</text>
+            </view>
+          </view>
+          <view class="productCount">
+            <view>
+              <text>合计：￥{{item.transaction}}</text>
+            </view>
           </view>
         </view>
-        <view class="productCount">
-          <view>
-            <text>合计：￥{{item.transaction}}</text>
-          </view>
-        </view>
-      </view>
       </view>
     </scroll-view>
   </swiper-item>
@@ -75,31 +78,31 @@
     <scroll-view class="hot-box" scroll-y="true">
       <view wx:if="{{cancelOrder.length==0}}">
         <view class="content" >
-          <view style="margin-top:100px;width:100%;">
+          <view>
             <view style='font-size:15px;'>未有已取消订单!</view>
           </view>
         </view>
       </view>
       <view wx:else>
     <view class="orderDetails" wx:for="{{cancelOrder}}" wx:key="index"  data-menuindex='{{index}}' bindtap="settledetail">
-      <view class="productImg">
         <view class="orderListDetails">
-          <image src="https://www.sanshidiboundless.com/offline-education-system/picture/{{item.orderItemVOList[0].orderItem.object.adverPhoto}}" background-size="cover"></image>
-        <view class="productInfo">
-          <view class="productTitle">预定时间: {{item.orderTime}}</view>
-            <text class="productPrice">订单编号：{{item.orderId}}</text>
-          </view>
+          <image src="https://www.sanshidiboundless.com/offline-education-system/picture/{{item.orderItemVOList[0].orderItem.object.adverPhoto}}"></image>
         </view>
-        <view class="productCount">
+        <view class="orderListInfo">
+          <view class="productInfo">
+            <view class="productTitle">预定时间: {{item.orderTime}}</view>
+              <text class="productPrice">订单编号: {{item.orderId}}</text>
+            </view>
+            <view class="productCount">
           <view>
             <text>合计：￥{{item.transaction}}</text>
           </view>
         </view>
-      </view>
-      </view>
+          </view>
+          
+        </view>
       </view>
     </scroll-view>
   </swiper-item>
  
 </swiper>
-</view>

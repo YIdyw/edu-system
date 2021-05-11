@@ -42,15 +42,20 @@
     </view>
   </view>
 </view> -->
-<view class="cu-bar bg-white solid-bottom margin-top">
+<!-- <view class="cu-bar bg-white solid-bottom margin-top">
   <view class="action">
-    <text class="cuIcon-title text-blue"></text>我的试听
+    <text class="cuIcon-title text-blue"></text>
   </view>
+</view> -->
+
+<view class="adver_title">
+  <view class="blue_line"></view>
+  <view class="adver_title_content">我的试听</view>
 </view>
-<view wx:if="{{getmylisten.length==0}}" class="cu-bar bg-white solid-bottom margin-top">
-  <view class="action">
-    <text class="cuIcon-title text-red"></text>您暂未试听课程
-  </view>
+
+
+<view wx:if="{{getmylisten.length==0}}">
+  <view class="no_course">您暂未试听课程</view>
 </view>
 <view wx:else >
 <view  class="cu-list menu-avatar comment solids-top" wx:for="{{getmylisten}}" wx:key="key" wx:for-index="idxx">

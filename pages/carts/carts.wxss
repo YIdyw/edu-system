@@ -193,3 +193,29 @@
   border: 2rpx solid #ccc;
   border-radius: 88rpx;
 }
+
+.cart_icon {
+  height: 250rpx;
+  width: 250rpx;
+  margin: 162rpx auto 0;
+  background-color: #D0D7E8;
+  border-radius: 50%;
+  position: relative;
+}
+
+.cart_icon::before {
+  content: "\e6af";
+  font-family: 'cuIcon';
+  display: block;
+  position:  absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 130rpx;
+  margin-left: -65rpx;
+  margin-top: -65rpx;
+}
+
+.cart_nothing {
+  margin-top: 34rpx;
+  font-size: 30rpx;
+}

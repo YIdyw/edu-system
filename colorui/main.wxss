@@ -3972,6 +3972,12 @@ scroll-view.cu-steps .cu-item {
 	color: var(--green);
 }
 
+.text-mybluea,
+.line-mybluea,
+.lines-mybluea {
+	color: var(--mybluea);
+}
+
 .text-cyan,
 .line-cyan,
 .lines-cyan {

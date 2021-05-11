@@ -24,18 +24,30 @@ Page({
     deviceH: 0
   },
 
+  // 时间字符串拼接
+  add_time(res) {
+    console.log("1")
+    for(var data of res) {
+      data.orderTime = ' ' + data.orderTime.substring(0, 10) + ' ' + data.orderTime.substring(11, 19) 
+    }
+    return res;
+  },
+
   //查询已完成订单
   _paidOrder(){
     var userid = wx.getStorageSync('loginInfo').userid
     paidOrder(userid).then(res =>{
       if(res.code==200){
         console.log("查询已完成订单成功！",res.data)
+        this.add_time(res.data.orderListVOS)
         this.setData({
           paidOrder: res.data.orderListVOS
         })
       }
     })
   },
+  
+
   //进入订单详情页面
   settledetail(e) {
     var index = e.currentTarget.dataset.menuindex
@@ -65,6 +77,7 @@ Page({
       tobepaidOrder(userid).then(res =>{
         if(res.code==200){
           console.log("查询未支付订单成功！",res.data)
+          this.add_time(res.data.orderListVOS)
           this.setData({
             tobepaidOrder: res.data.orderListVOS,
           })
@@ -77,6 +90,7 @@ Page({
     cancelledOrder(userid).then(res =>{
       if(res.code==200){
         console.log("查询已取消订单成功！",res.data)
+        this.add_time(res.data.orderListVOS)
         this.setData({
           cancelOrder: res.data.orderListVOS
         })

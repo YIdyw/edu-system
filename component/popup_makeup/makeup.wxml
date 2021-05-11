@@ -1,5 +1,50 @@
 <!--component/popup_makeup/makeup.wxml-->
-<modal height='600rpx' width='100%' hidden="{{ismakeup}}" title="学生补课申请记录" confirm-text="确认" cancel-text="取消" bindcancel="cancelM" bindconfirm="confirmM" >
+<!--component/popup_leave/leave.wxml-->
+<view class="bg" hidden="{{ismakeup}}"></view>
+<view class="card" hidden="{{ismakeup}}">
+  <view style="height: 100%">
+    <view class="userinfo-type">
+      <view class="left">
+        <view class="left-line"></view>
+      </view>
+      <text class="div-line">学生补课记录</text>
+      <view class="right">
+        <view class="right-line"></view>
+      </view>
+    </view>
+    <view style="margin-top:40rpx; height:830rpx; padding:0 40rpx;">
+      <scroll-view  scroll-y="true">
+        <view class="little_card" wx:for="{{makeup}}" wx:key="index">
+          <view class="head">
+            <view class="stu_name">{{item.userName}}</view>
+            <view class="stu_time">{{item.leaveStartTime}}</view>
+            <view class="judge_type" style="color: #F48C05" wx:if="{{item.isChecked == 10}}">待审核</view>
+            <view class="judge_type" style="color: #0ACA64" wx:elif="{{item.isChecked == 20}}">已通过</view>
+            <view class="judge_type" style="color: #0ACA64" wx:else="{{item.isChecked == 30}}">未通过</view>
+          </view>
+          <view class="content">
+            <text decode="true" class="content_title">补课课程:&nbsp;</text>
+            <text class="content_content">{{item.courseName}}</text>
+          </view>
+          <view class="content" style="margin-top: 30rpx">
+            <text decode="true" class="content_title">补课理由:&nbsp;</text>
+            <text class="content_content">{{item.declineReason}}</text>
+          </view>
+          <view class="content_judge" style="margin-top:16rpx">
+            <text decode="true" class="content_title">是否批准:&nbsp;</text>
+            <button wx:if="{{item.isChecked==20||item.isChecked==30}}" class="none" data-index="{{index}}">操作</button>
+            <button wx:else class="do" bindtap="changecheck"  data-index="{{index}}">操作</button>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+    <view class="btn">
+      <view bindtap="cancelM">取消</view>
+      <view class="confirm" bindtap="confirmM">确定</view>
+    </view>
+  </view>
+</view>
+<!-- <modal height='600rpx' width='100%' hidden="{{ismakeup}}" title="学生补课申请记录" confirm-text="确认" cancel-text="取消" bindcancel="cancelM" bindconfirm="confirmM" >
       <scroll-view class="table" scroll-y="true" scroll-x="true">
         <view class="tr bg-w">
           <view class="th">学生姓名</view>
@@ -32,7 +77,7 @@
           </view>
         </block>
       </scroll-view>
-</modal>
+</modal> -->
 
 <modal hidden="{{isrefuse}}" title="拒绝" confirm-text="确认拒绝" cancel-text="取消" bindcancel="cancel_refuse" bindconfirm="confirm_refuse">
       <input bindinput='_refuse_content' type='text' placeholder="拒绝理由:" auto-focus/>

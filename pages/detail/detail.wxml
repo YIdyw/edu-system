@@ -123,14 +123,15 @@
     <view class="cards" wx:for="{{activity.data.activities}}" wx:for-item="item" wx:key="item">
 		  <view class="card" >
         <view bindtap="onItemClick">
-					<view class="name">
-						<text>活动名称:{{item.actName}}</text>
-					</view>
+          <view class="title">活动开始时间:{{item.actStartTime}}</view>
+					<view class="title">活动结束时间:{{item.actEndTime}}</view>
+					<view class="title">活动介绍:{{item.actDescription}}</view>
+					<view class="title" style="margin-botton:  30rpx">活动名称:{{item.actName}}</view>
 					<view>
-            <swiper class='bannerSwiper' previous-margin="54rpx" next-margin='54rpx' indicator-dots="true" indicator-color='#B5B5B5' indicator-active-color='#fff' interval='3000' duration='500' circular='true' autoplay="true">
+            <swiper class='bannerSwiper' indicator-dots="true" indicator-color='#B5B5B5' indicator-active-color='#fff' interval='3000' duration='500' circular='true' autoplay="true">
               <block wx:for="{{item.actPicture}}" wx:for-item="item1" wx:key="index">
                 <swiper-item>
-                  <image class="{{index==xindex?'imageBanner':'imageBanner_small'}}" src="https://www.sanshidiboundless.com/offline-education-system{{item.actPicture[index]}}" id='{{index.url}}' ></image>
+                  <image class="imageBanner_small" src="https://www.sanshidiboundless.com/offline-education-system{{item.actPicture[index]}}" id='{{index.url}}' ></image>
                 </swiper-item>
               </block>
             </swiper>
@@ -146,12 +147,9 @@
               </swiper-item>
             </swiper>
 					</view>
-          <view class="title">活动开始时间:{{item.actStartTime}}</view>
-					<view class="title">活动结束时间:{{item.actEndTime}}</view>
-					<view class="title">活动介绍:{{item.actDescription}}</view>
+          
         </view>
     </view>
-	 卡片与卡片的空白间隔 
 	<view class="space"></view>
   </view>
 </view>

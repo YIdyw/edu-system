@@ -53,9 +53,8 @@
   </block>
   <block wx:else>
      <view class="content" >
-      <view style="margin-top:50px;width:100%;">
-       <view style='font-size:15px;'>购物车没有商品!</view>
-      </view>
+      <view class="cart_icon"></view>
+      <view class="cart_nothing">购物车没有商品!</view>
     </view>
   </block>
 

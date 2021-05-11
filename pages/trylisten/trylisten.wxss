@@ -27,3 +27,31 @@ radio-group{
   font-family: Microsoft YaHei;
   margin-top: -6rpx;
 }
+
+.adver_title {
+  height: 28rpx;
+  width: 100%;
+  margin-top: 30rpx;
+  position: relative;
+}
+
+.adver_title .blue_line {
+  width: 8rpx;
+  height: 28rpx;
+  position: absolute;
+  left: 30rpx;
+  background: linear-gradient(90deg, #5BBAF7, #2655CF);
+}
+
+.adver_title .adver_title_content {
+  position: absolute;
+  left: 56rpx;
+  font-size: 28rpx;
+  line-height: 28rpx;
+}
+
+.no_course {
+  position: absolute;
+  top: 574rpx;
+  left: 260rpx;
+}

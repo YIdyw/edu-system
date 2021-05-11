@@ -8,35 +8,56 @@
 </view>
 
 <!--内容主体-->
- 
+ <view style="height: 86rpx"></view>
+
 <swiper class="swiper" current="{{currentTab}}" duration="200" bindchange="swiperChange">
  <!--我的机构 -->
 <swiper-item>
-	<view  class="org_cards" wx:for="{{getmyorg}}" wx:for-index="idx" wx:key="id">
-		<view class=" bg-white" flex-direction: column>
-			<view class="text-left">机构名称：{{getmyorg[idx].orgName}}</view>
-			<view class="text-left">学号：{{getmyorg[idx].internalId}}</view>
-			<button class="cu-btn bg-green round " bindtap="getinorg" id="{{idx}}">进入机构</button>
-			<button class="cu-btn bg-grey round " bindtap="deleteorg" id="{{idx}}">取消报名</button>
+	<scroll-view scroll-y='true'>
+		<view  class="org_cards" wx:for="{{getmyorg}}" wx:for-index="idx" wx:key="id">
+			<view class="org_name">机构名称：{{getmyorg[idx].orgName}}</view>
+			<view class="stu_no">学号：{{getmyorg[idx].internalId}}</view>
+			<view class="click_btn">
+				<button class="cu-btn in_org" bindtap="getinorg" id="{{idx}}">进入机构</button>
+				<button class="cu-btn cancel_org" bindtap="deleteorg" id="{{idx}}">取消报名</button>
+			</view>
 		</view>
-	</view>
+	</scroll-view>
 </swiper-item>
  <!--我的课程-->
 <swiper-item>
 	<scroll-view scroll-y='true'>
-		<view  class="cu-bar bg-white solid-bottom margin-top" wx:for="{{getmyclass}}" wx:for-index="idxx" wx:key="id">
-			<view class="padding bg-white" flex-direction: column>
-  			<view class="text-left padding">课程名称：{{getmyclass[idxx].name}}</view>
-  			<view class="text-left padding">开始时间：{{begintime[idxx]}}</view>
-				<view class="text-left padding">结束时间：{{endtime[idxx]}}</view>
-				<view class="text-left padding">主讲教师：{{getmyclass[idxx].teacherList.teacher1name}}</view>
-				<view class="text-left padding">辅助教师：{{getmyclass[idxx].assistantList.teacher1name}}</view>
-				<view class="text-left padding">状态：{{status[idxx]}}</view>
-				<view class="padding flex flex-wrap justify-between align-center bg-white">
+		<view wx:for="{{getmyclass}}" wx:for-index="idxx" wx:key="id" class="for_bottom">
+			<form>
+  			<view class="cu-form-group margin-top">
+					<view class="title">课程名称</view>
+					<view class="content">{{getmyclass[idxx].name}}</view>
+				</view>
+  			<view class="cu-form-group">
+					<view class="title">开始时间</view>
+					<view class="content">{{begintime[idxx]}}</view>
+				</view>
+				<view class="cu-form-group">
+					<view class="title">结束时间</view>
+					<view class="content">{{endtime[idxx]}}</view>
+				</view>
+				<view class="cu-form-group">
+					<view class="title">主讲教师</view>
+					<view class="content">{{getmyclass[idxx].teacherList.teacher1name}}</view>
+				</view>
+				<view class="cu-form-group">
+					<view class="title">辅助教师</view>
+					<view class="content">{{getmyclass[idxx].assistantList.teacher1name}}</view>
+				</view>
+				<view class="cu-form-group">
+					<view class="title">状态</view>
+					<view class="content">{{status[idxx]}}</view>
+				</view>
+				<!-- <view class="padding flex flex-wrap justify-between align-center bg-white"> -->
 					<!-- 新需求，学生查看某课程详细信息 -->
   				<!-- <button class="cu-btn bg-green round " bindtap="signin" id="{{idxx}}">查看</button> -->
-				</view>
-			</view>
+				<!-- </view> -->
+			</form>
 		</view>
 	</scroll-view>
 </swiper-item>

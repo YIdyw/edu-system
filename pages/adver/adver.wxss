@@ -1,1 +1,108 @@
 /* pages/adver/adver.wxss */
+.adver_title {
+  height: 28rpx;
+  width: 100%;
+  margin-top: 30rpx;
+  position: relative;
+}
+
+.adver_title .blue_line {
+  width: 8rpx;
+  height: 28rpx;
+  position: absolute;
+  left: 30rpx;
+  background: linear-gradient(90deg, #5BBAF7, #2655CF);
+}
+
+.adver_title .adver_title_content {
+  position: absolute;
+  left: 56rpx;
+  font-size: 28rpx;
+  line-height: 28rpx;
+}
+
+.cards {
+  /* height: 902rpx; */
+  width: 690rpx;
+  margin: 30rpx auto 0;
+  padding: 36rpx 30rpx 40rpx;
+  background-color: #FFFFFF;
+  border-radius: 20rpx;
+}
+
+.cards .cards_title {
+  font-size: 30rpx;
+  font-weight: 400;
+  color: #333333;
+}
+
+.cards .cards_content {
+  font-size: 26rpx;
+  margin-top: 20rpx;
+  font-weight: 300;
+}
+
+.cards .cards_content:first-child {
+  margin-top: 30rpx;
+}
+
+.cards .cards_content:nth-child(2) {
+  margin-top: 30rpx;
+}
+
+.cards .cards_content:nth-child(3) {
+  margin-top: 30rpx;
+}
+
+.cards .cards_image {
+  width: 630rpx;
+  height: 180rpx;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-top: 30rpx;
+  border-radius: 10rpx;
+  overflow: hidden;
+}
+
+.cards .course_title {
+  text-align: center;
+  margin-top: 30rpx;
+  font-size: 30rpx;
+  font-weight: 300;
+}
+
+.scan {
+  width: 690rpx;
+  margin: 20rpx auto 0;
+  padding: 30rpx 55rpx;
+  background-color: #FFFFFF;
+  border-radius: 20rpx;
+}
+
+.scan .scan_title {
+  text-align: center;
+  font-size: 36rpx;
+  font-weight: 300;
+}
+
+.scan .scan_image {
+  height: 599rpx;
+  width: 580rpx;
+  margin-top: 30rpx;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.scan .scan_content {
+  text-align: center;
+  font-size: 36rpx;
+  font-weight: 300;
+  margin-top: 30rpx;
+}
+
+.choose_btn {
+  background: linear-gradient(0deg, #2655CF, #3C69DE);
+  color: #FFFFFF;
+  width: 690rpx;
+  margin: 60rpx 30rpx;
+}

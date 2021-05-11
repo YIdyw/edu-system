@@ -1,1 +1,163 @@
 /* pages/relymgmt/relymgmt.wxss */
+.search {
+  height: 72rpx;
+  width: 690rpx;
+  margin: 30rpx auto 0;
+  padding: 0 30rpx;
+  border-radius: 36rpx;
+  border: 1px solid #2655CF;
+  background-color: #FFFFFF;
+  display: flex;
+  align-items: center;
+}
+
+.search .search_icon {
+  width: 28rpx;
+  height: 72rpx;
+  line-height: 72rpx;
+  margin-right: 19rpx;
+  /* background-color: red; */
+}
+
+.search .search_icon::after {
+  content: "\e65c";
+  font-family: 'cuIcon';
+  font-size: 29rpx;
+}
+
+.search .search_input {
+  flex: 1;
+}
+
+.search .search_title {
+  width: 62rpx;
+  height: 72rpx;
+  line-height: 72rpx;
+  font-size: 30rpx;
+  color: #2655CF;
+}
+
+.choose_org {
+  margin-top: 30rpx;
+  height: 80rpx;
+}
+
+.cu-form-group picker {
+  padding-right: 30rpx;
+  position: relative;
+}
+
+.cu-form-group picker::after {
+  color: #C1C1C1;
+}
+
+.cu-form-group picker .picker {
+  line-height: 80rpx;
+  padding-right: 27rpx;
+}
+
+.cu-form-group .title {
+  position: absolute;
+  top: 23rpx;
+  left: 30rpx;
+}
+
+.cu-form-group picker::after {
+  float: right;
+  margin-right: 30rpx;
+  margin-top: -8rpx;
+  font-size: 26rpx;
+}
+
+.had_choose .choose_btn {
+  background-color: #2655CF;
+  color: #FFFFFF;
+}
+
+.choose_ad {
+  text-align: center;
+  margin: 28rpx auto 0;
+  font-size: 28rpx;
+  color: #F66060;
+}
+
+.cu-form-group {
+  padding: 0 30rpx;
+}
+
+.cu-form-group .text-red {
+  /* display: flex; */
+  height: 10rpx;
+  width: 11rpx;
+  font-size: 26rpx;
+  position: absolute;
+  line-height: 95rpx;
+  top: 0;
+  left: 30rpx;
+}
+
+/* .cu-form-group .title {
+  position: absolute;
+  left: 30rpx;
+  top: 0;
+  height: 28rpx;
+  font-size: 28rpx;
+  line-height: 80rpx;
+} */
+
+.cu-form-group .content {
+  position: absolute;
+  left: 215rpx;
+  color: #9D9D9D;
+  font-size: 26rpx;
+}
+
+.cu-form-group .blue_line {
+  width: 8rpx;
+  height: 28rpx;
+  position: absolute;
+  top: 26rpx;
+  left: 30rpx;
+  background: linear-gradient(90deg, #5BBAF7, #2655CF);
+
+}
+
+.cu-form-group:first-child .title {
+  left: 56rpx;
+}
+
+.cu-form-group:first-child .content {
+  left: 367rpx;
+}
+
+.cu-form-group:nth-child(2) .title {
+  left: 56rpx;
+}
+
+.cu-form-group:nth-child(2) .content {
+  left: 310rpx;
+}
+
+.cu-form-group:nth-child(4) .title {
+  left: 56rpx;
+}
+
+.cu-steps .cu-item {
+  font-size: 22rpx;
+  min-width: 105rpx;
+  padding-top: 16rpx;
+  padding-bottom: 16rpx;
+  box-sizing: border-box;
+}
+
+.cu-steps .cu-item [class*="cuIcon-"] {
+  font-size: 40rpx;
+  line-height: 40rpx;
+  margin-bottom: 13rpx;
+}
+
+.rely_content {
+  margin-bottom: 30rpx;
+}
+
+

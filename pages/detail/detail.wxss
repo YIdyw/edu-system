@@ -448,3 +448,37 @@
   background-repeat: no-repeat;
   float: left;
 }
+
+.institute_content .cards {
+  border-bottom: 1px solid #CCCCCC;
+  padding-bottom: 10rpx;
+  margin-bottom: 50rpx;
+}
+
+.institute_content .cards:last-child {
+  border-bottom: 0;
+}
+
+.cards .title {
+  font-size: 26rpx;
+  margin-bottom: 19rpx;
+}
+
+
+swiper {
+  height: 180rpx;
+  width: 630rpx;
+  margin-bottom: 20rpx;
+  border-radius: 10rpx;
+  overflow: hidden;
+}
+
+.imageBanner_small {
+  width: 100%;
+  height: 100%;
+}
+
+video {
+  width: 100%;
+  height: 100%;
+}
