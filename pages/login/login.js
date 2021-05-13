@@ -197,7 +197,7 @@ Page({
   //消息推送，模板消息******************************************
   _message(){
     wx.requestSubscribeMessage({
-      tmplIds: ["Ay8VcpCaY_bqB_uvjLntnShzPXcsv_0J4Ya3JuEwHEc","Db5GfNzzqozgQdnHfpZYyFRgFIRewm1omkQe-8lF9Zc",],
+      tmplIds: ["Ay8VcpCaY_bqB_uvjLntnShzPXcsv_0J4Ya3JuEwHEc","Db5GfNzzqozgQdnHfpZYyFRgFIRewm1omkQe-8lF9Zc","Db5GfNzzqozgQdnHfpZYyFRgFIRewm1omkQe-8lF9Zc",],
       success (res) {
         console.log("可以进行推送")
         console.log(res)
