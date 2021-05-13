@@ -1,8 +1,9 @@
 <!-- 导航栏 -->
 <i-navigator></i-navigator>
 
-<form wx:if="{{!flag}}">
-	<view class="cu-form-group">
+<view wx:if="{{!flag}}">
+<form>
+	<view class="cu-form-group" style="margin-top:30rpx">
 		<view class="text-red">*</view>
 		<view class="title">毕业院校</view>
 		<input placeholder="{{checkinInfo.gradSchool?checkinInfo.gradSchool:'毕业院校'}}" maxlength="30" bindinput="handleSchool"></input>
@@ -10,8 +11,8 @@
 	<view class="cu-form-group">
 		<view class="text-red">*</view>
 		<view class="title">学历</view>
-		<picker range="{{educations}}" bindchange="eduChange">
-			<view>{{educations[eduIdx]}}</view>
+		<picker  range="{{educations}}" bindchange="eduChange">
+			<view class="picker">{{educations[eduIdx]}}</view>
 		</picker>
 	</view>
 	<view class="cu-form-group">
@@ -22,7 +23,7 @@
 	<view class="cu-form-group">
 		<view class="text-red">*</view>
 		<view class="title">学历证书照片</view>
-		<view class="grid col-2 grid-square flex-sub margin-top">
+		<!-- <view class="grid col-2 grid-square flex-sub margin-top">
 			<view class="bg-img" wx:if="{{eduImg.length}}" wx:key='id' bindtap="ViewImage" data-url="{{eduImg}}" data-type="eduImg">
 				<image src='{{eduImg}}' mode='aspectFill'></image>
 				<view class="cu-tag bg-red" catchtap="delImg" data-type="eduImg">
@@ -32,13 +33,26 @@
 			<view wx:else class="solids" bindtap="chooseImg" data-type="eduImg">
 				<text class="cuIcon-cameraadd"></text>
 			</view>
-		</view>
+		</view> -->
 		<view class="action">{{eduImg.length}}/1</view>
+	</view>
+	<view class="cu-form-group">
+		<view class="for_image">
+			<view class="bg-img" wx:if="{{eduImg.length}}" wx:key='id' bindtap="ViewImage" data-url="{{eduImg}}" data-type="eduImg">
+				<image src='{{eduImg}}' mode='aspectFill'></image>
+				<view class="cu-tag bg-red" catchtap="delImg" data-type="eduImg">
+					<text class="cuIcon-close"></text>
+				</view>
+			</view>
+			<view wx:else class="solids camera" bindtap="chooseImg" data-type="eduImg">
+				<text class="cuIcon-cameraadd"></text>
+			</view>
+		</view>
 	</view>
   <view class="cu-form-group">
 		<view class="title">学位</view>
 		<picker range="{{degrees}}" bindchange="degreeChange">
-			<view>{{degrees[deIdx]}}</view>
+			<view class="picker">{{degrees[deIdx]}}</view>
 		</picker>
 	</view>
 	<view class="cu-form-group">
@@ -46,8 +60,9 @@
 		<input placeholder="{{checkinInfo.degreeCertId?checkinInfo.degreeCertId:'学位编号'}}" maxlength="30"  type="number" bindinput="handleDegNum"></input>
 	</view>
 	<view class="cu-form-group">
+		<view class="text-red" style="color:transparent">*</view>
 		<view class="title">学位证书照片</view>
-		<view class="grid col-2 grid-square flex-sub margin-top">
+		<!-- <view class="grid col-2 grid-square flex-sub margin-top">
 			<view class="bg-img" wx:if="{{degImg.length}}" wx:key='id' bindtap="ViewImage" data-url="{{degImg}}" data-type="degImg">
 				<image src='{{degImg}}' mode='aspectFill'></image>
 				<view class="cu-tag bg-red" catchtap="delImg" data-type="degImg">
@@ -57,8 +72,21 @@
 			<view wx:else class="solids" bindtap="chooseImg" data-type="degImg">
 				<text class="cuIcon-cameraadd"></text>
 			</view>
-		</view>
+		</view> -->
 		<view class="action">{{degImg.length}}/1</view>
+	</view>
+	<view class="cu-form-group">
+		<view class="for_image">
+			<view class="bg-img" wx:if="{{degImg.length}}" wx:key='id' bindtap="ViewImage" data-url="{{degImg}}" data-type="degImg">
+				<image src='{{degImg}}' mode='aspectFill'></image>
+				<view class="cu-tag bg-red" catchtap="delImg" data-type="degImg">
+					<text class="cuIcon-close"></text>
+				</view>
+			</view>
+			<view wx:else class="solids camera" bindtap="chooseImg" data-type="degImg">
+				<text class="cuIcon-cameraadd"></text>
+			</view>
+		</view>
 	</view>
   <view class="cu-form-group">
 		<view class="title">培训经历数目</view>
@@ -84,7 +112,8 @@
 		<view class="title">工作类型</view>
 		<radio-group class="cu-form-group" bindchange="handleTypeChange">
 			<view wx:for="{{workTypes}}" wx:key="id">
-				<radio class="radio margin-left-xl" value="{{item.value}}" checked="{{item.checked}}"></radio>{{item.name}}
+				<radio class="margin-left-xl" value="{{item.value}}" checked="{{item.checked}}" style="margin-right:19rpx"></radio>
+				<label for="{{index}}" style="line-height:80rpx; font-size:26rpx ">{{item.name}}</label>
 			</view>
 		</radio-group>
 	</view>
@@ -92,17 +121,22 @@
 		<view class="text-red">*</view>
 		<view class="title">
 			<view>擅长科目</view>
-			<view class="text-center">{{slength==0?subjectChoose.length:slength}}/5</view>
 		</view>
-		<checkbox-group class="grid col-2 text-left margin-top margin-bottom" bindchange="subjectChange">
-			<view wx:for="{{subjects}}" wx:key="id">
-				<checkbox class="margin-xs" value="{{item.id}}" checked="{{item.checked}}"></checkbox>{{item.name}}
-			</view>
-		</checkbox-group>
+		<view class="text-center">{{slength==0?subjectChoose.length:slength}}/5</view>
 	</view>
 	<view class="cu-form-group">
+		<view class="fo_image">
+			<checkbox-group class="grid col-2 text-left margin-top margin-bottom" bindchange="subjectChange">
+				<view wx:for="{{subjects}}" wx:key="id">
+					<checkbox class="margin-xs" value="{{item.id}}" checked="{{item.checked}}"></checkbox>{{item.name}}
+				</view>
+			</checkbox-group>
+		</view>
+	</view>
+	<view class="cu-form-group">
+		<view class="text-red" style="color:transparent">*</view>
 		<view class="title">个人照片</view>
-		<view class="grid col-2 grid-square flex-sub margin-top">
+		<!-- <view class="grid col-2 grid-square flex-sub margin-top">
 			<view class="bg-img" wx:if="{{privImg.length}}" wx:key='id' bindtap="ViewImage" data-url="{{privImg}}" data-type="privImg">
 				<image src='{{privImg}}' mode='aspectFill'></image>
 				<view class="cu-tag bg-red" catchtap="delImg" data-type="privImg">
@@ -112,12 +146,26 @@
 			<view wx:else class="solids" bindtap="chooseImg" data-type="privImg">
 				<text class="cuIcon-cameraadd"></text>
 			</view>
-		</view>
+		</view> -->
 		<view class="action">{{privImg.length}}/1</view>
 	</view>
 	<view class="cu-form-group">
+		<view class="for_image">
+			<view class="bg-img" wx:if="{{privImg.length}}" wx:key='id' bindtap="ViewImage" data-url="{{privImg}}" data-type="privImg">
+				<image src='{{privImg}}' mode='aspectFill'></image>
+				<view class="cu-tag bg-red" catchtap="delImg" data-type="privImg">
+					<text class="cuIcon-close"></text>
+				</view>
+			</view>
+			<view wx:else class="solids camera" bindtap="chooseImg" data-type="privImg">
+				<text class="cuIcon-cameraadd"></text>
+			</view>
+		</view>
+	</view>
+	<view class="cu-form-group">
+		<view class="text-red" style="color:transparent">*</view>
 		<view class="title">对外宣传照片</view>
-		<view class="grid col-2 grid-square flex-sub margin-top">
+		<!-- <view class="grid col-2 grid-square flex-sub margin-top">
 			<view class="bg-img" wx:if="{{pubImg.length}}" wx:key='id' bindtap="ViewImage" data-url="{{pubImg}}" data-type="pubImg">
 				<image src='{{pubImg}}' mode='aspectFill'></image>
 				<view class="cu-tag bg-red" catchtap="delImg" data-type="pubImg">
@@ -127,19 +175,39 @@
 			<view wx:else class="solids" bindtap="chooseImg" data-type="pubImg">
 				<text class="cuIcon-cameraadd"></text>
 			</view>
-		</view>
+		</view> -->
 		<view class="action">{{pubImg.length}}/1</view>
 	</view>
-	<view class="cu-form-group solid-bottom">
-		<view class="title">个人简介</view>
-		<input value="{{checkinInfo.briefIntro?checkinInfo.briefIntro:''}}" bindinput="handleBrief"></input>
-	</view>
-	<view class="padding flex flex-direction">
-		<button class="cu-btn bg-olive shadow" bindtap="checkin">点击登记</button>
-	</view>
-</form> 
-<form wx:else>
 	<view class="cu-form-group">
+		<view class="for_image">
+			<view class="bg-img" wx:if="{{pubImg.length}}" wx:key='id' bindtap="ViewImage" data-url="{{pubImg}}" data-type="pubImg">
+				<image src='{{pubImg}}' mode='aspectFill'></image>
+				<view class="cu-tag bg-red" catchtap="delImg" data-type="pubImg">
+					<text class="cuIcon-close"></text>
+				</view>
+			</view>
+			<view wx:else class="solids camera" bindtap="chooseImg" data-type="pubImg">
+				<text class="cuIcon-cameraadd"></text>
+			</view>
+		</view>
+	</view>
+	<view class="cu-form-group solid-bottom">
+		<view class="title">个人简介</view>	
+	</view>
+	<view class="cu-form-group">
+		<textarea value="{{checkinInfo.briefIntro?checkinInfo.briefIntro:''}}" bindinput="handleBrief"></textarea>
+	</view>
+	<!-- <view class="padding flex flex-direction">
+		<button class="cu-btn bg-olive shadow" bindtap="checkin">点击登记</button>
+	</view> -->
+</form>
+	<view class="padding flex flex-direction">
+		<button class="cu-btn bg-olive lg" bindtap="checkin">点击登记</button>
+	</view>
+</view>
+<view wx:else>
+<form>
+	<view class="cu-form-group" style="margin-top:30rpx">
 		<view class="text-red">*</view>
 		<view class="title">毕业院校</view>
 		<input placeholder="{{checkinInfo.gradSchool}}" maxlength="30" disabled></input>
@@ -157,7 +225,7 @@
 	<view class="cu-form-group">
 		<view class="text-red">*</view>
 		<view class="title">学历证书照片</view>
-		<view class="grid col-2 grid-square flex-sub margin-top">
+		<!-- <view class="grid col-2 grid-square flex-sub margin-top">
 			<view class="bg-img" wx:if="{{eduImg.length}}" wx:key='id' bindtap="ViewImage" data-url="{{eduImg}}" data-type="eduImg">
 				<image src='{{eduImg}}' mode='aspectFill'></image>
 				<view class="cu-tag bg-red" catchtap="delImg" data-type="eduImg"  style="display:none;">
@@ -167,8 +235,21 @@
 			<view wx:else class="solids" bindtap="chooseImg" data-type="eduImg">
 				<text class="cuIcon-cameraadd"></text>
 			</view>
-		</view>
+		</view> -->
 		<view class="action">{{eduImg.length}}/1</view>
+	</view>
+	<view class="cu-form-group">
+		<view class="for_image">
+			<view class="bg-img" wx:if="{{eduImg.length}}" wx:key='id' bindtap="ViewImage" data-url="{{eduImg}}" data-type="eduImg">
+				<image src='{{eduImg}}' mode='aspectFill'></image>
+				<view class="cu-tag bg-red" catchtap="delImg" data-type="eduImg" style="display:none">
+					<text class="cuIcon-close"></text>
+				</view>
+			</view>
+			<view wx:else class="solids camera" bindtap="chooseImg" data-type="eduImg">
+				<text class="cuIcon-cameraadd"></text>
+			</view>
+		</view>
 	</view>
   <view class="cu-form-group">
 		<view class="title">学位</view>
@@ -179,8 +260,9 @@
 		<input placeholder="{{checkinInfo.degreeCertId?checkinInfo.degreeCertId:'待完善'}}" maxlength="30" disabled></input>
 	</view>
 	<view class="cu-form-group">
+		<view class="text-red" style="color:transparent">*</view>
 		<view class="title">学位证书照片</view>
-		<view class="grid col-2 grid-square flex-sub margin-top">
+		<!-- <view class="grid col-2 grid-square flex-sub margin-top">
 			<view class="bg-img" wx:if="{{degImg.length}}" wx:key='id' bindtap="ViewImage" data-url="{{degImg}}" data-type="degImg">
 				<image src='{{degImg}}' mode='aspectFill'></image>
 				<view class="cu-tag bg-red" catchtap="delImg" data-type="degImg"  style="display:none;">
@@ -190,8 +272,21 @@
 			<view wx:else class="solids" data-type="degImg">
 				<text class="cuIcon-cameraadd"></text>
 			</view>
-		</view>
+		</view> -->
 		<view class="action">{{degImg.length}}/1</view>
+	</view>
+	<view class="cu-form-group">
+		<view class="for_image">
+			<view class="bg-img" wx:if="{{degImg.length}}" wx:key='id' bindtap="ViewImage" data-url="{{degImg}}" data-type="degImg">
+				<image src='{{degImg}}' mode='aspectFill'></image>
+				<view class="cu-tag bg-red" catchtap="delImg" data-type="degImg"  style="display:none;">
+					<text class="cuIcon-close"></text>
+				</view>
+			</view>
+			<view wx:else class="solids camera" bindtap="chooseImg" data-type="degImg">
+				<text class="cuIcon-cameraadd"></text>
+			</view>
+		</view>
 	</view>
   <view class="cu-form-group">
 		<view class="title">培训经历数目</view>
@@ -217,7 +312,8 @@
 		<view class="title">工作类型</view>
 		<radio-group class="cu-form-group" disabled>
 			<view wx:for="{{workTypes}}" wx:key="id">
-				<radio class="radio margin-left-xl" checked="{{index==checkinInfo.fullTime}}" disabled></radio>{{item.name}}
+				<radio class="margin-left-xl" checked="{{index==checkinInfo.fullTime}}"  style="margin-right:19rpx" disabled></radio>
+				<label for="{{index}}" style="line-height:80rpx; font-size:26rpx ">{{item.name}}</label>
 			</view>
 		</radio-group>
 	</view>
@@ -225,8 +321,10 @@
 		<view class="text-red">*</view>
 		<view class="title">
 			<view>擅长科目</view>
-			<view class="text-center">{{slength}}/5</view>
 		</view>
+		<view class="text-center">{{slength}}/5</view>
+	</view>
+	<view class="cu-form-group">
 		<checkbox-group class="grid col-2 text-left margin-top margin-bottom" disabled>
 			<view wx:for="{{subjects}}" wx:key="id">
 				<!-- <checkbox class="margin-xs" value="{{item.id}}" checked="{{item.checked}}" disabled></checkbox>{{item.name}} -->
@@ -235,8 +333,9 @@
 		</checkbox-group>
 	</view>
 	<view class="cu-form-group">
+		<view class="text-red" style="color:transparent">*</view>
 		<view class="title">个人照片</view>
-		<view class="grid col-2 grid-square flex-sub margin-top">
+		<!-- <view class="grid col-2 grid-square flex-sub margin-top">
 			<view class="bg-img" wx:if="{{privImg.length}}" wx:key='id' bindtap="ViewImage" data-url="{{privImg}}" data-type="privImg">
 				<image src='{{privImg}}' mode='aspectFill'></image>
 				<view class="cu-tag bg-red" catchtap="delImg" data-type="privImg"  style="display:none;">
@@ -246,12 +345,27 @@
 			<view wx:else class="solids" data-type="privImg">
 				<text class="cuIcon-cameraadd"></text>
 			</view>
-		</view>
+		</view> -->
 		<view class="action">{{privImg.length}}/1</view>
 	</view>
 	<view class="cu-form-group">
+		<view class="for_image">
+			<view class="bg-img" wx:if="{{privImg.length}}" wx:key='id' bindtap="ViewImage" data-url="{{privImg}}" data-type="privImg">
+				<image src='{{privImg}}' mode='aspectFill'></image>
+				<view class="cu-tag bg-red" catchtap="delImg" data-type="privImg" style="display:none">
+					<text class="cuIcon-close"></text>
+				</view>
+			</view>
+			<view wx:else class="solids camera" bindtap="chooseImg" data-type="privImg">
+				<text class="cuIcon-cameraadd"></text>
+			</view>
+		</view>
+	</view>
+
+	<view class="cu-form-group">
+		<view class="text-red" style="color:transparent">*</view>
 		<view class="title">对外宣传照片</view>
-		<view class="grid col-2 grid-square flex-sub margin-top">
+		<!-- <view class="grid col-2 grid-square flex-sub margin-top">
 			<view class="bg-img" wx:if="{{pubImg.length}}" wx:key='id' bindtap="ViewImage" data-url="{{pubImg}}" data-type="pubImg">
 				<image src='{{pubImg}}' mode='aspectFill'></image>
 				<view class="cu-tag bg-red" catchtap="delImg" data-type="pubImg"  style="display:none;">
@@ -261,14 +375,33 @@
 			<view wx:else class="solids" data-type="pubImg">
 				<text class="cuIcon-cameraadd"></text>
 			</view>
-		</view>
+		</view> -->
 		<view class="action">{{pubImg.length}}/1</view>
+	</view>
+	<view class="cu-form-group">
+		<view class="for_image">
+			<view class="bg-img" wx:if="{{pubImg.length}}" wx:key='id' bindtap="ViewImage" data-url="{{pubImg}}" data-type="pubImg">
+				<image src='{{pubImg}}' mode='aspectFill'></image>
+				<view class="cu-tag bg-red" catchtap="delImg" data-type="pubImg" style="display:none">
+					<text class="cuIcon-close"></text>
+				</view>
+			</view>
+			<view wx:else class="solids camera"  bindtap="chooseImg" data-type="pubImg">
+				<text class="cuIcon-cameraadd"></text>
+			</view>
+		</view>
 	</view>
 	<view class="cu-form-group solid-bottom">
 		<view class="title">个人简介</view>
-		<textarea placeholder="{{checkinInfo.briefIntro?checkinInfo.briefIntro:'待完善'}}" disabled></textarea>
+		<!-- <textarea placeholder="{{checkinInfo.briefIntro?checkinInfo.briefIntro:'待完善'}}" disabled></textarea> -->
 	</view>
+	<view class="cu-form-group">
+		<textarea placeholder="{{checkinInfo.briefIntro?checkinInfo.briefIntro:'待完善'}}" disabled style="padding-left:24rpx"></textarea>
+	</view>
+
+	
+</form>
 	<view class="padding flex flex-direction">
 		<button class="cu-btn bg-olive lg" bindtap="modify">信息已登记成功，点击进行修改</button>
 	</view>
-</form>
+</view>

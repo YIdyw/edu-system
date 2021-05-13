@@ -1,4 +1,147 @@
 /* pages/info-t/info-t.wxss */
-.title{
-  width: 35%;
+/* pages/information/information.wxss */
+/* .cu-form-group .title {
+  min-width: calc(4em + 30rpx);
+} */
+
+.cu-form-group {
+  padding: 0 30rpx;
+}
+
+.cu-form-group .text-red {
+  /* display: flex; */
+  height: 10rpx;
+  width: 11rpx;
+  font-size: 26rpx;
+}
+
+.cu-form-group .title {
+  /* margin-top: -11rpx; */
+  height: 28rpx;
+  /* width: 60rpx; */
+  font-size: 28rpx;
+}
+
+.cu-form-group picker .picker {
+  line-height: 80rpx;
+}
+
+.cu-form-group picker::after {
+  line-height: 86rpx;
+  color: #FFC1C1C1;
+}
+
+.cu-form-group:last-child {
+  border-bottom: 0;
+  border-bottom-left-radius: 20rpx;
+  border-bottom-right-radius: 20rpx;
+}
+
+.cu-form-group input {
+  position: absolute;
+  left: 230rpx;
+}
+
+.cu-btn {
+  background-color: #2655CF;
+  color: white;
+  font-size: 28rpx;
+}
+
+.cu-btn.lg {
+  font-size: 28rpx;
+}
+
+.for_image {
+  /* background-color: blue; */
+  width: 287rpx;
+  height: 287rpx;
+  margin-bottom: 20rpx;
+}
+
+.cu-form-group:nth-child(4)::after {
+  content: '';
+  height: 0;
+}
+
+.cu-form-group:nth-child(8)::after {
+  content: '';
+  height: 0;
+}
+
+.cu-form-group:nth-child(16)::after {
+  content: '';
+  height: 0;
+}
+
+.cu-form-group:nth-child(18)::after {
+  content: '';
+  height: 0;
+}
+
+.cu-form-group:nth-child(20)::after {
+  content: '';
+  height: 0;
+}
+
+.bg-img {
+  height: 100%;
+  width: 100%;
+  border: 1px solid #CCCCCC;
+}
+
+.bg-img image {
+  height: 100%;
+  width: 100%;
+}
+
+.camera {
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  line-height: 278rpx;
+  font-size: 50rpx;
+}
+
+.cu-tag {
+  position: absolute;
+  right: 377rpx;
+  /* height: 40rpx; */
+  /* display: inline-block; */
+}
+
+radio::before{
+  z-index: 1;
+}
+
+radio .wx-radio-input.wx-radio-input-checked {
+  background-color: #3D7CF0!important;
+}
+
+.cu-form-group radio-group {
+  position: absolute;
+  left: 130rpx;
+  top: 0;
+  padding: 0;
+}
+
+.cu-form-group picker {
+  padding-right: 0;
+  position: relative;
+}
+
+.cu-form-group picker::after {
+  color: #C1C1C1;
+}
+
+.cu-form-group picker .picker {
+  line-height: 80rpx;
+  padding-right: 27rpx;
+}
+
+.cu-form-group picker::after {
+  /* float: right; */
+  /* margin-right: 30rpx;
+  margin-top: -8rpx; */
+  font-size: 26rpx;
 }
