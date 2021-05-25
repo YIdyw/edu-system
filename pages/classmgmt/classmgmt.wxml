@@ -34,6 +34,8 @@
 <view>
   <view class="institute_content clearfix"  bindtap="operations" data-operations="freetime">
     <view class="time_signin">
+      <!-- <view class="time_icon" style="background: url(./icon_可用时间登记@2x.png)"></view> -->
+      <image class="time_icon" src="icon/icon_useful_time@2x.png"></image>
     </view>
     <view class="time_signin_content">
       <view class="content_title" >可用时间段登记</view>
@@ -42,6 +44,7 @@
   </view>
   <view class="institute_content clearfix"  bindtap="operations" data-operations="scheduleQuery">
     <view class="search_table">
+      <image class="search_table_icon" src="icon/icon_search_table@2x.png"></image>
     </view>
     <view class="search_table_content">
       <view class="content_title" >课表查询</view>
@@ -56,6 +59,7 @@
   </view> -->
   <view class="institute_content clearfix"  bindtap="operations" data-operations="courseQuery">
     <view class="search_course">
+      <image class="search_course_icon" src="icon/icon_search_course@2x.png"></image>
     </view>
     <view class="search_course_content" style="border-bottom: 0px">
       <view class="content_title" >课程查询</view>

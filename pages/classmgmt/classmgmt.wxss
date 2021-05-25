@@ -111,9 +111,18 @@
   float: left;
   height: 80rpx;
   width: 74rpx;
+  display: flex;
+  justify-content: start;
+  align-items: center;
 }
 
-.time_signin::before {
+.time_icon {
+  height: 40rpx;
+  width: 40rpx;
+}
+
+
+/* .time_signin::before {
   content: "\e708";
   font-family: 'cuIcon';
   /* flex: 15.6%; */
@@ -122,34 +131,34 @@
   /* position: absolute; */
   /* height: 40rpx;
   width: 40rpx; */
-  font-size: 40rpx;
-  color: #2655CF;
-  line-height: 80rpx;
+  /* font-size: 40rpx; */
+  /* color: #2655CF; */
+  /* line-height: 80rpx; */
   /* margin: 20rpx 30rpx 0 4rpx; */
-  text-align: center;
-}
+  /* text-align: center; */
+/* }  */
 
 .search_table {
   float: left;
   height: 80rpx;
-  width: 74rpx;
+  width: 74rpx;display: flex;
+  justify-content: start;
+  align-items: center;
 }
 
-.search_table::before {
+.search_table_icon {
+  height: 40rpx;
+  width: 40rpx;
+}
+
+/* .search_table::before {
   content: "\e6fe";
   font-family: 'cuIcon';
-  /* flex: 15.6%; */
-  /* float: left; */
-  /* display: block; */
-  /* position: absolute; */
-  /* height: 40rpx;
-  width: 40rpx; */
   font-size: 40rpx;
   color: #2655CF;
   line-height: 80rpx;
-  /* margin: 20rpx 30rpx 0 4rpx; */
   text-align: center;
-}
+} */
 
 .search_table_content {
   float: left;
@@ -161,24 +170,24 @@
 .search_course {
   float: left;
   height: 80rpx;
-  width: 74rpx;
+  width: 74rpx;display: flex;
+  justify-content: start;
+  align-items: center;
 }
 
-.search_course::before {
+.search_course_icon {
+  height: 40rpx;
+  width: 40rpx;
+}
+
+/* .search_course::before {
   content: "\e7c3";
   font-family: 'cuIcon';
-  /* flex: 15.6%; */
-  /* float: left; */
-  /* display: block; */
-  /* position: absolute; */
-  /* height: 40rpx;
-  width: 40rpx; */
   font-size: 40rpx;
   color: #2655CF;
   line-height: 80rpx;
-  /* margin: 20rpx 30rpx 0 4rpx; */
   text-align: center;
-}
+} */
 
 .search_course_content {
   float: left;
