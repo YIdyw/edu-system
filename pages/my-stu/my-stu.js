@@ -127,10 +127,13 @@ Page({
 
   //时间差
   _deftime(currentTime, completeTime){
+    completeTime = completeTime.replace(/-/g, '/')
+    console.log(currentTime)
+    console.log(completeTime)
     var stime = Date.parse(new Date(currentTime))
     var etime = Date.parse(new Date(completeTime))
-    // console.log(stime)
-    // console.log(etime)
+    console.log(stime)
+    console.log(etime)
     var usedTime = etime - stime
 
     var days = Math.floor(usedTime / (24 *3600 *1000));
@@ -216,7 +219,7 @@ Page({
   _endtime(){
     var that = this
     var stime = this.data.dateTimeArray1[0][this.data.dateTime1[0]]+'-'+this.data.dateTimeArray1[1][this.data.dateTime1[1]]+'-'+this.data.dateTimeArray1[2][this.data.dateTime1[2]]+' '+this.data.dateTimeArray1[3][this.data.dateTime1[3]]+':'+this.data.dateTimeArray1[4][this.data.dateTime1[4]]
-    var s = new Date(stime)
+    var s = new Date(stime.replace(/-/g, '/'))
     var e = new Date()
     e.setTime(s.getTime() + this.data.deftime)
     this.setData({
@@ -400,6 +403,7 @@ Page({
           }
         }
           if(check_out == false){
+            console.log("开始时间：" + stime);
             this.setData({
               islayout: false
             })
@@ -421,6 +425,7 @@ Page({
     }
     //已经请了假但是还没有申请补课的
     else if(e.currentTarget.dataset.data.courseNo == -3){
+      console.log("开始时间：" + stime);
       this.makeup()
     }
     //已经申请了补课但是还没有通过的
@@ -437,6 +442,7 @@ Page({
     }
     //跳转到签到页面
     else{
+      console.log("开始时间：" + stime);
       wx.showModal({
         cancelColor: 'cancelColor',
         title: '签到',
