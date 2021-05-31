@@ -238,7 +238,7 @@
         <view class="content bg-{{index==currentWeek?'mybluea':'myblue'}} shadow" wx:else>
           <view class="text-bold data-left">
             <view style="color:#666666">{{dayInfo.date}}</view>
-            <view style="color:#2655CF">星期{{monthTitle[dayInfo.week]}}</view>
+            <view style="color: {{index==currentWeek?'#666666':'#2655CF'}}">星期{{monthTitle[dayInfo.week]}}</view>
           </view>
           <view class="text-bold course-right">本日无排课情况</view>
         </view>

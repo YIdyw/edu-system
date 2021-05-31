@@ -182,7 +182,7 @@ Page({
       showYear: year,
       monthPlan: sortPlan
     });
-    this._scheduelQuery(data);
+    this._scheduelQuery_for_month(data);
   },
   nextMonth(){
     let month = this.data.showMonth+1;    // 后一月
@@ -206,7 +206,7 @@ Page({
       showYear: year,
       monthPlan: sortPlan
     });
-    this._scheduelQuery(data);
+    this._scheduelQuery_for_month(data);
   },
   getMonthDays(year, month){
     let thisDate = new Date(year, month, 0);
@@ -343,6 +343,25 @@ Page({
     let newPlan = black.concat(sortPlan)
     return newPlan;
   },
+  _scheduelQuery_for_month(data) {
+    scheduleQuery(data).then(res=>{
+      console.log(res)
+      let monthPlan = this.data.monthPlan
+      for(let i=0; i<monthPlan.length; i++){
+        for(let j=0; j<res.data.length; j++){
+          if(monthPlan[i].date == res.data[j].courseTime.substring(0, 10)){
+            monthPlan[i].exist = true;
+            monthPlan[i].courseInfo.push({name: res.data[j].name,courId: res.data[j].courseId, courseTime: res.data[j].courseTime, site: res.data[j].site})
+          }
+          continue;
+        }
+      }
+      this.setData({
+        monthPlan: monthPlan,
+      })
+    });
+  },
+
   _scheduelQuery(data){
     let dayPlan = null;
     let currentWeekNum = null;

@@ -482,7 +482,7 @@ Page({
       showYear: year,
       monthPlan: sortPlan
     });
-    this._scheduelQuery(data);
+    this._scheduelQuery_for_month(data);
   },
   nextMonth(){
     let month = this.data.showMonth+1;    // 后一月
@@ -507,7 +507,7 @@ Page({
       showYear: year,
       monthPlan: sortPlan
     });
-    this._scheduelQuery(data);
+    this._scheduelQuery_for_month(data);
   },
   getMonthDays(year, month){
     let thisDate = new Date(year, month, 0);
@@ -643,6 +643,66 @@ Page({
     }
     let newPlan = black.concat(sortPlan)
     return newPlan;
+  },
+  _scheduelQuery_for_month(data) {
+    var color = ''     //正常上课，补课颜色区分
+    scheduleQuery(data).then(res=>{
+      console.log(res)
+      let monthPlan = this.data.monthPlan
+      for(let i=0; i<monthPlan.length; i++){
+        for(let j=0; j<res.data.length; j++){
+          if(monthPlan[i].date == res.data[j].courseTime.substring(0, 10)){
+            if(res.data[j].courseNo == -1){
+              color = 'bg-red solid shadow'
+              monthPlan[i].courseNo = -1;
+            }else if(res.data[j].courseNo == -2){
+              color = 'bg-green solid shadow'
+              monthPlan[i].courseNo = -2;
+            }else if(res.data[j].courseNo == -3){
+              color = 'bg-blue solid shadow'
+              monthPlan[i].courseNo = -3;
+            }else if(res.data[j].courseNo == -4){
+              color = 'bg-red solid shadow'
+              monthPlan[i].courseNo = -4;
+            }else{
+              color = 'bg-olive solid shadow'
+              monthPlan[i].courseNo = 0;
+            }
+            monthPlan[i].exist = true;
+            monthPlan[i].color = color;
+            monthPlan[i].courseInfo.push({name: res.data[j].name,courseId: res.data[j].courseId, courseTime: res.data[j].courseTime, site: res.data[j].site , courseNo:res.data[j].courseNo, color: color})
+            
+          }
+          continue;
+        }
+        let len = monthPlan[i].courseInfo.length
+        for(var k=0;k<len;k++){
+          for(var v=k+1;v<len;v++){
+            if(monthPlan[i].courseInfo[k].courseTime==monthPlan[i].courseInfo[v].courseTime){
+              monthPlan[i].courseInfo[k].courseNo = monthPlan[i].courseInfo[v].courseNo
+              monthPlan[i].courseInfo[v].courseNo = -999
+            }
+          }
+        }
+        for(var l=0;l<len;l++){
+          if(monthPlan[i].courseInfo[l]){
+            if(monthPlan[i].courseInfo[l].courseNo==-999){
+              monthPlan[i].courseInfo.splice(l,1)
+              l = 0;
+              len = monthPlan[i].courseInfo.length
+            }
+          } 
+        }
+        // let index = monthPlan[i].courseInfo.indexOf('needToDelete')
+        // while(index>0){
+        //   monthPlan[i].courseInfo.splice(index,1)
+        //   index = monthPlan[i].courseInfo.indexOf({})
+        // }
+      }
+      this.setData({
+        monthPlan: monthPlan
+      })
+    });
   },
   _scheduelQuery(data){
     let dayPlan = null;
