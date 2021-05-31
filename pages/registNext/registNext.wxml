@@ -158,13 +158,14 @@
 
 
 <picker-view indicator-class="pickerCol" wx:if="{{isboxshow}}" bindchange="change_box" class="{{ isboxshow ? 'show' : '' }}" bindcancel="true" >
+		
+			<picker-view-column>
+				<view wx:for="{{pickerRole}}" wx:key="index" class="{{ cur_Role === index ? 'pick-text' : '' }}">{{item}}</view>
+			</picker-view-column>
 			<view class='btns'>
 				<!-- <view bindtap="closePicker">取消</view>  -->
 				<button class="box_cancel" bindtap="closePicker" shape="circle">取消</button>
 				<!-- <view bindtap="getValue">确认</view> -->
 				 <button class="box_confirm" bindtap="getValue" shape="circle">确定</button>
 			</view>
-			<picker-view-column>
-				<view wx:for="{{pickerRole}}" wx:key="index" class="{{ cur_Role === index ? 'pick-text' : '' }}">{{item}}</view>
-			</picker-view-column>
 		</picker-view>
