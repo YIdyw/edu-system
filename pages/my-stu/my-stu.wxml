@@ -105,7 +105,7 @@
         <view class="week-seven" wx:for="{{monthTitle}}" wx:key="id">{{item}}</view>
       </view>
       <view class="week-col">
-        <view wx:for="{{monthPlan}}" wx:key="id"  class="week-day {{item.exist?item.color: ''}} {{item.name==currentDay&&currentMonth==showMonth?'text-red text-bold':''}}" bindtap="viewDayDetail" data-exist="{{item.exist}}" data-info="{{item.courseInfo}}" data-week="{{item.week}}" style="border-radius:50%">{{item.name}}</view>
+        <view wx:for="{{monthPlan}}" wx:key="id"  class="week-day {{item.exist?item.color: ''}} {{item.name==currentDay&&currentMonth==showMonth?'text-red text-bold':''}}" bindtap="viewDayDetail" data-cp="{{item.cp}}" data-exist="{{item.exist}}" data-info="{{item.courseInfo}}" data-week="{{item.week}}" style="border-radius:50%">{{item.name}}</view>
       </view>
     </view>
     <view class="end">
@@ -223,7 +223,6 @@
     </view>
   </view>
 </view> -->
-
 <view class="cu-modal {{modalName=='DialogModal1'?'show':''}}">
   <view class="cu-dialog">
     <view>
@@ -240,6 +239,27 @@
     </view>
     <view class="action2"> 
       <button class="cu-btn bg-green margin-left" bindtap="confirm">确定</button>
+    </view>
+  </view>
+</view>
+</view>
+
+<view class="cu-modal {{modalName=='DialogModal2'?'show':''}}">
+  <view class="cu-dialog">
+    <view>
+      请确定课包的具体时间
+    </view>
+  <picker mode="multiSelector" value="{{dateTime1}}" bindchange="changeDateTime1" bindcolumnchange="changeDateTimeColumn1" range="{{dateTimeArray1}}">
+    <view class="tui-picker-detail">
+      {{dateTimeArray1[0][dateTime1[0]]}}-{{dateTimeArray1[1][dateTime1[1]]}}-{{dateTimeArray1[2][dateTime1[2]]}} {{dateTimeArray1[3][dateTime1[3]]}}:{{dateTimeArray1[4][dateTime1[4]]}}
+    </view>
+  </picker>
+  <view class="cu-bar2">
+    <view class="action1"> 
+      <button class="cu-btn line-green text-green" bindtap="cancel">取消</button>
+    </view>
+    <view class="action2"> 
+      <button class="cu-btn bg-green margin-left" bindtap="confirmCP">确定</button>
     </view>
   </view>
 </view>

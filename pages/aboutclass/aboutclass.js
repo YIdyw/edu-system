@@ -107,10 +107,11 @@ Page({
       for(let j=0; j<res.data.length; j++){
         begintime[j]=res.data[j].startTime.substring(0,10),
         endtime[j]=res.data[j].endTime.substring(0,10)
+        //审核通过，决定状态和课程记录
         if(res.data[j].status=="success"){
-          status[j]="审核通过"
+          status[j]= true
         }else{
-          status[j]="审核中"
+          status[j]= false
         }
       }
       this.setData({

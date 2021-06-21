@@ -51,12 +51,22 @@
 				</view>
 				<view class="cu-form-group">
 					<view class="title">状态</view>
-					<view class="content">{{status[idxx]}}</view>
+					<view wx:if="{{status[idxx]}}">
+						<view class="content">审核通过</view>
+					</view>
+					<view wx:else>
+						<view class="content">审核中</view>
+					</view>
 				</view>
-				<!-- <view class="padding flex flex-wrap justify-between align-center bg-white"> -->
-					<!-- 新需求，学生查看某课程详细信息 -->
-  				<!-- <button class="cu-btn bg-green round " bindtap="signin" id="{{idxx}}">查看</button> -->
-				<!-- </view> -->
+				<view class="cu-form-group">
+					<view class="title">课程记录</view>
+					<view wx:if="{{status[idxx]}}">
+						<view class="content" id="{{idxx}}" bindtap="signin">查看课程记录</view>
+					</view>
+					<view wx:else>
+						<view class="content">暂无课程记录</view>
+					</view>
+				</view>
 			</form>
 		</view>
 	</scroll-view>

@@ -275,7 +275,7 @@
   <view class="cu-timeline" wx:if="{{!tabDay}}">
     <view class="cu-time">星期{{monthTitle[thatDay.week]}}</view>
     <view wx:for="{{thatDay.courseInfo}}" wx:key='id' class="cu-item text-mybluea">
-      <view bindtap="_judgechose" data-data="{{item}}" data-id="{{item.courseId}}" class="content bg-{{item.exist?item.color: 'mybluea'}} shadow" style="padding:0; text-align:center">
+      <view bindtap="chooseCourse" data-data="{{item}}" data-id="{{item.courseId}}" class="content bg-{{item.exist?item.color: 'mybluea'}} shadow" style="padding:0; text-align:center">
         <view class="text-bold" style="color:#FFFFFF">{{item.courseTime}}</view>
         <view class="text-bold" style="color:#FFFFFF">{{item.name}}</view>
         <view class="text-bold" style="color:#FFFFFF">{{item.site}}</view>
@@ -286,7 +286,7 @@
   <view class="cu-timeline" wx:if="{{tabDay}}">
     <view class="cu-time">星期{{monthTitle[dayPlan.week]}}</view>
     <view wx:for="{{dayPlan.courseInfo}}" wx:key='id' class="cu-item text-mybluea">
-      <view bindtap="_judgechose" data-data="{{item}}" data-id="{{item.courseId}}" class="content bg-mybluea shadow" style="padding:0; text-align:center">
+      <view bindtap="chooseCourse" data-data="{{item}}" data-id="{{item.courseId}}" class="content bg-mybluea shadow" style="padding:0; text-align:center">
         <view class="text-bold" style="color:#FFFFFF">{{item.courseTime}}</view>
         <view class="text-bold" style="color:#FFFFFF">{{item.name}}</view>
         <view class="text-bold" style="color:#FFFFFF">{{item.site}}</view>

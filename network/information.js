@@ -24,3 +24,20 @@ export function  getOrgNum(data) {
     method: 'GET',
   })
 }
+
+// 获取学生计时课包的具体时间信息
+export function cpinfo(data) {
+  return request({
+    url: '/coursepac/query-coursePac-time/'+data.userId,
+    method: 'GET',
+  })
+}
+
+// 绑定课包与学生
+export function classPage(data) {
+  return request({
+    url: '/coursepacPOS/bind-coursePac-student',
+    method: 'POST',
+    data: data
+  })
+}

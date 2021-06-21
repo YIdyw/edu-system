@@ -1,7 +1,7 @@
 // component/popup_makeup/makeup.js
 import {
   push_leava, tealookup, teaMakeUp
-} from '../../network/courseMakeup'
+} from '../../network/scheduleQuery'
 Component({
   /**
    * 组件的属性列表

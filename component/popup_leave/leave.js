@@ -2,7 +2,7 @@
 
 import {
   teache_lookup, teacher_deal, push_leava
-} from '../../network/courseMakeup'
+} from '../../network/scheduleQuery'
 
 Component({
   /**

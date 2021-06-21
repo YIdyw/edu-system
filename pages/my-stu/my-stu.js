@@ -1,25 +1,22 @@
 import {
-  scheduleQuery
+  scheduleQuery, askForLeave, query_org, stuMakeUp, is_checkout
 } from '../../network/scheduleQuery'
 import {
   updateInfo
 } from '../../network/regist'
 import {
-  sign
-} from '../../network/signList'
-import {
-  getStuInfo , getOrgNum
+  getStuInfo , getOrgNum, cpinfo
 } from '../../network/information'
 import {
-  askForLeave, query_org, stuMakeUp, is_checkout
-} from '/../../network/courseMakeup'
+  sign
+} from '../../network/signList'
 
 var dateTimePicker = require('../../utils/test1.js');
 var app = getApp();
 
 Page({
   data: {
-    modalName: '',                             //补课时间选择器，值为DialogModal1时显示
+    modalName: '',                             //时间选择器，值为DialogModal1时显示补课。为DialogModal2时显示课包
     color: 'bg-olive solid shadow',            //课表颜色                                         
     islogin: false,                             //是否已登录
     isflag: false,                              
@@ -115,6 +112,7 @@ Page({
     deftime: '',          //课程时间，以毫秒为单位
     stime: null,          //补课开始时间
     etime: null,          //补课结束时间
+    cpinfo: '',           //课包信息
     isshow: false,
     exitApp: false,
     date: '2021-01-01',
@@ -123,6 +121,19 @@ Page({
     dateTime1: null,
     startYear: 2020,
     endYear: 2050
+  },
+
+  _cpinfo(){
+    let data = {
+      userId : wx.getStorageSync('loginInfo').userid
+    }
+    cpinfo(data).then(res => {
+      if(res.code == 200){
+        this.setData({
+          cpinfo: res.data
+        })
+      }
+    })
   },
 
   //时间差
@@ -282,6 +293,7 @@ Page({
     });
   },
 
+  //补课时间模板按钮
   cancel(){
     this.setData({
       modalName: ''
@@ -518,21 +530,33 @@ Page({
     let showWeek = this.data.showWeek - 1
     let thatWeek = []
     let tabWeek = showWeek == this.data.currentWeekNum? true : false
-    if(showWeek > 0){
-      for(let k=(showWeek-1)*7; k<showWeek*7; k++){
-        if(monthPlan[k].name){
-          thatWeek.push(monthPlan[k])
+    if(this.data.currentMonth == this.data.showMonth){
+      if(showWeek > 0){
+        for(let k=(showWeek-1)*7; k<showWeek*7; k++){
+          if(monthPlan[k].name){
+            thatWeek.push(monthPlan[k])
+          }
         }
+        this.setData({
+          showWeek: showWeek,
+          thatWeek: thatWeek,
+          tabWeek: tabWeek
+        });
+      }else{
+        setTimeout(() => {
+          wx.showToast({
+            title: '已到本月第一周！',
+            icon: "none",
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 1500)
+        }, 0);
       }
-      this.setData({
-        showWeek: showWeek,
-        thatWeek: thatWeek,
-        tabWeek: tabWeek
-      });
     }else{
       setTimeout(() => {
         wx.showToast({
-          title: '已到本月第一周！',
+          title: '不在当前月！',
           icon: "none",
         });
         setTimeout(() => {
@@ -540,34 +564,47 @@ Page({
         }, 1500)
       }, 0);
     }
+    
   },
   nextWeek(){
     let monthPlan = this.data.monthPlan
     let showWeek = this.data.showWeek + 1
     let thatWeek = []
     let tabWeek = showWeek == this.data.currentWeekNum? true : false
-    if(showWeek*7 <= monthPlan.length){
-      for(let k=(showWeek-1)*7; k<showWeek*7; k++){
-        thatWeek.push(monthPlan[k])
+    if(this.data.currentMonth == this.data.showMonth){
+      if(showWeek*7 <= monthPlan.length){
+        for(let k=(showWeek-1)*7; k<showWeek*7; k++){
+          thatWeek.push(monthPlan[k])
+        }
+        this.setData({
+          showWeek: showWeek,
+          thatWeek: thatWeek,
+          tabWeek: tabWeek
+        });
+      }else if(showWeek*7 - monthPlan.length < 7){
+        for(let k=(showWeek-1)*7; k<monthPlan.length; k++){
+          thatWeek.push(monthPlan[k])
+        }
+        this.setData({
+          showWeek: showWeek,
+          thatWeek: thatWeek,
+          tabWeek: tabWeek
+        });
+      }else{
+        setTimeout(() => {
+          wx.showToast({
+            title: '已到本月最后一周！',
+            icon: "none",
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 1500)
+        }, 0);
       }
-      this.setData({
-        showWeek: showWeek,
-        thatWeek: thatWeek,
-        tabWeek: tabWeek
-      });
-    }else if(showWeek*7 - monthPlan.length < 7){
-      for(let k=(showWeek-1)*7; k<monthPlan.length; k++){
-        thatWeek.push(monthPlan[k])
-      }
-      this.setData({
-        showWeek: showWeek,
-        thatWeek: thatWeek,
-        tabWeek: tabWeek
-      });
     }else{
       setTimeout(() => {
         wx.showToast({
-          title: '已到本月最后一周！',
+          title: '不在当前月！',
           icon: "none",
         });
         setTimeout(() => {
@@ -575,26 +612,110 @@ Page({
         }, 1500)
       }, 0);
     }
+
   },
+
+  cpTime(){
+    var that = this
+    let data = {
+      courseId: that.data.thatDay.courseInfo[0].courseId,
+      orgId: that.data.orgid,
+      userId: wx.getStorageSync('loginInfo').userid,
+      cpStartTime: that.data.stime,
+      cpEndTime: that.data.etime
+    }
+    stuMakeUp(data).then(res =>{
+      that.setData({
+        modalName: ''
+      })
+      if(res.code == 200){
+        setTimeout(() => {
+          wx.showToast({
+            title: '课包申请成功！',
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 3000)
+        }, 0);
+      }else{
+        setTimeout(() => {
+          wx.showToast({
+            title: '课包申请失败！',
+            icon: "none",
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 3000)
+        }, 0);
+      }
+    })
+  },
+
+  cancel(){
+    this.setData({
+      modalName: ''
+    })
+  },
+
+  confirmCP(){
+    var that = this
+    that.cpTime()
+  },
+
   viewDayDetail(e){
     let exist = e.currentTarget.dataset.exist;
+    let cp = e.currentTarget.dataset.cp;
     let week = e.currentTarget.dataset.week;
     let courseInfo = e.currentTarget.dataset.info
-    if(exist){
-      this.setData({
-        tabCur: 2,
-        thatDay: {courseInfo: courseInfo, week: week}
+    if(cp){
+      wx.showModal({
+        cancelColor: 'cancelColor',
+        title: '功能选择',
+        content: '请选择跳转到当前日期还是设置计时课包？',
+        confirmText: '当前日期',
+        cancelText: '计时课包',
+        success (res) {
+          if(res.confirm){
+            if(exist){
+              this.setData({
+                tabCur: 2,
+                thatDay: {courseInfo: courseInfo, week: week}
+              })
+            }else{
+              setTimeout(() => {
+                wx.showToast({
+                  title: '当前没有排课！',
+                  icon: "none",
+                });
+                setTimeout(() => {
+                  wx.hideToast();
+                }, 1500)
+              }, 0);
+            }
+          }else if(res.cancel){
+            this.setData({
+              modalName: 'DialogModal2'
+            })
+          }
+        }
       })
     }else{
-      setTimeout(() => {
-        wx.showToast({
-          title: '当前没有排课！',
-          icon: "none",
-        });
+      if(exist){
+        this.setData({
+          tabCur: 2,
+          thatDay: {courseInfo: courseInfo, week: week}
+        })
+      }else{
         setTimeout(() => {
-          wx.hideToast();
-        }, 1500)
-      }, 0);
+          wx.showToast({
+            title: '当前没有排课！',
+            icon: "none",
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 1500)
+        }, 0);
+      }
     }
   },
   hideModal(){
@@ -698,6 +819,13 @@ Page({
         //   monthPlan[i].courseInfo.splice(index,1)
         //   index = monthPlan[i].courseInfo.indexOf({})
         // }
+        //把字符串格式转换为日期类
+        var  curTime =  new  Date(Date.parse(monthPlan[i].date));
+        var  startTime =  new  Date(Date.parse(this.data.cpinfo[0].startTime1));
+        var  endTime =  new  Date(Date.parse(this.data.cpinfo[0].endTime1));
+        if(curTime >= startTime && curTime <= endTime){
+          monthPlan[i].cp = true
+        }
       }
       this.setData({
         monthPlan: monthPlan
@@ -714,10 +842,8 @@ Page({
     var day = today.getDate()
     var monthday = new Date(year,month,0)
     let currentWeekNum = parseInt((monthcheck.length - monthday.getDate() + day - 1)/7) + 1;
-    console.log(currentWeekNum)
     let weekPlan = []
     scheduleQuery(data).then(res=>{
-      console.log(res)
       let monthPlan = this.data.monthPlan
       for(let i=0; i<monthPlan.length; i++){
         for(let j=0; j<res.data.length; j++){
@@ -772,6 +898,14 @@ Page({
         if(monthPlan[i].name == this.data.currentDay){
           dayPlan = monthPlan[i]
           currentWeekNum = parseInt(i / 7) + 1
+        }
+
+        //把字符串格式转换为日期类
+        var  curTime =  new  Date(Date.parse(monthPlan[i].date));
+        var  startTime =  new  Date(Date.parse(this.data.cpinfo[0].startTime1));
+        var  endTime =  new  Date(Date.parse(this.data.cpinfo[0].endTime1));
+        if(curTime >= startTime && curTime <= endTime){
+          monthPlan[i].cp = true
         }
       }
       for(let k=(currentWeekNum-1)*7; k<currentWeekNum*7; k++){
@@ -1043,7 +1177,8 @@ picture2(){
       userType: wx.getStorageSync('loginInfo').defaultRole,
     }
     this._scheduelQuery(data);
-    
+    this._cpinfo();
+
     let loginInfo = wx.getStorageSync('loginInfo');
     if(loginInfo){
       this.setData({

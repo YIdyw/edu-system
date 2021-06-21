@@ -2,15 +2,12 @@ import {
   getTeacherInfo
 } from '../../network/checkin'
 import {
-  scheduleQuery
+  scheduleQuery, teache_lookup, teacher_deal, push_leava, tealookup, teaMakeUp
 } from '../../network/scheduleQuery'
 import {
   updateInfo
 } from '../../network/regist'
 
-import {
-  teache_lookup, teacher_deal, push_leava, tealookup, teaMakeUp
-} from '../../network/courseMakeup'
 
 Page({
   data: {
@@ -129,6 +126,7 @@ Page({
     showWeek: '',         // tab周内周选择
   },
   
+  
   //教师课程信息选择查看
   chooseCourse(e){
     console.log(e.currentTarget.dataset.data.courId);
@@ -217,21 +215,33 @@ Page({
     let showWeek = this.data.showWeek - 1
     let thatWeek = []
     let tabWeek = showWeek == this.data.currentWeekNum? true : false
-    if(showWeek > 0){
-      for(let k=(showWeek-1)*7; k<showWeek*7; k++){
-        if(monthPlan[k].name){
-          thatWeek.push(monthPlan[k])
+    if(this.data.currentMonth == this.data.showMonth){
+      if(showWeek > 0){
+        for(let k=(showWeek-1)*7; k<showWeek*7; k++){
+          if(monthPlan[k].name){
+            thatWeek.push(monthPlan[k])
+          }
         }
+        this.setData({
+          showWeek: showWeek,
+          thatWeek: thatWeek,
+          tabWeek: tabWeek
+        });
+      }else{
+        setTimeout(() => {
+          wx.showToast({
+            title: '已到本月第一周！',
+            icon: "none",
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 1500)
+        }, 0);
       }
-      this.setData({
-        showWeek: showWeek,
-        thatWeek: thatWeek,
-        tabWeek: tabWeek
-      });
     }else{
       setTimeout(() => {
         wx.showToast({
-          title: '已到本月第一周！',
+          title: '不在当前月！',
           icon: "none",
         });
         setTimeout(() => {
@@ -239,34 +249,47 @@ Page({
         }, 1500)
       }, 0);
     }
+    
   },
   nextWeek(){
     let monthPlan = this.data.monthPlan
     let showWeek = this.data.showWeek + 1
     let thatWeek = []
     let tabWeek = showWeek == this.data.currentWeekNum? true : false
-    if(showWeek*7 <= monthPlan.length){
-      for(let k=(showWeek-1)*7; k<showWeek*7; k++){
-        thatWeek.push(monthPlan[k])
+    if(this.data.currentMonth == this.data.showMonth){
+      if(showWeek*7 <= monthPlan.length){
+        for(let k=(showWeek-1)*7; k<showWeek*7; k++){
+          thatWeek.push(monthPlan[k])
+        }
+        this.setData({
+          showWeek: showWeek,
+          thatWeek: thatWeek,
+          tabWeek: tabWeek
+        });
+      }else if(showWeek*7 - monthPlan.length < 7){
+        for(let k=(showWeek-1)*7; k<monthPlan.length; k++){
+          thatWeek.push(monthPlan[k])
+        }
+        this.setData({
+          showWeek: showWeek,
+          thatWeek: thatWeek,
+          tabWeek: tabWeek
+        });
+      }else{
+        setTimeout(() => {
+          wx.showToast({
+            title: '已到本月最后一周！',
+            icon: "none",
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 1500)
+        }, 0);
       }
-      this.setData({
-        showWeek: showWeek,
-        thatWeek: thatWeek,
-        tabWeek: tabWeek
-      });
-    }else if(showWeek*7 - monthPlan.length < 7){
-      for(let k=(showWeek-1)*7; k<monthPlan.length; k++){
-        thatWeek.push(monthPlan[k])
-      }
-      this.setData({
-        showWeek: showWeek,
-        thatWeek: thatWeek,
-        tabWeek: tabWeek
-      });
     }else{
       setTimeout(() => {
         wx.showToast({
-          title: '已到本月最后一周！',
+          title: '不在当前月！',
           icon: "none",
         });
         setTimeout(() => {
@@ -274,6 +297,7 @@ Page({
         }, 1500)
       }, 0);
     }
+    
   },
   viewDayDetail(e){
     let exist = e.currentTarget.dataset.exist;

@@ -181,6 +181,7 @@ Page({
       phone: that.data.phone,
       verifyCode: that.data.code
     }
+    console.log(data)
     loginPhone(data).then(res => {
       console.log(res)
       wx.setStorageSync('loginInfo', res.data)
