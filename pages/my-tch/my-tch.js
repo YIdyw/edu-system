@@ -103,6 +103,11 @@ Page({
       // url: '../../colorui/icon/icon_makeup@2x.png',
       url: 'icon/icon_makeup@2x.png',
       name: '补课申请'
+    }, {
+      id: 8,
+      // url: '../../colorui/icon/icon_makeup@2x.png',
+      url: 'icon/icon_makeup@2x.png',
+      name: '课包申请'
     }],
     isFaceChecked: 0,
     notifyNum: 0,
@@ -489,6 +494,10 @@ Page({
     }else if(that.data.isFaceChecked==7){
 
       this.makeup.teacherlp(this.data.loginInfo.userid);
+
+     }else if(that.data.isFaceChecked==8){
+
+      this.cp.teacherlp(this.data.loginInfo.userid);
 
      }
   },

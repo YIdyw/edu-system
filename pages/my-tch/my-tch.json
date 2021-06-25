@@ -7,6 +7,7 @@
     "i-tabs": "../../dist/tabs/index",
     "i-tab": "../../dist/tab/index",
     "leave": "/component/popup_leave/leave",
-    "makeup": "/component/popup_makeup/makeup"
+    "makeup": "/component/popup_makeup/makeup",
+    "cp": "/component/coursePackage/cp"
 }
 }

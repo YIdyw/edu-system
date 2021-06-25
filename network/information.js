@@ -33,11 +33,28 @@ export function cpinfo(data) {
   })
 }
 
-// 绑定课包与学生
-export function classPage(data) {
+// 计时课包学生约定上课时间
+export function classTime(data) {
   return request({
-    url: '/coursepacPOS/bind-coursePac-student',
+    url: '/coursepac/time-student-teacher',
     method: 'POST',
     data: data
+  })
+}
+
+// 教师获取学生的约课记录
+export function queryAppointment(data) {
+  return request({
+    url: '/coursepac/query-appointment-teaId/'+data,
+    method: 'GET',
+  })
+}
+
+// 教师审核是否通过学生的约课请求
+export function appointmentAgree(data) {
+  return request({
+    url: '/coursepac/appointment/agree',
+    method: 'PUT',
+    params: data,
   })
 }

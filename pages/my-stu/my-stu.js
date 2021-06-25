@@ -5,7 +5,7 @@ import {
   updateInfo
 } from '../../network/regist'
 import {
-  getStuInfo , getOrgNum, cpinfo
+  getStuInfo , getOrgNum, cpinfo, classTime
 } from '../../network/information'
 import {
   sign
@@ -618,13 +618,12 @@ Page({
   cpTime(){
     var that = this
     let data = {
-      courseId: that.data.thatDay.courseInfo[0].courseId,
-      orgId: that.data.orgid,
-      userId: wx.getStorageSync('loginInfo').userid,
-      cpStartTime: that.data.stime,
-      cpEndTime: that.data.etime
+      coursePacId: that.data.cpinfo[0].coursePacId,
+      stuId: wx.getStorageSync('loginInfo').userid,
+      courseTime: that.data.stime,
+      teacherId: that.data.cpinfo[0].teacherId
     }
-    stuMakeUp(data).then(res =>{
+    classTime(data).then(res =>{
       that.setData({
         modalName: ''
       })
@@ -663,6 +662,7 @@ Page({
   },
 
   viewDayDetail(e){
+    var that = this;
     let exist = e.currentTarget.dataset.exist;
     let cp = e.currentTarget.dataset.cp;
     let week = e.currentTarget.dataset.week;
@@ -677,7 +677,7 @@ Page({
         success (res) {
           if(res.confirm){
             if(exist){
-              this.setData({
+              that.setData({
                 tabCur: 2,
                 thatDay: {courseInfo: courseInfo, week: week}
               })
@@ -693,7 +693,17 @@ Page({
               }, 0);
             }
           }else if(res.cancel){
-            this.setData({
+            // 获取完整的年月日 时分秒，以及默认显示的数组
+            var obj1 = dateTimePicker.dateTimePicker(that.data.startYear, that.data.endYear);
+            // 精确到分的处理，将数组的秒去掉
+            var lastArray = obj1.dateTimeArray.pop();
+            var lastTime = obj1.dateTime.pop();
+            that.setData({
+              dateTimeArray1: obj1.dateTimeArray,
+              dateTime1: obj1.dateTime
+             });
+            that._endtime()
+            that.setData({
               modalName: 'DialogModal2'
             })
           }
