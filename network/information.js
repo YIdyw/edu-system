@@ -50,11 +50,18 @@ export function queryAppointment(data) {
   })
 }
 
-// 教师审核是否通过学生的约课请求
-export function appointmentAgree(data) {
+// 教师拒绝学生的约课请求
+export function appointmentAgree1(data) {
   return request({
-    url: '/coursepac/appointment/agree',
+    url: '/coursepac/appointment/agree?isAgree='+data.isAgree+'&recordId='+data.recordId+'&remark='+data.remark,
     method: 'PUT',
-    params: data,
+  })
+}
+
+// 教师通过学生的约课请求
+export function appointmentAgree2(data) {
+  return request({
+    url: '/coursepac/appointment/agree?isAgree='+data.isAgree+'&recordId='+data.recordId,
+    method: 'PUT',
   })
 }

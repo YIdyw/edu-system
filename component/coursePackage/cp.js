@@ -1,7 +1,7 @@
 // component/popup_coursepackage.js
 
 import {
-  queryAppointment, appointmentAgree
+  queryAppointment, appointmentAgree1, appointmentAgree2
 } from '../../network/information'
 
 Component({
@@ -16,8 +16,8 @@ Component({
    * 组件的初始数据
    */
   data: {
-    layout:{},
-    islayout: true,
+    coursePackage:{},
+    iscoursePackage: true,
     remark:'',
     isrefuse:true,
     refuse_data:{},
@@ -35,8 +35,8 @@ Component({
       console.log(res)
       if(res.code == 200){
         this.setData({
-          islayout:false,
-          layout:res.data
+          iscoursePackage:false,
+          coursePackage:res.data
         })
       }
       if (this.getInfoCallback) {
@@ -58,19 +58,19 @@ Component({
           if(res.confirm){
             let data = {
               isAgree : true,
-              recordId : that.data.layout[e.currentTarget.dataset.index].recordId,
-              remark: this.data.remark,
+              recordId : that.data.coursePackage[e.currentTarget.dataset.index].recordId,
             }
-            appointmentAgree(data).then(res=>{
+            appointmentAgree2(data).then(res=>{
+              console.log(res)
               if(res.code == 200){
                 wx.showToast({
-                  title: '已同意该学生申请',
+                  title: '已同意申请',
                 })
               }
             })
-            that.data.layout[e.currentTarget.dataset.index].isAgree = true
+            that.data.coursePackage[e.currentTarget.dataset.index].isAgree = 1
             that.setData({
-              layout:that.data.layout
+              coursePackage:that.data.coursePackage
             })
           }
           else{
@@ -86,13 +86,13 @@ Component({
   
   cancelM(){
     this.setData({
-      islayout:true
+      iscoursePackage:true
     })
   },
   
   confirmM(){
     this.setData({
-      islayout:true
+      iscoursePackage:true
     })
   },
   
@@ -110,21 +110,24 @@ Component({
   },
   
   confirm_refuse(){
+    var that = this
     let data = {
       isAgree : false,
-      recordId : that.data.layout[e.currentTarget.dataset.index].recordId,
-      remark: this.data.remark,
+      recordId : that.data.coursePackage[that.data.recordId_index].recordId,
+      remark: that.data.remark,
     }
-    appointmentAgree(data).then(res=>{
+    appointmentAgree1(data).then(res=>{
       if(res.code == 200){
         wx.showToast({
-          title: '已拒绝该学生申请',
+          title: '已拒绝申请',
         })
       }
     })
-    that.data.layout[e.currentTarget.dataset.index].isAgree = false
+    that.data.coursePackage[that.data.recordId_index].isAgree = -1
+    that.data.coursePackage[that.data.recordId_index].remark = that.data.remark
     that.setData({
-      layout:that.data.layout
+      coursePackage:that.data.coursePackage,
+      isrefuse:true
     })
   
   },

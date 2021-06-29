@@ -1,19 +1,19 @@
 <!--component/popup_coursepackage.wxml-->
-<view class="bg" hidden="{{islayout}}"></view>
-<view class="card" hidden="{{islayout}}">
+<view class="bg" hidden="{{iscoursePackage}}"></view>
+<view class="card" hidden="{{iscoursePackage}}">
   <view style="height: 100%">
     <view class="userinfo-type">
       <view class="left">
         <view class="left-line"></view>
       </view>
-      <text class="div-line">学生请假记录</text>
+      <text class="div-line">课包申请记录</text>
       <view class="right">
         <view class="right-line"></view>
       </view>
     </view>
     <view style="margin-top:40rpx; height:830rpx; padding:0 40rpx;">
       <scroll-view  scroll-y="true">
-        <view class="little_card" wx:for="{{layout}}" wx:key="index">
+        <view class="little_card" wx:for="{{coursePackage}}" wx:key="index">
           <view class="head">
             <view class="stu_name">{{item.stuId}}</view>
             <view class="stu_time">{{item.courseTime}}</view>
@@ -22,16 +22,16 @@
             <view class="judge_type" style="color: #0ACA64" wx:else="{{item.isAgree == -1}}">未通过</view>
           </view>
           <view class="content">
-            <text decode="true" class="content_title">请假课程:&nbsp;</text>
+            <text decode="true" class="content_title">申请课程:&nbsp;</text>
             <text class="content_content">{{item.coursePacId}}</text>
           </view>
           <view class="content" style="margin-top: 30rpx">
-            <text decode="true" class="content_title">请假理由:&nbsp;</text>
+            <text decode="true" class="content_title">申请理由:&nbsp;</text>
             <text class="content_content">{{item.remark}}</text>
           </view>
           <view class="content_judge" style="margin-top:16rpx">
             <text decode="true" class="content_title">是否批准:&nbsp;</text>
-            <button wx:if="{{item.isChecked==20||item.isChecked==30}}" class="none" data-index="{{index}}">操作</button>
+            <button wx:if="{{item.isAgree==1||item.isAgree==-1}}" class="none" data-index="{{index}}">操作</button>
             <button wx:else class="do" bindtap="changecheck"  data-index="{{index}}">操作</button>
           </view>
         </view>
@@ -51,7 +51,7 @@
           <view class="th">审核状态</view>
           <view class="th">是否批准</view>
         </view>
-        <block wx:for="{{layout}}" wx:key="index">
+        <block wx:for="{{coursePackage}}" wx:key="index">
           <view class="tr bg-g" wx:if="{{index % 5 == 0}}">
             <view class="td">{{item.userName}}</view>
             <view class="td">{{item.courseName}}</view>

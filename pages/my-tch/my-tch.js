@@ -13,6 +13,8 @@ Page({
   data: {
     ismakeup: true,     //是否补课
     makeup: '',          //补课记录
+    coursePackage:{},
+    iscoursePackage: true,
     loginInfo:[],
     islogin: false,
     isflag: false,
@@ -666,6 +668,7 @@ Page({
 
     this.leave = this.selectComponent("#leave");
     this.makeup = this.selectComponent("#makeup");
+    this.cp = this.selectComponent("#cp");
   },
 
   /**
