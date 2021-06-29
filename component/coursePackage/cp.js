@@ -1,5 +1,4 @@
 // component/popup_coursepackage.js
-
 import {
   queryAppointment, appointmentAgree1, appointmentAgree2
 } from '../../network/information'
