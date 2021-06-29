@@ -492,11 +492,11 @@ Page({
       this.leave.teacherlp(this.data.loginInfo.userid);
 
     }else if(that.data.isFaceChecked==7){
-
+      // console.log(this.makeup)
       this.makeup.teacherlp(this.data.loginInfo.userid);
 
      }else if(that.data.isFaceChecked==8){
-
+      console.log(this.cp)
       this.cp.teacherlp(this.data.loginInfo.userid);
 
      }
@@ -666,6 +666,7 @@ Page({
 
     this.leave = this.selectComponent("#leave");
     this.makeup = this.selectComponent("#makeup");
+    this.cp = this.selectComponent("#cp")
   },
 
   /**

@@ -7,12 +7,143 @@
 
 .textInfo{
   text-align: center;
-  height: 100px;
-  width: 100px;
+  height: 86rpx;
+  width: 160rpx;
+  line-height: 86rpx;
+  font-size: 26rpx;
+  border-bottom: 1px solid #CCCCCC;
+}
+
+.textInfo_item {
+  text-align: start;
+  height: 86rpx;
+  width: 160rpx;
+  line-height: 86rpx;
+  font-size: 26rpx;
+  border-bottom: 1px solid #CCCCCC;
+  padding-left: 35rpx;
+}
+
+.textInfo_col {
+  height: 86rpx;
+  width: 44rpx;
+  border-bottom: 1px solid #CCCCCC;
+}
+
+.textInfox{
+  text-align: center;
+  height: 88rpx;
+  width: 127rpx;
+  line-height: 90rpx;
+}
+
+.textInfox_item {
+  text-align: start;
+  height: 86rpx;
+  width: 127rpx;
+  line-height: 86rpx;
+  padding-left: 10rpx;
+  font-size: 26rpx;
+  border-bottom: 1px solid #CCCCCC;
+  /* overflow: vi; */
 }
 
 .buttonInfo{
-  text-align: center;
-  height: 100px;
-  width: 50px;
+  text-align: start;
+  height: 86rpx;
+  width: 115rpx;
+  line-height: 86rpx;
+  font-size: 26rpx;
+  color: #2655CF;
+  padding-left: 21rpx;
+  border-bottom: 1px solid #CCCCCC;
 }
+
+.infoscroll {
+  flex: 1;
+}
+
+.stuNum,
+.stuName,
+.scrollx {
+  position: relative;
+}
+
+.stuNum::before {
+  content: "\e6de";
+  font-family: 'cuIcon';
+  font-size: 20rpx;
+  position: absolute;
+  left: 8rpx;
+  bottom: 6rpx;
+  color: #7B96D9;
+  margin-right: 5rpx;
+}
+
+.stuNum::after {
+  content: "\e661";
+  font-family: 'cuIcon';
+  font-size: 20rpx;
+  position: absolute;
+  left: 8rpx;
+  top: 6rpx;
+  margin-right: 5rpx;
+  
+}
+
+.stuName::before {
+  content: "\e6de";
+  font-family: 'cuIcon';
+  font-size: 20rpx;
+  position: absolute;
+  left: 8rpx;
+  bottom: 6rpx;
+  color: #7B96D9;
+  margin-right: 5rpx;
+}
+
+.stuName::after {
+  content: "\e661";
+  font-family: 'cuIcon';
+  font-size: 20rpx;
+  position: absolute;
+  left: 8rpx;
+  top: 6rpx;
+  margin-right: 5rpx;
+}
+
+ .left-icon::before {
+  content: "\e679";
+  font-family: 'cuIcon';
+  font-size: 20rpx;
+  position: absolute;
+  height: 85rpx;
+  border-bottom: 1px solid #2655CF;
+  display: inline-block;
+  line-height: 86rpx;
+  width: 44rpx;
+  padding-left: 10rpx;
+}
+
+.right-icon::before {
+  content: "\e6a3";
+  font-family: 'cuIcon';
+  font-size: 20rpx;
+  position: absolute;
+  height: 85rpx;
+  border-bottom: 1px solid #2655CF;
+  display: inline-block;
+  line-height: 86rpx;
+  width: 44rpx;
+  padding-left: 10rpx;
+}
+
+.line_bottom {
+  position: absolute;
+  left: -20rpx;
+  bottom: 0rpx;
+  height: 1px;
+  width: 30rpx;
+  color: black;
+}
+

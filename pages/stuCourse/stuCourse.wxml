@@ -7,52 +7,74 @@
 <scroll-view scroll-y="true" class="scrolly" style="top: {{globalData+globalDatas}}px;white-space: nowrap; display: flex;" >
 <!-- display: inline-block-->
 <view style="display: flex;" class="info">
- <view style="background: #2655CF; width: {{(deviceW-50)/4}}px; display: inline-block" class="infoscroll">
-   <view class="textInfo">学生编号</view>
+ <view style="background: #D5DFFA; width: 160rpx; display: inline-block" class="infoscroll">
+   <view class="textInfo stuNum" style="color: #2655CF; border-bottom:1px solid #2655CF">
+    <view style="margin-left:18rpx">学生编号</view>
+   </view>
    <view wx:for="{{col1}}" wx:key="key">
-    <view class="textInfo">{{item}}</view>
+    <view class="textInfo_item">{{item}}</view>
    </view>
  </view>
- <view style="background: green; width: {{(deviceW-50)/4}}px; display: inline-block" class="infoscroll">
-  <view class="textInfo">学生姓名</view>
+ <view style="background: #DAF0D3; width: 160rpx; display: inline-block" class="infoscroll">
+  <view class="textInfo stuName" style="color: #2655CF; border-bottom:1px solid #2655CF">
+    <view style="margin-left:18rpx">学生姓名</view>
+  </view>
   <view wx:for="{{col2}}" wx:key="key">
-    <view class="textInfo">{{item}}</view>
+    <view class="textInfo_item">{{item}}</view>
    </view>
  </view>
 
- <scroll-view scroll-x="true" style="background: yellow; width: {{(deviceW-50)/2}}px; display: flex" class="scrollx">
+<view style="background: #FCF8D9; width: 44rpx;  display: inline-block" class="left">
+  <view class="left-icon" style="position:relative; height: 86rpx"></view>
+  <view wx:for="{{col2}}" wx:key="key">
+    <view class="textInfo_col"></view>
+  </view>
+</view>
+
+<view style="background: #FCF8D9; width: 251rpx;  margin-top:-3rpx; position:relative" class="scrollx">
+ <scroll-view scroll-x="true" style="background: #FCF8D9; width: 251rpx; display: inline-block">
    <view style="display:inline-block" class="infoscroll">
-    <view class="textInfo">余课课时</view>
-    <view wx:for="{{col3}}" wx:key="key">
-      <view class="textInfo">{{item}}</view>
+    <view class="textInfox" style="color: #2655CF; border-bottom:1px solid #2655CF;">余课课时</view>
+    <view wx:for="{{col3}}" wx:key="key" style="position:relative">
+      <view class="line_bottom"></view>
+      <view class="textInfox_item">{{item}}</view>
     </view>
    </view>
 
    <view style="display:inline-block" class="infoscroll">
-    <view class="textInfo">已结课时</view>
+    <view class="textInfox" style="color: #2655CF;border-bottom:1px solid #2655CF;">已结课时</view>
     <view wx:for="{{col4}}" wx:key="key">
-      <view class="textInfo">{{item}}</view>
+      <view class="textInfox_item">{{item}}</view>
     </view>
    </view>
 
    <view style="display:inline-block" class="infoscroll">
-    <view class="textInfo">余补课时</view>
+    <view class="textInfox" style="color: #2655CF;border-bottom:1px solid #2655CF;">余补课时</view>
     <view wx:for="{{col5}}" wx:key="key">
-      <view class="textInfo">{{item}}</view>
+      <view class="textInfox_item">{{item}}</view>
     </view>
    </view>
 
    <view style="display:inline-block" class="infoscroll">
-    <view class="textInfo">待补课时</view>
+    <view class="textInfox" style="color: #2655CF;border-bottom:1px solid #2655CF;">待补课时</view>
     <view wx:for="{{col6}}" wx:key="key">
-      <view class="textInfo">{{item}}</view>
+      <view class="textInfox_item">{{item}}</view>
     </view>
    </view>
   </scroll-view>
-  <view style="display:inline-block; width: 50px;" class="infoscroll">
-    <view class="buttonInfo">更多</view>
+  </view>
+
+  <view style="background: #FCF8D9; width: 44rpx;  display: inline-block" class="right">
+  <view class="right-icon" style="position:relative; height:86rpx"></view>
+  <view wx:for="{{col2}}" wx:key="key">
+    <view class="textInfo_col"></view>
+  </view>
+</view>
+
+  <view style="display:inline-block; width: 115rpx;" class="infoscroll">
+    <view class="buttonInfo" style="color: #2655CF; border-bottom:1px solid #2655CF">更多</view>
     <view wx:for="{{col1}}" wx:key="key" wx:for-index="index">
-      <button class="buttonInfo" bindtap="moreInfo" data-index="{{index}}">more</button>
+      <view class="buttonInfo" bindtap="moreInfo" data-index="{{index}}">more</view>
     </view>
   </view>
 
