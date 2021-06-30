@@ -105,7 +105,16 @@
         <view class="week-seven" wx:for="{{monthTitle}}" wx:key="id">{{item}}</view>
       </view>
       <view class="week-col">
-        <view wx:for="{{monthPlan}}" wx:key="id"  class="week-day {{item.exist?item.color: ''}} {{item.name==currentDay&&currentMonth==showMonth?'text-red text-bold':''}}" bindtap="viewDayDetail" data-cp="{{item.cp}}" data-exist="{{item.exist}}" data-info="{{item.courseInfo}}" data-week="{{item.week}}" style="border-radius:50%">{{item.name}}</view>
+        <view wx:for="{{monthPlan}}" wx:key="id"  class="week-day {{item.exist?item.color: ''}} {{item.name==currentDay&&currentMonth==showMonth?'text-red text-bold':''}}" bindtap="viewDayDetail" data-cp="{{item.cp}}" data-exist="{{item.exist}}" data-info="{{item.courseInfo}}" data-week="{{item.week}}" style="border-radius:50%">
+          <view wx:if="{{item.cp}}" class="pop">
+            <view class="cuIcon-favorfill text-blue">
+            </view>
+          </view>
+          <view>
+            {{item.name}}
+          </view>
+          
+        </view>
       </view>
     </view>
     <view class="end">
