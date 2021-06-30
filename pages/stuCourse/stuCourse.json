@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "i-navigator": "../../component/navigator/navigator"
+    "i-navigator": "../../component/navigator/navigator",
+    "cards": "../../component/cards/cards"
   }
 }

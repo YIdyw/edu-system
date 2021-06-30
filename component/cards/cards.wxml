@@ -1,0 +1,46 @@
+<!--component/popup_leave/leave.wxml-->
+<view class="bg" hidden="{{islayout}}"></view>
+<view class="card" hidden="{{islayout}}">
+  <view style="height: 100%">
+    <view class="userinfo-type">
+      <view class="left">
+        <view class="left-line"></view>
+      </view>
+      <text class="div-line">{{title}}</text>
+      <view class="right">
+        <view class="right-line"></view>
+      </view>
+    </view>
+    <view style="margin-top:40rpx; height:292rpx; padding:0 40rpx;">
+      <scroll-view  scroll-y="true">
+        <view class="little_card">
+          <view class="head">
+            <view class="stu_name">{{userName}}</view>
+            <view class="stu_time">{{buyTime}}</view>
+          </view>
+          <view class="content">
+            <text decode="true" class="content_title">预约日期:&nbsp;</text>
+            <text class="content_content">{{applyTime}}</text>
+          </view>
+          <view class="content" style="margin-top: 30rpx">
+            <text decode="true" class="content_title">购课日期:&nbsp;</text>
+            <text class="content_content">{{buyTime}}</text>
+          </view>
+          <view class="content" style="margin-top: 30rpx">
+            <text decode="true" class="content_title">金额:&nbsp;</text>
+            <text class="content_content">{{money}}</text>
+          </view>
+          <view class="content" style="margin-top: 30rpx">
+            <text decode="true" class="content_title">累计课时:&nbsp;</text>
+            <text class="content_content">{{count}}</text>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+    <view class="btn">
+      <view bindtap="cancelM">取消</view>
+      <view class="confirm" bindtap="confirmM">确定</view>
+    </view>
+  </view>
+</view>
+

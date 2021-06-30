@@ -78,6 +78,8 @@
     </view>
   </view>
 
+  <cards id="cards"></cards>
+
   <modal hidden="{{showModal}}" title="{{stuInfo}}" bindcancel="cancel" bindconfirm="confirm">
     <view style="background: white-space; width: {{(deviceW-50)/4}}px; display: inline-block" class="infoscroll">
       <view class="textInfo">预约日期</view>

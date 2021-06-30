@@ -3,24 +3,23 @@
 <!-- 导航栏 -->
 <i-navigator></i-navigator>
 
-<view class="pageSapce"  style="top: {{globalData+globalDatas}}px; text-align:center;">
-  <!--表格-->
-  <text >课程信息</text>
-  <view class="divLine"></view>
-  <view class="table ">
-    <view class="tr thColor">
-      <view class="th ">学生</view>
-      <view class="th ">上课数</view>
-      <view class="th ">余课数</view>
+<view class="adver_title">
+  <view class="blue_line"></view>
+  <view class="adver_title_content">课程信息</view>
+</view>
+
+<view class="table">
+  <view class="table_content">
+    <view class="table_head">
+      <view class="head_col">学生</view>
+      <view class="head_col">上课数</view>
+      <view class="head_col">余课数</view>
     </view>
-    <view class="table-wrap">
-      <block wx:for="{{listData}}" wx:key="key">
-        <view class="tr">
-          <view class="td">{{item.col1}}</view>
-          <view class="td">{{item.col2}}</view>
-          <view class="td">{{item.col3}}</view>
-        </view>
-      </block>
+    <view class="col" wx:for="{{listData}}" wx:key="key">
+      <view class="content_col">{{item.col1}}</view>
+      <view class="content_col">{{item.col2}}</view>
+      <view class="content_col">{{item.col3}}</view>
     </view>
   </view>
 </view>
+

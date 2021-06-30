@@ -1,76 +1,63 @@
-/* pages/stuInfo/stuInfo.wxss */
-/*
-分割线
-*/
-.divLine{
-  background: rgb(80, 80, 80);
+.adver_title {
+  height: 28rpx;
   width: 100%;
-  height: 5rpx;
-  margin-bottom: 20rpx;
- }
- /*
- 页面左右留白
- */
- .pageSapce{
-   margin-left: 5%;
-   margin-right: 5%;
-   width: 90%;
-   position: absolute;
- }
- /*
- 表格纵向滑动条
- */
- .table-wrap{
-   height: 100%;
-   overflow-y: scroll;
-   overflow-x: hidden;
- }
- /* 表格代码   */
- .table {
-   border:1px solid #dddddd;
-   border-right:0;
-   border-bottom: 0;
-   width: 98%;
-   margin-left: 1%;
- }
- .tr {
-   display: flex;
-   width: 100%;
-   justify-content: center;
-   height: 3rem;
-   align-items: center;
- }
- .td {
-  width: 45%;
-   justify-content: center;
-   align-items: center;
-   color: #4f4f4f;
-   display: flex;
-   font-size: 25rpx;
-   height: 99%;
-   border-bottom: 1px solid #dddddd;
-   border-right: 1px solid #dddddd;
- }
- /*
- 用于列表隔行的颜色变化
- */
- .tdColor{
-   background:#f7f7f7;
- }
- /*
- 表头颜色
- */
- .thColor{
-   background:#eff3f5;
- }
- .th {
-   width: 45%;
-   justify-content: center;
-   align-items: center;
-   color: #4f4f4f;
-   display: flex;
-   height: 99%;
-   font-weight: 600;
-   border-bottom: 1px solid #dddddd;
-   border-right: 1px solid #dddddd;
- }
+  margin-top: 30rpx;
+  position: relative;
+}
+
+.adver_title .blue_line {
+  width: 8rpx;
+  height: 28rpx;
+  position: absolute;
+  left: 30rpx;
+  background: linear-gradient(90deg, #5BBAF7, #2655CF);
+}
+
+.adver_title .adver_title_content {
+  position: absolute;
+  left: 56rpx;
+  font-size: 28rpx;
+  line-height: 28rpx;
+}
+
+.table {
+  margin: 30rpx;
+  padding: 0 30rpx;
+  background-color: #FFFFFF;
+  border-radius: 20rpx;
+}
+
+.table_head {
+  display: flex;
+  height: 80rpx;
+  width: 100%;
+  line-height: 80rpx;
+  text-align: start;
+  border-bottom: 1px solid #CCCCCC;
+}
+
+.head_col {
+  flex: 1;
+  padding-left: 67rpx;
+  font-size: 26rpx;
+  font-weight: 700;
+}
+
+.content_col {
+  flex: 1;
+  padding-left: 67rpx;
+  font-size: 26rpx;
+}
+
+.col {
+  height: 108rpx;
+  width: 100%;
+  border-bottom: 1px solid #CCCCCC;
+  display: flex;
+  line-height: 108rpx;
+  text-align: start;
+}
+
+.col:last-child {
+  border-bottom: 0;
+}

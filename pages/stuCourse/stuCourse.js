@@ -3,6 +3,7 @@ import{
   teaCourseInfo
 } from '../../network/aboutclass'
 
+
 var app = getApp()
 Page({
 
@@ -32,6 +33,7 @@ Page({
     globalData:app.time.statusBarHeight, //状态栏高度,
     globalDatas:app.nav.height + (app.nav.top - app.time.statusBarHeight)*2 + app.nav.top - app.time.statusBarHeight, //导航栏高度
     globalDatassh: app.nav.height, //胶囊高度
+    content_col: ["预约日期", "购课日期", "金额", "累计课时"],
   },
 
   //获取设备信息
@@ -62,16 +64,22 @@ Page({
   //查看当前学生“更多”信息
   moreInfo(e) {
     let index = e.currentTarget.dataset.index
-    this.setData({
+    var that = this
+    console.log(this.data.col7)
+    setTimeout(() => {
+      console.log(that.data.col7[index])
+    }, 1000)
+    let data = {
       button_index: index,
       stuInfo: this.data.col2[index]+"的额外信息",
+      userName: this.data.col2[index],
       pro_date: this.data.col7[index],
       buy_date: this.data.col8[index],
       money: this.data.col9[index],
-      time: this.data.col10[index],
-      showModal: false
-    })
-
+      time: this.data.col10[index]
+    }
+    console.log(data)
+    this.cards.show_up(data)
   },
 
 
@@ -90,6 +98,7 @@ Page({
       teaId: wx.getStorageSync('loginInfo').userid
     }
     teaCourseInfo(data).then(res=>{
+      console.log(res.data)
       if(res.code == 200){
         for(let i = 0; i < res.data.length; i++){
           if(res.data[i].courseId == this.data.courseId){
@@ -99,9 +108,9 @@ Page({
             col4.push(res.data[i].consumedCourseTime);
             col5.push(res.data[i].remainMakeUpTime);
             col6.push(res.data[i].consumedMakeupTime);
-            col7.push(res.data[i].trialLessonDate);
-            col8.push(res.data[i].firstBuyDate);
-            col9.push(res.data[i].amount);
+            col7.push(res.data[i].detail.trialLessonDate);
+            col8.push(res.data[i].detail.firstBuyDate);
+            col9.push(res.data[i].detail.amount);
             col10.push(res.data[i].consumedCourseTime);
           }
         }
@@ -137,7 +146,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    this.cards = this.selectComponent("#cards")
   },
 
   /**
