@@ -97,7 +97,7 @@
   <view class="actual_content" hidden="{{degss==0}}">
     <view class="test" wx:for="{{course.data}}" wx:key="index">
       <view bindtap="course" data-menuindex='{{index}}' id="{{index}}">
-        <view class="teacher_image" style="background-image:url('https://www.sanshidiboundless.com/offline-education-system/picture/{{item.adverPhoto}}')"></view>
+        <view class="teacher_image" style="background-image:url('https://www.sanshidiboundless.net:444/offline-education-system/picture/{{item.adverPhoto}}')"></view>
         <view class="teacher_content"> 
           <view>{{item.name}}</view>
           <view class="text_small">
@@ -131,7 +131,7 @@
             <swiper class='bannerSwiper' indicator-dots="true" indicator-color='#B5B5B5' indicator-active-color='#fff' interval='3000' duration='500' circular='true' autoplay="true">
               <block wx:for="{{item.actPicture}}" wx:for-item="item1" wx:key="index">
                 <swiper-item>
-                  <image class="imageBanner_small" src="https://www.sanshidiboundless.com/offline-education-system{{item.actPicture[index]}}" id='{{index.url}}' ></image>
+                  <image class="imageBanner_small" src="https://www.sanshidiboundless.net:444/offline-education-system{{item.actPicture[index]}}" id='{{index.url}}' ></image>
                 </swiper-item>
               </block>
             </swiper>
@@ -143,7 +143,7 @@
                 <view class='videocoverbg'></view>
                   <image src='../../../img/icon/icon-play.png' class='playbtn' bindtap="videoPlay" hidden="{{controls}}"></image>  
                 </view>
-                <video class='box-w block' id="video" src="https://www.sanshidiboundless.com/offline-education-system{{item.actVideo[index]}}" show-center-play-btn="true" autoplay="{{flase}}" objectFit="cover" loop="false" controls="false" show-fullscreen-btn="false"></video>
+                <video class='box-w block' id="video" src="https://www.sanshidiboundless.net:444/offline-education-system{{item.actVideo[index]}}" show-center-play-btn="true" autoplay="{{flase}}" objectFit="cover" loop="false" controls="false" show-fullscreen-btn="false"></video>
               </swiper-item>
             </swiper>
 					</view>
@@ -217,7 +217,7 @@
 <view hidden="{{degss==0}}">
     <block wx:for="{{course.data}}" wx:key="index">
   <view class="view_tupian_wenzi" bindtap="course" data-menuindex='{{index}}' id="{{index}}">
-    <image class="image_1" src="https://www.sanshidiboundless.com/offline-education-system/picture/{{item.adverPhoto}}" />
+    <image class="image_1" src="https://www.sanshidiboundless.net:444/offline-education-system/picture/{{item.adverPhoto}}" />
     <view class="view_wenzi2"> 
       <text>{{item.name}}</text>
       
@@ -248,7 +248,7 @@
             <swiper class='bannerSwiper' previous-margin="54rpx" next-margin='54rpx' indicator-dots="true" indicator-color='#B5B5B5' indicator-active-color='#fff' interval='3000' duration='500' circular='true' autoplay="true">
               <block wx:for="{{item.actPicture}}" wx:for-item="item1" wx:key="index">
                 <swiper-item>
-                  <image class="{{index==xindex?'imageBanner':'imageBanner_small'}}" src="https://www.sanshidiboundless.com/offline-education-system{{item.actPicture[index]}}" id='{{index.url}}' ></image>
+                  <image class="{{index==xindex?'imageBanner':'imageBanner_small'}}" src="https://www.sanshidiboundless.net:444/offline-education-system{{item.actPicture[index]}}" id='{{index.url}}' ></image>
                 </swiper-item>
               </block>
             </swiper>
@@ -260,7 +260,7 @@
                 <!-- <view class='videocoverbg'></view>
                   <image src='../../../img/icon/icon-play.png' class='playbtn' bindtap="videoPlay" hidden="{{controls}}"></image>  
                 </view> -->
-            <!-- <video class='box-w block' id="video" src="https://www.sanshidiboundless.com/offline-education-system{{item.actVideo[index]}}" show-center-play-btn="true" autoplay="{{flase}}" objectFit="cover" loop="false" controls="false" show-fullscreen-btn="false"></video>
+            <!-- <video class='box-w block' id="video" src="https://www.sanshidiboundless.net:444/offline-education-system{{item.actVideo[index]}}" show-center-play-btn="true" autoplay="{{flase}}" objectFit="cover" loop="false" controls="false" show-fullscreen-btn="false"></video>
               </swiper-item>
             </swiper>
 					</view>

@@ -45,6 +45,7 @@ App({
     })
   },
 
+
   //回调函数
   getInfoCallback: function(p){
     if (this.getInfoCallback()) {

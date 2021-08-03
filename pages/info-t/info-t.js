@@ -829,7 +829,7 @@ Page({
               })
               break;
           }
-        var url = 'https://www.sanshidiboundless.com/offline-education-system/picture/'
+        var url = 'https://www.sanshidiboundless.net:444/offline-education-system/picture/'
         var edu = res.data.gradCertPhoto
         var deg = res.data.degreeCertPhoto
         var pri = res.data.photoId

@@ -10,7 +10,7 @@
 <view  class="cards" > 
     <view class="cards_title">机构名称：{{info.OrganizationName}}</view>
     <view class="cards_content">营销人员：{{info.userName}}</view>
-    <image wx:if="{{info.adverPhoto}}" class="cards_image" src="https://www.sanshidiboundless.com/offline-education-system/picture/{{info.adverPhoto}}"></image>
+    <image wx:if="{{info.adverPhoto}}" class="cards_image" src="https://www.sanshidiboundless.net:444/offline-education-system/picture/{{info.adverPhoto}}"></image>
     <view wx:if="{{info.course}}" class="course_title">最近课程</view>
     <view wx:for="{{info.course}}" wx:key="index" class="cards_content">
       <view>课程名称：{{item}}</view>
@@ -19,7 +19,7 @@
 
 <view class="scan">
   <view wx:if="{{codeurl}}" class="scan_title">营销二维码</view>
-  <image wx:if="{{codeurl}}" mode="aspectFill" class="scan-image" bindload="imgload" src="https://www.sanshidiboundless.com/offline-education-system/picture/{{codeurl}}"></image>
+  <image wx:if="{{codeurl}}" mode="aspectFit" class="scan-image" bindload="imgload" src="https://www.sanshidiboundless.net:444/offline-education-system/picture/{{codeurl}}"></image>
   <view wx:if="{{codeurl}}" class="scan_content">扫码进行预约</view>
 </view>
 
