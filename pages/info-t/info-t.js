@@ -191,7 +191,7 @@ Page({
           for(let j = 0; j < 8; j++){
             if(res.data[i] == sub[j].name){
               sub[j].checked = true;
-              value.push(j+1);
+              value.push(j);
               l++;
             }
           }
@@ -199,9 +199,10 @@ Page({
 
         //将擅长科目下标数据伪造成点击数据，调用点击函数进行初始化
         let choose = {detail:{value:value}};
+        console.log(choose)
         this.subjectChange(choose)
 
-        
+
         this.setData({
           subjects: sub,
           slength: l
