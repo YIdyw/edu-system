@@ -182,18 +182,26 @@ Page({
 //获取教师擅长科目******************************************
   _teacherCourse(){
     let sub = this.data.subjects;
+    //记录擅长科目下标
+    let value = [];
     let l = 0;
     teacherCourse(wx.getStorageSync('loginInfo').userid).then(res =>{
       if(res.code == 200){
-        console.log(res)
         for(let i = 0; i < res.data.length; i++){
           for(let j = 0; j < 8; j++){
             if(res.data[i] == sub[j].name){
-              sub[j].checked = true
-              l++
+              sub[j].checked = true;
+              value.push(j+1);
+              l++;
             }
           }
         }
+
+        //将擅长科目下标数据伪造成点击数据，调用点击函数进行初始化
+        let choose = {detail:{value:value}};
+        this.subjectChange(choose)
+
+        
         this.setData({
           subjects: sub,
           slength: l
@@ -225,6 +233,7 @@ Page({
   //擅长科目选择******************************************
   subjectChange(e){
     var that = this
+    console.log(e)
     this.setData({
       slength: 0
     })
@@ -398,7 +407,6 @@ Page({
   //教师提交信息时，补充上次提交信息（教师提交信息时，会先判断这些是否修改了，未修改就用上次提交的信息提交）******************************************
   checkin(){
     let that = this.data
-    console.log(this.data)
     if(this.data.checkinInfo){
       if(this.data.school==''){
         this.setData({
@@ -413,6 +421,7 @@ Page({
     }
     
     if(that.school=="" || that.eduIdx==0 || that.eduNum==""|| that.eduImg=="" || that.subjectChoose.length == 0){
+      console.log(that.subjectChoose.length)
       setTimeout(() => {
         wx.showToast({
           title: '请完成必填项后提交！',
@@ -456,30 +465,31 @@ Page({
       })
     } 
   },
-  //获取全部课程列表
-  // _getAllSubject(){
-  //   getAllSubject().then(res => {
-  //     console.log("all:", res)
-  //     if(res.code == 200) {
-  //       this.setData({
-  //         courseCategory: res.data
-  //       });
-  //       if(this._getcallback){
-  //         this._getcallback(res.data)
-  //       }
-  //     }else{
-  //       setTimeout(() => {
-  //         wx.showToast({
-  //           title: '请刷新页面1！',
-  //           icon: "none",
-  //         });
-  //         setTimeout(() => {
-  //           wx.hideToast();
-  //         }, 3000)
-  //       }, 0);
-  //     }
-  //   })
-  // },
+
+//  // 获取全部课程列表
+//   _getAllSubject(){
+//     getAllSubject().then(res => {
+//       console.log("all:", res)
+//       if(res.code == 200) {
+//         this.setData({
+//           courseCategory: res.data
+//         });
+//         if(this._getcallback){
+//           this._getcallback(res.data)
+//         }
+//       }else{
+//         setTimeout(() => {
+//           wx.showToast({
+//             title: '请刷新页面1！',
+//             icon: "none",
+//           });
+//           setTimeout(() => {
+//             wx.hideToast();
+//           }, 3000)
+//         }, 0);
+//       }
+//     })
+//   },
 
   //学历证书照片******************************************
   _deu(){
@@ -761,7 +771,7 @@ Page({
     if(login){
       that._getTeacherInfo();
       that._teacherCourse();
-      //this._getAllSubject();
+   //   that._getAllSubject();
 
       this.getInfoCallback = res => {
         if (res.code == 200){
