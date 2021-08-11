@@ -8,11 +8,11 @@
   </view>
 </view>
 <form>
-	<view class="cu-form-group margin-top">
+	<!-- <view class="cu-form-group margin-top"> -->
 		<!-- <view class="text-red">*</view> -->
-		<view class="title">登录名</view>
+		<!-- <view class="title">登录名</view>
 		<view class="content">{{userInfo.account}}</view>
-	</view>
+	</view> -->
 	<view class="cu-form-group">
 		<view class="title">昵称</view>
 		<view wx:if="{{!flag}}" class="content">{{userInfo.nickname}}</view>

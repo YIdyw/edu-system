@@ -132,6 +132,16 @@ Page({
         this.setData({
           cpinfo: res.data
         })
+      }else{
+        setTimeout(() => {
+          wx.showToast({
+            title: '课包获取失败',
+            icon: "none",
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 1500)
+        }, 0);
       }
     })
   },
@@ -912,11 +922,14 @@ Page({
 
         //把字符串格式转换为日期类
         var  curTime =  new  Date(Date.parse(monthPlan[i].date));
-        var  startTime =  new  Date(Date.parse(this.data.cpinfo[0].startTime1));
-        var  endTime =  new  Date(Date.parse(this.data.cpinfo[0].endTime1));
-        if(curTime >= startTime && curTime <= endTime){
-          monthPlan[i].cp = true
+        if(this.data.cpinfo.length > 0){
+          var  startTime =  new  Date(Date.parse(this.data.cpinfo[0].startTime1));
+          var  endTime =  new  Date(Date.parse(this.data.cpinfo[0].endTime1));
+          if(curTime >= startTime && curTime <= endTime){
+            monthPlan[i].cp = true
+          }
         }
+        
       }
       for(let k=(currentWeekNum-1)*7; k<currentWeekNum*7; k++){
         weekPlan.push(monthPlan[k])

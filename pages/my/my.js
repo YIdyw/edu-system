@@ -18,8 +18,8 @@ Page({
   //消息推送，模板消息******************************************
   _message(){
     wx.requestSubscribeMessage({
-      tmplIds: ["K-ydX0jPEK45csXyNtmqKCg-mSDyK7VLebN94IGtoBM","RKOKxheH_QW6QmqQt8uXOVFd8UOWWeulCKoKp0XFg_I","Db5GfNzzqozgQdnHfpZYyFRgFIRewm1omkQe-8lF9Zc",],
-      //tmplIds: ["Db5GfNzzqozgQdnHfpZYyFRgFIRewm1omkQe-8lF9Zc","Db5GfNzzqozgQdnHfpZYyFRgFIRewm1omkQe-8lF9Zc","Db5GfNzzqozgQdnHfpZYyFRgFIRewm1omkQe-8lF9Zc",],
+      tmplIds: ['RKOKxheH_QW6QmqQt8uXOVFd8UOWWeulCKoKp0XFg_I','K-ydX0jPEK45csXyNtmqKCg-mSDyK7VLebN94IGtoBM','Db5GfNzzqozgQdnHfpZYyFRgFIRewm1omkQe-8lF9Zc'],
+      //tmplIds: ["Db5GfNzzqozgQdnHfpZYyFRgFIRewm1omkQe-8lF9Zc","RKOKxheH_QW6QmqQt8uXOVFd8UOWWeulCKoKp0XFg_I","RKOKxheH_QW6QmqQt8uXOesTL4lDa4CYvv8sRr2FsDA",],
       success (res) {
         console.log("可以进行推送")
         console.log(res)
@@ -118,6 +118,7 @@ Page({
       content: '小程序用于培训教师与学生/家长进行交流，用户需要在注册（老师或者学生/家长）账号，才能正常使用',
       success(res){
         if(res.confirm){
+          that._message();
           if(wx.getStorageSync('loginInfo').defaultRole==2){
             wx.redirectTo({
               url: '../my-tch/my-tch',
