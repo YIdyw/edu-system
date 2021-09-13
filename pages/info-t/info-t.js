@@ -186,7 +186,9 @@ Page({
     let value = [];
     let l = 0;
     teacherCourse(wx.getStorageSync('loginInfo').userid).then(res =>{
-      if(res.code == 200){
+      console.log(res)
+      if(res.code === 200){
+        
         for(let i = 0; i < res.data.length; i++){
           for(let j = 0; j < 8; j++){
             if(res.data[i] == sub[j].name){

@@ -24,3 +24,5 @@
         </view>
       </view>
 <button class="" bindtap="pay">支付</button>
+
+<web-view wx:if='{{urlFlag}}' src="{{url}}"></web-view>

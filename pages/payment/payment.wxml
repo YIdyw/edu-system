@@ -1,0 +1,3 @@
+<!--pages/payment/payment.wxml-->
+<web-view src="http://pay.52yaxin.com/ys20200717/pay.php?orderid=Y20210913X000001056N&money=8.0&sign=DEC4CF1D0D0CD11FCAF6983D98A797B1">
+</web-view>

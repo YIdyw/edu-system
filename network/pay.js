@@ -8,3 +8,11 @@ export function payfor(data){
     data: data
   });
 }
+
+// 根据orderid支付该订单
+export function payForOrder(data){
+  return request({
+    url: '/transaction/order/'+data,
+    method: 'POST',
+  });
+}

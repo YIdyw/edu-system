@@ -4,7 +4,7 @@ import {
   tobepaidOrder
 } from '../../network/order'
 import {
-  payfor
+  payfor, payForOrder
 } from '../../network/pay'
 Page({
 
@@ -13,11 +13,14 @@ Page({
    */
   data: {
     orderid: '',
-    order: ''
+    order: '',
+    url: '', //支付二维码url
+    urlFlag: false
   },
 
   // 确认支付页面，并在用户点击确定后，调用支付接口(暂未测试)
   pay() {
+    var that =this
     let data = {
       orderId : this.data.orderid,
       payType : '微信'
@@ -28,21 +31,38 @@ Page({
       title : "确认是否支付",
       success(res) {
         if(res.confirm){
-          payfor(data).then(res => {
-            console.log(res.data)
-            if(res.code==200){
-              setTimeout(() => {
-                wx.showToast({
-                  title: '支付成功！',
-                  icon: "success",
-                });
-                setTimeout(() => {
-                  wx.hideToast();
-                }, 3000)
-              }, 0);
-            }
-          })
+          that._payForOrder(that.data.orderid)
+          // payfor(data).then(res => {
+          //   console.log(res.data)
+          //   if(res.code==200){
+          //     setTimeout(() => {
+          //       wx.showToast({
+          //         title: '支付成功！',
+          //         icon: "success",
+          //       });
+          //       setTimeout(() => {
+          //         wx.hideToast();
+          //       }, 3000)
+          //     }, 0);
+          //   }
+          // })
         }
+      }
+    })
+  },
+
+// 完成该订单的支付，返回结果为支付二维码链接
+  _payForOrder(orderid){
+    payForOrder(orderid).then(res =>{
+      if(res.code==200){
+        // wx.redirectTo({
+        //   url: '../payment/payment?url='+url,
+        // })
+        this.setData({
+          urlFlag: true,
+          url: res.data
+        })
+        console.log(res.data)
       }
     })
   },

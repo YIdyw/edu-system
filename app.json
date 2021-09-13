@@ -45,7 +45,8 @@
     "pages/beforeindex/beforeindex",
     "pages/stuInfo/stuInfo",
     "pages/stuCourse/stuCourse",
-    "pages/teaCourse/teaCourse"
+    "pages/teaCourse/teaCourse",
+    "pages/payment/payment"
   ],
   
   "window": {
