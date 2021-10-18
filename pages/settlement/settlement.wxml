@@ -8,7 +8,7 @@
       </view>
       <view class="orderListDetails">
         <navigator url="../courseinfo/courseinfo?index={{item.orderItem.object.courseId}}&orgid={{item.orderItem.object.orgId}}" class="productImg">
-          <image wx:if='{{order}}' src="https://www.sanshidiboundless.net:444/offline-education-system/picture/{{item.orderItem.object.adverPhoto}}" background-size="cover"></image>
+          <image wx:if='{{order}}' src="https://sanshidiboundless.net:444/offline-education-system/picture/{{item.orderItem.object.adverPhoto}}" background-size="cover"></image>
         </navigator>
       <view class="productInfo">
         <view class="productTitle">预定时间: {{item.orderTime}}</view>

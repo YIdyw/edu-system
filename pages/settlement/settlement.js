@@ -14,7 +14,7 @@ Page({
   data: {
     orderid: '',
     order: '',
-    url: '', //支付二维码url
+    url: '', //支付url
     urlFlag: false
   },
 

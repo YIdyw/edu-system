@@ -25,7 +25,7 @@
       <block wx:else>
     <view class="orderDetails" wx:for="{{paidOrder}}" wx:key="index" data-menuindex='{{index}}' bindtap="settledetail2" >
         <view class="orderListDetails">
-          <image src="https://www.sanshidiboundless.net:444/offline-education-system/picture/{{item.orderItemVOList[0].orderItem.object.adverPhoto}}"></image>
+          <image src="https://sanshidiboundless.net:444/offline-education-system/picture/{{item.orderItemVOList[0].orderItem.object.adverPhoto}}"></image>
         </view>
         <view class="orderListInfo">
           <view class="productInfo">
@@ -55,7 +55,7 @@
       <view wx:else>
       <view class="orderDetails" wx:for="{{tobepaidOrder}}" data-menuindex='{{index}}' wx:key="index" bindtap="settlement">
         <view class="orderListDetails">
-          <image class="productImg" src="https://www.sanshidiboundless.net:444/offline-education-system/picture/{{item.orderItemVOList[0].orderItem.object.adverPhoto}}" background-size="cover"></image>
+          <image class="productImg" src="https://sanshidiboundless.net:444/offline-education-system/picture/{{item.orderItemVOList[0].orderItem.object.adverPhoto}}" background-size="cover"></image>
         </view>
         
         <view class="orderListInfo">
@@ -63,12 +63,13 @@
             <view class="productTitle">预定时间: {{item.orderTime}}</view>
               <text class="productPrice">订单编号: {{item.orderId}}</text>
             </view>
-          </view>
-          <view class="productCount">
+            <view class="productCount">
             <view>
               <text>合计：￥{{item.transaction}}</text>
             </view>
           </view>
+          </view>
+          
         </view>
       </view>
     </scroll-view>
@@ -86,7 +87,7 @@
       <view wx:else>
     <view class="orderDetails" wx:for="{{cancelOrder}}" wx:key="index"  data-menuindex='{{index}}' bindtap="settledetail">
         <view class="orderListDetails">
-          <image src="https://www.sanshidiboundless.net:444/offline-education-system/picture/{{item.orderItemVOList[0].orderItem.object.adverPhoto}}"></image>
+          <image src="https://sanshidiboundless.net:444/offline-education-system/picture/{{item.orderItemVOList[0].orderItem.object.adverPhoto}}"></image>
         </view>
         <view class="orderListInfo">
           <view class="productInfo">
