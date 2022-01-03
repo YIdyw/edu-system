@@ -40,9 +40,8 @@ export function teacher_deal(data){
 //老师处理结果推送给学生
 export function push_leava(data){
   return request({
-    url: '/weixin/leaveReminder',
+    url: '/weixin/leaveReminder/' + data.userId + '/' + data.recordId,
     method:'POST',
-    data:data
   });
 }
 

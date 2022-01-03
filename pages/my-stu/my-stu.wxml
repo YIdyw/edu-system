@@ -106,21 +106,26 @@
       </view>
       <view class="week-col">
         <view wx:for="{{monthPlan}}" wx:key="id"  class="week-day {{item.exist?item.color: ''}} {{item.name==currentDay&&currentMonth==showMonth?'text-red text-bold':''}}" bindtap="viewDayDetail" data-cp="{{item.cp}}" data-exist="{{item.exist}}" data-info="{{item.courseInfo}}" data-week="{{item.week}}" style="border-radius:50%">
+          <view>
+            {{item.name}}
+          </view>
           <view wx:if="{{item.cp}}" class="pop">
             <view class="cuIcon-favorfill text-blue">
             </view>
           </view>
-          <view>
-            {{item.name}}
-          </view>
+
           
         </view>
       </view>
     </view>
     <view class="end">
-      <view class="red-line"></view>
+      
       <view class="word">
-        注：标记部分有排课，可点击查看具体内容
+        <view class="olive-line">有课</view>
+        <view class="red-line">申请补课</view>
+        <view class="green-line">补课通过</view>
+        <view class="blue-line">申请请假</view>
+        <view class="cuIcon-favorfill text-blue">计时课包</view>
       </view>
     </view>
   </view>

@@ -196,6 +196,10 @@ out_of_china:function (lng, lat) {
     var lng1 = this.data.lng1
     var lat2 = this.data.courseInfo.location[1]
     var lng2 = this.data.courseInfo.location[0]
+    console.log(lat1)
+    console.log(lng1)
+    console.log(lat2)
+    console.log(lng2)
     var radLat1 = lat1 * Math.PI / 180.0
     var radLat2 = lat2 * Math.PI / 180.0
     var a = radLat1 - radLat2
@@ -207,7 +211,8 @@ out_of_china:function (lng, lat) {
       long: s,
     })
     console.log("您目前距离签到点：",s,"公里")
-    if(s > 0.5){
+      if(s > 0.5){
+ //   if(s > 500){
       setTimeout(() => {
         wx.showToast({
           title: '您现在不在签到范围内（500米）！',
@@ -226,6 +231,7 @@ out_of_china:function (lng, lat) {
   _sign(){
     let data = {
       userId : this.data.userid,
+      phone: wx.getStorageSync('loginInfo').phone,
       courseId : this.data.courseInfo.courseId
     }
     sign(data).then(res =>{

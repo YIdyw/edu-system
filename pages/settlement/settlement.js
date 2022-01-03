@@ -23,7 +23,7 @@ Page({
     var that =this
     let data = {
       orderId : this.data.orderid,
-      payType : '微信'
+      userId : wx.getStorageSync('loginInfo').userid
     }
     wx.showModal({
       cancelColor: 'cancelColor',
@@ -31,7 +31,9 @@ Page({
       title : "确认是否支付",
       success(res) {
         if(res.confirm){
-          that._payForOrder(that.data.orderid)
+
+  //        that.start_pay()
+          that._payForOrder(data)
           // payfor(data).then(res => {
           //   console.log(res.data)
           //   if(res.code==200){
@@ -51,21 +53,117 @@ Page({
     })
   },
 
+
+  start_pay(obj){
+    var res = JSON.parse(obj);
+    
+    console.log(res.paySign)
+    wx.requestPayment(
+      {
+      "timeStamp": res.timeStamp.toString(),
+      "nonceStr": res.nonceStr,
+      "package": res.package,
+      "signType": res.signType,
+      "paySign": res.paySign,
+ //上面这些是从JSON中解析出来就行了。
+      "success":function(res){
+        console.log("pay="+res);
+        wx.showToast({
+          title: '支付成功',
+          icon: 'success',
+          duration: 3000
+        });
+      },
+      "fail":function(res){
+        console.log(res)
+        wx.showToast({
+          title: '支付失败',
+          icon: 'error',
+          duration: 3000
+        });
+      },
+      "complete":function(res){
+        console.log(res)
+        wx.showToast({
+          title: '已取消',
+          icon : 'loading',
+          duration: 3000
+        });
+      }
+      })
+  },
+
+dopay(){
+  wx.request({
+    url: address + 'wxPay',
+    data: {
+        openId: openId
+        // amount: amount,
+        // openId: openId
+    },
+    header: {
+        'content-type': 'application/x-www-form-urlencoded' // 默认值
+    },
+    method: "POST",
+    success: function (res) {
+        console.log(res);
+        that.doWxPay(res.data);
+    },
+    fail: function (err) {
+        wx.showToast({
+            icon: "none",
+            title: '服务器异常，清稍候再试'
+        })
+    },
+  })
+},
+ 
+doWxPay(param) {
+//小程序发起微信支付
+  wx.requestPayment({
+  timeStamp: param.data.timeStamp,//记住，这边的timeStamp一定要是字符串类型的，不然会报错
+  nonceStr: param.data.nonceStr,
+  package: param.data.package,
+  signType: param.data.signType,
+  paySign: param.data.paySign,
+  success: function (event) {
+  // success
+  console.log(event);
+  wx.showToast({
+    title: '支付成功',
+    icon: 'success',
+    duration: 2000
+  });
+},
+  fail: function (error) {
+  // fail
+  console.log("支付失败")
+  console.log(error)
+  },
+  complete: function () {
+  // complete
+  console.log("pay complete")
+  }
+});
+},
+
 // 完成该订单的支付，返回结果为支付二维码链接
-  _payForOrder(orderid){
-    payForOrder(orderid).then(res =>{
+  _payForOrder(data){
+    var that = this
+    payForOrder(data).then(res =>{
       if(res.code==200){
         // wx.redirectTo({
         //   url: '../payment/payment?url='+url,
         // })
-        this.setData({
-          urlFlag: true,
-          url: res.data
-        })
+        that.start_pay(res.data)
         console.log(res.data)
       }
     })
   },
+
+  
+
+
 
   // 根据当前用户的尚未支付订单列表以及所点击的订单 id 获取当前点击的订单的具体信息
   // 注：此处的订单 id 来自于订单列表页面的点击跳转传参

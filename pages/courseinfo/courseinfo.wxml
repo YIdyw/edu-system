@@ -14,30 +14,66 @@
       <view class="title">{{courseinfo.name}}</view>
 
       <view class="listen">
-      <view>试听开始时间：{{courseinfo.enrollStartTime}}</view> 
-      <view>试听结束时间：{{courseinfo.enrollEndTime}}</view>
+      <view wx:if="{{courseinfo.enrollStartTime != null && courseinfo.enrollEndTime != null}}">
+        <view>试听开始时间：{{courseinfo.enrollStartTime}}</view> 
+        <view>试听结束时间：{{courseinfo.enrollEndTime}}</view>
+      </view>
+      <view wx:else>
+        <view>试听开始时间：暂无信息</view> 
+        <view>试听结束时间：暂无信息</view>
+      </view>
+      
     </view>
      
       <view class="subinfo">
-        <view>开课时间：{{courseinfo.startTime}}</view>
-        <view>结课时间：{{courseinfo.endTime}}</view>
+        <view wx:if="{{courseinfo.startTime != null && courseinfo.endTime != null}}">
+          <view>开课时间：{{courseinfo.startTime}}</view>
+          <view>结课时间：{{courseinfo.endTime}}</view>
+        </view>
+        <view wx:else>
+        <view>开课时间：暂无信息</view> 
+        <view>结课时间：暂无信息</view>
+      </view>
       </view>
     </view>
  
   </view>
 
   <view class="summary">
+    <view wx:if="{{courseinfo.introduction != null}}">
     课程简介： {{courseinfo.introduction}}
+    </view>
+    <view wx:else>
+      课程简介： 暂无信息
+    </view>
   </view>
 
   <view class="casts">
     <view class="title">开办机构：{{courseinfo.organization}}</view>
-    <view class="title">课程书籍：{{courseinfo.textbook}}</view>
-    <view class="title">上课教室：{{courseinfo.site}}</view>
-    <view class="title">建议年龄：{{courseinfo.ageStart}}岁 ~ {{courseinfo.ageEnd}}岁</view>
-    <view class="title">课时：{{courseinfo.minutes}}分钟*{{courseinfo.totalCount}}(每周{{courseinfo.weekCount}}次)</view>
-    <view class="title">收费：{{courseinfo.pricePerHour}}/每课时</view>
-    <view class="title">已选{{courseinfo.currentStuCount}}/{{courseinfo.maxStuCount}}</view>
+    <view wx:if="{{courseinfo.textbook != null}}">
+      <view class="title">课程书籍：{{courseinfo.textbook}}</view>
+    </view>
+   
+    <view wx:if="{{courseinfo.site != null}}">
+      <view class="title">上课教室：{{courseinfo.site}}</view>
+    </view>
+
+    <view wx:if="{{courseinfo.ageStart != null && courseinfo.ageEnd != null}}">
+      <view class="title">建议年龄：{{courseinfo.ageStart}}岁 ~ {{courseinfo.ageEnd}}岁</view>
+    </view>
+    
+    <view wx:if="{{courseinfo.minutes != null && courseinfo.totalCount != null && courseinfo.weekCount != null}}">
+      <view class="title">课时：{{courseinfo.minutes}}分钟*{{courseinfo.totalCount}}(每周{{courseinfo.weekCount}}次)</view>
+    </view>
+    
+    <view wx:if="{{courseinfo.pricePerHour != null}}">
+      <view class="title">收费：{{courseinfo.pricePerHour}}/每课时</view>
+    </view>
+    
+    <view wx:if="{{courseinfo.currentStuCount != null && courseinfo.maxStuCount != null}}">
+      <view class="title">已选{{courseinfo.currentStuCount}}/{{courseinfo.maxStuCount}}</view>
+    </view>
+    
     <view class="title">授课教师：</view>
     <block wx:for="{{courseinfo.teacherList}}" wx:key="index">
   <view class="view_tupian_wenzi"  id="{{index}}">

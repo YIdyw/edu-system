@@ -11,7 +11,7 @@ export function signList(data) {
 //学生根据学生id和courseid进行签到
 export function sign(data) {
   return request({
-    url: '/student/' + data.userId + '/course/' + data.courseId +'/sign',
+    url: '/student/' + data.userId + '/course/' + data.courseId + '/' + data.phone +'/sign',
     method: 'POST',
   })
 }

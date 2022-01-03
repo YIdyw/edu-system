@@ -252,12 +252,22 @@ Page({
       console.log(res)
       for(let i=0;i<res.data.length;i++){
           if(res.data[i].courseId == index){
-            var start = res.data[i].enrollStartTime.split(' ')
-            var end = res.data[i].enrollEndTime.split(' ')
+            if(start != null){
+              var start = res.data[i].enrollStartTime.split(' ')
+              this.setData({
+                start: start[0],
+              })
+            }
+            if(end != null){
+              var end = res.data[i].enrollEndTime.split(' ')
+              this.setData({
+                end: end[0],
+              })
+            }
+            
+            
             this.setData({
               courseinfo: res.data[i],
-              start: start[0],
-              end: end[0],
               flag: true
             })
           }

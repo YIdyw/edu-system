@@ -38,7 +38,7 @@
 .banner .info {
   position: absolute;
   color: #fff;
-  z-index: 2;
+  z-index: 1;
   width: 90%;
   right: 40rpx;
   bottom: 10rpx;

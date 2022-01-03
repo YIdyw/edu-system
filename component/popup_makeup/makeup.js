@@ -65,22 +65,31 @@ Component({
                 wx.showToast({
                   title: '已同意该学生补课',
                 })
+
+                let push_data = {
+                  recordId:that.data.makeup[e.currentTarget.dataset.index].recordId,
+                  userId:that.data.makeup[e.currentTarget.dataset.index].userId
+                }
+            
+                push_leava(push_data).then(res2 => {
+                  if (res.code == 200){
+                    setTimeout(() => {
+                      wx.showToast({
+                        title: '推送成功！',
+                      });
+                      setTimeout(() => {
+                        wx.hideToast();
+                      }, 3000)
+                    }, 0);
+                  }
+                })
               }
             })
             that.data.makeup[e.currentTarget.dataset.index].isChecked = agree
             that.setData({
               makeup: that.data.makeup
             })
-            let push_data = {
-              recordId:that.data.makeup[e.currentTarget.dataset.index].recordId,
-              userId:that.data.makeup[e.currentTarget.dataset.index].userId
-            }
-        
-            push_leava(push_data).then(res => {
-              if (res.code == 200){
-                console.log("推送成功")
-              }
-            })
+            
           }
           else{
             that.setData({

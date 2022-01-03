@@ -87,7 +87,16 @@
       <!-- <button bindtap="updatepsword" class="basis-xl cu-btn block line-pink lg">点击修改密码</button> -->
   </view>
 </view>
-	
+
+		<view class="cu-form-group">
+			<view class="title">昵称</view>
+    	<input value="{{nickname}}" maxlength="30" bindinput="nicknameModify">{{nickname}}</input>
+		</view>
+		<view class="padding flex flex-direction margin-top">
+  		<button class="cu-btn bg-grey lg" bindtap="setNickname">点击修改</button>
+		</view>
+
+
   </view>
 <view wx:else>
 <form>
@@ -176,4 +185,11 @@
   </view>
 </view>
 
+		<view class="cu-form-group">
+			<view class="title">昵称</view>
+    	<input value="{{nickname}}" maxlength="30" bindinput="nicknameModify">{{nickname}}</input>
+		</view>
+		<view class="padding flex flex-direction margin-top">
+  		<button class="cu-btn bg-grey lg" bindtap="setNickname">点击修改</button>
+		</view>
 </view>

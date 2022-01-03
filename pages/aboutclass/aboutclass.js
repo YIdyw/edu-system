@@ -105,8 +105,13 @@ Page({
       console.log(res)
       wx.setStorageSync('getmyclass',res.data);
       for(let j=0; j<res.data.length; j++){
-        begintime[j]=res.data[j].startTime.substring(0,10),
-        endtime[j]=res.data[j].endTime.substring(0,10)
+        if(res.data[j].startTime != null){
+          begintime[j]=res.data[j].startTime.substring(0,10)
+        }
+        if(res.data[j].endTime != null){
+          endtime[j]=res.data[j].endTime.substring(0,10)
+        }  
+        
         //审核通过，决定状态和课程记录
         if(res.data[j].status=="success"){
           status[j]= true

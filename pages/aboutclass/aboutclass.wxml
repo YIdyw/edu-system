@@ -35,11 +35,23 @@
 				</view>
   			<view class="cu-form-group">
 					<view class="title">开始时间</view>
-					<view class="content">{{begintime[idxx]}}</view>
+						<view wx:if="{{begintime[idxx] != null}}">
+							<view class="content">{{begintime[idxx]}}</view>
+            </view>
+            <view wx:else>
+              <view class="content">暂无信息</view>
+            </view>
+					
 				</view>
 				<view class="cu-form-group">
 					<view class="title">结束时间</view>
-					<view class="content">{{endtime[idxx]}}</view>
+					<view wx:if="{{endtime[idxx] != null}}">
+							<view class="content">{{endtime[idxx]}}</view>
+            </view>
+            <view wx:else>
+              <view class="content">暂无信息</view>
+            </view>
+	
 				</view>
 				<view class="cu-form-group">
 					<view class="title">主讲教师</view>

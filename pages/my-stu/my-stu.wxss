@@ -585,14 +585,52 @@
   position: relative;
 }
 
+.olive-line {
+  position: absolute;
+  left: -28rpx;
+  top: -40rpx;
+  width: 98rpx;
+  height: 40rpx;
+  background-color: olive;
+  text-align: center;
+  color: white;
+}
+
 .red-line {
   position: absolute;
-  left: 0;
-  top: 28rpx;
-  width: 10rpx;
-  height: 28rpx;
+  left: 75rpx;
+  top: -40rpx;
+  width: 198rpx;
+  height: 40rpx;
   background-color: #F94545;
+  text-align: center;
+  color: white;
 }
+
+
+
+.green-line {
+  position: absolute;
+  left: 275rpx;
+  top: -40rpx;
+  width: 198rpx;
+  height: 40rpx;
+  background-color: green;
+  text-align: center;
+  color: white;
+}
+
+.blue-line {
+  position: absolute;
+  left: 475rpx;
+  top: -40rpx;
+  width: 198rpx;
+  height: 40rpx;
+  background-color: #2655CF;
+  text-align: center;
+  color: white;
+}
+
 
 .word {
   position: absolute;
@@ -818,8 +856,8 @@
 }
 
 .pop{
-  margin-bottom:-15px;
-  margin-left:-5px;
+  margin-top:-55px;
+  margin-left:0px;
   opacity: 0.8;
   animation: popjump 3s infinite;
 }

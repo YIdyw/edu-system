@@ -16,7 +16,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-    layout:{},
+    layout:[],
     islayout: true,
     refuse_content:'',
     isrefuse:true,
@@ -31,22 +31,25 @@ Component({
   methods: {
   //老师查阅请假记录
   teacherlp: function (userid) {
+    var that = this
   teache_lookup(userid).then(res => {
     console.log(res)
     if(res.code == 200){
-      this.setData({
+      that.setData({
         islayout:false,
         layout:res.data
       })
+      console.log(that.data)
     }
-    if (this.getInfoCallback) {
-      this.getInfoCallback(res)     //这里为了防止网络获取延迟，设置回调函数
-    }
+    // if (this.getInfoCallback) {
+    //   this.getInfoCallback(res)     //这里为了防止网络获取延迟，设置回调函数
+    // }
   })
 },
 //修改学生申请的审核状态
 changecheck(e){
   console.log(e.currentTarget)
+  
   var agree = 20
   var that = this
   wx.showModal({
@@ -68,22 +71,31 @@ changecheck(e){
               wx.showToast({
                 title: '已同意该学生请假',
               })
+
+              let push_data = {
+                recordId:that.data.layout[e.currentTarget.dataset.index].recordId,
+                userId:that.data.layout[e.currentTarget.dataset.index].userId
+              }
+    
+              push_leava(push_data).then(res2 => {
+                if (res.code == 200){
+                  setTimeout(() => {
+                    wx.showToast({
+                      title: '推送成功！',
+                    });
+                    setTimeout(() => {
+                      wx.hideToast();
+                    }, 3000)
+                  }, 0);
+                }
+              })
             }
           })
           that.data.layout[e.currentTarget.dataset.index].isChecked = agree
           that.setData({
             layout:that.data.layout
           })
-          let push_data = {
-            recordId:that.data.layout[e.currentTarget.dataset.index].recordId,
-            userId:that.data.layout[e.currentTarget.dataset.index].userId
-          }
-      
-          push_leava(push_data).then(res => {
-            if (res.code == 200){
-              console.log("推送成功")
-            }
-          })
+          
         }
         else{
           that.setData({

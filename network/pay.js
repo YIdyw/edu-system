@@ -12,7 +12,7 @@ export function payfor(data){
 // 根据orderid支付该订单
 export function payForOrder(data){
   return request({
-    url: '/transaction/order/'+data,
+    url: '/transaction/order/'+data.orderId+'/'+data.userId,
     method: 'POST',
   });
 }

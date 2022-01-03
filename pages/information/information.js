@@ -7,12 +7,16 @@ import {
 import {
   getPassword
 } from '../../network/getcode'
+import {
+  userAuthed
+} from '../../network/authID'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    nickname: "",
     loginInfo:"",
     name:'',
     isupdatepsword: true, //是否修改密码
@@ -33,6 +37,50 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
+
+   //昵称修改**********************************************
+   nicknameModify(e){
+    this.setData({
+      nickname : e.detail.value
+    })
+   },
+
+   // 修改昵称
+   setNickname(){
+    let that=this;
+    let data={
+      nickname:that.data.nickname,
+      userid:wx.getStorageSync('loginInfo').userid
+    }
+    userAuthed(data).then(res=>{
+      console.log(res)
+      if(res.code==200){
+        var loginInfo = wx.getStorageSync('loginInfo')
+        loginInfo.nickname = that.data.nickname
+        wx.setStorageSync('loginInfo', loginInfo)
+        
+        setTimeout(() => {
+          wx.showToast({
+            title: '修改成功！',
+            icon: "success",
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 1000)
+        }, 0);
+      }else{
+        setTimeout(() => {
+          wx.showToast({
+            title: '修改失败！',
+            icon: "none",
+          });
+          setTimeout(() => {
+            wx.hideToast();
+          }, 1500)
+        }, 0);
+      }       
+    });
+  },
 
    //学生年级**********************************************
   PickerChange(e) {
@@ -311,6 +359,7 @@ Page({
         this._getcallback = data =>{
           this.setData({
             getstuinfo:data,
+            nickname: data.nickname,
             name: data.name,
             school: data.school,
             secondTel: data.secondTel,

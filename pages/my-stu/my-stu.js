@@ -864,6 +864,7 @@ Page({
     let currentWeekNum = parseInt((monthcheck.length - monthday.getDate() + day - 1)/7) + 1;
     let weekPlan = []
     scheduleQuery(data).then(res=>{
+     // console.log(res.data)
       let monthPlan = this.data.monthPlan
       for(let i=0; i<monthPlan.length; i++){
         for(let j=0; j<res.data.length; j++){
@@ -887,7 +888,6 @@ Page({
             monthPlan[i].exist = true;
             monthPlan[i].color = color;
             monthPlan[i].courseInfo.push({name: res.data[j].name,courseId: res.data[j].courseId, courseTime: res.data[j].courseTime, site: res.data[j].site , courseNo:res.data[j].courseNo, color: color})
-            
           }
           
           continue;
@@ -895,9 +895,10 @@ Page({
         let len = monthPlan[i].courseInfo.length
         for(var k=0;k<len;k++){
           for(var v=k+1;v<len;v++){
-            if(monthPlan[i].courseInfo[k].courseTime==monthPlan[i].courseInfo[v].courseTime){
+            if(monthPlan[i].courseInfo[k].courseTime==monthPlan[i].courseInfo[v].courseTime && monthPlan[i].courseInfo[k].name==monthPlan[i].courseInfo[v].name){
               monthPlan[i].courseInfo[k].courseNo = monthPlan[i].courseInfo[v].courseNo
               monthPlan[i].courseInfo[v].courseNo = -999
+
             }
           }
         }
